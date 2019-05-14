@@ -37,6 +37,9 @@ const siteConfig = {
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
 
+  // Disable showing the title in the header next to the header icon.
+  disableHeaderTitle: true,
+
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     { doc: "intro", label: "Docs" },
@@ -49,9 +52,10 @@ const siteConfig = {
   users,
 
   /* path to images for header/footer */
-  headerIcon: "img/favicon.ico",
-  footerIcon: "img/favicon.ico",
+  headerIcon: "img/logo-horizontal.png",
+  footerIcon: "img/icon.png",
   favicon: "img/favicon.ico",
+  mirumeeIcon: "img/mirumee.png",
 
   /* Colors for website */
   colors: {

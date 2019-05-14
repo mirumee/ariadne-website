@@ -1,0 +1,47 @@
+/* Override navbar to use white background with black copy */
+.fixedHeaderContainer {
+  background-color: #fff;
+}
+
+/* Use 32px logo by default */
+.fixedHeaderContainer header .logo {
+    height: 32px;
+}
+
+/* Override nav to always be black on white */
+.navigationSlider .slidingNav ul {
+  background-color: #fff;
+}
+
+.navigationSlider .slidingNav ul li a {
+  padding: 8px 12px;
+
+  background-image: url(../img/nav-arrow.png);
+  background-position: right 2px top 4px;
+  background-repeat: no-repeat;
+  background-size: 8px 8px;
+  color: #3c3e4c;
+}
+
+.navigationSlider .slidingNav ul li > a:focus,
+.navigationSlider .slidingNav ul li > a:hover,
+.navigationSlider .slidingNav ul li.siteNavItemActive > a,
+.navigationSlider .slidingNav ul li.siteNavGroupActive > a {
+  background-color: #fff;
+  color: #dd3333;
+}
+
+@media only screen and (min-width: 1024px) {
+  .fixedHeaderContainer {
+    padding: 20px 0px;
+  }
+
+  .fixedHeaderContainer header .logo {
+    height: 40px;
+  }
+
+  .navigationSlider .slidingNav ul li a {
+    font-size: 1.25em;
+    margin-left: 14px;
+  }
+}

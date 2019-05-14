@@ -1,0 +1,133 @@
+/* Restyle footer to be black on white*/
+.nav-footer {
+    background-color: #ffffff;
+}
+
+/* Fix image proportions and positioning */
+.nav-footer .sitemap .nav-home {
+  padding: 0;
+  margin-top: 0;
+  width: 70px;
+  opacity: 1;
+}
+
+.nav-footer .sitemap .nav-home img {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen and (min-device-width: 736px) {
+  .nav-footer .sitemap .nav-home {
+    padding-bottom: 32px;
+    width: 128px;
+  }
+}
+
+/* Upscale category header, add little red border between it and its links */
+.nav-footer .sitemap h5 {
+  font-size: 1.2em;
+    
+  color: #3c3e4c;
+}
+
+.nav-footer .sitemap h5:after {
+  content: "";
+  display: block;
+  width: 40px;
+  margin-top: 10px;
+  margin-bottom: 12px;
+
+  border-top: 1px solid #dd3333;
+}
+
+/* Recolor footer menu links */
+.nav-footer .sitemap a {
+  color: #3c3e4c;
+}
+
+.nav-footer .sitemap a:hover,
+.nav-footer .sitemap a:focus {
+  color: #dd3333;
+}
+
+/* Restyle copyright to space in opposite corners */
+.nav-footer .copyright {
+  overflow: auto;
+}
+
+  .nav-footer .copyright a {
+    display: block;
+
+    color: #b1b2b8;
+    text-align: center;
+  }
+
+  .nav-footer .copyright img {
+    height: 24px;
+    margin-left: 8px;
+    opacity: 0.3;
+    vertical-align: top;
+  }
+
+  .nav-footer .copyright a:hover,
+  .nav-footer .copyright a:focus {
+    color: #3c3e4c;
+  }
+
+  .nav-footer .copyright a:hover img { 
+    opacity: 0.8;
+  }
+
+  .nav-footer .copyright a:first-child {
+    display: none;
+  }
+
+/* Reflow nav into two items */
+@media only screen and (min-device-width: 736px) {
+  .nav-footer .copyright a:first-child {
+    display: block;
+    float: left;
+  }
+
+  .nav-footer .copyright a:last-child {
+    float: right;
+  }
+}
+
+/* Force sitemap and copyright width to match header, control copyright spacing */
+.nav-footer .sitemap,
+.nav-footer .copyright {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.nav-footer .copyright {
+  margin-top: 24px;
+  margin-bottom: 54px
+}
+
+@media only screen and (min-device-width: 500px) {
+  .nav-footer .copyright {
+    margin-top: 48px;
+    margin-bottom: 16px
+  }
+}
+
+@media only screen and (min-width: 736px) {
+  .nav-footer .sitemap,
+  .nav-footer .copyright {
+    padding: 0 20px;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+  .nav-footer .sitemap,
+  .nav-footer .copyright {
+    max-width: 1400px;
+  }
+
+  .blog .nav-footer .sitemap,
+  .blog .nav-footer .copyright {
+    max-width: 1100px;
+  }
+}

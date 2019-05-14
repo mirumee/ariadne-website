@@ -30,11 +30,12 @@ class Footer extends React.Component {
               <img
                 src={this.props.config.baseUrl + this.props.config.footerIcon}
                 alt={this.props.config.title}
-                width="66"
-                height="58"
+                height="107"
+                width="128"
               />
             )}
           </a>
+          <div />
           <div>
             <h5>Docs</h5>
             <a href={this.docUrl("doc1.html", this.props.language)}>
@@ -85,22 +86,17 @@ class Footer extends React.Component {
             </a>
           </div>
         </section>
-
-        <a
-          href="https://opensource.facebook.com/"
-          target="_blank"
-          rel="noreferrer noopener"
-          className="fbOpenSource"
-        >
-          <img
-            src={`${this.props.config.baseUrl}img/oss_logo.png`}
-            alt="Facebook Open Source"
-            width="170"
-            height="45"
-          />
-        </a>
         <section className="copyright">
-          <a href="https://mirumee.com">{this.props.config.copyright}</a>
+          <a href="https://mirumee.com">
+            {`Copyright © ${new Date().getFullYear()} Mirumee Software`}
+          </a>
+          <a href="https://mirumee.com">
+            Ariadne is crafted with love by
+            <img
+              src={this.props.config.baseUrl + this.props.config.mirumeeIcon}
+              alt="Mirumee"
+            />
+          </a>
         </section>
       </footer>
     );

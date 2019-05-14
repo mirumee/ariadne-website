@@ -1,0 +1,27 @@
+{
+  "docs": {
+    "Docs": [
+      "intro",
+      "resolvers",
+      "mutations",
+      "error-messaging",
+      "scalars",
+      "enums",
+      "unions",
+      "interfaces",
+      "subscriptions",
+      "documenting-schema",
+      "modularization",
+      "bindables",
+      "local-development",
+      "asgi",
+      "wsgi",
+      "integrations",
+      "logging",
+      "logo"
+    ]
+  },
+  "integrations": {
+    "Integrations": ["integrations"]
+  }
+}

@@ -23,7 +23,7 @@ const users = [
 const siteConfig = {
   title: "Ariadne", // Title for your website.
   tagline:
-    "A a Python library for implementing GraphQL servers using schema-first approach.",
+    "A Python library for implementing GraphQL servers using schema-first approach.",
   url: "https://ariadnegraphql.org", // Your website URL
   baseUrl: "/", // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:
@@ -91,7 +91,11 @@ const siteConfig = {
 
   // Open Graph and Twitter card images.
   ogImage: "img/undraw_online.svg",
-  twitterImage: "img/undraw_tweetstorm.svg"
+  twitterImage: "img/undraw_tweetstorm.svg",
+
+  // Set this to true if you want to enable the scroll to top button
+  // at the bottom of your site.
+  scrollToTop: true,
 
   // Show documentation's last contributor's name.
   // enableUpdateBy: true,
@@ -101,7 +105,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+  repoUrl: "https://github.com/mirumee/ariadne"
 };
 
 module.exports = siteConfig;

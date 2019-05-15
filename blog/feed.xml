@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Ariadne Blog</title>
+        <link>https://ariadnegraphql.org/blog</link>
+        <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
+        <lastBuildDate>Wed, 15 May 2019 06:00:00 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>Feed for Node.js</generator>
+        <image>
+            <title>Ariadne Blog</title>
+            <url>https://ariadnegraphql.org/img/logo-horizontal.png</url>
+            <link>https://ariadnegraphql.org/blog</link>
+        </image>
+        <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Second Blog!]]></title>
+            <link>https://ariadnegraphql.org/blog/2019/05/15/second-blog.html</link>
+            <guid>https://ariadnegraphql.org/blog/2019/05/15/second-blog.html</guid>
+            <pubDate>Wed, 15 May 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>All this will be part of the blog post summary.</p>
+<p>Even this.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Hello world!]]></title>
+            <link>https://ariadnegraphql.org/blog/2019/05/14/hello-world.html</link>
+            <guid>https://ariadnegraphql.org/blog/2019/05/14/hello-world.html</guid>
+            <pubDate>Tue, 14 May 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Lorem ipsum dolor met, sit amet elit.</p> ]]></description>
+        </item>
+    </channel>
+</rss>

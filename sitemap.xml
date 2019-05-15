@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+<url> <loc>https://ariadnegraphql.org/help</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/help" /> </url>
+<url> <loc>https://ariadnegraphql.org/index</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/index" /> </url>
+<url> <loc>https://ariadnegraphql.org/users</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/users" /> </url>
+<url> <loc>https://ariadnegraphql.org/blog/2019/05/15/second-blog</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
+<url> <loc>https://ariadnegraphql.org/blog/2019/05/14/hello-world</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
+<url> <loc>https://ariadnegraphql.org/docs/asgi</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/asgi" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/bindables</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/bindables" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/documenting-schema</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/documenting-schema" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/enums</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/enums" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/error-messaging</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/error-messaging" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/doc4</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/doc4" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/doc5</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/doc5" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/integrations</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/integrations" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/interfaces</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/interfaces" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/intro</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/intro" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/local-development</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/local-development" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/logging</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/logging" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/logo</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/logo" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/modularization</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/modularization" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/mutations</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/mutations" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/resolvers</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/resolvers" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/scalars</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/scalars" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/subscriptions</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/subscriptions" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/unions</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/unions" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/wsgi</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/wsgi" /> </url>
+</urlset>

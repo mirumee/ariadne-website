@@ -14,8 +14,8 @@ const users = [
     caption: "Mirumee Software",
     // You will need to prepend the image path with your baseUrl
     // if it is not '/', like: '/test-site/img/image.jpg'.
-    image: "/img/undraw_open_source.svg",
-    infoLink: "https://www.facebook.com",
+    image: "/img/mirumee.png",
+    infoLink: "https://mirumee.com",
     pinned: true
   }
 ];
@@ -94,8 +94,8 @@ const siteConfig = {
   cleanUrl: true,
 
   // Open Graph and Twitter card images.
-  ogImage: "img/undraw_online.svg",
-  twitterImage: "img/undraw_tweetstorm.svg",
+  ogImage: "img/share-image.png",
+  twitterImage: "img/share-image.png",
 
   // Set this to true if you want to enable the scroll to top button
   // at the bottom of your site.

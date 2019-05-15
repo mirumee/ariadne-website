@@ -1,0 +1,104 @@
+.projectLead {
+  max-width: 300px;
+  margin: 0.75em auto;
+  margin-bottom: 0.5em;
+  padding: 0 20px;
+  font-weight: bold;
+  text-align: left;
+}
+
+@media only screen and (min-device-width: 430px) {
+  .projectLead {
+    max-width: 430px;
+    margin-bottom: 0.3em;
+    font-size: 3em;
+  }
+}
+
+@media only screen and (min-device-width: 550px) {
+  .projectLead {
+    max-width: 550px;
+    font-size: 4em;
+  }
+}
+
+@media only screen and (min-device-width: 736px) {
+  .projectLead {
+    padding: 0;
+  }
+}
+
+@media only screen and (min-device-width: 750px) {
+  .projectLead {
+    max-width: 760px;
+    font-size: 6em;
+  }
+}
+
+/* CTA buttons */
+.ctaButton {
+  background-color: #f0f0f0;
+  border-color: #f0f0f0;
+  border-radius: 0;
+  color: #3c3e4c;
+}
+
+.ctaButton:hover {
+  background: #e0e0e0;
+  color: #dd3333;
+}
+
+@media only screen and (min-device-width: 736px) {
+  .ctaButton {
+    padding: 16px 24px;
+    font-size: 0.9em;
+  }
+}
+
+/* Code focused block */
+.codeFocusedBlockContent h4 {
+  font-size: 3em;
+  font-weight: normal;
+}
+
+@media only screen and (min-device-width: 990px) {
+  .codeFocusedBlock {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 80px;
+  }
+
+  .codeFocusedBlockContent {
+    flex: 0 0 50%;
+    padding-right: 80px;
+  }
+
+  .codeFocusedBlockContent h4 {
+    margin-top: 0;
+  }
+
+  .codeFocusedBlockContent p:last-child {
+    margin-bottom: 0;
+  }
+
+  .codeFocusedBlockCode {
+    flex: 0 0 50%;
+  }
+
+  .codeFocusedBlockCode code {
+    height: 400px;
+    overflow-y: auto;
+  }
+}
+
+/* Fix spacings between features */
+@media only screen and (max-device-width: 735px) {
+  .homePromoSection .gridBlock .blockElement {
+    margin-bottom: 40px;
+  }
+
+  .homePromoSection .gridBlock .blockElement:last-child {
+    margin-top: 0;
+  }
+}

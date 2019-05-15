@@ -1,0 +1,32 @@
+/* Paint header black */
+.blogContainer .postHeaderTitle a {
+    color: #3c3e4c;
+}
+
+/* Gray out date */
+.blogContainer .post-meta {
+    color: #b1b2b8;
+}
+
+/* Remove bottom border for posts */
+.blog .blogContainer .posts .post {
+    border-bottom: none;
+    margin-bottom: 40px;
+}
+
+/* Restyle recent posts button */
+.blog-recent .button,
+.blog .read-more .button {
+  background-color: #fff;
+  border-color: #f0f0f0;
+  border-radius: 0;
+  color: #3c3e4c;
+}
+
+.blog-recent .button:focus,
+.blog-recent .button:hover,
+.blog .read-more .button:focus,
+.blog .read-more .button:hover {
+  border-color: #e0e0e0;
+  color: #dd3333;
+}

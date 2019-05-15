@@ -1,0 +1,57 @@
+.docs-prevnext .button {
+  background-color: #fff;
+  border-color: #f0f0f0;
+  border-radius: 0;
+  color: #3c3e4c;
+
+  text-transform: none;
+}
+
+.docs-prevnext .button:hover,
+.docs-prevnext .button:focus {
+  border-color: #e0e0e0;
+  color: #dd3333;
+}
+
+.docs-prevnext .arrow-prev,
+.docs-prevnext .arrow-next {
+    color: #e0e0e0;
+}
+
+
+@media only screen and (min-device-width: 736px) {
+  .docs-prevnext .button {
+    display: flex;
+    align-items: center;
+    width: 276px;
+    height: 112px;
+    padding: 0 27px;
+    font-size: 1.25em;
+  }
+  
+  .docs-prevnext .arrow-prev,
+  .docs-prevnext .arrow-next {
+    display: none;
+  }
+
+  .docs-prevnext .docs-prev span:last-child::before,
+  .docs-prevnext .docs-next span:first-child::before {
+    display: block;
+    color: #ccc;
+    font-size: 0.75em;
+    margin-bottom: 0.5em;
+  }
+
+  .docs-prevnext .docs-prev span:last-child::before {
+    content: "Previous Section:";
+  }
+
+  .docs-prevnext .docs-next span:first-child::before {
+    content: "Next Section:";
+  }
+
+  .docs-prevnext .docs-next {
+    justify-content: flex-end;
+    text-align: right;
+  }
+}

@@ -31,7 +31,7 @@ const siteConfig = {
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: "ariadne",
+  projectName: "ariadne-website",
   organizationName: "mirumee",
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
@@ -92,6 +92,9 @@ const siteConfig = {
   onPageNav: "separate",
   // No .html extensions for paths.
   cleanUrl: true,
+
+  // Google Analytics tracking ID to track page views.
+  gaTrackingId: "UA-10159761-23",
 
   // Open Graph and Twitter card images.
   ogImage: "img/share-image.png",

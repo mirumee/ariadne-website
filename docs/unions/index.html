@@ -14,7 +14,7 @@
             {"zIndex":100}
           )
         });
-        </script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/intro" target="_self">Docs</a></li><li class=""><a href="/docs/integrations" target="_self">Integrations</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Docs</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/resolvers">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/mutations">Mutations</a></li><li class="navListItem"><a class="navItem" href="/docs/error-messaging">Error messaging</a></li><li class="navListItem"><a class="navItem" href="/docs/scalars">Custom scalars</a></li><li class="navListItem"><a class="navItem" href="/docs/enums">Enumeration types</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/unions">Union types</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces">Interface types</a></li><li class="navListItem"><a class="navItem" href="/docs/subscriptions">Subscriptions</a></li><li class="navListItem"><a class="navItem" href="/docs/documenting-schema">Documenting schema</a></li><li class="navListItem"><a class="navItem" href="/docs/modularization">Modularization</a></li><li class="navListItem"><a class="navItem" href="/docs/bindables">Bindables</a></li><li class="navListItem"><a class="navItem" href="/docs/local-development">Local development</a></li><li class="navListItem"><a class="navItem" href="/docs/asgi">ASGI application</a></li><li class="navListItem"><a class="navItem" href="/docs/wsgi">WSGI application</a></li><li class="navListItem"><a class="navItem" href="/docs/logging">Logging</a></li><li class="navListItem"><a class="navItem" href="/docs/logo">Ariadne logo</a></li></ul></div></div></section></div><script>
+        </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/intro" target="_self">Docs</a></li><li class=""><a href="/docs/integrations" target="_self">Integrations</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Docs</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/resolvers">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/mutations">Mutations</a></li><li class="navListItem"><a class="navItem" href="/docs/error-messaging">Error messaging</a></li><li class="navListItem"><a class="navItem" href="/docs/scalars">Custom scalars</a></li><li class="navListItem"><a class="navItem" href="/docs/enums">Enumeration types</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/unions">Union types</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces">Interface types</a></li><li class="navListItem"><a class="navItem" href="/docs/subscriptions">Subscriptions</a></li><li class="navListItem"><a class="navItem" href="/docs/documenting-schema">Documenting schema</a></li><li class="navListItem"><a class="navItem" href="/docs/modularization">Modularization</a></li><li class="navListItem"><a class="navItem" href="/docs/bindables">Bindables</a></li><li class="navListItem"><a class="navItem" href="/docs/local-development">Local development</a></li><li class="navListItem"><a class="navItem" href="/docs/asgi">ASGI application</a></li><li class="navListItem"><a class="navItem" href="/docs/wsgi">WSGI application</a></li><li class="navListItem"><a class="navItem" href="/docs/logging">Logging</a></li><li class="navListItem"><a class="navItem" href="/docs/logo">Ariadne logo</a></li></ul></div></div></section></div><script>
             var coll = document.getElementsByClassName('collapsible');
             var checkActiveCategory = true;
             for (var i = 0; i < coll.length; i++) {
@@ -66,30 +66,30 @@
             });
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Union types</h1></header><article><div><span><p>When designing your API, you may run into a situation where you want your field to resolve to one of a few possible types. It may be an <code>error</code> field that can resolve to one of many error types, or an activity feed made up of different types.</p>
 <p>The most obvious solution may be creating a custom &quot;intermediary&quot; type that would define dedicated fields to different types:</p>
-<pre><code class="hljs css language-graphql">type MutationPayload {
-    status: Boolean!
-    validationError: ValidationError
-    permissionError: AccessError
-    user:<span class="hljs-built_in"> User
-</span>}
-<span class="hljs-built_in">
-type </span>FeedItem {
-    post: Post
-    image: Image
-    user:<span class="hljs-built_in"> User
-</span>}
+<pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">MutationPayload</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">status</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
+    <span class="token attr-name">validationError</span><span class="token punctuation">:</span> ValidationError
+    <span class="token attr-name">permissionError</span><span class="token punctuation">:</span> AccessError
+    <span class="token attr-name">user</span><span class="token punctuation">:</span> User
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> <span class="token class-name">FeedItem</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">post</span><span class="token punctuation">:</span> Post
+    <span class="token attr-name">image</span><span class="token punctuation">:</span> Image
+    <span class="token attr-name">user</span><span class="token punctuation">:</span> User
+<span class="token punctuation">}</span>
 </code></pre>
 <p>GraphQL provides a dedicated solution to this problem in the form of dedicated <code>Union</code> type.</p>
 <h2><a class="anchor" aria-hidden="true" id="union-example"></a><a href="#union-example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Union example</h2>
 <p>Consider an earlier error example. The union representing one of a possible three error types can be defined in schema like this:</p>
-<pre><code class="hljs css language-graphql">union Error = NotFoundError | <span class="hljs-type">AccessError</span> | <span class="hljs-type">ValidationError</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">union</span> <span class="token class-name">Error</span> <span class="token operator">=</span> NotFoundError <span class="token operator">|</span> AccessError <span class="token operator">|</span> ValidationError
 </code></pre>
 <p>This <code>Error</code> type can be used just like any other type:</p>
-<pre><code class="hljs css language-graphql">type MutationPayload {
-    status: Boolean!
-    error: <span class="hljs-builtin-name">Error</span>
-    user:<span class="hljs-built_in"> User
-</span>}
+<pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">MutationPayload</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">status</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
+    <span class="token attr-name">error</span><span class="token punctuation">:</span> Error
+    <span class="token attr-name">user</span><span class="token punctuation">:</span> User
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Your union will also need a special resolver named <em>type resolver</em>. This resolver will we called with an object returned from a field resolver and current context, and should return a string containing the name of an GraphQL type, or <code>None</code> if received type is incorrect:</p>
 <pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_error_type</span><span class="hljs-params">(obj, *_)</span>:</span>
@@ -123,20 +123,20 @@ error = UnionType(<span class="hljs-string">"Error"</span>, resolve_error_type)
 <h2><a class="anchor" aria-hidden="true" id="__typename-field"></a><a href="#__typename-field" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>__typename</code> field</h2>
 <p>Every type in GraphQL has a special <code>__typename</code> field that is resolved to a string containing the type's name.</p>
 <p>Including this field in your query may simplify implementation of result handling logic in your client:</p>
-<pre><code class="hljs css language-graphql">query getFeed {
-    feed {
+<pre><code class="hljs css language-graphql"><span class="token keyword">query</span> getFeed <span class="token punctuation">{</span>
+    feed <span class="token punctuation">{</span>
         __typename
-        <span class="hljs-built_in">..</span>. on Post {
+        <span class="token operator">...</span> <span class="token keyword">on</span> <span class="token class-name">Post</span> <span class="token punctuation">{</span>
             text
-        }
-        <span class="hljs-built_in">..</span>. on Image {
+        <span class="token punctuation">}</span>
+        <span class="token operator">...</span> <span class="token keyword">on</span> <span class="token class-name">Image</span> <span class="token punctuation">{</span>
             url
-        }
-        <span class="hljs-built_in">..</span>. on<span class="hljs-built_in"> User </span>{
+        <span class="token punctuation">}</span>
+        <span class="token operator">...</span> <span class="token keyword">on</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
             username
-        }
-    }
-}
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Assuming that the feed is a list, the query could produce the following response:</p>
 <pre><code class="hljs css language-json">{

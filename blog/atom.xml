@@ -2,31 +2,18 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2019-05-15T06:00:00Z</updated>
+    <updated>2019-01-11T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
     <entry>
-        <title type="html"><![CDATA[Second Blog!]]></title>
-        <id>https://ariadnegraphql.org/blog/2019/05/15/second-blog.html</id>
-        <link href="https://ariadnegraphql.org/blog/2019/05/15/second-blog.html">
+        <title type="html"><![CDATA[Ariadne 0.2.0 Released!]]></title>
+        <id>https://ariadnegraphql.org/blog/2019/01/11/ariadne-0-2-0-released.html</id>
+        <link href="https://ariadnegraphql.org/blog/2019/01/11/ariadne-0-2-0-released.html">
         </link>
-        <updated>2019-05-15T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>All this will be part of the blog post summary.</p>
-<p>Even this.</p>
-]]></summary>
-        <author>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello world!]]></title>
-        <id>https://ariadnegraphql.org/blog/2019/05/14/hello-world.html</id>
-        <link href="https://ariadnegraphql.org/blog/2019/05/14/hello-world.html">
-        </link>
-        <updated>2019-05-14T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>Lorem ipsum dolor met, sit amet elit.</p> ]]></summary>
+        <updated>2019-01-11T06:00:00Z</updated>
         <author>
         </author>
     </entry>

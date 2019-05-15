@@ -3,8 +3,7 @@
 <url> <loc>https://ariadnegraphql.org/help</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/help" /> </url>
 <url> <loc>https://ariadnegraphql.org/index</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/index" /> </url>
 <url> <loc>https://ariadnegraphql.org/users</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/users" /> </url>
-<url> <loc>https://ariadnegraphql.org/blog/2019/05/15/second-blog</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
-<url> <loc>https://ariadnegraphql.org/blog/2019/05/14/hello-world</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
+<url> <loc>https://ariadnegraphql.org/blog/2019/01/11/ariadne-0-2-0-released</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/docs/asgi</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/asgi" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/bindables</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/bindables" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/documenting-schema</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/documenting-schema" /> </url>

@@ -1,0 +1,92 @@
+---
+title: Ariadne 0.2.0 Released!
+---
+<!--truncate-->
+
+## Making Python GraphQL better one release at a time…
+
+Wait a minute, what’s Ariadne?
+
+Ariadne is a library we’ve created that enables Python developers to implement GraphQL servers using SDL for defining schema and keeping the amount of boilerplate minimal. It’s the new kid on the block, but it’s the only Python library that offers this approach to developing GraphQL APIs. If you’ve been envious of what Apollo Server can do, we are happy to let you know it’s the main source of inspiration for what we are doing.
+
+**Version 0.2.0 of Aridane is now available** for installation from [pypi.org](https://pypi.org/project/ariadne/), bringing plenty of goodies and improvements with it! We are doubling down for a better developer experience.
+
+To find more about Ariadne, [grab the code at GitHub](https://github.com/mirumee/ariadne), or [see the docs](https://ariadne.readthedocs.io/). But for now, let’s dive into version 0.2.0:
+
+
+## Feature parity with GraphQL.js version 14.0.2
+
+Ariadne now has feature parity with GraphQL.js 14.0.2 — the latest release of GraphQL reference implementation. This was achieved by updating the library’s codebase to use [GraphQL-core-next](https://github.com/graphql-python/graphql-core-next) instead of GraphQL-core as its GraphQL implementation.
+
+This GraphQL implementation was build using modern Python features and relies on asyncio for asynchronous query execution, meaning you can now use “async” with your resolvers.
+
+Due to this change we’ve also dropped support for Python 3.5 in Ariadne 0.2.0, now requiring Python 3.6 or 3.7.
+
+
+## New API
+
+We are strong believers that library design should be simple to learn, but strict enough to not leave much room for developer error. In Ariadne 0.1.0 We relied on dicts for mapping resolvers to schema — an idea we’ve took directly from the Apollo-Server:
+
+```python
+def resolve_users():
+    # …
+
+resolvers = {
+    “Query”: {
+        “users”: resolve_users
+    }
+}
+```
+
+This looked like a good idea at first: the pattern is proven and widely adopted in software; it uses basic Python types and is easy to memorize.
+
+However, as soon as we moved to larger APIs, we found an issue in this approach; because Python doesn’t allow functions to be declared inside dicts, developers quickly end up with a file containing a number of function definitions followed by one big dict mapping those resolvers to their schema. Because that dict was usually out of their focus, a pattern started to emerge in which a developer would declare resolvers but forget to update the dict, thus not adding those resolvers to schema and surprising/confusing the dev.
+
+Ariadne 0.2.0 does away with this by introducing dedicated objects for mapping resolvers to GraphQL types:
+
+```python
+from ariadne import ResolverMap
+
+query = ResolverMap(“Query”)
+
+@query.field(“users”)
+def resolve_users():
+    # …
+```
+
+In this new approach the resolver can be mapped to a declared sample field. This creates a more natural order of things: type -> field -> resolver.
+
+As a bonus, ResolverMap also implements simple validation logic and will raise an error if a type or field doesn’t exist in the schema.
+
+Make sure to check the [docs](https://ariadnegraphql.org/docs/resolvers) for more examples and information about API changes.
+
+
+## Better interoperability with Apollo tools for developers
+
+Ariadne now supports loading schema from *.graphql files, enabling developers to use an [Apollo GraphQL plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo) when writing schema for their API.
+
+We’ve also created a PR (already merged and released!) that supports marking strings in Python code as GraphQL using a simple `gql()` function:
+
+![GQL syntax coloring in action](assets/gql-colors-gif.gif)
+
+It’s now not only an awesome GraphQL tooling and a first-class development experience for Python developers, it’s also a single set of tools that can now be shared by backend and frontend developers while working on the same project.
+
+We consider this a game-changer for software projects where a Python backend is developed together with a GraphQL frontend.
+
+
+## Setting the scene for 2019
+
+The latest Ariadne release already has all the features required by real-world GraphQL API implementations… but we are not stopping there.
+
+It is our goal to make the Python GraphQL experience as great as Node.js GraphQL. To achieve this end, we will continue improving Ariadne to offer a better developer experience and solve the ever-greater problem of space:
+
+- Iterate on our documentation to show you how to use Ariadne and how to develop GraphQL servers using good practices and patterns
+- Deliver better abstractions for integration with existing server and framework libraries
+- Implement solutions for patterns and problems not specific to the GraphQL core, like query cost validators or connection types
+
+We have some great things in the pipeline we can’t wait to show you!
+
+
+## Thank you!
+
+Thanks so much for you response and engagement since the release; it has surprised and motivated us. Ariadne is open source and developed on [GitHub](https://github.com/mirumee/ariadne/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22); we invite folk to give it a look and check out the issues marked with “help wanted”. PRs are very welcome!

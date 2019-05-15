@@ -63,6 +63,8 @@ const siteConfig = {
     secondaryColor: "#1e3c12"
   },
 
+  usePrism: ["graphql"],
+
   /* Custom fonts for website */
   /*
   fonts: {

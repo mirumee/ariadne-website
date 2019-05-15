@@ -17,10 +17,16 @@
   padding: 8px 12px;
 
   background-image: url(../img/nav-arrow.png);
-  background-position: right 2px top 4px;
+  background-position: right 6px top 12px;
   background-repeat: no-repeat;
   background-size: 8px 8px;
   color: #3c3e4c;
+}
+
+@media only screen and (min-device-width: 736px) {
+  .navigationSlider .slidingNav ul li a {
+    background-position: right 2px top 4px;
+  }
 }
 
 .navigationSlider .slidingNav ul li > a:focus,

@@ -92,7 +92,12 @@
   }
 }
 
-/* Fix spacings between features */
+/* Override features */
+.homePromoSection img {
+  width: 70px;
+  height: 72px;
+}
+
 @media only screen and (max-device-width: 735px) {
   .homePromoSection .gridBlock .blockElement {
     margin-bottom: 40px;

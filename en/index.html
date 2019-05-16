@@ -12,7 +12,7 @@
             {"zIndex":100}
           )
         });
-        </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/intro" target="_self">Docs</a></li><li class=""><a href="/docs/integrations" target="_self">Integrations</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div><div class="homeContainer"><div class="homeSplashFade"><div class="wrapper homeWrapper"><div class="inner"><h1 class="projectLead">Python GraphQL<br/>Schema-First</h1><div class="section promoSection"><div class="promoRow"><div class="pluginRowBlock"><div class="pluginWrapper buttonWrapper"><a class="button ctaButton" href="/docs/en/intro.html">Get started</a></div></div></div></div></div></div></div></div><div class="mainContainer"><div class="homePromoSection"><div class="container"><div class="wrapper"><div class="gridBlock"><div class="blockElement fourByGridBlock imageAlignTop"><div class="blockImage"><img src="/img/schema-first.svg"/></div><div class="blockContent"><h2><div><span><p>Schema First</p>
+        </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/intro" target="_self">Docs</a></li><li class=""><a href="/docs/integrations" target="_self">Integrations</a></li><li class=""><a href="/help" target="_self">Help</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li></ul></nav></div></header></div></div><div class="navPusher"><div><div class="homeContainer"><div class="homeSplashFade"><div class="wrapper homeWrapper"><div class="inner"><h1 class="projectLead">Python GraphQL<br/>Schema-First</h1><div class="section promoSection homeCtaSection"><div class="promoRow"><div class="pluginRowBlock"><div class="pluginWrapper buttonWrapper"><a class="button ctaButton" href="/docs/en/intro.html">Get started</a></div><span class="ctaSpacer">or check out our</span><a class="ctaLink" href="https://github.com/mirumee/ariadne" target="_blank">GitHub repo</a></div></div></div></div></div></div></div><div class="mainContainer"><div class="homePromoSection"><div class="container"><div class="wrapper"><div class="gridBlock"><div class="blockElement fourByGridBlock imageAlignTop"><div class="blockImage"><img src="/img/schema-first.svg"/></div><div class="blockContent"><h2><div><span><p>Schema First</p>
 </span></div></h2><div><span><p>Describe your GraphQL API using Schema Definition Language and then connect your business logic using Python.</p>
 </span></div></div></div><div class="blockElement fourByGridBlock imageAlignTop"><div class="blockImage"><img src="/img/simple.svg"/></div><div class="blockContent"><h2><div><span><p>Simple</p>
 </span></div></h2><div><span><p>Small and easy to learn Pythonic API. Ariadne has been built with simplicity as the guiding force behind its design. We don't over-complicate the complex.</p>
@@ -39,46 +39,40 @@ schema = gql(<span class="hljs-string">"""
     username: String!
   }
 """</span>)</code></pre>
-</span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Define schema using SDL</h4><div><span><p>Using SDL to define your schema is the leading approach used by the GraphQL community and supported by dozens of frontend and backend developer tools, examples, and learning resources.</p>
-<p>Ariadne provides out of the box utilities for loading schema from GraphQL files or Python strings.</p>
-</span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> gql, load_schema_from_path
+</span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Write resolvers and map them to the schema using simple pythonic API</h4><div><span><p>Use minimum boilerplate to add your business logic to the schema.</p>
+<p>If you are not happy with default implementation, don't worry - you can easily roll out your own!</p>
+</span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> ObjectType
 
-<span class="hljs-comment"># load schema from file...</span>
-schema = load_schema_from_path(<span class="hljs-string">"schema.graphql"</span>)
+<span class="hljs-comment"># Ariadne uses dedicated objects</span>
+query = ObjectType(<span class="hljs-string">"Query"</span>)
 
-<span class="hljs-comment"># ...directory containing graphql files...</span>
-schema = load_schema_from_path(<span class="hljs-string">"schema"</span>)
+<span class="hljs-comment"># Map resolvers to fields in Query type using decorator syntax...</span>
+<span class="hljs-meta">@query.field("hello")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_hello</span><span class="hljs-params">(_, info)</span>:</span>
+    request = info.context[<span class="hljs-string">"request"</span>]
+    user_agent = request.get(<span class="hljs-string">"HTTP_USER_AGENT"</span>, <span class="hljs-string">"guest"</span>)
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello, %s!"</span> % user_agent
 
-<span class="hljs-comment"># ...or inside Python files</span>
-schema = gql(<span class="hljs-string">"""
-  type Query {
-    user: User
-  }
 
-  type User {
-    id: ID
-    username: String!
-  }
-"""</span>)</code></pre>
-</span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Define schema using SDL</h4><div><span><p>Using SDL to define your schema is the leading approach used by the GraphQL community and supported by dozens of frontend and backend developer tools, examples, and learning resources.</p>
-<p>Ariadne provides out of the box utilities for loading schema from GraphQL files or Python strings.</p>
-</span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> gql, load_schema_from_path
+<span class="hljs-comment"># ...or plain old setters</span>
+query.set_field(<span class="hljs-string">"hello"</span>, resolve_hello)</code></pre>
+</span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Run your GraphQL API how you like it</h4><div><span><p>Ariadne ships with ASGI and WSGI apps as well as Django view.</p>
+<p>Easily roll in your own integration using provided utilities.</p>
+</span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-comment"># As standalone ASGI or WSGI app...</span>
+<span class="hljs-keyword">from</span> ariadne.asgi <span class="hljs-keyword">import</span> GraphQL
 
-<span class="hljs-comment"># load schema from file...</span>
-schema = load_schema_from_path(<span class="hljs-string">"schema.graphql"</span>)
+<span class="hljs-keyword">from</span> .schema <span class="hljs-keyword">import</span> schema
 
-<span class="hljs-comment"># ...directory containing graphql files...</span>
-schema = load_schema_from_path(<span class="hljs-string">"schema"</span>)
+app = GraphQL(schema, debug=<span class="hljs-literal">True</span>)
 
-<span class="hljs-comment"># ...or inside Python files</span>
-schema = gql(<span class="hljs-string">"""
-  type Query {
-    user: User
-  }
+<span class="hljs-comment"># ...or add GraphQL API to your favorite web framework</span>
+<span class="hljs-keyword">from</span> ariadne.contrib.django.views <span class="hljs-keyword">import</span> GraphQLView
+<span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> include, path
 
-  type User {
-    id: ID
-    username: String!
-  }
-"""</span>)</code></pre>
-</span></div></div></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/icon.png" alt="Ariadne" height="107" width="128"/></a><div></div><div><h5>Docs</h5><a href="/docs/en/doc1.html">Getting Started (or other categories)</a><a href="/docs/en/doc2.html">Guides (or other categories)</a><a href="/docs/en/doc3.html">API Reference (or other categories)</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/mirumee/ariadne">GitHub</a><a class="github-button" href="https://github.com/mirumee/ariadne" data-icon="octicon-star" data-count-href="/mirumee/ariadne/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright"><a href="https://mirumee.com">Copyright © 2019 Mirumee Software</a><a href="https://mirumee.com">Ariadne is crafted with love by<img src="/img/mirumee.png" alt="Mirumee"/></a></section></footer></div></body></html>
+<span class="hljs-keyword">from</span> .schema <span class="hljs-keyword">import</span> schema
+
+urlpatterns = [
+    ...
+    path(<span class="hljs-string">'graphql/'</span>, GraphQLView.as_view(schema=schema), name=<span class="hljs-string">'graphql'</span>),
+]</code></pre>
+</span></div></div></div></div></div></div></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/icon.png" alt="Ariadne" height="107" width="128"/></a><div></div><div><h5>Documentation</h5><a href="/docs/en/doc1.html">Guide</a><a href="/docs/en/doc3.html">Integrations</a><a href="/blog">Blog</a></div><div><h5>Social</h5><a href="https://spectrum.chat/ariadne">Spectrum</a><a href="https://github.com/mirumee/ariadne">GitHub</a><a class="github-button" href="https://github.com/mirumee/ariadne" data-icon="octicon-star" data-count-href="/mirumee/ariadne/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright"><a href="https://mirumee.com">Copyright © 2019 Mirumee Software</a><a href="https://mirumee.com">Ariadne is crafted with love by<img src="/img/mirumee.png" alt="Mirumee"/></a></section></footer></div></body></html>

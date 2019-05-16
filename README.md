@@ -3,6 +3,16 @@
 The code that powers [Ariadne](https://github.com/mirumee/ariadne) website, made with [🦖 Docusaurus](https://docusaurus.io).
 
 
+Publishing docs
+---------------
+
+Before publishing make sure that `GIT_USER` env variable is set and contains your GitHub username and `USE_SSH` is set to `true`!
+
+1. Make sure you are on `master` branch
+2. `cd` to `website` directory
+3. run `npm run publish-gh-pages`
+
+
 Contributing
 ------------
 

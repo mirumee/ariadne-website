@@ -59,9 +59,9 @@ class HomeSplash extends React.Component {
           <Lead />
           <PromoSection>
             <Button href={docUrl("intro.html")}>Get started</Button>
-            <span className="ctaSpacer">or check our</span>
+            <span className="ctaSpacer">or check out our</span>
             <a className="ctaLink" href={siteConfig.repoUrl} target="_blank">
-              GitHub
+              GitHub repo
             </a>
           </PromoSection>
         </div>
@@ -165,14 +165,79 @@ schema = gql("""
       </FocusBlock>
     );
 
+    const ResolversFocusBlock = () => (
+      <FocusBlock>
+        <FocusContent title="Write resolvers and map them to the schema using simple pythonic API">
+          {[
+            "Use minimum boilerplate to add your business logic to the schema.",
+            "",
+            "If you are not happy with default implementation, don't worry - you can easily roll out your own!"
+          ].join("\n")}
+        </FocusContent>
+        <FocusCode>
+          {`
+
+from ariadne import ObjectType
+
+# Ariadne uses dedicated objects
+query = ObjectType("Query")
+
+# Map resolvers to fields in Query type using decorator syntax...
+@query.field("hello")
+def resolve_hello(_, info):
+    request = info.context["request"]
+    user_agent = request.get("HTTP_USER_AGENT", "guest")
+    return "Hello, %s!" % user_agent
+
+
+# ...or plain old setters
+query.set_field("hello", resolve_hello)
+`.trim()}
+        </FocusCode>
+      </FocusBlock>
+    );
+
+    const IntegrationsFocusBlock = () => (
+      <FocusBlock>
+        <FocusContent title="Run your GraphQL API how you like it">
+          {[
+            "Ariadne ships with ASGI and WSGI apps as well as Django view.",
+            "",
+            "Easily roll in your own integration using provided utilities."
+          ].join("\n")}
+        </FocusContent>
+        <FocusCode>
+          {`
+# As standalone ASGI or WSGI app...
+from ariadne.asgi import GraphQL
+
+from .schema import schema
+
+app = GraphQL(schema, debug=True)
+
+# ...or add GraphQL API to your favorite web framework
+from ariadne.contrib.django.views import GraphQLView
+from django.urls import include, path
+
+from .schema import schema
+
+urlpatterns = [
+    ...
+    path('graphql/', GraphQLView.as_view(schema=schema), name='graphql'),
+]
+`.trim()}
+        </FocusCode>
+      </FocusBlock>
+    );
+
     return (
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
         <div className="mainContainer">
           <Features />
           <SDLFocusBlock />
-          <SDLFocusBlock />
-          <SDLFocusBlock />
+          <ResolversFocusBlock />
+          <IntegrationsFocusBlock />
         </div>
       </div>
     );

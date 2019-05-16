@@ -38,7 +38,7 @@ class HomeSplash extends React.Component {
     );
 
     const PromoSection = props => (
-      <div className="section promoSection">
+      <div className="section promoSection homeCtaSection">
         <div className="promoRow">
           <div className="pluginRowBlock">{props.children}</div>
         </div>
@@ -59,6 +59,10 @@ class HomeSplash extends React.Component {
           <Lead />
           <PromoSection>
             <Button href={docUrl("intro.html")}>Get started</Button>
+            <span className="ctaSpacer">or check our</span>
+            <a className="ctaLink" href={siteConfig.repoUrl} target="_blank">
+              GitHub
+            </a>
           </PromoSection>
         </div>
       </SplashContainer>

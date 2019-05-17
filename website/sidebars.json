@@ -19,9 +19,15 @@
       "integrations",
       "logging",
       "logo"
+    ],
+    "Integrations": [
+      "django-integration",
+      "flask-integration",
+      "starlette-integration",
+      "other-integrations"
+    ],
+    "API reference": [
+      "ariadne-reference"
     ]
-  },
-  "integrations": {
-    "Integrations": ["integrations"]
   }
 }

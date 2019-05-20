@@ -40,37 +40,11 @@ $ uwsgi --http :8000 --wsgi-file mywsgi
 ```
 
 
-## Customizing context or root
+### Configuration options
 
-You can customize context value passed to your resolves using `context_value` option:
+`GraphQL` takes mostly the same options that [`graphql`](ariadne-reference.md#configuration-options) does, but with one difference:
 
-```python
-app = GraphQL(schema, context_value=CUSTOM_CONTEXT_VALUE)
-```
-
-`context_value` option accepts value of any type. If type is `callable` it will be called with one argument: request representation specific to your HTTP stack, and its return value will then be used as final context value:
-
-```python
-def get_context_value(request):
-    return {"user": request.user, "conf": request.conf}
-
-app = GraphQL(schema, context_value=get_context_value)
-```
-
-To set custom root value passed as parent to root resolvers (resolvers defined on `Query`, `Mutation` and `Subscribe` types) `root_value`:
-
-```python
-app = GraphQL(schema, root_value=CUSTOM_ROOT_VALUE)
-```
-
-`root_value` option accepts value of any type. If type is `callable` it will be called with two arguments: `context` and `document` that is currently executed query already parsed to `DocumentNode`. Its return value will then be used as final root value:
-
-```python
-def get_root_value(context, document):
-    return {"user": context["user"]}
-
-app = GraphQL(schema, root_value=get_root_value)
-```
+- `context_value` can be callable that will be called with single argument ([`environ`](https://www.python.org/dev/peps/pep-0333/#environ-variables)) and its return value will be used for rest of query execution as `context_value`.
 
 
 ## Using the middleware

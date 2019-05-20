@@ -82,6 +82,8 @@ urlpatterns = [
 - `context_value` can be callable that will be called with single argument ([`HttpRequest`](https://docs.djangoproject.com/en/2.2/ref/request-response/#httprequest-objects) instance) and its return value will be used for rest of query execution as `context_value`.
 - `debug` option is not available and it's set to the value of `settings.DEBUG`
 
+Django GraphQL view has one option specific to it: `playground_options`, a dict of [GraphQL Playground options](https://github.com/prisma/graphql-playground#settings) that should be used.
+
 
 ## `Date` and `Datetime` scalars
 

@@ -58,7 +58,7 @@ schema = make_executable_schema(type_defs, query)
 ```
 
 
-### Add GraphQL to your urls 
+### Add GraphQL view to your urls 
 
 Add GraphQL view to your project's `urls.py`:
 
@@ -74,7 +74,13 @@ urlpatterns = [
 ]
 ```
 
-`GraphQLView.as_view()` accepts mostly the same options that `ariadne.graphql` described above does. It doesn't accept the `data` and `debug` because those depend on request and `settings.DEBUG` respectively.
+
+### Configuration options
+
+`GraphQLView.as_view()` takes mostly the same options that [`graphql`](ariadne-reference.md#configuration-options) does, but with two differences:
+
+- `context_value` can be callable that will be called with single argument ([`HttpRequest`](https://docs.djangoproject.com/en/2.2/ref/request-response/#httprequest-objects) instance) and its return value will be used for rest of query execution as `context_value`.
+- `debug` option is not available and it's set to the value of `settings.DEBUG`
 
 
 ## `Date` and `Datetime` scalars

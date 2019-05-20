@@ -735,7 +735,7 @@ type_defs = gql("""
 ## `graphql`
 
 ```python
-async def graphql(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
+async def graphql(schema, data, *, root_value=None, context_value=None, logger=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
 ```
 
 Asynchronously executes query against schema.
@@ -766,12 +766,24 @@ Decoded input data sent by the client (eg. for POST requests in JSON format, pas
 
 #### `context_value`
 
-The context value passed to all resolvers (it's common for your context to include the request object specific to your web framework).
+The context value passed to all resolvers (it's common for your context to include the request object specific to your web framework). It can be of any type and is available as the `context` attribute of `GraphQLResolveInfo` instance passed as second argument to all resolvers.
 
 
 #### `root_value`
 
-The value passed to the root-level resolvers.
+The value passed to the root-level resolvers. Can be of any type.
+
+If type is ``callable`` it will be called with two arguments:
+
+- `context` - containing current `context_value`.
+- `document` - `DocumentNode` that was result of parsing current GraphQL query
+
+Callable return value will then be used as final `root_value` passed to resolvers.
+
+
+#### `logger`
+
+String with the name of logger that should be used to log GraphQL errors. Defaults to `ariadne`.
 
 
 #### `debug`
@@ -808,52 +820,6 @@ def graphql(schema, data, *, root_value=None, context_value=None, debug=False, v
 Synchronously executes query against schema. Configuration options are exactly the same as in [`graphql`](#graphql).
 
 > Use this function instead of [`graphql`](#graphql) to run queries in synchronous servers (WSGI, Django, Flask).
-
-
-### Required arguments
-
-#### `schema`
-
-An executable schema created using [`make_executable_schema`](#make_executable_schema).
-
-
-#### `data`
-
-Decoded input data sent by the client (eg. for POST requests in JSON format, pass in the structure decoded from JSON). Exact shape of `data` depends on the query type and protocol.
-
-
-### Configuration options
-
-#### `context_value`
-
-The context value passed to all resolvers (it's common for your context to include the request object specific to your web framework).
-
-
-#### `root_value`
-
-The value passed to the root-level resolvers.
-
-
-#### `debug`
-
-If `True` will cause the server to include debug information in error responses.
-
-
-#### `validation_rules`
-
-optional additional validators (as defined by `graphql.validation.rules`) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and There's no need to provide them here).
-
-
-#### `error_formatter`
-
-An optional custom function to use for formatting errors, the function will be passed two parameters: a `GraphQLError` exception instance, and the value of the `debug` switch.
-
-Defaults to [`format_error`](#format_error).
-
-
-#### `middleware`
-
-Optional middleware to wrap the resolvers with.
 
 
 - - - - -
@@ -922,54 +888,8 @@ snake_case_fallback_resolvers
 async def subscribe(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, **kwargs)
 ```
 
-Asynchronously executes subscription query against schema.
-
-Returns a tuple of two values:
-
-- `success` - `True` if `data` was correct and `False` if not. Depending on this value GraphQL server should return status code `200` or `400`.
-- `response` - response data that should be JSON-encoded and sent to client.
+Asynchronously executes subscription query against schema, usually made over the websocket. Takes same arguments and options as [`graphql`](#graphql) except `middleware`.
 
 > This function is an asynchronous coroutine so you will need to `await` on the returned value.
 
 > Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use [`graphql_sync`](#graphql_sync) instead.
-
-
-### Required arguments
-
-#### `schema`
-
-An executable schema created using [`make_executable_schema`](#make_executable_schema).
-
-
-#### `data`
-
-Decoded input data sent by the client (eg. for POST requests in JSON format, pass in the structure decoded from JSON). Exact shape of `data` depends on the query type and protocol.
-
-
-### Configuration options
-
-#### `context_value`
-
-The context value passed to all resolvers (it's common for your context to include the request object specific to your web framework).
-
-
-#### `root_value`
-
-The value passed to the root-level resolvers.
-
-
-#### `debug`
-
-If `True` will cause the server to include debug information in error responses.
-
-
-#### `validation_rules`
-
-optional additional validators (as defined by `graphql.validation.rules`) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and There's no need to provide them here).
-
-
-#### `error_formatter`
-
-An optional custom function to use for formatting errors, the function will be passed two parameters: a `GraphQLError` exception instance, and the value of the `debug` switch.
-
-Defaults to [`format_error`](#format_error).

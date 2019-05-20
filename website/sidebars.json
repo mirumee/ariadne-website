@@ -27,7 +27,8 @@
       "other-integrations"
     ],
     "API reference": [
-      "ariadne-reference"
+      "ariadne-reference",
+      "constants-reference"
     ]
   }
 }

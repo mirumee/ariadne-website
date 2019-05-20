@@ -468,7 +468,7 @@ Method called by `make_executable_schema` with single argument being instance of
 SnakeCaseFallbackResolversSetter()
 ```
 
-[_Bindable_](bindables.md) used for setting default resolvers on schema object types. Subclasses [`FallbackResolversSetter`](#FallbackResolversSetter) and sets default resolver that performs case conversion between GraphQL's `PascalCase` and Python's `snake_case`:
+[_Bindable_](bindables.md) used for setting default resolvers on schema object types. Subclasses [`FallbackResolversSetter`](#fallbackresolverssetter) and sets default resolver that performs case conversion between GraphQL's `camelCase` and Python's `snake_case`:
 
 ```graphql
 type User {
@@ -491,7 +491,7 @@ SubscriptionType()
 
 [_Bindable_](bindables.md) used for setting Python logic for GraphQL subscription type.
 
-> Like [`QueryType`](#QueryType) and [`MutationType`](#MutationType) this type is hardcoded to bind only to `Subscription` type in schema.
+> Like [`QueryType`](#querytype) and [`MutationType`](#mutationtype) this type is hardcoded to bind only to `Subscription` type in schema.
 
 
 ### Methods
@@ -649,11 +649,23 @@ def resolve_search_result_type(obj, info):
 
 ## `convert_camel_case_to_snake`
 
+```python
+convert_camel_case_to_snake(graphql_name)
+```
+
+Utility function that converts GraphQL name written in `camelCase` to its Python `snake_case` counterpart.
+
 
 - - - - -
 
 
 ## `default_resolver`
+
+```python
+def default_resolver(parent, info)
+```
+
+Default resolver used by Ariadne. If `parent` is `dict`, will use `dict.get(info.field_name)` to resolve the value. Uses `getattr(parent, info.field_name, None)` otherwise.
 
 
 - - - - -
@@ -661,11 +673,27 @@ def resolve_search_result_type(obj, info):
 
 ## `fallback_resolvers`
 
+```python
+fallback_resolvers
+```
+
+[_Bindable_](bindables.md) instace of [`FallbackResolversSetter`](#fallbackresolverssetter).
+
 
 - - - - -
 
 
 ## `format_error`
+
+```python
+def format_error(error, debug=False)
+```
+
+Default error formatter used by Ariadne. Takes instance of `GraphQLError` as first argument and debug flag as second.
+
+Returns `dict` containing formatted error data ready for returning to API client.
+
+If `debug` is `True`, updates returned data `extensions` key with `exception` `dict` that contains traceback to original Python exception and its context variables.
 
 
 - - - - -
@@ -673,11 +701,32 @@ def resolve_search_result_type(obj, info):
 
 ## `get_error_extension`
 
+```python
+def get_error_extension(error)
+```
+
+Takes `GraphQLError` instance as only argument and returns `dict` with traceback and context of original Python exception. If error was not caused by exception in resolver, returns `None` instead.
 
 - - - - -
 
 
 ## `gql`
+
+```python
+def gql(value)
+```
+
+Utility function that takes GraphQL string as only argument, validates it and returns same string unchanged or raises `GraphQLError` if string was invalid.
+
+Wrapping GraphQL strings declarations with this utility will make errors easier to track down and debug, as their traceback will point to place of declaration instead of Ariadne internals:
+
+```python
+type_defs = gql("""
+    type Query {
+      username: String!
+    }
+""")
+```
 
 
 - - - - -
@@ -685,11 +734,126 @@ def resolve_search_result_type(obj, info):
 
 ## `graphql`
 
+```python
+async def graphql(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
+```
+
+Asynchronously executes query against schema.
+
+Returns a tuple of two values:
+
+- `success` - `True` if `data` was correct and `False` if not. Depending on this value GraphQL server should return status code `200` or `400`.
+- `response` - response data that should be JSON-encoded and sent to client.
+
+> This function is an asynchronous coroutine so you will need to `await` on the returned value.
+
+> Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use [`graphql_sync`](#graphql_sync) instead.
+
+
+### Required arguments
+
+#### `schema`
+
+An executable schema created using [`make_executable_schema`](#make_executable_schema).
+
+
+#### `data`
+
+Decoded input data sent by the client (eg. for POST requests in JSON format, pass in the structure decoded from JSON). Exact shape of `data` depends on the query type and protocol.
+
+
+### Configuration options
+
+#### `context_value`
+
+The context value passed to all resolvers (it's common for your context to include the request object specific to your web framework).
+
+
+#### `root_value`
+
+The value passed to the root-level resolvers.
+
+
+#### `debug`
+
+If `True` will cause the server to include debug information in error responses.
+
+
+#### `validation_rules`
+
+optional additional validators (as defined by `graphql.validation.rules`) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and There's no need to provide them here).
+
+
+#### `error_formatter`
+
+An optional custom function to use for formatting errors, the function will be passed two parameters: a `GraphQLError` exception instance, and the value of the `debug` switch.
+
+Defaults to [`format_error`](#format_error).
+
+
+#### `middleware`
+
+Optional middleware to wrap the resolvers with.
+
 
 - - - - -
 
 
 ## `graphql_sync`
+
+```python
+def graphql(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
+```
+
+Synchronously executes query against schema. Configuration options are exactly the same as in [`graphql`](#graphql).
+
+> Use this function instead of [`graphql`](#graphql) to run queries in synchronous servers (WSGI, Django, Flask).
+
+
+### Required arguments
+
+#### `schema`
+
+An executable schema created using [`make_executable_schema`](#make_executable_schema).
+
+
+#### `data`
+
+Decoded input data sent by the client (eg. for POST requests in JSON format, pass in the structure decoded from JSON). Exact shape of `data` depends on the query type and protocol.
+
+
+### Configuration options
+
+#### `context_value`
+
+The context value passed to all resolvers (it's common for your context to include the request object specific to your web framework).
+
+
+#### `root_value`
+
+The value passed to the root-level resolvers.
+
+
+#### `debug`
+
+If `True` will cause the server to include debug information in error responses.
+
+
+#### `validation_rules`
+
+optional additional validators (as defined by `graphql.validation.rules`) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and There's no need to provide them here).
+
+
+#### `error_formatter`
+
+An optional custom function to use for formatting errors, the function will be passed two parameters: a `GraphQLError` exception instance, and the value of the `debug` switch.
+
+Defaults to [`format_error`](#format_error).
+
+
+#### `middleware`
+
+Optional middleware to wrap the resolvers with.
 
 
 - - - - -
@@ -697,11 +861,33 @@ def resolve_search_result_type(obj, info):
 
 ## `load_schema_from_path`
 
+```python
+def load_schema_from_path(path)
+```
+
+Loads GraphQL schema from `path` using different strategy depending on `path`'s type:
+
+- If `path` is single file, reads it.
+- If `path` is directory, walks it recursively loading all `.graphql` files within it.
+
+Files are validated using the same logic that [`gql`](#gql) uses, concatenated into single string and returned.
+
 
 - - - - -
 
 
 ## `make_executable_schema`
+
+```python
+def make_executable_schema(type_defs, bindables=None)
+```
+
+Takes two arguments:
+
+- `type_defs` - string or list of strings with valid GraphQL types definitions.
+- `bindables` - [bindable or list of bindables](bindables.md) with Python logic to add to schema. *Optional*.
+
+Returns `GraphQLSchema` instance that can be used to run queries on.
 
 
 - - - - -
@@ -709,11 +895,22 @@ def resolve_search_result_type(obj, info):
 
 ## `resolve_to`
 
+```python
+def resolve_to(name)
+```
+
+Returns [`default_resolver`](#default_resolver) that always resolves to named attribute. Used to create aliases by [`ObjectType.set_alias`](#set_alias).
 
 - - - - -
 
 
 ## `snake_case_fallback_resolvers`
+
+```python
+snake_case_fallback_resolvers
+```
+
+[_Bindable_](bindables.md) instace of [`SnakeCaseFallbackResolversSetter`](#snakecasefallbackresolverssetter).
 
 
 - - - - -
@@ -721,3 +918,58 @@ def resolve_search_result_type(obj, info):
 
 ## `subscribe`
 
+```python
+async def subscribe(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, **kwargs)
+```
+
+Asynchronously executes subscription query against schema.
+
+Returns a tuple of two values:
+
+- `success` - `True` if `data` was correct and `False` if not. Depending on this value GraphQL server should return status code `200` or `400`.
+- `response` - response data that should be JSON-encoded and sent to client.
+
+> This function is an asynchronous coroutine so you will need to `await` on the returned value.
+
+> Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use [`graphql_sync`](#graphql_sync) instead.
+
+
+### Required arguments
+
+#### `schema`
+
+An executable schema created using [`make_executable_schema`](#make_executable_schema).
+
+
+#### `data`
+
+Decoded input data sent by the client (eg. for POST requests in JSON format, pass in the structure decoded from JSON). Exact shape of `data` depends on the query type and protocol.
+
+
+### Configuration options
+
+#### `context_value`
+
+The context value passed to all resolvers (it's common for your context to include the request object specific to your web framework).
+
+
+#### `root_value`
+
+The value passed to the root-level resolvers.
+
+
+#### `debug`
+
+If `True` will cause the server to include debug information in error responses.
+
+
+#### `validation_rules`
+
+optional additional validators (as defined by `graphql.validation.rules`) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and There's no need to provide them here).
+
+
+#### `error_formatter`
+
+An optional custom function to use for formatting errors, the function will be passed two parameters: a `GraphQLError` exception instance, and the value of the `debug` switch.
+
+Defaults to [`format_error`](#format_error).

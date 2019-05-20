@@ -13,12 +13,12 @@
           )
         });
         </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class=""><a href="/docs/intro" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/community" target="_self">Community</a></li></ul></nav></div></header></div></div><div class="navPusher"><div><div class="homeContainer"><div class="homeSplashFade"><div class="wrapper homeWrapper"><div class="inner"><h1 class="projectLead">Python GraphQL<br/>Schema-First</h1><div class="section promoSection homeCtaSection"><div class="promoRow"><div class="pluginRowBlock"><div class="pluginWrapper buttonWrapper"><a class="button ctaButton" href="/docs/en/intro.html">Get started</a></div><span class="ctaSpacer">or check out our</span><a class="ctaLink" href="https://github.com/mirumee/ariadne" target="_blank">GitHub repo</a></div></div></div></div></div></div></div><div class="mainContainer"><div class="homePromoSection"><div class="container"><div class="wrapper"><div class="gridBlock"><div class="blockElement fourByGridBlock imageAlignTop"><div class="blockImage"><img src="/img/schema-first.svg"/></div><div class="blockContent"><h2><div><span><p>Schema First</p>
-</span></div></h2><div><span><p>Describe your GraphQL API using Schema Definition Language and then connect your business logic using Python.</p>
+</span></div></h2><div><span><p>Describe your GraphQL API using Schema Definition Language and connect your business logic using a minimal amount of Python boilerplate.</p>
 </span></div></div></div><div class="blockElement fourByGridBlock imageAlignTop"><div class="blockImage"><img src="/img/simple.svg"/></div><div class="blockContent"><h2><div><span><p>Simple</p>
-</span></div></h2><div><span><p>Small and easy to learn Pythonic API. Ariadne has been built with simplicity as the guiding force behind its design. We don't over-complicate the complex.</p>
+</span></div></h2><div><span><p>A small and easy-to-learn Pythonic API with simplicity as the guiding force behind its design.</p>
 </span></div></div></div><div class="blockElement fourByGridBlock imageAlignTop"><div class="blockImage"><img src="/img/open-design.svg"/></div><div class="blockContent"><h2><div><span><p>Open Design</p>
-</span></div></h2><div><span><p>It's easy to add new features to the library, as well as replace or extend existing ones.</p>
-</span></div></div></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Define schema using SDL</h4><div><span><p>Using SDL to define your schema is the leading approach used by the GraphQL community and supported by dozens of frontend and backend developer tools, examples, and learning resources.</p>
+</span></div></h2><div><span><p>Easily add new features to the library, and replace or extend existing ones. Integrate with any web framework you like.</p>
+</span></div></div></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Define schema using SDL</h4><div><span><p>Enable frontend and backend teams to cooperate effectively. Ariadne taps into the leading approach in the GraphQL community and opens up hundreds of developer tools, examples, and learning resources.</p>
 <p>Ariadne provides out of the box utilities for loading schema from GraphQL files or Python strings.</p>
 </span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> gql, load_schema_from_path
 
@@ -39,8 +39,7 @@ schema = gql(<span class="hljs-string">"""
     username: String!
   }
 """</span>)</code></pre>
-</span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Write resolvers and map them to the schema using simple pythonic API</h4><div><span><p>Use minimum boilerplate to add your business logic to the schema.</p>
-<p>If you are not happy with default implementation, don't worry - you can easily roll out your own!</p>
+</span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Add business logic to schema with minimal boilerplate</h4><div><span><p>Use specialized objects that connect business logic to the schema. Replace whatever you like and roll out your own implementations to fit your team’s needs.</p>
 </span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> ObjectType
 
 <span class="hljs-comment"># Ariadne uses dedicated objects</span>
@@ -56,8 +55,8 @@ query = ObjectType(<span class="hljs-string">"Query"</span>)
 
 <span class="hljs-comment"># ...or plain old setters</span>
 query.set_field(<span class="hljs-string">"hello"</span>, resolve_hello)</code></pre>
-</span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Run your GraphQL API how you like it</h4><div><span><p>Ariadne ships with ASGI and WSGI apps as well as Django view.</p>
-<p>Easily roll in your own integration using provided utilities.</p>
+</span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Serve your API however you want</h4><div><span><p>Ariadne provides WSGI and ASGI apps enabling easy implementation of custom GraphQL services, and full interoperability with popular web frameworks.</p>
+<p>Even if your technology has no resources for adding GraphQL to your stack, use the simple guide to create new integrations with Ariadne.</p>
 </span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-comment"># As standalone ASGI or WSGI app...</span>
 <span class="hljs-keyword">from</span> ariadne.asgi <span class="hljs-keyword">import</span> GraphQL
 

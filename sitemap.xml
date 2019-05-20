@@ -6,6 +6,7 @@
 <url> <loc>https://ariadnegraphql.org/docs/ariadne-reference</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/ariadne-reference" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/asgi</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/asgi" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/bindables</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/bindables" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/constants-reference</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/constants-reference" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/django-integration</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/django-integration" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/documenting-schema</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/documenting-schema" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/enums</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/enums" /> </url>

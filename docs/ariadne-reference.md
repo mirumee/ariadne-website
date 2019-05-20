@@ -161,7 +161,7 @@ search_result = InterfaceType("SearchResult")
 
 
 @search_result.type_resolver
-def resolve_search_result_type(obj, *_):
+def resolve_search_result_type(obj, info):
     ...
 ```
 
@@ -170,7 +170,7 @@ Decorator doesn't change or wrap the decorated function into any additional logi
 
 ### Example
 
-Interface type for search result that defines url field and sets default resolver for it:
+Interface type for search result that can be `User` or `Thread`, that defines the url field and sets default resolver for it:
 
 ```graphql
 interface SearchResult {
@@ -183,7 +183,7 @@ search_result = InterfaceType("SearchResult")
 
 
 @search_result.type_resolver
-def resolve_search_result_type(obj, *_):
+def resolve_search_result_type(obj, info):
     if isinstance(obj, User):
         return "User"
     if isinstance(obj, Thread):
@@ -191,7 +191,7 @@ def resolve_search_result_type(obj, *_):
 
 
 @search_result.field("url")
-def resolve_search_result_url(obj, *_):
+def resolve_search_result_url(obj, info):
     return obj.get_absolute_url()
 ```
 
@@ -240,7 +240,7 @@ user = ObjectType("User")
 
 
 @user.field("posts")
-def resolve_posts(obj, *_):
+def resolve_posts(obj, info):
     ...
 ```
 
@@ -441,11 +441,43 @@ def serialize_datetime(value):
 
 ## `SchemaBindable`
 
+```python
+class SchemaBindable()
+```
+
+Base class for [_bindables_](bindables.md).
+
+
+### Methods
+
+#### `bind_to_schema`
+
+```python
+SchemaBindable.bind_to_schema(schema)
+```
+
+Method called by `make_executable_schema` with single argument being instance of GraphQL schema. Extending classes should override this method with custom logic that binds business mechanic to schema.
+
 
 - - - - -
 
 
 ## `SnakeCaseFallbackResolversSetter`
+
+```python
+SnakeCaseFallbackResolversSetter()
+```
+
+[_Bindable_](bindables.md) used for setting default resolvers on schema object types. Subclasses [`FallbackResolversSetter`](#FallbackResolversSetter) and sets default resolver that performs case conversion between GraphQL's `PascalCase` and Python's `snake_case`:
+
+```graphql
+type User {
+  "Default resolver for this field will read value from contact_address"
+  contactAddress: String
+}
+```
+
+> Use [`fallback_resolvers`](#snake_case_fallback_resolvers) instead of instantiating `SnakeCaseFallbackResolversSetter`.
 
 
 - - - - -
@@ -453,11 +485,163 @@ def serialize_datetime(value):
 
 ## `SubscriptionType`
 
+```python
+SubscriptionType()
+```
+
+[_Bindable_](bindables.md) used for setting Python logic for GraphQL subscription type.
+
+> Like [`QueryType`](#QueryType) and [`MutationType`](#MutationType) this type is hardcoded to bind only to `Subscription` type in schema.
+
+
+### Methods
+
+#### `field`
+
+Decorator that takes single parameter, `name` of GraphQL field, and sets decorated callable as resolver for it.
+
+```python
+subscription = SubscriptionType()
+
+
+@subscription.field("alerts")
+def resolve_alerts(obj, info):
+    ...
+```
+
+Decorator doesn't change or wrap the decorated function into any additional logic.
+
+> Root resolvers set on subscription type are called with value returned by field's `source` resolver as first argument.
+
+#### `set_field`
+
+```python
+SubscriptionType.set_field(name, resolver)
+```
+
+Sets `resolver` callable as resolver that will be used to resolve the GraphQL field named `name`.
+
+Returns value passed to `resolver` argument.
+
+> Root resolvers set on subscription type are called with value returned by field's `source` resolver as first argument.
+
+
+#### `set_source`
+
+```python
+SubscriptionType.set_source(name, generator)
+```
+
+Sets `generator` generator as source that will be used to resolve the GraphQL field named `name`.
+
+Returns value passed to `generator` argument.
+
+
+#### `source`
+
+Decorator that takes single parameter, `name` of GraphQL field, and sets decorated generator as source for it.
+
+```python
+subscription = SubscriptionType()
+
+
+@subscription.source("alerts")
+async def alerts_generator(obj, info):
+    ...
+```
+
+Decorator doesn't change or wrap the decorated function into any additional logic.
+
+
+### Example
+
+Simple counter API that counts to 5 and ends subscription:
+
+```graphql
+type Subscription {
+  counter: Int
+}
+```
+
+```python
+import asyncio
+
+
+subscription = SubscriptionType()
+
+
+@subscription.source("counter")
+async def counter_generator(obj, info):
+    for i in range(5):
+        await asyncio.sleep(1)
+        yield i
+
+
+@subscription.field("counter")
+def counter_resolver(count, info):
+    return count
+```
 
 - - - - -
 
 
 ## `UnionType`
+
+```python
+UnionType(name, type_resolver=None)
+```
+
+[_Bindable_](bindables.md) used for setting Python logic for GraphQL union type.
+
+
+### Methods
+
+#### `set_type_resolver`
+
+```python
+UnionType.set_type_resolver(type_resolver)
+```
+
+Sets `type_resolver` as type resolver used to resolve the `str` with name of GraphQL type to which `obj` (passed as first argument) belongs to. Receives `GraphQLResolveInfo` instance as second argument.
+
+Returns value passed to `type_resolver` argument.
+
+
+#### `type_resolver`
+
+Decorator counterpart of `set_type_resolver`:
+
+```python
+search_result = UnionType("SearchResult")
+
+
+@search_result.type_resolver
+def resolve_search_result_type(obj, info):
+    ...
+```
+
+Decorator doesn't change or wrap the decorated function into any additional logic.
+
+
+### Example
+
+Union type for search result that can be `User` or `Thread`:
+
+```graphql
+union SearchResult = User | Thread
+```
+
+```python
+search_result = UnionType("SearchResult")
+
+
+@search_result.type_resolver
+def resolve_search_result_type(obj, info):
+    if isinstance(obj, User):
+        return "User"
+    if isinstance(obj, Thread):
+        return "Thread"
+```
 
 
 - - - - -

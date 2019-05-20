@@ -31,7 +31,9 @@ class HomeSplash extends React.Component {
 
     const Lead = () => (
       <h1 className="projectLead">
-        Python GraphQL
+        Python
+        <br />
+        GraphQL
         <br />
         Schema-First
       </h1>

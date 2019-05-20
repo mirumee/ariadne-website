@@ -106,21 +106,21 @@ class Index extends React.Component {
           {[
             {
               content:
-                "Describe your GraphQL API using Schema Definition Language and then connect your business logic using Python.",
+                "Describe your GraphQL API using Schema Definition Language and connect your business logic using a minimal amount of Python boilerplate.",
               image: `${baseUrl}img/schema-first.svg`,
               imageAlign: "top",
               title: "Schema First"
             },
             {
               content:
-                "Small and easy to learn Pythonic API. Ariadne has been built with simplicity as the guiding force behind its design. We don't over-complicate the complex.",
+                "A small and easy-to-learn Pythonic API with simplicity as the guiding force behind its design.",
               image: `${baseUrl}img/simple.svg`,
               imageAlign: "top",
               title: "Simple"
             },
             {
               content:
-                "It's easy to add new features to the library, as well as replace or extend existing ones.",
+                "Easily add new features to the library, and replace or extend existing ones. Integrate with any web framework you like.",
               image: `${baseUrl}img/open-design.svg`,
               imageAlign: "top",
               title: "Open Design"
@@ -134,7 +134,7 @@ class Index extends React.Component {
       <FocusBlock>
         <FocusContent title="Define schema using SDL">
           {[
-            "Using SDL to define your schema is the leading approach used by the GraphQL community and supported by dozens of frontend and backend developer tools, examples, and learning resources.",
+            "Enable frontend and backend teams to cooperate effectively. Ariadne taps into the leading approach in the GraphQL community and opens up hundreds of developer tools, examples, and learning resources.",
             "",
             "Ariadne provides out of the box utilities for loading schema from GraphQL files or Python strings."
           ].join("\n")}
@@ -167,11 +167,9 @@ schema = gql("""
 
     const ResolversFocusBlock = () => (
       <FocusBlock>
-        <FocusContent title="Write resolvers and map them to the schema using simple pythonic API">
+        <FocusContent title="Add business logic to schema with minimal boilerplate">
           {[
-            "Use minimum boilerplate to add your business logic to the schema.",
-            "",
-            "If you are not happy with default implementation, don't worry - you can easily roll out your own!"
+            "Use specialized objects that connect business logic to the schema. Replace whatever you like and roll out your own implementations to fit your team’s needs."
           ].join("\n")}
         </FocusContent>
         <FocusCode>
@@ -199,11 +197,11 @@ query.set_field("hello", resolve_hello)
 
     const IntegrationsFocusBlock = () => (
       <FocusBlock>
-        <FocusContent title="Run your GraphQL API how you like it">
+        <FocusContent title="Serve your API however you want">
           {[
-            "Ariadne ships with ASGI and WSGI apps as well as Django view.",
+            "Ariadne provides WSGI and ASGI apps enabling easy implementation of custom GraphQL services, and full interoperability with popular web frameworks.",
             "",
-            "Easily roll in your own integration using provided utilities."
+            "Even if your technology has no resources for adding GraphQL to your stack, use the simple guide to create new integrations with Ariadne. "
           ].join("\n")}
         </FocusContent>
         <FocusCode>

@@ -23,7 +23,7 @@ function Help(props) {
   const supportLinks = [
     {
       content:
-        "See [guide for contributors](https://github.com/mirumee/ariadne/blob/master/CONTRIBUTING.md) and [issue tracker](https://github.com/mirumee/ariadne/issues).",
+        "Help us make Python GraphQL even more awesome. See [the Contributors Guide](https://github.com/mirumee/ariadne/blob/master/CONTRIBUTING.md) and [Issue Tracker](https://github.com/mirumee/ariadne/issues) to get involved.",
       title: "Contribute to Ariadne"
     },
     {
@@ -32,7 +32,7 @@ function Help(props) {
       title: "Discuss"
     },
     {
-      content: `Read our [blog](${blogUrl}) for latest bits and news from Ariadne.`,
+      content: `Check out our  [blog](${blogUrl}) for the latest Ariadne news, as well as our musings on all that is GraphQL and Python.`,
       title: "Stay up to date"
     }
   ];
@@ -44,7 +44,10 @@ function Help(props) {
           <header className="postHeader">
             <h1>Get involved</h1>
           </header>
-          <p>This project is maintained by a dedicated group of people.</p>
+          <p>
+            Ariadne is built and maintained by an open group of GraphQL and
+            Python enthusiasts.
+          </p>
           <GridBlock contents={supportLinks} layout="threeColumn" />
         </div>
       </Container>

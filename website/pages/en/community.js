@@ -12,7 +12,7 @@ const CompLibrary = require("../../core/CompLibrary.js");
 const Container = CompLibrary.Container;
 const MarkdownBlock = CompLibrary.MarkdownBlock;
 
-function Help(props) {
+function Community(props) {
   const { config: siteConfig, language = "" } = props;
   const { baseUrl, docsUrl } = siteConfig;
   const blogUrl = `${baseUrl}blog/`;
@@ -53,4 +53,8 @@ function Help(props) {
   );
 }
 
-module.exports = Help;
+Community.title = "Community";
+Community.description =
+  "Ariadne is built and maintained by an open community of GraphQL and Python enthusiasts.";
+
+module.exports = Community;

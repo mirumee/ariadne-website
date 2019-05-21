@@ -1,6 +1,7 @@
 ---
 id: constants-reference
-title: Constants
+title: Constants reference
+sidebar_label: ariadne.constants
 ---
 
 Following constants are importable from `ariadne.constants` package:

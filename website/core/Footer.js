@@ -53,7 +53,7 @@ class Footer extends React.Component {
             <a href={this.docUrl("other-integrations.html")}>
               Other integrations
             </a>
-            <a href={this.docUrl("ariadne-reference.html")}>API Reference</a>
+            <a href={this.docUrl("api-reference.html")}>API Reference</a>
             <a href={this.docUrl("logo.html")}>Logo</a>
           </div>
           <div>

@@ -11,8 +11,6 @@
 <url> <loc>https://ariadnegraphql.org/docs/documenting-schema</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/documenting-schema" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/enums</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/enums" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/error-messaging</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/error-messaging" /> </url>
-<url> <loc>https://ariadnegraphql.org/docs/doc4</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/doc4" /> </url>
-<url> <loc>https://ariadnegraphql.org/docs/doc5</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/doc5" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/flask-integration</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/flask-integration" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/interfaces</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/interfaces" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/intro</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/intro" /> </url>

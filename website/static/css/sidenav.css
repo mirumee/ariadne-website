@@ -1,3 +1,8 @@
+/* Nuke min height from sidenav */
+.docsNavContainer {
+  height: auto;
+}
+
 /* Remove left padding from sidenav */
 .toc .toggleNav ul {
   padding-left: 0;

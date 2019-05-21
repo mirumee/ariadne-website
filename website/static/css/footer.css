@@ -102,6 +102,11 @@
   margin: auto;
 }
 
+.nav-footer .sitemap {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 2em;
+}
+
 .nav-footer .copyright {
   margin-top: 24px;
   margin-bottom: 54px
@@ -114,6 +119,11 @@
 }
 
 @media only screen and (min-device-width: 500px) {
+  .nav-footer .sitemap {
+    margin-top: 4em;
+    padding-top: 4em;
+  }
+
   .nav-footer .copyright {
     margin-top: 48px;
     margin-bottom: 16px
@@ -129,5 +139,24 @@
   .blog .nav-footer .sitemap,
   .blog .nav-footer .copyright {
     max-width: 1100px;
+  }
+}
+
+/* Hide footer spacer on smaller screens */
+@media only screen and (max-device-width: 1023px) {
+  .footerNavSpacer {
+    display: none;
+  }
+}
+
+/* Make footer nav two-column */
+@media only screen and (min-device-width: 735px) {
+  .nav-footer .sitemap .footerNavTwoColumn {
+    flex: 2;
+  }
+
+  .footerNavTwoColumn a {
+    float: left;
+    width: 50%;
   }
 }

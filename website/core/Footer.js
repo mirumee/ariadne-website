@@ -8,12 +8,11 @@
 const React = require("react");
 
 class Footer extends React.Component {
-  docUrl(doc, language) {
+  docUrl(doc) {
     const baseUrl = this.props.config.baseUrl;
     const docsUrl = this.props.config.docsUrl;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
-    const langPart = `${language ? `${language}/` : ""}`;
-    return `${baseUrl}${docsPart}${langPart}${doc}`;
+    return `${baseUrl}${docsPart}${doc}`;
   }
 
   pageUrl(doc, language) {
@@ -35,16 +34,30 @@ class Footer extends React.Component {
               />
             )}
           </a>
-          <div />
-          <div>
+          <div className="footerNavSpacer" />
+          <div className="footerNavTwoColumn">
             <h5>Documentation</h5>
-            <a href={this.docUrl("doc1.html", this.props.language)}>Guide</a>
-            <a href={this.docUrl("doc3.html", this.props.language)}>
-              Integrations
+            <a href={this.docUrl("intro.html")}>Introduction</a>
+            <a href={this.docUrl("resolvers.html")}>Resolvers</a>
+            <a href={this.docUrl("mutations.html")}>Mutations</a>
+            <a href={this.docUrl("subscriptions.html")}>Subscriptions</a>
+            <a href={this.docUrl("django-integration.html")}>
+              Django integration
             </a>
+            <a href={this.docUrl("flask-integration.html")}>
+              Flask integration
+            </a>
+            <a href={this.docUrl("starlette-integration.html")}>
+              Starlette integration
+            </a>
+            <a href={this.docUrl("other-integrations.html")}>
+              Other integrations
+            </a>
+            <a href={this.docUrl("ariadne-reference.html")}>API Reference</a>
+            <a href={this.docUrl("logo.html")}>Logo</a>
           </div>
           <div>
-            <h5>Social</h5>
+            <h5>Community</h5>
             <a href="https://spectrum.chat/ariadne">Spectrum</a>
             <a href="https://github.com/mirumee/ariadne">GitHub</a>
             <a

@@ -1,32 +1,81 @@
+/* Bump top padding on compact blog */
+@media only screen and (max-device-width: 1023px) {
+  .blogContainer {
+    padding-top: 4rem;
+  }
+}
+
+/* Clear bottom padding from blog */
+.blogContainer {
+  padding-bottom: 0;
+}
+
 /* Paint header black */
 .blogContainer .postHeaderTitle a {
-    color: #3c3e4c;
+  color: #3c3e4c;
+}
+
+/* Remove its bottom margin */
+.blogContainer .postHeaderTitle,
+.posts .post .postHeaderTitle {
+  margin-bottom: 0.05em;
+}
+
+/* Make article titles on list smaller and red */
+.posts .post .postHeaderTitle {
+  line-height: 0.5em;
+}
+
+.posts .post .postHeaderTitle a {
+  vertical-align: top;
+  color: #dd3333;
+  font-size: 0.5em;
+}
+
+@media only screen and (min-device-width: 736px) {
+  .posts .post .postHeaderTitle a {
+    font-size: 0.5em;
+  }
 }
 
 /* Gray out date */
 .blogContainer .post-meta {
-    color: #b1b2b8;
+  color: #b1b2b8;
 }
 
-/* Remove bottom border for posts */
+/* Remove top margin from post's first item */
+.posts .post-content h2:first-child {
+  margin-top: 0;
+}
+
+/* Remove bottom border from posts */
 .blog .blogContainer .posts .post {
-    border-bottom: none;
-    margin-bottom: 40px;
+  border-bottom: none;
+  margin-bottom: 40px;
 }
 
-/* Restyle recent posts button */
-.blog-recent .button,
+/* Restyle read more button */
 .blog .read-more .button {
-  background-color: #fff;
-  border-color: #f0f0f0;
+  padding: 8px 16px;
+  padding-left: 0;
+
+  background-image: url(../img/nav-arrow.png);
+  background-position: right 2px top 8px;
+  background-repeat: no-repeat;
+  background-size: 8px 8px;
+  border: none;
   border-radius: 0;
   color: #3c3e4c;
 }
 
-.blog-recent .button:focus,
-.blog-recent .button:hover,
 .blog .read-more .button:focus,
 .blog .read-more .button:hover {
-  border-color: #e0e0e0;
+  background-color: transparent;
+  border: none;
   color: #dd3333;
+}
+
+/* Hide "go back" link */
+.blog-recent {
+  display: none;
 }

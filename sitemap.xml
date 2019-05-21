@@ -3,7 +3,7 @@
 <url> <loc>https://ariadnegraphql.org/community</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/community" /> </url>
 <url> <loc>https://ariadnegraphql.org/index</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/index" /> </url>
 <url> <loc>https://ariadnegraphql.org/blog/2019/01/11/ariadne-0-2-0-released</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
-<url> <loc>https://ariadnegraphql.org/docs/ariadne-reference</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/ariadne-reference" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/api-reference</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/api-reference" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/asgi</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/asgi" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/bindables</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/bindables" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/constants-reference</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/constants-reference" /> </url>

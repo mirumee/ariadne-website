@@ -1,0 +1,12 @@
+/* Make search input light */
+input#search_input_react {
+  background-color: #fff;
+  border-radius: 0;
+  border: 1px solid #ccc;
+  color: #3c3e4c;
+}
+
+input#search_input_react:focus,
+input#search_input_react:active {
+  color: #3c3e4c;
+}

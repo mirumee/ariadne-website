@@ -40,10 +40,7 @@ const siteConfig = {
 
   algolia: {
     apiKey: "507581234da84aebc8fe9918f530b714",
-    indexName: "ariadnegraphql",
-    algoliaOptions: {
-      debug: false
-    } // Optional, if provided by Algolia
+    indexName: "ariadnegraphql"
   },
 
   // Disable showing the title in the header next to the header icon.

@@ -77,12 +77,37 @@ urlpatterns = [
 
 ### Configuration options
 
-`GraphQLView.as_view()` takes mostly the same options that [`graphql`](ariadne-reference.md#configuration-options) does, but with two differences:
+`GraphQLView.as_view()` takes mostly the same options that [`graphql`](api-reference.md#configuration-options) does, but with two differences:
 
 - `context_value` can be callable that will be called with single argument ([`HttpRequest`](https://docs.djangoproject.com/en/2.2/ref/request-response/#httprequest-objects) instance) and its return value will be used for rest of query execution as `context_value`.
 - `debug` option is not available and it's set to the value of `settings.DEBUG`
 
 Django GraphQL view has one option specific to it: `playground_options`, a dict of [GraphQL Playground options](https://github.com/prisma/graphql-playground#settings) that should be used.
+
+
+## Django Channels
+
+Ariadne's [ASGI application](asgi.md) can be used together with [Django Channels](https://github.com/django/channels) to implement asynchronous GraphQL API with features like [subscriptions](subscriptions.md):
+
+```python
+from ariadne.asgi import GraphQL
+from channels.http import AsgiHandler
+from channels.routing import URLRouter
+from django.urls import path
+
+
+schema = ...
+
+
+application = URLRouter([
+    path("graphql/", GraphQL(schema, debug=True)),
+    path("", AsgiHandler),
+])
+```
+
+> At the moment Django ORM doesn't support asynchronous query execution and there is **noticeable performance loss** when using it for database access in asynchronous resolvers.
+>
+> Use asynchronous ORM such as [Gino](https://github.com/fantix/gino) for database queries in your resolvers.
 
 
 ## `Date` and `Datetime` scalars

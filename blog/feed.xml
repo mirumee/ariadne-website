@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Fri, 11 Jan 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 08 Apr 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -14,10 +14,22 @@
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
         <item>
-            <title><![CDATA[Ariadne 0.2.0 Released!]]></title>
-            <link>https://ariadnegraphql.org/blog/2019/01/11/ariadne-0-2-0-released.html</link>
-            <guid>https://ariadnegraphql.org/blog/2019/01/11/ariadne-0-2-0-released.html</guid>
+            <title><![CDATA[Ariadne 0.3.0]]></title>
+            <link>https://ariadnegraphql.org/blog/2019/04/08/ariadne-0-3-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2019/04/08/ariadne-0-3-0.html</guid>
+            <pubDate>Mon, 08 Apr 2019 06:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ariadne 0.2.0]]></title>
+            <link>https://ariadnegraphql.org/blog/2019/01/11/ariadne-0-2-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2019/01/11/ariadne-0-2-0.html</guid>
             <pubDate>Fri, 11 Jan 2019 06:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[Ariadne 0.1.0]]></title>
+            <link>https://ariadnegraphql.org/blog/2018/10/31/ariadne-0-1-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2018/10/31/ariadne-0-1-0.html</guid>
+            <pubDate>Wed, 31 Oct 2018 06:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>

@@ -24,6 +24,7 @@ const siteConfig = {
   title: "Ariadne", // Title for your website.
   tagline:
     "A Python library for implementing GraphQL servers using schema-first approach.",
+  disableTitleTagline: true,
   url: "https://ariadnegraphql.org", // Your website URL
   baseUrl: "/", // Base URL for your project */
   // For github.io type URLs, you would set the url and baseUrl like:

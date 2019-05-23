@@ -244,6 +244,4 @@ urlpatterns = [
   }
 }
 
-Index.title = "Ariadne";
-
 module.exports = Index;

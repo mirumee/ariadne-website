@@ -16,7 +16,6 @@
       "local-development",
       "asgi",
       "wsgi",
-      "integrations",
       "logging",
       "logo"
     ],

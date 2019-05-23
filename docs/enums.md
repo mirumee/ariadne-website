@@ -71,7 +71,7 @@ By default enum values are represented as Python strings, but Ariadne also suppo
 
 Imagine posts on social site that can have weights like "standard", "pinned" and "promoted":
 
-```python
+```graphql
 type Post {
     weight: PostWeight
 }

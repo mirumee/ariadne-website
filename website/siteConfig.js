@@ -108,8 +108,9 @@ const siteConfig = {
   gaTrackingId: "UA-10159761-23",
 
   // Open Graph and Twitter card images.
-  ogImage: "img/share-image.png",
+  twitter: true,
   twitterImage: "img/share-image.png",
+  ogImage: "img/share-image.png",
 
   // Set this to true if you want to enable the scroll to top button
   // at the bottom of your site.

@@ -36,4 +36,4 @@ $ uvicorn myasgi:application
 `GraphQL` takes mostly the same options that [`graphql`](ariadne-reference.md#configuration-options) does, but with two differences:
 
 - `context_value` can be callable that will be called with single argument ([`Request`](https://www.starlette.io/requests/#request) instance) and its return value will be used for rest of query execution as `context_value`.
-- `keepalive` option that is specific to ASGI app and takes float with number of seconds for how long should connection be kept alive if no data is being exchanged.
+- `keepalive`, if given a number of seconds, will send "keepalive" packets to the client in an attempt to prevent the connection from being dropped due to inactivity.

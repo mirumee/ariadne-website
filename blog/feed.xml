@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Mon, 08 Apr 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 23 May 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,12 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne 0.4.0]]></title>
+            <link>https://ariadnegraphql.org/blog/2019/05/23/ariadne-0-4-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2019/05/23/ariadne-0-4-0.html</guid>
+            <pubDate>Thu, 23 May 2019 06:00:00 GMT</pubDate>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.3.0]]></title>
             <link>https://ariadnegraphql.org/blog/2019/04/08/ariadne-0-3-0.html</link>

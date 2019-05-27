@@ -14,10 +14,12 @@
       "modularization",
       "bindables",
       "local-development",
-      "asgi",
-      "wsgi",
       "logging",
       "logo"
+    ],
+    "Servers": [
+      "asgi",
+      "wsgi"
     ],
     "Integrations": [
       "django-integration",

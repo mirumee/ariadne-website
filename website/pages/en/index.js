@@ -197,13 +197,43 @@ query.set_field("hello", resolve_hello)
       </FocusBlock>
     );
 
+    const AsyncFocusBlock = () => (
+      <FocusBlock>
+        <FocusContent title="Fully asynchronous">
+          {[
+            "Use asynchronous query execution and ASGI to speed up your API with minimal effort.",
+            "",
+            "If your stack is not yet ready for `async`, don't worry - synchronous query execution is also available."
+          ].join("\n")}
+        </FocusContent>
+        <FocusCode>
+          {`
+from ariadne import QueryType
+
+from .models import Category, Promotion
+
+query = QueryType()
+
+@query.field("categories")
+async def resolve_categories(*_):
+    return Category.query.where(Category.depth == 0)
+
+
+@query.field("promotions")
+async def resolve_promotions(*_):
+  return Promotion.query.all()
+`.trim()}
+        </FocusCode>
+      </FocusBlock>
+    );
+
     const IntegrationsFocusBlock = () => (
       <FocusBlock>
         <FocusContent title="Serve your API however you want">
           {[
             "Ariadne provides WSGI and ASGI apps enabling easy implementation of custom GraphQL services, and full interoperability with popular web frameworks.",
             "",
-            "Even if your technology has no resources for adding GraphQL to your stack, use the simple guide to create new integrations with Ariadne. "
+            "Even if your technology has no resources for adding GraphQL to your stack, use the simple guide to create new integrations with Ariadne."
           ].join("\n")}
         </FocusContent>
         <FocusCode>
@@ -237,6 +267,7 @@ urlpatterns = [
           <Features />
           <SDLFocusBlock />
           <ResolversFocusBlock />
+          <AsyncFocusBlock />
           <IntegrationsFocusBlock />
         </div>
       </div>

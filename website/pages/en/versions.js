@@ -24,7 +24,7 @@ function Versions(props) {
       <Container className="mainContainer versionsContainer">
         <div className="post">
           <header className="postHeader">
-            <h1>Version</h1>
+            <h1 className="postHeaderTitle">Version</h1>
           </header>
           <p>New versions of this project are released every so often.</p>
           <h3 id="latest">Current version (Stable)</h3>

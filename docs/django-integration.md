@@ -23,7 +23,7 @@ INSTALLED_APPS = [
 
 Ariadne app provides Django template for GraphQL Playground. Make sure that your Django project is configured to load templates form application directories. This can be done by checking if `APP_DIRS` option located in `TEMPLATES` setting is set to `True`:
 
-```
+```python
 TEMPLATES = [
     {
         ...,
@@ -62,7 +62,7 @@ schema = make_executable_schema(type_defs, query)
 
 Add GraphQL view to your project's `urls.py`:
 
-```
+```python
 from ariadne.contrib.django.views import GraphQLView
 from django.urls import path
 

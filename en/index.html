@@ -55,6 +55,22 @@ query = ObjectType(<span class="hljs-string">"Query"</span>)
 
 <span class="hljs-comment"># ...or plain old setters</span>
 query.set_field(<span class="hljs-string">"hello"</span>, resolve_hello)</code></pre>
+</span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Fully asynchronous</h4><div><span><p>Use asynchronous query execution and ASGI to speed up your API with minimal effort.</p>
+<p>If your stack is not yet ready for <code>async</code>, don't worry - synchronous query execution is also available.</p>
+</span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> QueryType
+
+<span class="hljs-keyword">from</span> .models <span class="hljs-keyword">import</span> Category, Promotion
+
+query = QueryType()
+
+<span class="hljs-meta">@query.field("categories")</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_categories</span><span class="hljs-params">(*_)</span>:</span>
+    <span class="hljs-keyword">return</span> Category.query.where(Category.depth == <span class="hljs-number">0</span>)
+
+
+<span class="hljs-meta">@query.field("promotions")</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_promotions</span><span class="hljs-params">(*_)</span>:</span>
+  <span class="hljs-keyword">return</span> Promotion.query.all()</code></pre>
 </span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Serve your API however you want</h4><div><span><p>Ariadne provides WSGI and ASGI apps enabling easy implementation of custom GraphQL services, and full interoperability with popular web frameworks.</p>
 <p>Even if your technology has no resources for adding GraphQL to your stack, use the simple guide to create new integrations with Ariadne.</p>
 </span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-comment"># As standalone ASGI or WSGI app...</span>

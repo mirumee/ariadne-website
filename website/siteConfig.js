@@ -52,7 +52,8 @@ const siteConfig = {
     { search: true },
     { doc: "intro", label: "Docs" },
     { blog: true, label: "Blog" },
-    { page: "community", label: "Community" }
+    { page: "community", label: "Community" },
+    { href: "https://github.com/", label: "GitHub" }
   ],
 
   // If you have users set above, you add it here:

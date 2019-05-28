@@ -216,12 +216,12 @@ query = QueryType()
 
 @query.field("categories")
 async def resolve_categories(*_):
-    return Category.query.where(Category.depth == 0)
+    return await Category.query.where(Category.depth == 0)
 
 
 @query.field("promotions")
 async def resolve_promotions(*_):
-  return Promotion.query.all()
+    return await Promotion.query.all()
 `.trim()}
         </FocusCode>
       </FocusBlock>

@@ -65,12 +65,12 @@ query = QueryType()
 
 <span class="hljs-meta">@query.field("categories")</span>
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_categories</span><span class="hljs-params">(*_)</span>:</span>
-    <span class="hljs-keyword">return</span> Category.query.where(Category.depth == <span class="hljs-number">0</span>)
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> Category.query.where(Category.depth == <span class="hljs-number">0</span>)
 
 
 <span class="hljs-meta">@query.field("promotions")</span>
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_promotions</span><span class="hljs-params">(*_)</span>:</span>
-  <span class="hljs-keyword">return</span> Promotion.query.all()</code></pre>
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> Promotion.query.all()</code></pre>
 </span></div></div></div></div></div><div class="container"><div class="wrapper"><div class="codeFocusedBlock"><div class="codeFocusedBlockContent"><h4>Serve your API however you want</h4><div><span><p>Ariadne provides WSGI and ASGI apps enabling easy implementation of custom GraphQL services, and full interoperability with popular web frameworks.</p>
 <p>Even if your technology has no resources for adding GraphQL to your stack, use the simple guide to create new integrations with Ariadne.</p>
 </span></div></div><div class="codeFocusedBlockCode"><div><span><pre><code class="hljs css language-python"><span class="hljs-comment"># As standalone ASGI or WSGI app...</span>

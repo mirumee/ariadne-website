@@ -53,7 +53,7 @@ const siteConfig = {
     { doc: "intro", label: "Docs" },
     { blog: true, label: "Blog" },
     { page: "community", label: "Community" },
-    { href: "https://github.com/", label: "GitHub" }
+    { href: "https://github.com/mirumee/ariadne", label: "GitHub" }
   ],
 
   // If you have users set above, you add it here:

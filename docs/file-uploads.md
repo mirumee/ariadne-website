@@ -46,7 +46,7 @@ type User {
 
 ```graphql
 mutation {
-    uploadUserImage(image: "base64://f6sa76dsa7868da")
+    uploadUserImage(image: "data:text/plain;base64,QXJpYWRuZSByb2NrcyE=")
 }
 ```
 

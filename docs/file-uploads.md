@@ -50,7 +50,7 @@ mutation {
 }
 ```
 
-> You are not required to use the `Upload` scalar implementation provided by Ariadne. You can implement your own if you wish to, so you can (for example) support file literals as base64 data or such.
+> You are not required to use the `Upload` scalar implementation provided by Ariadne. You can implement your own if you wish to, so you can (for example) support file literals as base64 data.
 
 
 ## Implementation differences

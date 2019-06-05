@@ -648,6 +648,35 @@ def resolve_search_result_type(obj, info):
 - - - - -
 
 
+## `combine_multipart_data`
+
+```python
+combine_multipart_data(operations, files_map, files)
+```
+
+Combines data from `multipart/form-data` request into query [`data`](#data).
+
+
+### Required arguments
+
+#### `operations`
+
+`dict` containing GraphQL query data or `list` of those.
+
+
+#### `files_map`
+
+`dict` containing data mapping `files` to Query variables.
+
+
+#### `files`
+
+`dict` (or object implementing `__getitem__`) containing uploaded files.
+
+
+- - - - -
+
+
 ## `convert_camel_case_to_snake`
 
 ```python
@@ -894,3 +923,17 @@ Asynchronously executes subscription query against schema, usually made over the
 > This function is an asynchronous coroutine so you will need to `await` on the returned value.
 
 > Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use [`graphql_sync`](#graphql_sync) instead.
+
+
+- - - - -
+
+
+## `upload_scalar`
+
+```python
+upload_scalar
+```
+
+Instance of [`ScalarType`](#scalartype) that represents uploaded file.
+
+See [file uploads](file-uploads.md) documentation for information about [limitations](file-uploads.md#limitations) and [implementation specific](file-uploads.md#implementation-differences) differences in behaviour.

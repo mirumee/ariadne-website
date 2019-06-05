@@ -12,6 +12,11 @@ Following constants are importable from `ariadne.constants` package:
 `application/json; charset=UTF-8`
 
 
+## `DATA_TYPE_MULTIPART`
+
+`multipart/form-data`
+
+
 ## `CONTENT_TYPE_TEXT_HTML`
 
 `text/html; charset=UTF-8`

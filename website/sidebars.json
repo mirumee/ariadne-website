@@ -10,6 +10,7 @@
       "unions",
       "interfaces",
       "subscriptions",
+      "file-uploads",
       "documenting-schema",
       "modularization",
       "bindables",

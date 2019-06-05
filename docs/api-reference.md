@@ -654,7 +654,7 @@ def resolve_search_result_type(obj, info):
 combine_multipart_data(operations, files_map, files)
 ```
 
-Combines data from `multipart/form-data` request into query [`data`](#data).
+Combines data from [GraphQL multipart request](https://github.com/jaydenseric/graphql-multipart-request-spec) into a query [`data`](#data).
 
 
 ### Required arguments

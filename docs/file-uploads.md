@@ -67,7 +67,7 @@ ASGI application is based on [Starlette](https://starlette.io) and hence uploade
 
 WSGI application uses the `cgi` module from Python's standard library that represents uploaded files as instances of [`FieldStorage`](https://docs.python.org/3/library/cgi.html#using-the-cgi-module).
 
-> Data in `FieldStorage` is not guaranteed to represent an uploaded file. Don't assume 
+> Data in `FieldStorage` is not guaranteed to represent an uploaded file.
 
 
 ### `ariadne.contrib.django`

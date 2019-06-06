@@ -110,7 +110,7 @@ const siteConfig = {
 
   // Open Graph and Twitter card images.
   twitter: true,
-  twitterImage: "img/share-image.png",
+  twitterImage: "img/twitter-image.png",
   ogImage: "img/share-image.png",
 
   // Set this to true if you want to enable the scroll to top button

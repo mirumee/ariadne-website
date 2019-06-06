@@ -15,8 +15,7 @@
       "modularization",
       "bindables",
       "local-development",
-      "logging",
-      "logo"
+      "logging"
     ],
     "Servers": [
       "asgi",
@@ -31,6 +30,9 @@
     "API reference": [
       "api-reference",
       "constants-reference"
+    ],
+    "Other": [
+      "logo"
     ]
   }
 }

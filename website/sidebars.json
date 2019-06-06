@@ -29,7 +29,8 @@
     ],
     "API reference": [
       "api-reference",
-      "constants-reference"
+      "constants-reference",
+      "types-reference"
     ],
     "Other": [
       "logo"

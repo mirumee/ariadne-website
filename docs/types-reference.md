@@ -4,7 +4,9 @@ title: Types reference
 sidebar_label: ariadne.types
 ---
 
-Ariadne uses [static type checking](http://mypy-lang.org/) in its codebase, with many parts of its API sharing or relying on common types, importable from `ariadne.types` module.
+Ariadne uses [type annotations](https://www.python.org/dev/peps/pep-0484/) in its codebase.
+
+Many parts of its API share or rely on common types, importable from `ariadne.types` module:
 
 
 ## `ContextValue`

@@ -148,7 +148,7 @@ Valid [resolver](types-reference.md#resolver) that is used to resolve the GraphQ
 InterfaceType.set_type_resolver(type_resolver)
 ```
 
-Sets [resolver](types-reference.md#resolver) used to resolve the `str` with name of GraphQL type to which `obj` belongs to.
+Sets type [resolver](types-reference.md#resolver) used to resolve the `str` with name of GraphQL type to which `obj` belongs to.
 
 Returns value passed to `type_resolver` argument.
 
@@ -584,7 +584,7 @@ UnionType(name, type_resolver=None)
 
 #### `type_resolver`
 
-Valid [resolver](types-reference.md#resolver) that is used to resolve the `str` with name of GraphQL type to which `obj` belongs to.
+Valid [resolver](types-reference.md#resolver) that is used to resolve the GraphQL type to which `obj` belongs. It should return a `str` with the name of the type. Not needed if `obj` contains a `__typename` key or attribute.
 
 
 ### Methods
@@ -597,7 +597,7 @@ UnionType.set_type_resolver(type_resolver)
 
 Sets type [resolver](types-reference.md#resolver) used to resolve the `str` with name of GraphQL type to which `obj` belongs to.
 
-Returns value passed to `type_Resolver` argument.
+Returns value passed to `type_resolver` argument.
 
 
 #### `type_resolver`

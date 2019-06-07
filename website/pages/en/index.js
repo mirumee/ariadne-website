@@ -276,6 +276,6 @@ urlpatterns = [
 }
 
 Index.description =
-  "Define schema using SDL. Add business logic to schema with minimal boilerplate. Fully asynchronous. Serve your API however you want.";
+  "A Python library for implementing GraphQL servers using schema-first approach.";
 
 module.exports = Index;

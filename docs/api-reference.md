@@ -137,7 +137,7 @@ InterfaceType(name, type_resolver=None)
 
 #### `type_resolver`
 
-Valid [resolver](types-reference.md#resolver) that is used to resolve the `str` with name of GraphQL type to which `obj` belongs to.
+Valid [resolver](types-reference.md#resolver) that is used to resolve the GraphQL type to which `obj` belongs. It should return a `str` with the name of the type. Not needed if `obj` contains a `__typename` key or attribute.
 
 
 ### Methods

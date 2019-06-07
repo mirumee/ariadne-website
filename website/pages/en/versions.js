@@ -24,9 +24,12 @@ function Versions(props) {
       <Container className="mainContainer versionsContainer">
         <div className="post">
           <header className="postHeader">
-            <h1 className="postHeaderTitle">Version</h1>
+            <h1 className="postHeaderTitle">Versions</h1>
           </header>
-          <p>New versions of this project are released every so often.</p>
+          <p>
+            Documentation for past and upcoming releases of Ariadne can be found
+            here.
+          </p>
           <h3 id="latest">Current version (Stable)</h3>
           <table className="versions">
             <tbody>
@@ -115,5 +118,9 @@ function Versions(props) {
     </div>
   );
 }
+
+Versions.title = "Versions";
+Versions.description =
+  "Documentation for past and upcoming releases of Ariadne can be found here.";
 
 module.exports = Versions;

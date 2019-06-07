@@ -275,4 +275,7 @@ urlpatterns = [
   }
 }
 
+Index.description =
+  "Define schema using SDL. Add business logic to schema with minimal boilerplate. Fully asynchronous. Serve your API however you want.";
+
 module.exports = Index;

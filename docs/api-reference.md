@@ -137,7 +137,7 @@ InterfaceType(name, type_resolver=None)
 
 #### `type_resolver`
 
-Valid resolver that is used to resolve the `str` with name of GraphQL type to which `obj` (passed as first argument) belongs to. Receives `GraphQLResolveInfo` instance as second argument.
+Valid [resolver](types-reference.md#resolver) that is used to resolve the GraphQL type to which `obj` belongs. It should return a `str` with the name of the type. Not needed if `obj` contains a `__typename` key or attribute.
 
 
 ### Methods
@@ -148,7 +148,7 @@ Valid resolver that is used to resolve the `str` with name of GraphQL type to wh
 InterfaceType.set_type_resolver(type_resolver)
 ```
 
-Sets `type_resolver` as type resolver used to resolve the `str` with name of GraphQL type to which `obj` (passed as first argument) belongs to. Receives `GraphQLResolveInfo` instance as second argument.
+Sets type [resolver](types-reference.md#resolver) used to resolve the `str` with name of GraphQL type to which `obj` belongs to.
 
 Returns value passed to `type_resolver` argument.
 
@@ -234,7 +234,7 @@ MutationType(name)
 
 #### `field`
 
-Decorator that takes single parameter, `name` of GraphQL field, and sets decorated callable as resolver for it:
+Decorator that takes single parameter, `name` of GraphQL field, and sets decorated callable as [a resolver](types-reference.md#resolver) for it:
 
 ```python
 user = ObjectType("User")
@@ -272,7 +272,7 @@ user.set_alias("username", "user_name")
 ObjectType.set_field(name, resolver)
 ```
 
-Sets `resolver` callable as resolver that will be used to resolve the GraphQL field named `name`.
+Sets [`resolver`](types-reference.md#resolver) as resolver that will be used to resolve the GraphQL field named `name`.
 
 Returns value passed to `resolver` argument.
 
@@ -437,28 +437,6 @@ def serialize_datetime(value):
     return date.strptime(value, "%Y-%m-%d")
 ```
 
-- - - - -
-
-
-## `SchemaBindable`
-
-```python
-class SchemaBindable()
-```
-
-Base class for [_bindables_](bindables.md).
-
-
-### Methods
-
-#### `bind_to_schema`
-
-```python
-SchemaBindable.bind_to_schema(schema)
-```
-
-Method called by `make_executable_schema` with single argument being instance of GraphQL schema. Extending classes should override this method with custom logic that binds business mechanic to schema.
-
 
 - - - - -
 
@@ -595,6 +573,20 @@ UnionType(name, type_resolver=None)
 [_Bindable_](bindables.md) used for setting Python logic for GraphQL union type.
 
 
+### Required arguments
+
+#### `name`
+
+`str` with name of union type defined in schema.
+
+
+### Optional arguments
+
+#### `type_resolver`
+
+Valid [resolver](types-reference.md#resolver) that is used to resolve the GraphQL type to which `obj` belongs. It should return a `str` with the name of the type. Not needed if `obj` contains a `__typename` key or attribute.
+
+
 ### Methods
 
 #### `set_type_resolver`
@@ -603,7 +595,7 @@ UnionType(name, type_resolver=None)
 UnionType.set_type_resolver(type_resolver)
 ```
 
-Sets `type_resolver` as type resolver used to resolve the `str` with name of GraphQL type to which `obj` (passed as first argument) belongs to. Receives `GraphQLResolveInfo` instance as second argument.
+Sets type [resolver](types-reference.md#resolver) used to resolve the `str` with name of GraphQL type to which `obj` belongs to.
 
 Returns value passed to `type_resolver` argument.
 
@@ -768,12 +760,9 @@ type_defs = gql("""
 async def graphql(schema, data, *, root_value=None, context_value=None, logger=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
 ```
 
-Asynchronously executes query against schema.
+Asynchronously executes query against the schema.
 
-Returns a tuple of two values:
-
-- `success` - `True` if `data` was correct and `False` if not. Depending on this value GraphQL server should return status code `200` or `400`.
-- `response` - response data that should be JSON-encoded and sent to client.
+Returns [`GraphQLResult`](types-reference.md#graphqlresult) instance.
 
 > This function is an asynchronous coroutine so you will need to `await` on the returned value.
 
@@ -796,19 +785,14 @@ Decoded input data sent by the client (eg. for POST requests in JSON format, pas
 
 #### `context_value`
 
-The context value passed to all resolvers (it's common for your context to include the request object specific to your web framework). It can be of any type and is available as the `context` attribute of `GraphQLResolveInfo` instance passed as second argument to all resolvers.
+[Context value](types-reference.md#contextvalue) to be passed to resolvers.
+
+> If `context_value` is callable, it should be evaluated on higher level of abstraction (in server integration) before passing to `graphql()`.
 
 
 #### `root_value`
 
-The value passed to the root-level resolvers. Can be of any type.
-
-If type is ``callable`` it will be called with two arguments:
-
-- `context` - containing current `context_value`.
-- `document` - `DocumentNode` that was result of parsing current GraphQL query
-
-Callable return value will then be used as final `root_value` passed to resolvers.
+[Root value](types-reference.md#rootvalue) to be passed to root resolvers.
 
 
 #### `logger`
@@ -828,7 +812,7 @@ optional additional validators (as defined by `graphql.validation.rules`) to run
 
 #### `error_formatter`
 
-An optional custom function to use for formatting errors, the function will be passed two parameters: a `GraphQLError` exception instance, and the value of the `debug` switch.
+[Error formatter](types-reference.md#errorformatter) that should be used to format errors.
 
 Defaults to [`format_error`](#format_error).
 
@@ -847,9 +831,21 @@ Optional middleware to wrap the resolvers with.
 def graphql(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
 ```
 
-Synchronously executes query against schema. Configuration options are exactly the same as in [`graphql`](#graphql).
+Synchronously executes query against schema.
+
+Returns [`GraphQLResult`](types-reference.md#graphqlresult) instance.
 
 > Use this function instead of [`graphql`](#graphql) to run queries in synchronous servers (WSGI, Django, Flask).
+
+
+### Required arguments
+
+See [`graphql`](#graphql) required arguments.
+
+
+### Configuration options
+
+See [`graphql`](#graphql) configuration options.
 
 
 - - - - -

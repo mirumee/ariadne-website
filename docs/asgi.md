@@ -33,7 +33,6 @@ $ uvicorn myasgi:application
 
 ### Configuration options
 
-`GraphQL` takes mostly the same options that [`graphql`](api-reference.md#configuration-options) does, but with two differences:
+`GraphQL` takes the same options that [`graphql`](api-reference.md#configuration-options) does, but accepts extra option specific to it:
 
-- `context_value` can be callable that will be called with single argument ([`Request`](https://www.starlette.io/requests/#request) instance) and its return value will be used for rest of query execution as `context_value`.
 - `keepalive`, if given a number of seconds, will send "keepalive" packets to the client in an attempt to prevent the connection from being dropped due to inactivity.

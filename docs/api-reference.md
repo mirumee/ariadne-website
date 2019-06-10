@@ -4,7 +4,7 @@ title: API reference
 sidebar_label: ariadne
 ---
 
-Following items are importable directly from `ariadne` package:
+The following items are importable directly from the `ariadne` package:
 
 
 ## `EnumType`
@@ -13,24 +13,24 @@ Following items are importable directly from `ariadne` package:
 EnumType(name, values)
 ```
 
-[_Bindable_](bindables.md) used for mapping python values to enumeration members defined in GraphQL schema.
+A [_bindable_](bindables.md) used for mapping python values to enumeration members defined in GraphQL schema.
 
 
 ### Required arguments
 
 #### `name`
 
-`str` with name of enumeration type defined in schema.
+`str` with the name of the enumeration type defined in the schema.
 
 
 #### `values`
 
-`dict`, `enum.Enum` or `enum.IntEnum` instance that defines mappings between Enum members and values
+A `dict`, an `enum.Enum` or an `enum.IntEnum` instance that defines mappings between Enum members and values.
 
 
 ### Example
 
-Enum defined in schema:
+Enum defined in the schema:
 
 ```graphql
 enum ErrorType {
@@ -40,7 +40,7 @@ enum ErrorType {
 }
 ```
 
-Python mapping using `dict`:
+A Python mapping using `dict`:
 
 ```python
 from ariadne import EnumType
@@ -56,7 +56,7 @@ error_type_enum = EnumType(
 )
 ```
 
-Python mapping using `enum.Enum`:
+A Python mapping using `enum.Enum`:
 
 ```python
 from enum import Enum
@@ -83,14 +83,14 @@ error_type_enum = EnumType("ErrorType", ErrorType)
 FallbackResolversSetter()
 ```
 
-[_Bindable_](bindables.md) used for setting default resolvers on schema object types.
+A [_bindable_](bindables.md) used for setting the default resolvers on the schema object types.
 
-> Use [`fallback_resolvers`](#fallback_resolvers) instead of instantiating `FallbackResolversSetter`.
+> It uses the [`fallback_resolvers`](#fallback_resolvers) instead of instantiating `FallbackResolversSetter`.
 
 
 ### Custom default resolver example
 
-You can create custom class extending `FallbackResolversSetter` to set custom default resolver on your GraphQL object types:
+You can create custom classes by extending `FallbackResolversSetter` to set your own default resolver on your GraphQL object types:
 
 ```python
 from ariadne import FallbackResolversSetter
@@ -119,7 +119,7 @@ class CustomFallbackResolversSetter(FallbackResolversSetter):
 InterfaceType(name, type_resolver=None)
 ```
 
-[_Bindable_](bindables.md) used for setting Python logic for GraphQL interfaces. Extends [`ObjectType`](#objecttype).
+A [_bindable_](bindables.md) used for setting a custom Python logic for the GraphQL interfaces. It extends [`ObjectType`](#objecttype).
 
 > Because `InterfaceType` extends `ObjectType`, it can also be used to set field resolvers.
 >
@@ -130,14 +130,14 @@ InterfaceType(name, type_resolver=None)
 
 #### `name`
 
-`str` with name of interface type defined in schema.
+A `str` with name of interface type defined in schema.
 
 
 ### Optional arguments
 
 #### `type_resolver`
 
-Valid [resolver](types-reference.md#resolver) that is used to resolve the GraphQL type to which `obj` belongs. It should return a `str` with the name of the type. Not needed if `obj` contains a `__typename` key or attribute.
+Validates [resolver](types-reference.md#resolver) that is used to resolve the GraphQL type to which `obj` belongs. It should return a `str` with the name of the type. It's not needed if `obj` contains a `__typename` key or attribute.
 
 
 ### Methods
@@ -148,9 +148,9 @@ Valid [resolver](types-reference.md#resolver) that is used to resolve the GraphQ
 InterfaceType.set_type_resolver(type_resolver)
 ```
 
-Sets type [resolver](types-reference.md#resolver) used to resolve the `str` with name of GraphQL type to which `obj` belongs to.
+Sets the type [resolver](types-reference.md#resolver) used to resolve the `str` with the name of the GraphQL type to which `obj` belongs to.
 
-Returns value passed to `type_resolver` argument.
+It returns value passed to `type_resolver` argument.
 
 
 #### `type_resolver`
@@ -166,12 +166,12 @@ def resolve_search_result_type(obj, info):
     ...
 ```
 
-Decorator doesn't change or wrap the decorated function into any additional logic.
+The decorator doesn't change and doesn't wrap the decorated function with any additional logic.
 
 
 ### Example
 
-Interface type for search result that can be `User` or `Thread`, that defines the url field and sets default resolver for it:
+An interface type for search results that can either be `User` or `Thread`, that defines the url field and sets a default resolver for it:
 
 ```graphql
 interface SearchResult {
@@ -206,9 +206,9 @@ def resolve_search_result_url(obj, info):
 MutationType()
 ```
 
-[_Bindable_](bindables.md) used for setting Python logic for GraphQL mutation type. Has the same API as [`ObjectType`](#objecttype), but has GraphQL type name hardcoded to `Mutation`.
+A [_bindable_](bindables.md) used for setting Python logic for the GraphQL mutation type. It has the same API as [`ObjectType`](#objecttype), but has its GraphQL type name hardcoded to `Mutation`.
 
-> This is an convenience utility that can be used in place of of `ObjectType("Mutation")`.
+> This is a convenient utility that can be used in place of of `ObjectType("Mutation")`.
 
 
 - - - - -
@@ -220,21 +220,21 @@ MutationType()
 MutationType(name)
 ```
 
-[_Bindable_](bindables.md) used for setting Python logic for GraphQL object types.
+A [_bindable_](bindables.md) used for setting Python logic for the GraphQL object types.
 
 
 ### Required arguments
 
 #### `name`
 
-`str` with name of an object type defined in schema.
+A `str` with the name of an object type defined in the schema.
 
 
 ### Methods
 
 #### `field`
 
-Decorator that takes single parameter, `name` of GraphQL field, and sets decorated callable as [a resolver](types-reference.md#resolver) for it:
+A decorator that takes a single parameter: `name` of the GraphQL field, and sets the decorated callable as [a resolver](types-reference.md#resolver) for it:
 
 ```python
 user = ObjectType("User")
@@ -245,7 +245,7 @@ def resolve_posts(obj, info):
     ...
 ```
 
-Decorator doesn't change or wrap the decorated function into any additional logic.
+The decorator doesn't change and doesn't wrap the decorated function with any additional logic.
 
 
 #### `set_alias`
@@ -254,14 +254,12 @@ Decorator doesn't change or wrap the decorated function into any additional logi
 ObjectType.set_alias(name, to)
 ```
 
-Makes a field `name` defined in the schema resolve to property `to` of an object.
+Makes a field `name` defined in the schema resolve to the property `to` of an object.
 
-For example, if you want field `username` from schema resolve to attribute `user_name` of Python object, you can set an alias:
+For example, if you want the field `username` from the schema to resolve the attribute `user_name` to the `User` Python Object, you can set an alias:
 
 ```python
 user = ObjectType("User")
-
-
 user.set_alias("username", "user_name")
 ```
 
@@ -272,9 +270,9 @@ user.set_alias("username", "user_name")
 ObjectType.set_field(name, resolver)
 ```
 
-Sets [`resolver`](types-reference.md#resolver) as resolver that will be used to resolve the GraphQL field named `name`.
+Sets [`resolver`](types-reference.md#resolver) as resolver that will be used to resolve the GraphQL field `name`.
 
-Returns value passed to `resolver` argument.
+Returns the value passed to the `resolver` argument.
 
 
 - - - - -
@@ -286,9 +284,9 @@ Returns value passed to `resolver` argument.
 QueryType()
 ```
 
-[_Bindable_](bindables.md) used for setting Python logic for GraphQL mutation type. Has the same API as [`ObjectType`](#objecttype), but has GraphQL type name hardcoded to `Query`.
+[_Bindable_](bindables.md) used for setting Python logic for the GraphQL mutation type. It has the same API as [`ObjectType`](#objecttype), but it has the GraphQL type name hardcoded to `Query`.
 
-> This is an convenience utility that can be used in place of of `ObjectType("Query")`.
+> This is a convenience utility that can be used in place of of `ObjectType("Query")`.
 
 
 - - - - -
@@ -300,36 +298,36 @@ QueryType()
 ScalarType(name, *, serializer=None, value_parser=None, literal_parser=None)
 ```
 
-[_Bindable_](bindables.md) used for setting Python logic for GraphQL scalar type.
+[_Bindable_](bindables.md) used for setting the Python logic for GraphQL scalar type.
 
 
 ### Required arguments
 
 #### `name`
 
-`str` with name of scalar type defined in schema.
+`str` with the name of scalar type defined in schema.
 
 
 #### `serializer`
 
-Callable that is called to convert scalar value into JSON-serializable form.
+Callable that is called to convert scalar values into JSON-serializable objects.
 
 
 #### `value_parser`
 
-Callable that is called to convert JSON-serialized value back into Python form.
+A callable that is called to convert JSON-serialized values back into Python objects.
 
 
 #### `literal_parser`
 
-Callable that is called to convert AST `ValueNode` value into Python form.
+A callable that is called to convert the AST `ValueNode` value into a Python object.
 
 
 ### Methods
 
 #### `literal_parser`
 
-Decorator that sets decorated callable as literal parser for the scalar:
+A decorator that sets the decorated callable as a literal parser for the given scalar:
 
 ```python
 datetime = ScalarType("DateTime")
@@ -340,12 +338,12 @@ def parse_datetime_literal(ast):
     ...
 ```
 
-Decorator doesn't change or wrap the decorated function into any additional logic.
+The decorator doesn't change and doesn't wrap the decorated function with any additional logic.
 
 
 #### `serializer`
 
-Decorator that sets decorated callable as serializer for the scalar:
+A decorator that sets a decorated callable as a serializer for the given scalar:
 
 ```python
 datetime = ScalarType("DateTime")
@@ -356,7 +354,7 @@ def serialize_datetime(value):
     ...
 ```
 
-Decorator doesn't change or wrap the decorated function into any additional logic.
+The decorator doesn't change and doesn't wrap the decorated function with any additional logic.
 
 
 #### `set_serializer`
@@ -365,7 +363,7 @@ Decorator doesn't change or wrap the decorated function into any additional logi
 ScalarType.set_serializer(serializer)
 ```
 
-Sets `serializer` callable as serializer for the scalar.
+Sets `serializer` callable as a serializer for the scalar.
 
 
 #### `set_literal_parser`
@@ -374,7 +372,7 @@ Sets `serializer` callable as serializer for the scalar.
 ScalarType.set_value_parser(literal_parser)
 ```
 
-Sets `literal_parser` callable as literal parser for the scalar.
+Sets `literal_parser` callable as a literal parser for the scalar.
 
 
 #### `set_value_parser`
@@ -390,7 +388,7 @@ Sets `value_parser` callable as value parser for the scalar.
 
 #### `value_parser`
 
-Decorator that sets decorated callable as value parser for the scalar:
+A decorator that sets the decorated callable as a value parser for the given scalar:
 
 ```python
 datetime = ScalarType("DateTime")
@@ -401,14 +399,14 @@ def parse_datetime_value(value):
     ...
 ```
 
-Decorator doesn't change or wrap the decorated function into any additional logic.
+The decorator doesn't change and doesn't wrap the decorated function with any additional logic.
 
-> As convenience, this decorator will also set literal parser, if none was set already.
+> For convenience, this decorator will also set a literal parser, if none was set already.
 
 
 ### Example
 
-Read-only scalar that converts `datetime` object to string containing ISO8601 formatted date:
+A read-only scalar that converts `datetime` object to string containing ISO8601 formatted date:
 
 ```python
 datetime = ScalarType("DateTime")
@@ -419,7 +417,7 @@ def serialize_datetime(value):
     return value.isoformat()
 ```
 
-Bidirectional scalar that converts `date` object to ISO8601 formatted date and reverses it back:
+A bidirectional scalar that converts the given `date` object to a ISO8601 formatted date and reverses it back:
 
 ```python
 from datetime import date
@@ -447,11 +445,11 @@ def serialize_datetime(value):
 SnakeCaseFallbackResolversSetter()
 ```
 
-[_Bindable_](bindables.md) used for setting default resolvers on schema object types. Subclasses [`FallbackResolversSetter`](#fallbackresolverssetter) and sets default resolver that performs case conversion between GraphQL's `camelCase` and Python's `snake_case`:
+This [_bindable_](bindables.md) is used for setting the default resolver on the schema object types. It subclasses [`FallbackResolversSetter`](#fallbackresolverssetter) and it sets the default resolver that performs case conversion between GraphQL's `camelCase` and Python's `snake_case`:
 
 ```graphql
 type User {
-  "Default resolver for this field will read value from contact_address"
+  "Default resolver for this field that will read the value from contact_address"
   contactAddress: String
 }
 ```
@@ -468,16 +466,16 @@ type User {
 SubscriptionType()
 ```
 
-[_Bindable_](bindables.md) used for setting Python logic for GraphQL subscription type.
+A [_bindable_](bindables.md) used for setting a Python logic to the GraphQL subscription type.
 
-> Like [`QueryType`](#querytype) and [`MutationType`](#mutationtype) this type is hardcoded to bind only to `Subscription` type in schema.
+> Like [`QueryType`](#querytype) and [`MutationType`](#mutationtype) this type is hardcoded to bind only to the `Subscription` type in schema.
 
 
 ### Methods
 
 #### `field`
 
-Decorator that takes single parameter, `name` of GraphQL field, and sets decorated callable as resolver for it.
+A decorator that takes a single parameter: `name` of the GraphQL field, and sets the decorated callable as its resolver.
 
 ```python
 subscription = SubscriptionType()
@@ -488,9 +486,9 @@ def resolve_alerts(obj, info):
     ...
 ```
 
-Decorator doesn't change or wrap the decorated function into any additional logic.
+The decorator doesn't change and doesn't wrap the decorated function with any additional logic.
 
-> Root resolvers set on subscription type are called with value returned by field's `source` resolver as first argument.
+> The root resolvers set on the subscription type are called with the value returned by the field's `source` resolver as the first argument.
 
 #### `set_field`
 
@@ -498,11 +496,11 @@ Decorator doesn't change or wrap the decorated function into any additional logi
 SubscriptionType.set_field(name, resolver)
 ```
 
-Sets `resolver` callable as resolver that will be used to resolve the GraphQL field named `name`.
+It sets the `resolver` callable as a resolver that will be used to resolve the GraphQL field `name`.
 
-Returns value passed to `resolver` argument.
+It returns the value passed to the `resolver` argument.
 
-> Root resolvers set on subscription type are called with value returned by field's `source` resolver as first argument.
+> The root resolvers set on the subscription type are called with the value returned by the field's `source` resolver as the first argument.
 
 
 #### `set_source`
@@ -511,14 +509,14 @@ Returns value passed to `resolver` argument.
 SubscriptionType.set_source(name, generator)
 ```
 
-Sets `generator` generator as source that will be used to resolve the GraphQL field named `name`.
+Sets the given `generator` as the source that will be used to resolve the GraphQL field `name`.
 
-Returns value passed to `generator` argument.
+It returns the value passed to the `generator` argument.
 
 
 #### `source`
 
-Decorator that takes single parameter, `name` of GraphQL field, and sets decorated generator as source for it.
+A decorator that takes a single parameter: `name` of the GraphQL field, and sets the decorated generator its source.
 
 ```python
 subscription = SubscriptionType()
@@ -529,7 +527,7 @@ async def alerts_generator(obj, info):
     ...
 ```
 
-Decorator doesn't change or wrap the decorated function into any additional logic.
+The ecorator doesn't change and doesn't wrap the decorated function with any additional logic.
 
 
 ### Example
@@ -570,21 +568,21 @@ def counter_resolver(count, info):
 UnionType(name, type_resolver=None)
 ```
 
-[_Bindable_](bindables.md) used for setting Python logic for GraphQL union type.
+A [_bindable_](bindables.md) used for setting a Python logic for the GraphQL union type.
 
 
 ### Required arguments
 
 #### `name`
 
-`str` with name of union type defined in schema.
+`str` with the name of union type defined in the schema.
 
 
 ### Optional arguments
 
 #### `type_resolver`
 
-Valid [resolver](types-reference.md#resolver) that is used to resolve the GraphQL type to which `obj` belongs. It should return a `str` with the name of the type. Not needed if `obj` contains a `__typename` key or attribute.
+It validates the [resolver](types-reference.md#resolver) that is used to resolve the GraphQL type to which the `obj` belongs to. It should return a `str` with the name of the type. It is not needed if `obj` contains a `__typename` key or attribute.
 
 
 ### Methods
@@ -595,14 +593,14 @@ Valid [resolver](types-reference.md#resolver) that is used to resolve the GraphQ
 UnionType.set_type_resolver(type_resolver)
 ```
 
-Sets type [resolver](types-reference.md#resolver) used to resolve the `str` with name of GraphQL type to which `obj` belongs to.
+Sets the type [resolver](types-reference.md#resolver) used to resolve the `str` with the name of the GraphQL type to which the `obj` belongs to.
 
-Returns value passed to `type_resolver` argument.
+It returns the value passed to the `type_resolver` argument.
 
 
 #### `type_resolver`
 
-Decorator counterpart of `set_type_resolver`:
+A decorator counterpart of `set_type_resolver`:
 
 ```python
 search_result = UnionType("SearchResult")
@@ -613,12 +611,12 @@ def resolve_search_result_type(obj, info):
     ...
 ```
 
-Decorator doesn't change or wrap the decorated function into any additional logic.
+The decorator doesn't change and doesn't wrap the decorated function with any additional logic.
 
 
 ### Example
 
-Union type for search result that can be `User` or `Thread`:
+Union type for search results that can be `User` or `Thread`:
 
 ```graphql
 union SearchResult = User | Thread
@@ -646,24 +644,24 @@ def resolve_search_result_type(obj, info):
 combine_multipart_data(operations, files_map, files)
 ```
 
-Combines data from [GraphQL multipart request](https://github.com/jaydenseric/graphql-multipart-request-spec) into a query [`data`](#data).
+It combines the data from a [GraphQL multipart request](https://github.com/jaydenseric/graphql-multipart-request-spec) into a query [`data`](#data).
 
 
 ### Required arguments
 
 #### `operations`
 
-`dict` containing GraphQL query data or `list` of those.
+`dict` containing the GraphQL query data or `list` of those.
 
 
 #### `files_map`
 
-`dict` containing data mapping `files` to Query variables.
+`dict` containing the data mapping `files` to the `Query` variables.
 
 
 #### `files`
 
-`dict` (or object implementing `__getitem__`) containing uploaded files.
+`dict` (or an object implementing `__getitem__`) containing the uploaded files.
 
 
 - - - - -
@@ -675,7 +673,7 @@ Combines data from [GraphQL multipart request](https://github.com/jaydenseric/gr
 convert_camel_case_to_snake(graphql_name)
 ```
 
-Utility function that converts GraphQL name written in `camelCase` to its Python `snake_case` counterpart.
+An utility function that converts the GraphQL name written in `camelCase` to its Python `snake_case` counterpart.
 
 
 - - - - -
@@ -687,7 +685,7 @@ Utility function that converts GraphQL name written in `camelCase` to its Python
 def default_resolver(parent, info)
 ```
 
-Default resolver used by Ariadne. If `parent` is `dict`, will use `dict.get(info.field_name)` to resolve the value. Uses `getattr(parent, info.field_name, None)` otherwise.
+The default resolver used by Ariadne. If `parent` is a `dict`, it will use `dict.get(info.field_name)` to resolve the value. Otherwise, it will use `getattr(parent, info.field_name, None)`.
 
 
 - - - - -
@@ -699,7 +697,7 @@ Default resolver used by Ariadne. If `parent` is `dict`, will use `dict.get(info
 fallback_resolvers
 ```
 
-[_Bindable_](bindables.md) instace of [`FallbackResolversSetter`](#fallbackresolverssetter).
+a [_bindable_](bindables.md) instance of [`FallbackResolversSetter`](#fallbackresolverssetter).
 
 
 - - - - -
@@ -711,11 +709,11 @@ fallback_resolvers
 def format_error(error, debug=False)
 ```
 
-Default error formatter used by Ariadne. Takes instance of `GraphQLError` as first argument and debug flag as second.
+The default error formatter used by Ariadne. It takes an instance of `GraphQLError` as the first argument and the debug flag for the second.
 
-Returns `dict` containing formatted error data ready for returning to API client.
+It returns a `dict` containing the formatted error data ready to be returned to the API client.
 
-If `debug` is `True`, updates returned data `extensions` key with `exception` `dict` that contains traceback to original Python exception and its context variables.
+If `debug` is `True`, it updates the returned data `extensions` key with `exception`; a `dict` that contains the traceback to original Python exception and its context variables.
 
 
 - - - - -
@@ -727,7 +725,7 @@ If `debug` is `True`, updates returned data `extensions` key with `exception` `d
 def get_error_extension(error)
 ```
 
-Takes `GraphQLError` instance as only argument and returns `dict` with traceback and context of original Python exception. If error was not caused by exception in resolver, returns `None` instead.
+It takes a `GraphQLError` instance and returns a `dict` with the traceback and the context of the original Python exception. If an error was not caused by an exception in the resolver, it returns `None` instead.
 
 - - - - -
 
@@ -738,9 +736,9 @@ Takes `GraphQLError` instance as only argument and returns `dict` with traceback
 def gql(value)
 ```
 
-Utility function that takes GraphQL string as only argument, validates it and returns same string unchanged or raises `GraphQLError` if string was invalid.
+An utility function that takes a GraphQL string, validates it and returns the same string unchanged or raises `GraphQLError` if the string was invalid.
 
-Wrapping GraphQL strings declarations with this utility will make errors easier to track down and debug, as their traceback will point to place of declaration instead of Ariadne internals:
+Wrapping GraphQL strings declarations with this utility makes it easier to track down and debug errors, as their traceback will point to the place of their declaration instead of Ariadne' internals:
 
 ```python
 type_defs = gql("""
@@ -760,13 +758,13 @@ type_defs = gql("""
 async def graphql(schema, data, *, root_value=None, context_value=None, logger=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
 ```
 
-Asynchronously executes query against the schema.
+It asynchronously executes a query against the schema.
 
-Returns [`GraphQLResult`](types-reference.md#graphqlresult) instance.
+It returns [`GraphQLResult`](types-reference.md#graphqlresult) instance.
 
-> This function is an asynchronous coroutine so you will need to `await` on the returned value.
+> This function is an asynchronous coroutine so you will need to `await` the returned value.
 
-> Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use [`graphql_sync`](#graphql_sync) instead.
+> The coroutines will not work under WSGI. If your server uses WSGI (Django and Flask for example), use [`graphql_sync`](#graphql_sync) instead.
 
 
 ### Required arguments
@@ -778,48 +776,48 @@ An executable schema created using [`make_executable_schema`](#make_executable_s
 
 #### `data`
 
-Decoded input data sent by the client (eg. for POST requests in JSON format, pass in the structure decoded from JSON). Exact shape of `data` depends on the query type and protocol.
+The decoded input data sent by the client (e.g. for POST requests in JSON format, it passes the structure decoded from JSON). The exact shape of `data` depends on the query type and the protocols.
 
 
 ### Configuration options
 
 #### `context_value`
 
-[Context value](types-reference.md#contextvalue) to be passed to resolvers.
+The [context value](types-reference.md#contextvalue) to be passed to the resolvers.
 
 > If `context_value` is callable, it should be evaluated on higher level of abstraction (in server integration) before passing to `graphql()`.
 
 
 #### `root_value`
 
-[Root value](types-reference.md#rootvalue) to be passed to root resolvers.
+The [root value](types-reference.md#rootvalue) to be passed to the root resolvers.
 
 
 #### `logger`
 
-String with the name of logger that should be used to log GraphQL errors. Defaults to `ariadne`.
+A string with the name of the logger that should be used to log the GraphQL errors. Defaults to `ariadne`.
 
 
 #### `debug`
 
-If `True` will cause the server to include debug information in error responses.
+If `True`, it will cause the server to include debug information in the error responses.
 
 
 #### `validation_rules`
 
-optional additional validators (as defined by `graphql.validation.rules`) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and There's no need to provide them here).
+Any additional validators (as defined by `graphql.validation.rules`) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and there's no need to provide them here).
 
 
 #### `error_formatter`
 
-[Error formatter](types-reference.md#errorformatter) that should be used to format errors.
+The [error formatter](types-reference.md#errorformatter) that should be used to format errors.
 
 Defaults to [`format_error`](#format_error).
 
 
 #### `middleware`
 
-Optional middleware to wrap the resolvers with.
+An optional middleware to wrap the resolvers with.
 
 
 - - - - -
@@ -831,21 +829,21 @@ Optional middleware to wrap the resolvers with.
 def graphql(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
 ```
 
-Synchronously executes query against schema.
+Synchronously executes a query against the schema.
 
-Returns [`GraphQLResult`](types-reference.md#graphqlresult) instance.
+It returns a [`GraphQLResult`](types-reference.md#graphqlresult) instance.
 
-> Use this function instead of [`graphql`](#graphql) to run queries in synchronous servers (WSGI, Django, Flask).
+> Use this function instead of [`graphql`](#graphql) to run queries in synchronous servers (WSGI, Django, Flask, etc).
 
 
 ### Required arguments
 
-See [`graphql`](#graphql) required arguments.
+See [`graphql`](#graphql) for the required arguments.
 
 
 ### Configuration options
 
-See [`graphql`](#graphql) configuration options.
+See [`graphql`](#graphql) for the configuration options.
 
 
 - - - - -
@@ -857,12 +855,12 @@ See [`graphql`](#graphql) configuration options.
 def load_schema_from_path(path)
 ```
 
-Loads GraphQL schema from `path` using different strategy depending on `path`'s type:
+Loads the GraphQL schema from the given `path` using different strategies depending on the `path`'s type:
 
-- If `path` is single file, reads it.
-- If `path` is directory, walks it recursively loading all `.graphql` files within it.
+- If `path` is a single file, it reads it.
+- If `path` is a directory, it walks it recursively by loading all `.graphql` files within it.
 
-Files are validated using the same logic that [`gql`](#gql) uses, concatenated into single string and returned.
+The files are validated using the same logic used by [`gql`](#gql), and concatenated into a single string and then returned.
 
 
 - - - - -
@@ -874,12 +872,12 @@ Files are validated using the same logic that [`gql`](#gql) uses, concatenated i
 def make_executable_schema(type_defs, bindables=None)
 ```
 
-Takes two arguments:
+It takes two arguments:
 
-- `type_defs` - string or list of strings with valid GraphQL types definitions.
-- `bindables` - [bindable or list of bindables](bindables.md) with Python logic to add to schema. *Optional*.
+- `type_defs` - a string or list of strings with valid GraphQL types definitions.
+- `bindables` - a [bindable or a list of bindables](bindables.md) with any Python logic to add to the schema. *Optional*.
 
-Returns `GraphQLSchema` instance that can be used to run queries on.
+It returns a `GraphQLSchema` instance that can be used to run queries onto.
 
 
 - - - - -
@@ -891,7 +889,7 @@ Returns `GraphQLSchema` instance that can be used to run queries on.
 def resolve_to(name)
 ```
 
-Returns [`default_resolver`](#default_resolver) that always resolves to named attribute. Used to create aliases by [`ObjectType.set_alias`](#set_alias).
+It returns the [`default_resolver`](#default_resolver) that always resolves to named attribute. Used by [`ObjectType.set_alias`](#set_alias) to create aliases.
 
 - - - - -
 
@@ -902,7 +900,7 @@ Returns [`default_resolver`](#default_resolver) that always resolves to named at
 snake_case_fallback_resolvers
 ```
 
-[_Bindable_](bindables.md) instace of [`SnakeCaseFallbackResolversSetter`](#snakecasefallbackresolverssetter).
+A [_bindable_](bindables.md) instance of [`SnakeCaseFallbackResolversSetter`](#snakecasefallbackresolverssetter).
 
 
 - - - - -
@@ -914,11 +912,11 @@ snake_case_fallback_resolvers
 async def subscribe(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, **kwargs)
 ```
 
-Asynchronously executes subscription query against schema, usually made over the websocket. Takes same arguments and options as [`graphql`](#graphql) except `middleware`.
+Asynchronously executes a subscription query against the schema, usually made over the websocket. It takes the same arguments and options as [`graphql`](#graphql) except `middleware`.
 
-> This function is an asynchronous coroutine so you will need to `await` on the returned value.
+> This function is an asynchronous coroutine so you will need to `await` the returned value.
 
-> Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use [`graphql_sync`](#graphql_sync) instead.
+> Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask for example), use [`graphql_sync`](#graphql_sync) instead.
 
 
 - - - - -
@@ -930,6 +928,6 @@ Asynchronously executes subscription query against schema, usually made over the
 upload_scalar
 ```
 
-Instance of [`ScalarType`](#scalartype) that represents uploaded file.
+An instance of [`ScalarType`](#scalartype) that represents the uploaded file.
 
-See [file uploads](file-uploads.md) documentation for information about [limitations](file-uploads.md#limitations) and [implementation specific](file-uploads.md#implementation-differences) differences in behaviour.
+See the [file uploads](file-uploads.md) documentation for information about the [limitations](file-uploads.md#limitations) and [implementation specific](file-uploads.md#implementation-differences) differences in behaviour.

@@ -9,6 +9,8 @@
 // site configuration options.
 
 // List of projects/orgs using your project for the users page.
+const youtube = require("./youtube");
+
 const users = [
   {
     caption: "Mirumee Software",
@@ -98,6 +100,9 @@ const siteConfig = {
 
   // Add custom scripts here that would be placed in <script> tags.
   scripts: ["https://buttons.github.io/buttons.js"],
+
+  // Enable MarkDown plugins
+  markdownPlugins: [youtube],
 
   // On page navigation for the current documentation page.
   onPageNav: "separate",

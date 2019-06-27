@@ -114,20 +114,14 @@ urlpatterns = [
 ]
 </code></pre>
 <h3><a class="anchor" aria-hidden="true" id="configuration-options"></a><a href="#configuration-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration options</h3>
-<p><code>GraphQLView.as_view()</code> takes mostly the same options that <div class="embed-yt">
-      <div class="embed-yt-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/null" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="embed-yt-title"><code>graphql</code></div></div> does, but with two differences:</p>
+<p><code>GraphQLView.as_view()</code> takes mostly the same options that <a href="/docs/0.4.0/api-reference#configuration-options"><code>graphql</code></a> does, but with two differences:</p>
 <ul>
-<li><code>context_value</code> can be callable that will be called with single argument (<div class="embed-yt">
-      <div class="embed-yt-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/null" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="embed-yt-title"><code>HttpRequest</code></div></div> instance) and its return value will be used for rest of query execution as <code>context_value</code>.</li>
+<li><code>context_value</code> can be callable that will be called with single argument (<a href="https://docs.djangoproject.com/en/2.2/ref/request-response/#httprequest-objects"><code>HttpRequest</code></a> instance) and its return value will be used for rest of query execution as <code>context_value</code>.</li>
 <li><code>debug</code> option is not available and it's set to the value of <code>settings.DEBUG</code></li>
 </ul>
-<p>Django GraphQL view has one option specific to it: <code>playground_options</code>, a dict of <div class="embed-yt">
-      <div class="embed-yt-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/null" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="embed-yt-title">GraphQL Playground options</div></div> that should be used.</p>
+<p>Django GraphQL view has one option specific to it: <code>playground_options</code>, a dict of <a href="https://github.com/prisma/graphql-playground#settings">GraphQL Playground options</a> that should be used.</p>
 <h2><a class="anchor" aria-hidden="true" id="django-channels"></a><a href="#django-channels" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Django Channels</h2>
-<p>Ariadne's <div class="embed-yt">
-      <div class="embed-yt-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/null" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="embed-yt-title">ASGI application</div></div> can be used together with <div class="embed-yt">
-      <div class="embed-yt-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/null" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="embed-yt-title">Django Channels</div></div> to implement asynchronous GraphQL API with features like <div class="embed-yt">
-      <div class="embed-yt-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/null" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="embed-yt-title">subscriptions</div></div>:</p>
+<p>Ariadne's <a href="/docs/0.4.0/asgi">ASGI application</a> can be used together with <a href="https://github.com/django/channels">Django Channels</a> to implement asynchronous GraphQL API with features like <a href="/docs/0.4.0/subscriptions">subscriptions</a>:</p>
 <pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne.asgi <span class="hljs-keyword">import</span> GraphQL
 <span class="hljs-keyword">from</span> channels.http <span class="hljs-keyword">import</span> AsgiHandler
 <span class="hljs-keyword">from</span> channels.routing <span class="hljs-keyword">import</span> URLRouter
@@ -144,15 +138,12 @@ application = URLRouter([
 </code></pre>
 <blockquote>
 <p>At the moment Django ORM doesn't support asynchronous query execution and there is <strong>noticeable performance loss</strong> when using it for database access in asynchronous resolvers.</p>
-<p>Use asynchronous ORM such as <div class="embed-yt">
-      <div class="embed-yt-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/null" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="embed-yt-title">Gino</div></div> for database queries in your resolvers.</p>
+<p>Use asynchronous ORM such as <a href="https://github.com/fantix/gino">Gino</a> for database queries in your resolvers.</p>
 </blockquote>
 <h2><a class="anchor" aria-hidden="true" id="date-and-datetime-scalars"></a><a href="#date-and-datetime-scalars" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Date</code> and <code>Datetime</code> scalars</h2>
-<p>For convenience Ariadne also provides <code>Date</code> and <code>DateTime</code> scalar implementations that can be used to represent Django dates and datetimes in form understood by JS date and time handling libraries like <div class="embed-yt">
-      <div class="embed-yt-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/null" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="embed-yt-title">Moment.js</div></div>.</p>
+<p>For convenience Ariadne also provides <code>Date</code> and <code>DateTime</code> scalar implementations that can be used to represent Django dates and datetimes in form understood by JS date and time handling libraries like <a href="https://momentjs.com/">Moment.js</a>.</p>
 <blockquote>
-<p>Scalars have dependency on <div class="embed-yt">
-      <div class="embed-yt-iframe"><iframe width="560" height="315" src="https://www.youtube.com/embed/null" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="embed-yt-title">dateutil library</div></div>.</p>
+<p>Scalars have dependency on <a href="https://github.com/dateutil/dateutil">dateutil library</a>.</p>
 </blockquote>
 <p>To use them in your project, update your schema to define <code>Date</code> and <code>Datetime</code> scalar and pass their Python implementations to <code>make_executable_schema</code>:</p>
 <pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne.contrib.django.scalars <span class="hljs-keyword">import</span> date_scalar, datetime_scalar

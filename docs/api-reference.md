@@ -810,6 +810,13 @@ If `True` will cause the server to include debug information in error responses.
 optional additional validators (as defined by `graphql.validation.rules`) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and There's no need to provide them here).
 
 
+#### `extensions`
+
+List of classes extending [`Extension`](types-reference.md#extension) that will be used during query processing.
+
+> If `extensions` is callable, it should be evaluated on higher level of abstraction (in server integration) before passing to `graphql()`.
+
+
 #### `error_formatter`
 
 [Error formatter](types-reference.md#errorformatter) that should be used to format errors.
@@ -845,7 +852,9 @@ See [`graphql`](#graphql) required arguments.
 
 ### Configuration options
 
-See [`graphql`](#graphql) configuration options.
+See [`graphql`](#graphql) configuration options
+
+> This function doesn't support `extensions` option.
 
 
 - - - - -
@@ -919,6 +928,8 @@ Asynchronously executes subscription query against schema, usually made over the
 > This function is an asynchronous coroutine so you will need to `await` on the returned value.
 
 > Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use [`graphql_sync`](#graphql_sync) instead.
+
+> This function doesn't support `extensions` option.
 
 
 - - - - -

@@ -68,24 +68,6 @@ Base class for [extensions](extensions.md).
 
 ### Methods
 
-#### `execution_finished`
-
-```python
-Extension.execution_finished(context, error=None)
-```
-
-Called when query execution finishes.
-
-
-#### `execution_started`
-
-```python
-Extension.execution_started(context)
-```
-
-Called when query execution starts.
-
-
 #### `format`
 
 ```python
@@ -131,24 +113,6 @@ Extension.has_errors(errors)
 Called with `list` of errors that occurred during query process. Not called if no errors were raised. Errors may come from `validation`, query parsing or query execution.
 
 
-#### `parsing_finished`
-
-```python
-Extension.parsing_finished(query, error=None)
-```
-
-Called when query parsing finishes. Receives `str` with unparsed query as first argument.
-
-
-#### `parsing_started`
-
-```python
-Extension.parsing_started(query)
-```
-
-Called when query parsing starts. Receives `str` with unparsed query as first argument.
-
-
 #### `request_finished`
 
 ```python
@@ -176,24 +140,6 @@ Extension.resolve(next_, parent, info[, **kwargs])
 Used as middleware for fields resolver. Takes special `next_` argument that is next resolver in resolvers chain that should be called.
 
 Everything else is same as with regular [resolvers](#resolver).
-
-
-#### `validation_finished`
-
-```python
-Extension.validation_finished(context, error=None)
-```
-
-Called when query validation finishes.
-
-
-#### `validation_started`
-
-```python
-Extension.validation_started(context)
-```
-
-Called when query validation starts.
 
 
 - - - - -

@@ -61,7 +61,7 @@ class QueryExecutionTimeExtension(Extension):
     ...
 ```
 
-Our extension will measure the execution time. This means we need to measure the time of two events, execution start and finish:
+Our extension will measure the query execution time. This means we need to measure the time of two events, request start and finish:
 
 
 ```python
@@ -75,10 +75,10 @@ class QueryExecutionTimeExtension(Extension):
         self.start_timestamp = None
         self.end_timestamp = None
 
-    def execution_started(self, context):
+    def request_started(self, context):
         self.start_timestamp = time.perf_counter_ns()
 
-    def execution_finished(self, context, error=None):
+    def request_finished(self, context, error=None):
         self.end_timestamp = time.perf_counter_ns()
 ```
 
@@ -98,10 +98,10 @@ class QueryExecutionTimeExtension(Extension):
         self.start_timestamp = None
         self.end_timestamp = None
 
-    def execution_started(self, context):
+    def request_started(self, context):
         self.start_timestamp = time.perf_counter_ns()
 
-    def execution_finished(self, context, error=None):
+    def request_finished(self, context, error=None):
         self.end_timestamp = time.perf_counter_ns()
 
     def format(self):

@@ -9,13 +9,13 @@ Ariadne allows you to spread your GraphQL API implementation over multiple files
 
 ## Defining schema in `.graphql` files
 
-Recommended way to define schema is by using the `.graphql` files. This approach offers certain advantages:
+The recommended way to define schema is by using `.graphql` files. This approach offers certain advantages:
 
 - First class support from developer tools like [Apollo GraphQL plugin](https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo) for VS Code.
 - Easier cooperation and sharing of schema design between frontend and backend developers.
 - Dropping whatever python boilerplate code was used for SDL strings.
 
-To load schema from file or directory, you can use the `load_schema_from_path` utility provided by the Ariadne:
+To load schema from a file or directory, you can use the `load_schema_from_path` utility provided by the Ariadne:
 
 ```python
 from ariadne import load_schema_from_path
@@ -41,7 +41,7 @@ The above app won't be able to execute any queries but it will allow you to brow
 
 ## Defining schema in multiple modules
 
-Because Ariadne expects `type_defs` to be either string or list of strings, it's easy to split types across many string variables in many modules:
+Because Ariadne expects `type_defs` to be either a string or list of strings, it's easy to split types across many string variables in many modules:
 
 ```python
 query = """

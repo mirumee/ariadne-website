@@ -8,13 +8,13 @@ Ariadne implements the [GraphQL multipart request specification](https://github.
 
 ## Enabling file uploads
 
-To enable file uploads on your server, define new scalar named `Upload` in your schema:
+To enable file uploads on your server, define new a scalar named `Upload` in your schema:
 
 ```graphql
 scalar Upload
 ```
 
-Next, import `upload_scalar` from `ariadne` package and use it during executable schema creation:
+Next, import `upload_scalar` from `ariadne` package and use it during the creation of your executable schema:
 
 ```python
 from ariadne import make_executable_schema, upload_scalar
@@ -35,7 +35,7 @@ type Mutation {
 
 ## Limitations
 
-Default `Upload` scalar is write-only scalar that supports only accessing the value that was passed through the `variables`. It is not possible to use it as return value for GraphQL field or set its value in GraphQL Query:
+The default `Upload` scalar is a write-only scalar that supports only accessing the value that was passed through the `variables`. It is not possible to use it as return value for a GraphQL field or set its value in a GraphQL Query:
 
 ```graphql
 type User {
@@ -55,21 +55,21 @@ mutation {
 
 ## Implementation differences
 
-Python value returned by `Upload` scalar is not standardized and depends on your technology stack:
+The Python value returned by the `Upload` scalar is not standardized and depends on your technology stack:
 
 
 ### `ariadne.asgi`
 
-ASGI application is based on [Starlette](https://starlette.io) and hence uploaded files are instances of [`UploadFile`](https://www.starlette.io/requests/#request-files).
+Ariadne's ASGI support is based on [Starlette](https://starlette.io) and hence uploaded files are instances of [`UploadFile`](https://www.starlette.io/requests/#request-files).
 
 
 ### `ariadne.wsgi`
 
-WSGI application uses the `cgi` module from Python's standard library that represents uploaded files as instances of [`FieldStorage`](https://docs.python.org/3/library/cgi.html#using-the-cgi-module).
+Ariadne's WSGI support uses the `cgi` module from Python's standard library that represents uploaded files as instances of [`FieldStorage`](https://docs.python.org/3/library/cgi.html#using-the-cgi-module).
 
 > Data in `FieldStorage` is not guaranteed to represent an uploaded file.
 
 
 ### `ariadne.contrib.django`
 
-Django integration uses `request.FILES` to obtain uploaded files. Depending on file uploads configuration in your Django project, the files are instances of [`UploadedFile`](https://docs.djangoproject.com/en/2.2/ref/files/uploads/) or one of its subclasses.
+Ariadne's Django integration uses `request.FILES` to obtain uploaded files. Depending on file uploads configuration in your Django project, the files are instances of [`UploadedFile`](https://docs.djangoproject.com/en/2.2/ref/files/uploads/) or one of its subclasses.

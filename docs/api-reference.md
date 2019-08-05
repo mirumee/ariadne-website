@@ -757,7 +757,7 @@ type_defs = gql("""
 ## `graphql`
 
 ```python
-async def graphql(schema, data, *, root_value=None, context_value=None, logger=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
+async def graphql(schema, data, *, root_value=None, context_value=None, logger=None, debug=False, validation_rules, error_formatter, extensions=None, middleware, **kwargs)
 ```
 
 Asynchronously executes query against the schema.

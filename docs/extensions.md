@@ -34,7 +34,7 @@ from .schema import schema
 from .extensions import MyExtension
 
 
-def get_extensions(request):
+def get_extensions(request, context):
     if request.headers.get("x-enable-my-extension"):
         return [MyExtension]
     return None

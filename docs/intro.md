@@ -8,7 +8,7 @@ Welcome to Ariadne!
 
 This guide will introduce you to the basic concepts behind creating GraphQL APIs, and show how Ariadne helps you to implement them with just a little Python code.
 
-At the end of this guide you will have your own simple GraphQL API accessible through the browser, implementing a single field that returns a "Hello" message along with a client's user agent.
+At the end of this page you will have your own simple GraphQL API accessible through the browser, implementing a single field that returns a "Hello" message along with a client's user agent.
 
 Make sure that you've installed Ariadne using `pip install ariadne`, and that you have your favorite code editor open and ready.
 
@@ -19,7 +19,7 @@ First, we will describe what data can be obtained from our API.
 
 In Ariadne this is achieved by defining Python strings with content written in [Schema Definition Language](https://graphql.github.io/learn/schema/) (SDL), a special language for declaring GraphQL schemas.
 
-We will start by defining the special type `Query` that GraphQL services use as entry point for all reading operations. Next, we will specify a single field on it, named `hello`, and define that it will return a value of type `String`, and that it will never return `null`.
+We will start by defining the special type `Query` that GraphQL services use as an entry point for all reading operations. Next, we will specify a single field, named `hello`, and define that it will return a value of type `String`, and that it will never return `null`.
 
 Using the SDL, our `Query` type definition will look like this:
 
@@ -36,7 +36,8 @@ The `type Query { }` block declares the type, `hello` is the field definition, `
 
 ## Validating schema
 
-Ariadne provides tiny `gql` utility function that takes single argument: GraphQL string, validates it and raises descriptive `GraphQLSyntaxError`, or returns the original unmodified string if its correct:
+Ariadne provides the `gql` utility function to validate schema. It that takes a
+single argument: a GraphQL string, like the following example.
 
 ```python
 from ariadne import gql
@@ -48,7 +49,11 @@ type_defs = gql("""
 """)
 ```
 
-If we try to run the above code now, we will get an error pointing to our incorrect syntax within our `type_defs` declaration:
+`gql` validates the schema and raises a descriptive `GraphQLSyntaxError`, if
+there is an issue, or returns the original unmodified string if it is correct.
+
+
+If we try to run the above code now, we will get an error pointing to incorrect syntax within our `type_defs` declaration:
 
 ```
 graphql.error.syntax_error.GraphQLSyntaxError: Syntax Error: Expected :, found Name
@@ -69,7 +74,7 @@ The resolvers are functions mediating between API consumers and the application'
 
 We want our API to greet clients with a "Hello (user agent)!" string. This means that the `hello` field has to have a resolver that somehow finds the client's user agent, and returns a greeting message from it.
 
-At its simplest, resolver is a function that returns a value:
+At its simplest, a resolver is a function that returns a value:
 
 ```python
 def resolve_hello(*_):
@@ -80,9 +85,22 @@ The above code is perfectly valid, with a minimal resolver meeting the requireme
 
 Real-world resolvers are rarely that simple: they usually read data from some source such as a database, process inputs, or resolve value in the context of a parent object. How should our basic resolver look to resolve a client's user agent?
 
-In Ariadne every field resolver is called with at least two arguments: `obj` parent object, and the query's execution `info` that usually contains the `context` attribute that is GraphQL's way of passing additional information from the application to its query resolvers.
+In Ariadne every field resolver is called with at least two arguments: the
+query's parent object, and the query's execution `info` that usually contains
+a `context` attribute. The `context` is GraphQL's way of passing additional
+information from the application to its query resolvers.
 
-The default GraphQL server implementation provided by Ariadne defines `info.context` as Python `dict` containing a single key named `request` containing a request object. We can use this in our resolver:
+> In the above example, note the `*_` argument in the resolver's method signature.
+> The underscore is a convention used in many languages (including Python) to
+> indicate a variable that will not be used. The asterisk prefix is Python syntax
+> that informs the method it should expect a variable-length argument list. In
+> effect, the above example is throwing away any arguments passed to the resolver.
+> We've used that here, to simplify the example so that you can focus on its
+> purpose.
+
+The default GraphQL server implementation provided by Ariadne defines
+`info.context` as a Python `dict` containing a single key named `request`
+containing a request object. We can use this in our resolver:
 
 ```python
 def resolve_hello(_, info):
@@ -127,9 +145,15 @@ You pass it your type definitions and resolvers that you want to use:
 schema = make_executable_schema(type_defs, query)
 ```
 
-In Ariadne the process of adding the Python logic to GraphQL schema is called *binding to schema*, and special types that can be passed to the `make_executable_schema` second argument are called *bindables*. `QueryType` introduced earlier is one of many *bindables* provided by Ariadne that developers will use when creating their GraphQL APIs. Next chapters will
+In Ariadne the process of adding the Python logic to GraphQL schema is called
+*binding to schema*, and special types that can be passed to
+`make_executable_schema`'s second argument are called *bindables*. `QueryType`
+(introduced earlier) is one of many *bindables* provided by Ariadne that
+developers will use when creating their GraphQL APIs.
 
-In our first API we are passing only single instance to the `make_executable_schema`, but most of your future APIs will likely pass list of bindables instead, for example:
+In our first API we passed only a single bindable to the
+`make_executable_schema`, but most of your future APIs will likely pass a list
+of bindables instead, for example:
 
 ```python
 make_executable_schema(type_defs, [query, user, mutations, fallback_resolvers])
@@ -140,7 +164,7 @@ make_executable_schema(type_defs, [query, user, mutations, fallback_resolvers])
 
 ## Testing the API
 
-Now we have everything we need to finish our API, with the missing only piece being the http server that would receive the HTTP requests, execute GraphQL queries and return responses.
+Now we have everything we need to finish our API, with the only missing piece being the HTTP server that would receive the HTTP requests, execute GraphQL queries and return responses.
 
 Use an ASGI server like [uvicorn](http://www.uvicorn.org/), [daphne](https://github.com/django/daphne/), or [hypercorn](https://pgjones.gitlab.io/hypercorn/) to serve your application:
 
@@ -156,9 +180,9 @@ from ariadne.asgi import GraphQL
 app = GraphQL(schema, debug=True)
 ```
 
-Run your script with `uvicorn myscript:app` (remember to replace `myscript.py` with the name of your file!). If all is well, you will see a message telling you that the simple GraphQL server is running on the http://127.0.0.1:8000. Open this link in your web browser.
+Run your script with `uvicorn myscript:app` (remember to replace `myscript.py` with the name of your file!). If all is well, you will see a message telling you that the simple GraphQL server is running at http://127.0.0.1:8000. Open this link in your web browser.
 
-You will see the GraphQL Playground, the open source API explorer for GraphQL APIs. You can enter `{ hello }` query on the left, press the big, bright "run" button, and see the result on the right:
+You will see the GraphQL Playground, the open source API explorer for GraphQL APIs. You can enter a `{ hello }` query on the left, press the big, bright "run" button, and see the result on the right:
 
 ![Your first Ariadne GraphQL in action!](assets/hello-world.png)
 

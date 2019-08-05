@@ -15,9 +15,9 @@ class FormResolver:
         ...
 ```
 
-`obj` is a value returned by a parent resolver. If the resolver is a *root resolver* (it belongs to the field defined on `Query`, `Mutation` or `Subscription`) and GraphQL server implementation doesn't explicitly define value for this field, the value of this argument will be `None`.
+`obj` is a value returned by a parent resolver. If the resolver is a *root resolver* (it belongs to the field defined on `Query`, `Mutation` or `Subscription`) and the GraphQL server implementation doesn't explicitly define value for this field, the value of this argument will be `None`.
 
-`info` is the instance of a `GraphQLResolveInfo` object specific for this field and query. It defines a special `context` attribute that contains any value that GraphQL server provided for resolvers on the query execution. Its type and contents are application-specific, but it is generally expected to contain application-specific data such as authentication state of the user or http request.
+`info` is the instance of a `GraphQLResolveInfo` object specific for this field and query. It defines a special `context` attribute that contains any value that GraphQL server provided for resolvers on the query execution. Its type and contents are application-specific, but it is generally expected to contain application-specific data such as authentication state of the user or an HTTP request.
 
 > `context` is just one of many attributes that can be found on `GraphQLResolveInfo`, but it is by far the most commonly used one. Other attributes enable developers to introspect the query that is currently executed and implement new utilities and abstractions, but documenting that is out of Ariadne's scope. If you are interested, you can find the list of all attributes [here](https://github.com/graphql-python/graphql-core-next/blob/v1.0.5/graphql/type/definition.py#L487).
 
@@ -26,7 +26,7 @@ class FormResolver:
 
 A resolver needs to be bound to a valid type's field in the schema in order to be used during the query execution.
 
-To bind resolvers to schema, Ariadne uses a special `ObjectType` class that is initialized with single argument - name of the type defined in the schema:
+To bind resolvers to schema, Ariadne uses a special `ObjectType` class that is initialized with a single argument: the name of the type defined in the schema:
 
 ```python
 from ariadne import ObjectType
@@ -52,7 +52,7 @@ def resolve_hello(*_):
     return "Hello!"
 ```
 
-`@query.field` decorator is non-wrapping - it simply registers a given function as a resolver for specified field and then returns it as it is. This makes it easy to test or reuse resolver functions between different types or even APIs:
+The `@query.field` decorator is non-wrapping - it simply registers a given function as a resolver for the specified field and then returns it as it is. This makes it easy to test or reuse resolver functions between different types or even APIs:
 
 ```python
 user = ObjectType("User")
@@ -78,7 +78,7 @@ user.set_field("email", resolve_email_with_permission_check)
 
 ## Handling arguments
 
-If GraphQL field specifies any arguments, those argument values will be passed to the resolver as keyword arguments:
+If a GraphQL field specifies any arguments, those argument values will be passed to the resolver as keyword arguments:
 
 ```python
 type_def = """
@@ -96,7 +96,7 @@ def resolve_holidays(*_, year=None):
     return Calendar.get_all_holidays()
 ```
 
-If a field argument is marked as required (by following type with `!`, eg. `year: Int!`), you can skip the `=None` in your `kwarg`:
+If a field argument is marked as required (by following its type with `!`, eg. `year: Int!`), you can skip the `=None` in your `kwarg`:
 
 ```python
 @query.field("holidays")
@@ -137,9 +137,9 @@ from .resolvers import resolvers
 schema = make_executable_schema(type_defs, resolvers + [fallback_resolvers])
 ```
 
-The above example creates executable schema using types and resolvers imported from other modules, but it also adds `fallback_resolvers` to the list of bindables that should be used in creation of the schema.
+The above example creates an executable schema using types and resolvers imported from other modules, but it also adds `fallback_resolvers` to the list of bindables that should be used in creation of the schema.
 
-Resolvers set by `fallback_resolvers` don't perform any case conversion and simply seek the attribute named in the same way as the field they are bound to using "default resolver" strategy described in the next chapter.
+Resolvers set by `fallback_resolvers` don't perform any case conversion and simply seek the attribute named in the same way as the field they are bound to using the "default resolver" strategy described in the next chapter.
 
 If your schema uses JavaScript convention for naming its fields (as do all schema definitions in this guide) you may want to instead use the `snake_case_fallback_resolvers` that converts field name to Python's `snake_case` before looking it up on the object:
 
@@ -156,7 +156,7 @@ schema = make_executable_schema(type_defs, resolvers + [snake_case_fallback_reso
 
 Both `ObjectType.alias` and fallback resolvers use an Ariadne-provided default resolver to implement its functionality.
 
-This resolver takes a target attribute name and (depending if `obj` is `dict` or not) uses either `obj.get(attr_name)` or `getattr(obj, attr_name, None)` to resolve the value that should be returned.
+This resolver takes a target attribute name and (depending if `obj` is a `dict` or not) uses either `obj.get(attr_name)` or `getattr(obj, attr_name, None)` to resolve the value that should be returned.
 
 In the below example, both representations of `User` type are supported by the default resolver:
 

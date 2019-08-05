@@ -44,7 +44,7 @@ type MutationPayload {
 }
 ```
 
-Your union will also need a special resolver called a *type resolver*. This resolver will we called with an object returned from a field resolver and the current context.
+Your union will also need a special resolver called a *type resolver*. This resolver will be called with an object returned from a field resolver and the current context.
 It should return a string containing the name of a GraphQL type, or `None` if the received type is incorrect:
 
 ```python

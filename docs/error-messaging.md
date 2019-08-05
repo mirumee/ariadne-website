@@ -4,7 +4,7 @@ title: Error messaging
 ---
 
 
-If you've experimented with GraphQL, you should be familiar that when things don't go according to plan, GraphQL servers include additional key `errors` to the returned response:
+If you've experimented with GraphQL, you should be familiar that when things don't go according to plan, GraphQL servers include an additional key `errors` in the returned response:
 
 ```json
 {
@@ -41,22 +41,22 @@ type_def = """
 """
 ```
 
-Depending on success or failure, your mutation resolver may return either an `error` message to be displayed to the user, or `user` that has been logged in. Your API result handling logic may then interpret the response based on the content of those two keys, only falling back to the main `errors` key to make sure there wasn't an error in query syntax, connection or application.
+Depending on success or failure, your mutation resolver may return either an `error` message to be displayed to the user, or `user` that has been logged in. Your API result-handling logic may then interpret the response based on the content of those two keys, only falling back to the main `errors` key to make sure there wasn't an error in query syntax, connection or application.
 
 Likewise, your `Query` resolvers may return a requested object or `None` that will then cause a message such as "Requested item doesn't exist or you don't have permission to see it" to be displayed to the user in place of the requested resource.
 
 
 ## Debugging errors
 
-By default individual `errors` elements contain very limited amount of information about errors occurring inside the resolvers, forcing developer to search application's logs for details about possible error's causes.
+By default individual `errors` elements contain a very limited amount of information about errors occurring inside the resolvers, forcing a developer to search an application's logs for details about the error's possible causes.
 
-Developer experience can be improved by including the `debug=True` in the list of arguments passed to Ariadne's `GraphQL` object:
+Developer experience can be improved by including `debug=True` in the list of arguments passed to Ariadne's `GraphQL` object:
 
 ```python
 app = GraphQL(schema, debug=True)
 ```
 
-This will result in each error having additional `exception` key containing both complete traceback, and current context for which the error has occurred:
+This will result in each error having an additional `exception` key containing both a complete stacktrace and current context for which the error has occurred:
 
 ```json
 {
@@ -99,13 +99,13 @@ This will result in each error having additional `exception` key containing both
 
 ## Replacing default error formatter
 
-Default error formatter used by Ariadne performs following tasks:
+The default error formatter used by Ariadne performs the following tasks:
 
-* Formats error by using it's `formatted` property.
+* Formats error by using its `formatted` property.
 * Unwraps `GraphQL` error by accessing its `original_error` property.
-* If unwrapped error is available and `debug` argument is set to `True`, update already formatted error to also include `extensions` entry with `exception` dictionary containing `traceback` and `context`.
+* If the unwrapped error is available and the `debug` argument is set to `True`, update the already formatted error to also include an `extensions` entry with an `exception` dictionary containing `stacktrace` and `context`.
 
-If you wish to change or customize this behavior, you can set custom function in `error_formatter` of `GraphQL` object:
+If you wish to change or customize this behavior, you can define a custom function in the `error_formatter` argument to a `GraphQL` object:
 
 ```python
 from ariadne import format_error

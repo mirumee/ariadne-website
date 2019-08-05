@@ -44,7 +44,8 @@ type MutationPayload {
 }
 ```
 
-Your union will also need a special resolver named *type resolver*. This resolver will we called with an object returned from a field resolver and current context, and should return a string containing the name of an GraphQL type, or `None` if received type is incorrect:
+Your union will also need a special resolver called a *type resolver*. This resolver will we called with an object returned from a field resolver and the current context.
+It should return a string containing the name of a GraphQL type, or `None` if the received type is incorrect:
 
 ```python
 def resolve_error_type(obj, *_):
@@ -57,7 +58,7 @@ def resolve_error_type(obj, *_):
 
 > Returning `None` from this resolver will result in `null` being returned for this field in your query's result. If field is not nullable, this will cause the GraphQL query to error.
 
-Ariadne relies on dedicated `UnionType` class for bindinding this function to Union in your schema:
+Ariadne relies on the dedicated `UnionType` class for binding this function to `Union`s in your schema:
 
 ```python
 from ariadne import UnionType
@@ -69,7 +70,7 @@ def resolve_error_type(obj, *_):
     ...
 ```
 
-If this function is already defined elsewhere (e.g. 3rd party package), you can instantiate the `UnionType` with it as second argument:
+If this function is already defined elsewhere (e.g. 3rd party package), you can instantiate the `UnionType` with it as the second argument:
 
 ```python
 from ariadne import UnionType
@@ -78,7 +79,7 @@ from .graphql import resolve_error_type
 error = UnionType("Error", resolve_error_type)
 ```
 
-Lastly, your `UnionType` instance should be passed to `make_executable_schema` together will other types:
+Lastly, your `UnionType` instance should be passed to `make_executable_schema` together with your other types:
 
 ```python
 schema = make_executable_schema(type_defs, [query, error])
@@ -89,7 +90,7 @@ schema = make_executable_schema(type_defs, [query, error])
 
 Every type in GraphQL has a special `__typename` field that is resolved to a string containing the type's name.
 
-Including this field in your query may simplify implementation of result handling logic in your client:
+Including this field in your query may simplify implementation of result-handling logic in your client:
 
 ```graphql
 query getFeed {

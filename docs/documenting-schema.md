@@ -11,7 +11,7 @@ There is now a rich ecosystem of tools built on top of those features.  Some of 
 
 ## GraphQL Playground
 
-Ariadne ships with [GraphQL Playground](https://github.com/prisma/graphql-playground), a popular interative API explorer.
+Ariadne ships with [GraphQL Playground](https://github.com/prisma/graphql-playground), a popular interactive API explorer.
 
 GraphQL Playground allows developers and clients to explore the relationships between types across your schema in addition to reading detail about individual types.
 
@@ -20,7 +20,7 @@ GraphQL Playground allows developers and clients to explore the relationships be
 
 ## Descriptions
 
-GraphQL schema definition language supports a special [description syntax](https://facebook.github.io/graphql/June2018/#sec-Descriptions).  This allows you to provide additional context and information alongside your type definitions, which will be accessible both to developers and API consumers.
+The GraphQL schema definition language supports a special [description syntax](https://facebook.github.io/graphql/June2018/#sec-Descriptions). This allows you to provide additional context and information alongside your type definitions, which will be accessible both to developers and API consumers.
 
 GraphQL descriptions are declared using a format that feels very similar to Python's `docstrings`:
 
@@ -58,7 +58,7 @@ query = '''
 
 The GraphQL specification also defines a programmatic way to learn about a server's schema and documentation.  This is called [introspection](https://graphql.org/learn/introspection/).
 
-The Query type in a GraphQL schema also includes special introspection fields (prefixed with a double underscore) which allow a user or application to ask for information about the schema itself:
+The `Query` type in a GraphQL schema also includes special introspection fields (prefixed with a double underscore) which allow a user or application to ask for information about the schema itself:
 
 ```graphql
 query IntrospectionQuery {

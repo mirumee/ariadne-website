@@ -4,13 +4,7 @@ title: Interface types
 ---
 
 
-An `interface` is an abstract GraphQL type that defines a certain set of fields.
-Any other type that contains the same set of fields is said to *implement* that
-`interface`. Types that implement an `interface` are not limited by it. In other
-words, a type can implement an `interface`'s fields as well as additional fields.
-The key point is that a type must implement **at least** the fields of an
-`interface` in order for the schema to be correct.
-
+An `interface` is an abstract GraphQL type that defines a certain set of fields.  Any other type that contains the same set of fields is said to *implement* that `interface`. Types that implement an `interface` are not limited by it. In other words, a type can implement an `interface`'s fields as well as additional fields.  The key point is that a type must implement **at least** the fields of an `interface` in order for the schema to be correct.  
 
 ## Interface example
 

@@ -81,13 +81,12 @@ def resolve_logout(_, info):
     ...
 ```
 
-### Binding Mutation Resolvers
-
+> **Binding Mutation Resolvers**
 > Recall that resolvers need to be bound to their respective resolvers via the `make_executable_schema` call. If you're following along from the introduction that call will look similar to the following:
-
-```python
-make_executable_schema(type_defs, [query, mutations])
-```
+>
+> ```python
+> make_executable_schema(type_defs, [query, mutations])
+> ```
 
 ## Mutation payloads
 

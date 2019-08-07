@@ -134,11 +134,7 @@ You pass it your type definitions and resolvers that you want to use:
 schema = make_executable_schema(type_defs, query)
 ```
 
-In Ariadne the process of adding the Python logic to GraphQL schema is called
-*binding to schema*, and special types that can be passed to
-`make_executable_schema`'s second argument are called *bindables*. `QueryType`
-(introduced earlier) is one of many *bindables* provided by Ariadne that
-developers will use when creating their GraphQL APIs.
+In Ariadne the process of adding the Python logic to GraphQL schema is called *binding to schema*, and special types that can be passed to `make_executable_schema`'s second argument are called *bindables*. `QueryType` (introduced earlier) is one of many *bindables* provided by Ariadne that developers will use when creating their GraphQL APIs.
 
 In our first API we passed only a single bindable to the `make_executable_schema`, but most of your future APIs will likely pass a list of bindables instead, for example:
 

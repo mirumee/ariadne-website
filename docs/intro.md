@@ -48,8 +48,7 @@ type_defs = gql("""
 """)
 ```
 
-`gql` validates the schema and raises a descriptive `GraphQLSyntaxError`, if
-there is an issue, or returns the original unmodified string if it is correct.
+`gql` validates the schema and raises a descriptive `GraphQLSyntaxError`, if there is an issue, or returns the original unmodified string if it is correct.
 
 
 If we try to run the above code now, we will get an error pointing to incorrect syntax within our `type_defs` declaration:

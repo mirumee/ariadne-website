@@ -9,7 +9,7 @@ Custom scalars allow you to convert your Python objects to a JSON-serializable f
 
 ## Example read-only scalar
 
-Consider this API defining `Story` type with `publishedOn` field:
+Consider this API defining a `Story` type with a `publishedOn` field:
 
 ```graphql
 type Story {
@@ -18,7 +18,7 @@ type Story {
 }
 ```
 
-The `publishedOn` field resolver returns an instance of type `datetime`, but in the API this field is defined as `String`. This means that our datetime will be passed through the `str()` before being returned to client:
+The `publishedOn` field resolver returns an instance of type `datetime`, but in the API this field is defined as `String`. This means that our datetime will be passed through the `str()` function before being returned to the client:
 
 ```json
 {
@@ -33,7 +33,7 @@ def resolve_published_on(obj, *_):
     return obj.published_on.isoformat()
 ```
 
-However, the developer now has to remember to define a custom resolver for every field that returns `datetime`. This really adds a boilerplate to the API, and makes it harder to use abstractions auto-generating the resolvers for you.
+However, the developer now has to remember to define a custom resolver for every field that returns `datetime`. This really adds boilerplate to the API, and makes it harder to use abstractions auto-generating the resolvers for you.
 
 Instead, GraphQL API can be told how to serialize dates by defining the custom scalar type:
 
@@ -56,7 +56,7 @@ If you try to query this field now, you will get an error:
 
 This is because a custom scalar has been defined, but it's currently missing logic for serializing Python values to JSON form and `Datetime` instances are not JSON serializable by default.
 
-We need to add a special serializing resolver to our `Datetime` scalar that will implement the logic we are expecting. Ariadne provides `ScalarType` class that enables just that:
+We need to add a special serializing resolver to our `Datetime` scalar that will implement the logic we are expecting. Ariadne provides the `ScalarType` class that enables just that:
 
 ```python
 from ariadne import ScalarType
@@ -118,16 +118,16 @@ def parse_datetime_literal(ast):
 
 There are a few things happening in the above code, so let's go through it step by step:
 
-If the value is passed as part of query's `variables`, it's passed to `parse_datetime_value`.
+If the `value` is passed as part of a query's `variables`, it's passed to `parse_datetime_value`.
 
-If the value is not empty, `dateutil.parser.parse` is used to parse it to the valid Python `datetime` object instance that is then returned.
+If the `value` is not empty, `dateutil.parser.parse` is used to parse it to the valid Python `datetime` object instance that is then returned.
 
-If value is incorrect and either a `ValueError` or `TypeError` exception is raised by the `dateutil.parser.parse` GraphQL server interprets this as a sign that the entered value is incorrect because it can't be transformed to internal representation and returns an automatically generated error message to the client that consists of two parts:
+If `value` is incorrect and either a `ValueError` or `TypeError` exception is raised by the `dateutil.parser.parse`, the GraphQL server interprets this as a sign that the entered value is incorrect because it can't be transformed to an internal representation and returns an automatically generated error message to the client that consists of two parts:
 
-- Part supplied by GraphQL, for example: `Expected type Datetime!, found "invalid string"`
-- Exception message: `time data 'invalid string' does not match format '%Y-%m-%d'`
+- A message from GraphQL: `Expected type Datetime!, found "invalid string"`
+- The internal exception message: `time data 'invalid string' does not match format '%Y-%m-%d'`
 
-Complete error message returned by the API will look like this: 
+The complete error message returned by the API will look like this: 
 
 ```
     Expected type Datetime!, found "invalid string"; time data 'invalid string' does not match format '%Y-%m-%d'
@@ -135,18 +135,18 @@ Complete error message returned by the API will look like this:
 
 > You can raise either `ValueError` or `TypeError` in your parsers.
 
-> Because the error message returned by the GraphQL includes the original exception message from your Python code, it may contain details specific to your system or implementation that you may not want to make known to the API consumers. You may decide to catch the original exception with `except (ValueError, TypeError)` and then raise your own `ValueError` with a custom message or no message at all to prevent this from happening.
+> Because the error message returned by the GraphQL server includes the original exception message from your Python code, it may contain details specific to your system or implementation that you may not want to make known to the API consumers. You may decide to catch the original exception with `except (ValueError, TypeError)` and then raise your own `ValueError` with a custom message (or no message at all) to prevent this from happening.
 
-If a value is specified as part of query content, its `ast` node is instead passed to `parse_datetime_literal` to give scalar a chance to introspect type of the node (implementations for those be found [here](https://github.com/graphql-python/graphql-core-next/blob/master/graphql/language/ast.py#L261)).
+If a value is specified as part of query content, its `ast` node is instead passed to `parse_datetime_literal` to give the scalar a chance to introspect the type of the node (implementations for those be found [here](https://github.com/graphql-python/graphql-core-next/blob/master/graphql/language/ast.py#L261)).
 
-Logic implemented in the `parse_datetime_literal` may be completely different from that in the `parse_datetime_value`, however, in this example `ast` node is simply unpacked, coerced to `str` and then passed to `parse_datetime_value`, reusing the parsing logic from that other function.
+Logic implemented in the `parse_datetime_literal` may be completely different from that in the `parse_datetime_value`, however, in this example the `ast` node is simply unpacked, coerced to `str` and then passed to `parse_datetime_value`, reusing the parsing logic.
 
-> Defining `literal_parser` that only calls `value_parser` with `ast.value` is optional. Ariadne will create one for you when you set scalar value parser and there's no literal parser already set.
+> Defining a `literal_parser` that only calls `value_parser` with `ast.value` is optional. Ariadne will create one for you when you set the scalar's value parser and there's no literal parser already set.
 
 
 ## Configuration reference
 
-In addition to decorators documented above, `ScalarType` provides two more ways for configuring it's logic.
+In addition to the decorators documented above, `ScalarType` provides two more ways for configuring its logic.
 
 You can pass your functions as values to `serializer`, `value_parser` and `literal_parser` keyword arguments on instantiation:
 

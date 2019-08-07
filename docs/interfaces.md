@@ -4,14 +4,13 @@ title: Interface types
 ---
 
 
-Interface is an abstract GraphQL type that defines certain set of fields and requires other types *implementing* it to also define same fields in order for schema to be correct.
-
+An `interface` is an abstract GraphQL type that defines a certain set of fields.  Any other type that contains the same set of fields is said to *implement* that `interface`. Types that implement an `interface` are not limited by it. In other words, a type can implement an `interface`'s fields as well as additional fields.  The key point is that a type must implement **at least** the fields of an `interface` in order for the schema to be correct.  
 
 ## Interface example
 
-Consider an application implementing a search function. Search can return items of different type, like `Client`, `Order` or `Product`. For each result it displays a short summary text that is a link leading to a page containing the item's details.
+Consider an application implementing a search function. Search can return items of different types, like `Client`, `Order` or `Product`. For each result it displays a short summary text that is a link leading to a page containing the item's details.
 
-An `Interface` can be defined in schema that forces those types to define the `summary` and `url` fields:
+An `Interface` can be defined in the schema that forces those types to define the `summary` and `url` fields:
 
 ```graphql
 interface SearchResult {
@@ -45,9 +44,9 @@ type Product implements SearchResult {
 }
 ```
 
-GraphQL standard requires that every type implementing the `Interface` also explicitly defines fields from the interface. This is why the `summary` and `url` fields repeat on all types in the example.
+The GraphQL standard requires that every type implementing the `Interface` also explicitly defines fields from the interface. This is why the `summary` and `url` fields repeat on all types in the example.
 
-Like with the union, the `SearchResult` interface will also need a special resolver named *type resolver*. This resolver will we called with an object returned from a field resolver and current context, and should return a string containing the name of a GraphQL type, or `None` if the received type is incorrect:
+Like with the `Union`, the `SearchResult` interface will also need a special resolver called a *type resolver*. This resolver will be called with an object returned from a field resolver and the current context. It should return a string containing the name of a GraphQL type, or `None` if the received type is incorrect:
 
 ```python
 def resolve_search_result_type(obj, *_):
@@ -83,7 +82,7 @@ from .graphql import resolve_search_result_type
 search_result = InterfaceType("SearchResult", resolve_search_result_type)
 ```
 
-Lastly, your `InterfaceType` instance should be passed to `make_executable_schema` together with other types:
+Lastly, your `InterfaceType` instance should be passed to `make_executable_schema` together with your other types:
 
 ```python
 schema = make_executable_schema(type_defs, [query, search_result])
@@ -92,9 +91,9 @@ schema = make_executable_schema(type_defs, [query, search_result])
 
 ## Field resolvers
 
-Ariadne's `InterfaceType` instances can optionally be used to set resolvers on implementing types fields.
+Ariadne's `InterfaceType` instances can optionally be used to set resolvers on implementing types' fields.
 
-`SearchResult` interface from previous section implements two fields: `summary` and `url`. If resolver implementation for those fields is same for multiple types implementing the interface, `InterfaceType` instance can be used to set those resolvers for those fields:
+The `SearchResult` interface from the previous section implements two fields: `summary` and `url`. If the resolver implementation for those fields is same for multiple types implementing the interface, the `InterfaceType` instance can be used to set those resolvers for those fields:
 
 ```python
 @search_result.field("summary")
@@ -107,11 +106,11 @@ def resolve_url(obj, *_):
     return obj.get_absolute_url()
 ```
 
-`InterfaceType` extends the [ObjectType](resolvers.md), so `set_field` and `set_alias` are also available:
+`InterfaceType` extends the [ObjectType](resolvers.md) class, so `set_field` and `set_alias` are also available:
 
 ```python
 search_result.set_field("summary", resolve_summary)
 search_result.alias("url", "absolute_url")
 ```
 
-> `InterfaceType` assigns the resolver to a field only if that field has no resolver already set. This is different from `ObjectType` that sets resolvers fields if field already has other resolver set.
+> `InterfaceType` assigns the resolver to a field only if that field doesn't already have a resolver set. This is different from an `ObjectType` that can set a resolver to a field even if the field already has another resolver set.

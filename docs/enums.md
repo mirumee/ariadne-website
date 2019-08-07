@@ -34,9 +34,9 @@ def resolve_users(*_, status):
         return get_users(is_banned=True)
 ```
 
-The above example defines a resolver that returns a list of users based on user status, defined using `UserStatus` enumerable from schema.
+The above example defines a resolver that returns a list of users based on user status, defined using the `UserStatus` enumerable from the schema.
 
-Implementing logic validating if `status` value is allowed is not required - this is done on a GraphQL level. This query will produce error:
+Implementing logic validating if the `status` value is allowed is not required - this is done by GraphQL. The below query will produce an error:
 
 ```graphql
 {
@@ -69,7 +69,7 @@ GraphQL failed to find `TEST` in `UserStatus`, and returned error without callin
 
 By default enum values are represented as Python strings, but Ariadne also supports mapping GraphQL enums to custom values.
 
-Imagine posts on social site that can have weights like "standard", "pinned" and "promoted":
+Imagine posts on a social site that can have weights like "standard", "pinned" and "promoted":
 
 ```graphql
 type Post {
@@ -83,7 +83,7 @@ enum PostWeight {
 }
 ```
 
-In the database, the application may store those weights as integers from 0 to 2. Normally, you would have to implement a custom resolver transforming GraphQL representation to the integer but, like with scalars, you would have to remember to use this boiler plate on every use.
+In the database, the application may store those weights as integers from 0 to 2. Normally, you would have to implement a custom resolver transforming GraphQL representation to the integer but, like with scalars, you would have to remember to use this boilerplate on every use.
 
 Ariadne provides an `EnumType` utility class thats allows you to delegate this task to GraphQL server:
 
@@ -100,7 +100,7 @@ class PostWeight(enum.IntEnum):
 post_weight = EnumType("PostWeight", PostWeight)
 ```
 
-Include the `post_weight` instance in list of types passed to your GraphQL server, and it will automatically translate Enums between their GraphQL and Python values.
+Include the `post_weight` instance in the list of types passed to your GraphQL server, and it will automatically translate `Enum`s between their GraphQL and Python values.
 
 Instead of `Enum` you may use `dict`:
 

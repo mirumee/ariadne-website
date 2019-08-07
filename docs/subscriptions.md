@@ -4,9 +4,9 @@ title: Subscriptions
 ---
 
 
-Let's introduce a third type of operation. While queries offer a way to query a server once, subscriptions offer a way for the server to notify the client each time new data is available and that no other data will be available for the given request.
+Let's introduce a third type of operation. While queries offer a way to query a server once, subscriptions offer a way for the server to notify the client each time new data is available.
 
-This is where the `Subscription` type comes useful. It's similar to `Query` but as each subscription remains an open channel you can send anywhere from zero to millions of responses over its lifetime.
+This is where the `Subscription` type is useful. It's similar to `Query` but as each subscription remains an open channel you can send anywhere from zero to millions of responses over its lifetime.
 
 > Because of their nature, subscriptions are only possible to implement in asynchronous servers that implement the WebSockets protocol.
 >
@@ -17,7 +17,7 @@ This is where the `Subscription` type comes useful. It's similar to `Query` but 
 
 ## Defining subscriptions
 
-In schema definition subscriptions look similar to queries:
+In schema definitions subscriptions look similar to queries:
 
 ```graphql
 type Query {
@@ -31,8 +31,9 @@ type Subscription {
 
 This example contains:
 
-- `Query` type with single unused field. GraphQL considers empty type an syntax error and requires API to always define `Query` type.
-- `Subscription` type with a single field: `counter` that returns a number.
+- `Query` type with single unused field. GraphQL considers an empty type a syntax error and requires an API to always define a `Query` type.
+    - For this example, we're focusing on `Subscription`s so we define a bare bones `Query` type.
+- `Subscription` type with a single field, `counter`, that returns a number.
 
 When defining subscriptions you can use all of the features of the schema such as arguments, input and output types.
 
@@ -60,7 +61,7 @@ def counter_resolver(count, info):
 
 Note that the resolver consumes the same type (in this case `int`) that the generator yields.
 
-Each time our source yields a response, its getting sent to our resolver. The above implementation counts from zero to four, each time waiting for one second before yielding a value.
+Each time our source yields a response, it's getting sent to our resolver. The above implementation counts from zero to four, each time waiting for one second before yielding a value.
 
 The resolver increases each number by one before passing them to the client so the client sees the counter progress from one to five.
 
@@ -90,7 +91,7 @@ async def counter_generator(
 
 ## Complete example
 
-For reference here is a complete example of the GraphQL API that supports subscription:
+For reference here is a complete example of the GraphQL API that supports a subscription:
 
 ```python
 import asyncio

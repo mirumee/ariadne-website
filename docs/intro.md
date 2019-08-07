@@ -37,7 +37,7 @@ The `type Query { }` block declares the type, `hello` is the field definition, `
 ## Validating schema
 
 Ariadne provides the `gql` utility function to validate schema. It that takes a
-single argument: a GraphQL string, like the following example.
+single argument, a GraphQL string, like the following example:
 
 ```python
 from ariadne import gql

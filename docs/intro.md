@@ -36,8 +36,7 @@ The `type Query { }` block declares the type, `hello` is the field definition, `
 
 ## Validating schema
 
-Ariadne provides the `gql` utility function to validate schema. It that takes a
-single argument, a GraphQL string, like the following example:
+Ariadne provides the `gql` utility function to validate schema. It that takes a single argument, a GraphQL string, like the following example:
 
 ```python
 from ariadne import gql
@@ -85,18 +84,9 @@ The above code is perfectly valid, with a minimal resolver meeting the requireme
 
 Real-world resolvers are rarely that simple: they usually read data from some source such as a database, process inputs, or resolve value in the context of a parent object. How should our basic resolver look to resolve a client's user agent?
 
-In Ariadne every field resolver is called with at least two arguments: the
-query's parent object, and the query's execution `info` that usually contains
-a `context` attribute. The `context` is GraphQL's way of passing additional
-information from the application to its query resolvers.
+In Ariadne every field resolver is called with at least two arguments: the query's parent object, and the query's execution `info` that usually contains a `context` attribute. The `context` is GraphQL's way of passing additional information from the application to its query resolvers.
 
-> In the above example, note the `*_` argument in the resolver's method signature.
-> The underscore is a convention used in many languages (including Python) to
-> indicate a variable that will not be used. The asterisk prefix is Python syntax
-> that informs the method it should expect a variable-length argument list. In
-> effect, the above example is throwing away any arguments passed to the resolver.
-> We've used that here, to simplify the example so that you can focus on its
-> purpose.
+> In the above example, note the `*_` argument in the resolver's method signature. The underscore is a convention used in many languages (including Python) to indicate a variable that will not be used. The asterisk prefix is Python syntax that informs the method it should expect a variable-length argument list. In effect, the above example is throwing away any arguments passed to the resolver.  We've used that here, to simplify the example so that you can focus on its purpose.
 
 The default GraphQL server implementation provided by Ariadne defines
 `info.context` as a Python `dict` containing a single key named `request`
@@ -151,9 +141,7 @@ In Ariadne the process of adding the Python logic to GraphQL schema is called
 (introduced earlier) is one of many *bindables* provided by Ariadne that
 developers will use when creating their GraphQL APIs.
 
-In our first API we passed only a single bindable to the
-`make_executable_schema`, but most of your future APIs will likely pass a list
-of bindables instead, for example:
+In our first API we passed only a single bindable to the `make_executable_schema`, but most of your future APIs will likely pass a list of bindables instead, for example:
 
 ```python
 make_executable_schema(type_defs, [query, user, mutations, fallback_resolvers])

@@ -4,8 +4,7 @@ title: Mutations
 ---
 
 
-All the previous examples in this documentation have dealt with the `Query` root
-type and reading data. What about creating, updating or deleting data?
+All the previous examples in this documentation have dealt with the `Query` root type and reading data. What about creating, updating or deleting data?
 
 Enter the `Mutation` type, `Query`'s sibling that GraphQL servers use to implement functions that change application state.
 
@@ -87,11 +86,7 @@ def resolve_logout(_, info):
 
 ## Mutation payloads
 
-The `login` and `logout` mutations introduced earlier in this guide work, but
-give very limited feedback to the client: they return either `False` or `True`.
-The application could use additional information like an error message that
-could be displayed in the interface if the mutation request fails, or a
-user state updated after a mutation completed.
+The `login` and `logout` mutations introduced earlier in this guide work, but give very limited feedback to the client: they return either `False` or `True`.  The application could use additional information like an error message that could be displayed in the interface if the mutation request fails, or a user state updated after a mutation completed.
 
 In GraphQL this is achieved by making mutations return special *payload* types containing additional information about the result, such as errors or current object state:
 

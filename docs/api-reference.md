@@ -681,6 +681,41 @@ Utility function that converts GraphQL name written in `camelCase` to its Python
 - - - - -
 
 
+## `convert_kwargs_to_snake_case`
+
+```python
+@convert_kwargs_to_snake_case
+```
+
+Decorator for [`Resolver`](types-reference.md#resolver) that recursively converts arguments case from `camelCase` to `snake_case`.
+
+
+### Example
+
+`user` field in schema defines `firstName` and `lastName` arguments which are converted by the decorator to `first_name` and `last_name` before being passed to the resolver:
+
+```
+from ariadne import QueryType, convert_kwargs_to_snake_case
+
+query = QueryType()
+
+type_defs = """
+  type Query {
+    user(firstName: String, lastName: String): User
+  }
+"""
+
+
+@query.field("user")
+@convert_kwargs_to_snake_case
+def resolve_user(*_, first_name=None, last_name=None):
+    ...
+```
+
+
+- - - - -
+
+
 ## `default_resolver`
 
 ```python

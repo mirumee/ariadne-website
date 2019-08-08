@@ -283,3 +283,5 @@ input PollOptionInput {
 ```
 
 Lastly, take note that inputs are not specific to mutations. You can create inputs to implement complex filtering in your `Query` fields.
+
+> **Note:** you can decorate your resolvers with [`convert_kwargs_to_snake_case`](api-reference.md#convert_kwargs_to_snake_case) to convert arguments and inputs names from `snakeCase` to `camel_case`.

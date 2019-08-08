@@ -106,6 +106,8 @@ def resolve_holidays(*_, year):
     return Calendar.get_all_holidays()
 ```
 
+> **Note:** You can decorate your resolvers with [`convert_kwargs_to_snake_case`](api-reference.md#convert_kwargs_to_snake_case) to convert arguments and inputs names from `snakeCase` to `camel_case`.
+
 
 ## Aliases
 
@@ -154,15 +156,16 @@ schema = make_executable_schema(type_defs, resolvers + [snake_case_fallback_reso
 
 ## Default resolver
 
-Both `ObjectType.alias` and fallback resolvers use an Ariadne-provided default resolver to implement its functionality.
+Both `ObjectType.alias` and fallback resolvers use a default resolver provided by `graphql-core-next` library to implement its functionality.
 
-This resolver takes a target attribute name and (depending if `obj` is a `dict` or not) uses either `obj.get(attr_name)` or `getattr(obj, attr_name, None)` to resolve the value that should be returned.
+This resolver takes a target attribute name and (depending if `obj` is a `dict` or not) uses either `obj.get(attr_name)` or `getattr(obj, attr_name, None)` to resolve the value that should be returned. If resolved value is callable, its called with arguments that were passed to the resolver field, and its return value is then used instead.
 
 In the below example, both representations of `User` type are supported by the default resolver:
 
 ```python
 type_def = """
     type User {
+        username: String!
         likes: Int!
         initials(length: Int!): String
     }
@@ -178,10 +181,12 @@ class UserObj:
         return self.name[:length]
 
 user_dict = {
+    "username": "admin",
     "likes": lambda obj, *_: count_user_likes(obj),
     "initials": lambda obj, *_, length: obj.username[:length])
 }
 ```
+
 
 ## Query shortcut
 

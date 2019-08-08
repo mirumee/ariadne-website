@@ -17,6 +17,10 @@
       "local-development",
       "logging"
     ],
+    "Monitoring": [
+      "apollo-tracing",
+      "open-tracing"
+    ],
     "Servers": [
       "asgi",
       "wsgi"

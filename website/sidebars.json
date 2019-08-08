@@ -27,6 +27,9 @@
       "starlette-integration",
       "other-integrations"
     ],
+    "Extensions": [
+      "extensions"
+    ],
     "API reference": [
       "api-reference",
       "constants-reference",

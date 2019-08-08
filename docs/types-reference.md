@@ -57,6 +57,94 @@ Boolean controlling if debug information should be included in formatted data.
 - - - - -
 
 
+## `Extension`
+
+```python
+class Extension()
+```
+
+Base class for [extensions](extensions.md).
+
+
+### Methods
+
+#### `format`
+
+```python
+Extension.format()
+```
+
+Allows extensions to add data to `extensions` key in GraphQL response.
+
+Should return dict.
+
+##### Example
+
+Following extension will add `timestamp` entry with current timestamp to query's `extensions`:
+
+```python
+from datetime import datetime
+
+
+class TimestampExtension(Extension):
+    def format(self):
+        return {"timestamp": datetime.now().isoformat()}
+```
+
+Result:
+
+```json
+{
+    "data": {
+        "hello": "world!"
+    },
+    "extensions": {
+        "timestamp": "2019-06-28T18:34:31.171409"
+    }
+}
+```
+
+#### `has_errors`
+
+```python
+Extension.has_errors(errors)
+```
+
+Called with `list` of errors that occurred during query process. Not called if no errors were raised. Errors may come from `validation`, query parsing or query execution.
+
+
+#### `request_finished`
+
+```python
+Extension.request_finished(context, error=None)
+```
+
+Called when query processing finishes.
+
+
+#### `request_started`
+
+```python
+Extension.request_started(context)
+```
+
+Called when query processing starts.
+
+
+#### `resolve`
+
+```python
+Extension.resolve(next_, parent, info[, **kwargs])
+```
+
+Used as middleware for fields resolver. Takes special `next_` argument that is next resolver in resolvers chain that should be called.
+
+Everything else is same as with regular [resolvers](#resolver).
+
+
+- - - - -
+
+
 ## `GraphQLResult`
 
 ```python

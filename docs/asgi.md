@@ -35,4 +35,14 @@ $ uvicorn myasgi:application
 
 `GraphQL` takes the same options that [`graphql`](api-reference.md#configuration-options) does, but accepts extra option specific to it:
 
-- `keepalive`, if given a number of seconds, will send "keepalive" packets to the client in an attempt to prevent the connection from being dropped due to inactivity.
+
+#### `keepalive`
+
+If given a number of seconds, will send "keepalive" packets to the client in an attempt to prevent the connection from being dropped due to inactivity.
+
+
+#### `extensions`
+
+[Extensions](extensions.md) to use during query processing.
+
+Can be list of classes extending [`Extension`](types-reference.md#extension), or callable that will be called with single argument (HTTP request representation specific to the web stack used) that should return `None` or list of those.

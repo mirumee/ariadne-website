@@ -3,12 +3,14 @@
 <url> <loc>https://ariadnegraphql.org/community</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/community" /> </url>
 <url> <loc>https://ariadnegraphql.org/index</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/index" /> </url>
 <url> <loc>https://ariadnegraphql.org/versions</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/versions" /> </url>
+<url> <loc>https://ariadnegraphql.org/blog/2019/08/12/ariadne-0-6-0</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/blog/2019/06/07/ariadne-0-5-0</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/blog/2019/05/23/ariadne-0-4-0</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/blog/2019/04/08/ariadne-0-3-0</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/blog/2019/01/11/ariadne-0-2-0</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/blog/2018/10/31/ariadne-0-1-0</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/api-reference</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/api-reference" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/next/apollo-tracing</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/apollo-tracing" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/asgi</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/asgi" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/bindables</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/bindables" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/constants-reference</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/constants-reference" /> </url>
@@ -16,6 +18,8 @@
 <url> <loc>https://ariadnegraphql.org/docs/next/documenting-schema</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/documenting-schema" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/enums</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/enums" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/error-messaging</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/error-messaging" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/next/exceptions-reference</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/exceptions-reference" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/next/extensions</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/extensions" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/file-uploads</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/file-uploads" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/flask-integration</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/flask-integration" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/interfaces</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/interfaces" /> </url>
@@ -23,8 +27,10 @@
 <url> <loc>https://ariadnegraphql.org/docs/next/local-development</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/local-development" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/logging</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/logging" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/logo</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/logo" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/next/middleware</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/middleware" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/modularization</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/modularization" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/mutations</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/mutations" /> </url>
+<url> <loc>https://ariadnegraphql.org/docs/next/open-tracing</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/open-tracing" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/other-integrations</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/other-integrations" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/resolvers</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/resolvers" /> </url>
 <url> <loc>https://ariadnegraphql.org/docs/next/scalars</loc> <changefreq>hourly</changefreq> <priority>1.0</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/docs/next/scalars" /> </url>

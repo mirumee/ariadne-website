@@ -32,11 +32,13 @@
       "other-integrations"
     ],
     "Extensions": [
-      "extensions"
+      "extensions",
+      "middleware"
     ],
     "API reference": [
       "api-reference",
       "constants-reference",
+      "exceptions-reference",
       "types-reference"
     ],
     "Other": [

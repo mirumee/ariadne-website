@@ -764,6 +764,35 @@ def get_error_extension(error)
 
 Takes `GraphQLError` instance as only argument and returns `dict` with traceback and context of original Python exception. If error was not caused by exception in resolver, returns `None` instead.
 
+
+- - - - -
+
+
+## `get_formatted_error_context`
+
+```python
+def get_formatted_error_context(error)
+```
+
+Takes exception instance as only argument and returns context values for it that are JSON-serializeable and can be included in the error result JSON.
+
+Used by `get_error_extension` to include `context` in the `exception` JSON that Ariadne's default error formatter returns in debug mode.
+
+
+- - - - -
+
+
+## `get_formatted_error_traceback`
+
+```python
+def get_formatted_error_traceback(error)
+```
+
+Takes exception instance as only argument and returns traceback (stacktrace) for it that is JSON-serializeable and can be included in the error result JSON.
+
+Used by `get_error_extension` to include `stacktrace` in the `exception` JSON that Ariadne's default error formatter returns in debug mode.
+
+
 - - - - -
 
 
@@ -861,7 +890,7 @@ Defaults to [`format_error`](#format_error).
 
 #### `middleware`
 
-Optional middleware to wrap the resolvers with.
+List of middleware that should be used during the query execution.
 
 
 - - - - -
@@ -907,6 +936,8 @@ Loads GraphQL schema from `path` using different strategy depending on `path`'s 
 - If `path` is directory, walks it recursively loading all `.graphql` files within it.
 
 Files are validated using the same logic that [`gql`](#gql) uses, concatenated into single string and returned.
+
+Raises [`GraphQLFileSyntaxError`](exceptions-reference.md#graphqlfilesyntaxerror) if any of the loaded files contained syntax errors.
 
 
 - - - - -
@@ -965,6 +996,18 @@ Asynchronously executes subscription query against schema, usually made over the
 > Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use [`graphql_sync`](#graphql_sync) instead.
 
 > This function doesn't support `extensions` option.
+
+
+- - - - -
+
+
+## `unwrap_graphql_error`
+
+```python
+def unwrap_graphql_error(error)
+```
+
+Unwraps `GraphQLError` recursively, returning its `original_error` attribute value until non-`GraphQLError` instance is found, or `original_error` attribute has no value.
 
 
 - - - - -

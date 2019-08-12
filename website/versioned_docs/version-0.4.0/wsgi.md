@@ -43,7 +43,7 @@ $ uwsgi --http :8000 --wsgi-file mywsgi
 
 ### Configuration options
 
-`GraphQL` takes mostly the same options that [`graphql`](ariadne-reference.md#configuration-options) does, but with one difference:
+`GraphQL` takes mostly the same options that [`graphql`](api-reference.md#configuration-options) does, but with one difference:
 
 - `context_value` can be callable that will be called with single argument ([`environ`](https://www.python.org/dev/peps/pep-0333/#environ-variables)) and its return value will be used for rest of query execution as `context_value`.
 

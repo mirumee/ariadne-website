@@ -46,9 +46,6 @@ function Versions(props) {
                     Documentation
                   </a>
                 </td>
-                <td>
-                  <a href="/blog/2019/05/23/ariadne-0-4-0">Release Notes</a>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -97,11 +94,6 @@ function Versions(props) {
                           }${version}/intro.html`}
                         >
                           Documentation
-                        </a>
-                      </td>
-                      <td>
-                        <a href={`${repoUrl}/releases/tag/v${version}`}>
-                          Release Notes
                         </a>
                       </td>
                     </tr>

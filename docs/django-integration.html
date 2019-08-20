@@ -124,7 +124,7 @@ urlpatterns = [
 <pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne.asgi <span class="hljs-keyword">import</span> GraphQL
 <span class="hljs-keyword">from</span> channels.http <span class="hljs-keyword">import</span> AsgiHandler
 <span class="hljs-keyword">from</span> channels.routing <span class="hljs-keyword">import</span> URLRouter
-<span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path
+<span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path, re_path
 
 
 schema = ...
@@ -132,7 +132,7 @@ schema = ...
 
 application = URLRouter([
     path(<span class="hljs-string">"graphql/"</span>, GraphQL(schema, debug=<span class="hljs-literal">True</span>)),
-    path(<span class="hljs-string">""</span>, AsgiHandler),
+    re_path(<span class="hljs-string">r""</span>, AsgiHandler),
 ])
 </code></pre>
 <blockquote>

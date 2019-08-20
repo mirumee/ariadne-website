@@ -92,7 +92,7 @@ Ariadne's [ASGI application](asgi.md) can be used together with [Django Channels
 from ariadne.asgi import GraphQL
 from channels.http import AsgiHandler
 from channels.routing import URLRouter
-from django.urls import path
+from django.urls import path, re_path
 
 
 schema = ...
@@ -100,7 +100,7 @@ schema = ...
 
 application = URLRouter([
     path("graphql/", GraphQL(schema, debug=True)),
-    path("", AsgiHandler),
+    re_path(r"", AsgiHandler),
 ])
 ```
 

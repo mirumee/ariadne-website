@@ -5,7 +5,7 @@ title: Extension system
 
 Ariadne implements simple extension system that allows developers to inject custom python logic into the query execution process.
 
-> At the moment, Subscriptions are not supported. Please see notes on WSGI implementation.
+> At the moment adding extensions to subscriptions is not supported.
 
 
 ## Enabling extensions

@@ -111,6 +111,7 @@ class QueryExecutionTimeExtension(Extension):
             }
 ```
 
+
 ## WSGI extension implementation
 
 To implement extensions for WSGI, the `resolve` function in your Extension cannot be `async`. An `ExtensionSync` class is provided which implements a synchronous `resolve`.

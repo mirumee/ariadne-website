@@ -5,7 +5,7 @@ title: Extension system
 
 Ariadne implements simple extension system that allows developers to inject custom python logic into the query execution process.
 
-> At the moment extension system is only available for ASGI servers. Subscriptions are not supported.
+> At the moment adding extensions to subscriptions is not supported.
 
 
 ## Enabling extensions
@@ -109,4 +109,17 @@ class QueryExecutionTimeExtension(Extension):
             return {
                 "execution": self.start_timestamp - self.end_timestamp
             }
+```
+
+
+## WSGI extension implementation
+
+To implement extensions for WSGI, the `resolve` function in your Extension cannot be `async`. An `ExtensionSync` class is provided which implements a synchronous `resolve`.
+
+```python
+from ariadne.types import ExtensionSync as Extension
+
+
+class QueryExecutionTimeExtension(Extension):
+    ...
 ```

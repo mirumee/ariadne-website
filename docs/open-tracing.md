@@ -5,8 +5,6 @@ title: OpenTracing
 
 Ariadne provides an extension that implements the [OpenTracing](https://opentracing.io/) specification, making it easy to monitor GraphQL API performance and errors using popular APM tools like [Datadog](https://www.datadoghq.com/) or [Jaeger](https://www.jaegertracing.io/).
 
-> **Note:** Extensions are only supported by the asynchronous executor (`ariadne.graphql`) and ASGI application (`ariadne.asgi.GraphQL`).
-
 > **Note:** for performance reasons OpenTracing extension excludes default resolvers.
 
 
@@ -23,6 +21,8 @@ app = GraphQL(
     extensions=[OpenTracingExtension],
 )
 ```
+
+> **Note:** If using WSGI, use `OpenTracingExtensionSync` in place of `OpenTracingExtension`.
 
 > **Note:** If you don't have OpenTracing already configured in your project, you will need to install the [`opentracing-python`](https://github.com/opentracing/opentracing-python) package and [configure tracer](https://opentracing.io/guides/python/tracers/) for your APM solution.
 
@@ -62,3 +62,5 @@ app = GraphQL(
     ],
 )
 ```
+
+> **Note:** If using WSGI, use `opentracing_extension_sync` in place of `opentracing_extension`.

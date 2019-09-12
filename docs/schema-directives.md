@@ -3,7 +3,7 @@ id: schema-directives
 title: Schema directives
 ---
 
-Schema directives are special annotations that API developer may use to change or extend query executor's behaviour for selected elements of the schema. Those annotations are defined using dedicated syntax and then consumed during the executable schema creation by Ariadne.
+Schema directives are special annotations that developers can use to change or extend behaviour for selected elements in the schema. Those annotations are defined using dedicated syntax and then consumed during the executable schema creation.
 
 
 ## Defining schema directives
@@ -45,24 +45,39 @@ Location may be any of following:
 
 ## Applying directives to schema items
 
+To apply schema directive to the schema item, simply follow its definition with an ampersand and directive name:
+
 ```graphql
-type User @mydirective {
+directive @adminonly on FIELD_DEFINITION
+
+type User {
     id: ID
     username: String
-}
-
-type Thread {
-
+    ipAddress: String @adminonly
 }
 ```
 
+If directive accepts any arguments, those can be passed to it like this:
+
+```graphql
+directive @needsPermission(permission: String) on FIELD_DEFINITION
+
+type User {
+    id: ID
+    username: String
+    ipAddress: String @needsPermission(permission: "ADMIN")
+}
+```
+
+Values passed to directive arguments follow same validation logic that values passed to fields in GraphQL queries do, except those errors will be raised at the time of calling the `make_executable_schema`.
+
 
 ## Implementing schema directive behaviour
+ą
+In Ariadne, schema directive behaviour is implemented by extending the [`ariadne.SchemaDirectiveVisitor`](api-reference.md#schemadirectivevisitor) base class. 
 
-In Ariadne, schema directive behaviour is implemented by extending `ariadne.SchemaDirectiveVisitor` base class. 
 
-
-## Example: `datetime` format
+### Example: `datetime` format
 
 Following example implements schema directive that formats Python `datetime` object returned by field's resolver.
 

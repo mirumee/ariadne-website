@@ -441,6 +441,287 @@ def serialize_datetime(value):
 - - - - -
 
 
+## `SchemaDirectiveVisitor`
+
+```python
+SchemaDirectiveVisitor()
+```
+
+Base class for implementing [schema directives](schema-directives.md).
+
+
+### Attributes
+
+#### `args`
+
+`dict` with arguments passed to the directive.
+
+
+#### `name`
+
+`str` with name of the directive in the schema.
+
+
+#### `schema`
+
+Instance of the `GraphQLSchema`, in which this directive is used.
+
+
+### Methods
+
+#### `visit_argument_definition`
+
+```python
+SchemaDirectiveVisitor.visit_argument_definition(argument, field, object_type)
+```
+
+Called during the executable schema creation for directives supporting the `ARGUMENT_DEFINITION` location set on schema fields arguments:
+
+```graphql
+directive @example on ARGUMENT_DEFINITION
+
+type Mutation {
+    rotateToken(token: String @example): String
+}
+```
+
+Takes following arguments:
+
+- `argument` - an instance of the `GraphQLArgument`.
+- `field` -  an instance of the `GraphQLField`.
+- `object_type` - an instance of the `GraphQLObjectType` or `GraphQLInterfaceType`.
+
+Must return an instance of the `GraphQLArgument`.
+
+
+#### `visit_enum`
+
+```python
+SchemaDirectiveVisitor.visit_enum(enum)
+```
+
+Called during the executable schema creation for directives supporting the `ENUM` location set on enums:
+
+```graphql
+directive @example on ENUM
+
+enum ErrorType @example {
+    NOT_FOUND
+    PERMISSION_DENIED
+    EXPIRED
+}
+```
+
+Takes single argument, an instance `GraphQLEnumType`.
+
+Must return an instance of the `GraphQLEnumType`.
+
+
+#### `visit_enum_value`
+
+```python
+SchemaDirectiveVisitor.visit_enum_value(value, enum_type)
+```
+
+Called during the executable schema creation for directives supporting the `ENUM_VALUE` location set on enum values:
+
+```graphql
+directive @example on ENUM
+
+enum ErrorType {
+    NOT_FOUND
+    PERMISSION_DENIED @example
+    EXPIRED
+}
+```
+
+Takes two arguments:
+
+- `value` - an instance the `GraphQLEnumValue`.
+- `enum_type` - instance of the `GraphQLEnumType` to which this value belongs.
+
+Must return an instance of the `GraphQLEnumValue`.
+
+
+#### `visit_field_definition`
+
+```python
+SchemaDirectiveVisitor.visit_field_definition(field, object_type)
+```
+
+Called during the executable schema creation for directives supporting the `FIELD_DEFINITION` location set on objects and interfaces fields:
+
+```graphql
+directive @example on FIELD_DEFINITION
+
+type User {
+    id: ID
+    username: String @example
+}
+
+interface Searchable {
+    document: String @example
+}
+```
+
+Takes two arguments:
+
+- `field` - an instance the `GraphQLField`.
+- `object_type` - an instance of the `GraphQLObjectType` or `GraphQLInterfaceType` to which this field belongs.
+
+Must return an instance of the `GraphQLField`.
+
+
+#### `visit_input_field_definition`
+
+```python
+SchemaDirectiveVisitor.visit_input_field_definition(field, object_type)
+```
+
+Called during the executable schema creation for directives supporting the `INPUT_FIELD_DEFINITION` location set on inputs fields:
+
+```graphql
+directive @example on INPUT_FIELD_DEFINITION
+
+input UserInput {
+    username: String @example
+    email: String
+}
+```
+
+Takes two arguments:
+
+- `field` - an instance the `GraphQLInputField`.
+- `object_type` - an instance of the `GraphQLInputObjectType` to which this field belongs.
+
+Must return an instance of the `GraphQLInputField`.
+
+
+#### `visit_input_object`
+
+```python
+SchemaDirectiveVisitor.visit_input_object(object_)
+```
+
+Called during the executable schema creation for directives supporting the `INPUT_OBJECT` location set on input types:
+
+```graphql
+directive @example on INPUT_OBJECT
+
+input UserInput @example {
+    username: String
+    email: String
+}
+```
+
+Takes single argument, an instance `GraphQLInputObjectType`.
+
+Must return an instance of the `GraphQLInputObjectType`.
+
+
+#### `visit_interface`
+
+```python
+SchemaDirectiveVisitor.visit_interface(interface)
+```
+
+Called during the executable schema creation for directives supporting the `INTERFACE` location set on interfaces:
+
+```graphql
+directive @example on INTERFACE
+
+interface Searchable @example {
+    document: String
+}
+```
+
+Takes single argument, an instance `GraphQLInterfaceType`.
+
+Must return an instance of the `GraphQLInterfaceType`.
+
+
+#### `visit_object`
+
+```python
+SchemaDirectiveVisitor.visit_object(object_)
+```
+
+Called during the executable schema creation for directives supporting the `OBJECT` location set on objects:
+
+```graphql
+directive @example on OBJECT
+
+type User @example {
+    id: ID
+    username: String
+}
+```
+
+Takes single argument, an instance `GraphQLObjectType`.
+
+Must return an instance of the `GraphQLObjectType`.
+
+
+#### `visit_scalar`
+
+```python
+SchemaDirectiveVisitor.visit_scalar(scalar)
+```
+
+Called during the executable schema creation for directives supporting the `SCALAR` location set on scalars:
+
+```graphql
+directive @example on SCALAR
+
+scalar Datetime @example
+```
+
+Takes single argument, an instance `GraphQLScalarType`.
+
+Must return an instance of the `GraphQLScalarType`.
+
+
+#### `visit_schema`
+
+```python
+SchemaDirectiveVisitor.visit_schema(schema)
+```
+
+Called during the executable schema creation for directives supporting the `SCHEMA` location set on schema:
+
+```graphql
+directive @example on SCHEMA
+
+schema @example {
+    query: Query
+}
+```
+
+Takes single argument, an instance of current `GraphQLSchema`. Should mutate this instance in place - returning anything from this method causes an `ValueError` to be raised.
+
+
+#### `visit_union`
+
+```python
+SchemaDirectiveVisitor.visit_union(union)
+```
+
+Called during the executable schema creation for directives supporting the `UNION` location set on unions:
+
+```graphql
+directive @example on UNION
+
+union SearchResult = User | Thread @example
+```
+
+Takes single argument, an instance `GraphQLUnionType`.
+
+Must return an instance of the `GraphQLUnionType`.
+
+
+- - - - -
+
+
 ## `SnakeCaseFallbackResolversSetter`
 
 ```python
@@ -946,15 +1227,33 @@ Raises [`GraphQLFileSyntaxError`](exceptions-reference.md#graphqlfilesyntaxerror
 ## `make_executable_schema`
 
 ```python
-def make_executable_schema(type_defs, bindables=None)
+def make_executable_schema(type_defs, bindables=None, *, directives=None)
 ```
 
-Takes two arguments:
-
-- `type_defs` - string or list of strings with valid GraphQL types definitions.
-- `bindables` - [bindable or list of bindables](bindables.md) with Python logic to add to schema. *Optional*.
+Construct executable schema - GraphQL schema against which queries can be executed.
 
 Returns `GraphQLSchema` instance that can be used to run queries on.
+
+
+### Required arguments
+
+#### `type_defs`
+
+string or list of strings with valid GraphQL types definitions.
+
+
+### Optional arguments
+
+#### `bindables`
+
+[Bindable or list of bindables](bindables.md) with Python logic to add to schema.
+
+
+### Configuration options
+
+#### `directives`
+
+`dict` that maps schema directives to their Python implementations. See [schema directives documentation](schema-directives.md) for more information and examples.
 
 
 - - - - -

@@ -98,17 +98,17 @@ The `login` and `logout` mutations introduced earlier in this guide work, but gi
 In GraphQL this is achieved by making mutations return special *payload* types containing additional information about the result, such as errors or current object state:
 
 ```python
-    type_def = """
-        type Mutation {
-            login(username: String!, password: String!): LoginPayload
-        }
+type_def = """
+    type Mutation {
+        login(username: String!, password: String!): LoginPayload
+    }
 
-        type LoginPayload {
-            status: Boolean!
-            error: Error
-            user: User
-        }
-    """
+    type LoginPayload {
+        status: Boolean!
+        error: Error
+        user: User
+    }
+"""
 ```
 
 The above mutation will return a special type containing information about the mutation's status, as well as either an `Error` message or a logged in `User`. In Python this payload can be represented as a simple `dict`:

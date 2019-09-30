@@ -107,17 +107,18 @@ from ariadne import QueryType, gql
 
 Next, we will instantiate the `QueryType` and set our function as resolver for `hello` field using it's field decorator:
 
-    # Create QueryType instance for Query type defined in our schema...
-    query = QueryType()
+```python
+# Create QueryType instance for Query type defined in our schema...
+query = QueryType()
 
 
-    # ...and assign our resolver function to its "hello" field.
-    @query.field("hello")
-    def resolve_hello(_, info):
-        request = info.context["request"]
-        user_agent = request.headers.get("user-agent", "guest")
-        return "Hello, %s!" % user_agent
-
+# ...and assign our resolver function to its "hello" field.
+@query.field("hello")
+def resolve_hello(_, info):
+    request = info.context["request"]
+    user_agent = request.headers.get("user-agent", "guest")
+    return "Hello, %s!" % user_agent
+```
 
 ## Making executable schema
 

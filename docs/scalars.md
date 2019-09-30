@@ -130,7 +130,7 @@ If `value` is incorrect and either a `ValueError` or `TypeError` exception is ra
 The complete error message returned by the API will look like this: 
 
 ```
-    Expected type Datetime!, found "invalid string"; time data 'invalid string' does not match format '%Y-%m-%d'
+Expected type Datetime!, found "invalid string"; time data 'invalid string' does not match format '%Y-%m-%d'
 ```
 
 > You can raise either `ValueError` or `TypeError` in your parsers.

@@ -1,6 +1,7 @@
 ---
-id: schema-directives
+id: version-0.7.0-schema-directives
 title: Schema directives
+original_id: schema-directives
 ---
 
 Schema directives are special annotations that developers can use to change or extend behaviour for selected elements in the schema. Those annotations are defined using dedicated syntax and then consumed during the executable schema creation.

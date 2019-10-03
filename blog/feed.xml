@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Mon, 12 Aug 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 03 Oct 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,14 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne 0.7.0]]></title>
+            <link>https://ariadnegraphql.org/blog/2019/10/03/ariadne-0-7-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2019/10/03/ariadne-0-7-0.html</guid>
+            <pubDate>Thu, 03 Oct 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne 0.7 brings support for custom schema directives and synchronous extensions.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.6.0]]></title>
             <link>https://ariadnegraphql.org/blog/2019/08/12/ariadne-0-6-0.html</link>

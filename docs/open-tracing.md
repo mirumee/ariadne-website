@@ -63,4 +63,4 @@ app = GraphQL(
 )
 ```
 
-> **Note:** If using WSGI, use `opentracing_extension_sync` in place of `opentracing_extension`.
+> **Note:** If you are using WSGI, use `opentracing_extension_sync` in place of `opentracing_extension`.

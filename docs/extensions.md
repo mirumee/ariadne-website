@@ -78,7 +78,7 @@ class QueryExecutionTimeExtension(Extension):
     def request_started(self, context):
         self.start_timestamp = time.perf_counter_ns()
 
-    def request_finished(self, context, error=None):
+    def request_finished(self, context):
         self.end_timestamp = time.perf_counter_ns()
 ```
 
@@ -101,10 +101,10 @@ class QueryExecutionTimeExtension(Extension):
     def request_started(self, context):
         self.start_timestamp = time.perf_counter_ns()
 
-    def request_finished(self, context, error=None):
+    def request_finished(self, context):
         self.end_timestamp = time.perf_counter_ns()
 
-    def format(self):
+    def format(self, context):
         if self.start_timestamp and self.end_timestamp:
             return {
                 "execution": self.start_timestamp - self.end_timestamp
@@ -114,7 +114,7 @@ class QueryExecutionTimeExtension(Extension):
 
 ## WSGI extension implementation
 
-To implement extensions for WSGI, the `resolve` function in your Extension cannot be `async`. An `ExtensionSync` class is provided which implements a synchronous `resolve`.
+If your GraphQL server is deployed using WSGI, you can't use `Extension` as base class for your extensions. Use `ExtensionSync` which implements a synchronous `resolve` instead:
 
 ```python
 from ariadne.types import ExtensionSync as Extension

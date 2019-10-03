@@ -71,12 +71,12 @@ Base class for [extensions](extensions.md).
 #### `format`
 
 ```python
-Extension.format()
+Extension.format(context)
 ```
 
 Allows extensions to add data to `extensions` key in GraphQL response.
 
-Should return dict.
+Should return a `dict`.
 
 ##### Example
 
@@ -87,7 +87,7 @@ from datetime import datetime
 
 
 class TimestampExtension(Extension):
-    def format(self):
+    def format(self, context):
         return {"timestamp": datetime.now().isoformat()}
 ```
 
@@ -107,7 +107,7 @@ Result:
 #### `has_errors`
 
 ```python
-Extension.has_errors(errors)
+Extension.has_errors(errors, context)
 ```
 
 Called with `list` of errors that occurred during query process. Not called if no errors were raised. Errors may come from `validation`, query parsing or query execution.
@@ -116,7 +116,7 @@ Called with `list` of errors that occurred during query process. Not called if n
 #### `request_finished`
 
 ```python
-Extension.request_finished(context, error=None)
+Extension.request_finished(context)
 ```
 
 Called when query processing finishes.
@@ -140,6 +140,14 @@ Extension.resolve(next_, parent, info[, **kwargs])
 Used as middleware for fields resolver. Takes special `next_` argument that is next resolver in resolvers chain that should be called.
 
 Everything else is same as with regular [resolvers](#resolver).
+
+
+- - - - -
+
+
+## `ExtensionSync`
+
+Synchronous counterpart of the [`Extension`](#extension). All hooks are the same, but `resolve` hook can't be asynchronous.
 
 
 - - - - -

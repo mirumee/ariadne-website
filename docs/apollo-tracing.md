@@ -22,4 +22,4 @@ app = GraphQL(
 )
 ```
 
-> **Note:** If using WSGI, use `ApolloTracingExtensionSync` in place of `ApolloTracingExtension`.
+> **Note:** If you are using WSGI, use `ApolloTracingExtensionSync` in place of `ApolloTracingExtension`.

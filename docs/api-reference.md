@@ -1199,8 +1199,6 @@ See [`graphql`](#graphql) required arguments.
 
 See [`graphql`](#graphql) configuration options
 
-> This function doesn't support `extensions` option.
-
 
 - - - - -
 

@@ -1257,6 +1257,46 @@ string or list of strings with valid GraphQL types definitions.
 - - - - -
 
 
+## `map_kwargs`
+
+```python
+@map_kwargs(mappings)
+```
+
+Decorator for [`Resolver`](types-reference.md#resolver) that can map schema arguement names to different kwarg names in the resolver.
+
+
+### Required arguments
+
+#### `mappings`
+
+`dict` containing mapping pairs, with the schema argument name as the key and the resolver kwarg name as the value.
+
+### Example
+
+`user` field in schema defines an `id` argument which is mapped to `id_` and `type` mapped to `user_type` before being passed to the resolver:
+
+```
+from ariadne import QueryType, map_kwargs
+
+query = QueryType()
+
+type_defs = """
+  type Query {
+    user(id: Int!, type: String): User
+  }
+"""
+
+
+@query.field("user")
+@map_kwargs({"id": "id_", "type": "user_type"})
+def resolve_user(*_, id_, user_type=None):
+    ...
+```
+
+
+- - - - -
+
 ## `resolve_to`
 
 ```python

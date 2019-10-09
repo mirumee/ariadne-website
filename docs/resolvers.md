@@ -177,13 +177,13 @@ class UserObj:
     def likes(self):
         return count_user_likes(self)
 
-    def initials(self, length)
+    def initials(self, length):
         return self.name[:length]
 
 user_dict = {
     "username": "admin",
     "likes": lambda obj, *_: count_user_likes(obj),
-    "initials": lambda obj, *_, length: obj.username[:length])
+    "initials": lambda obj, *_, length: obj.username[:length]
 }
 ```
 

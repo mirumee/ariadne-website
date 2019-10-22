@@ -8,7 +8,7 @@ Schema directives are special annotations that developers can use to change or e
 
 ## Defining schema directives
 
-Schema directive definition begins with `directive` keyword. This keyword is followed with the name prefixed with ampersand, optional list of arguments and list locations for which this directive may be applied on.
+Schema directive definition begins with `directive` keyword. This keyword is followed with the name prefixed with `@`, optional list of arguments and list locations for which this directive may be applied on.
 
 Example directive that changes behaviour of schema field could be defined as such:
 
@@ -45,7 +45,7 @@ Location may be any of following:
 
 ## Applying directives to schema items
 
-To apply schema directive to the schema item, simply follow its definition with an ampersand and directive name:
+To apply schema directive to the schema item, simply follow its definition with an `@` and directive name:
 
 ```graphql
 directive @adminonly on FIELD_DEFINITION

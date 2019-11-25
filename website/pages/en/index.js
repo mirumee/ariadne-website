@@ -24,7 +24,7 @@ class HomeSplash extends React.Component {
     const ShoutOut = () => (
       <div className="shoutout">
         <a href="https://schemattic.io" target="_blank">
-          Mirumee presents: <strong>Schemattic.io</strong> - Experiment, mock
+          🎉 Mirumee presents: <strong>Schemattic.io</strong> - Experiment, mock
           and share your GraphQL APIs!
         </a>
       </div>

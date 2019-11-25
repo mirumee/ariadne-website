@@ -767,7 +767,7 @@ type_defs = <span class="hljs-string">"""
 <p>Raises <a href="/docs/next/exceptions-reference#graphqlfilesyntaxerror"><code>GraphQLFileSyntaxError</code></a> if any of the loaded files contained syntax errors.</p>
 <hr>
 <h2><a class="anchor" aria-hidden="true" id="make_executable_schema"></a><a href="#make_executable_schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>make_executable_schema</code></h2>
-<pre><code class="hljs css language-python">def make_executable_schema(type_defs, bindables=None, *, directives=None)
+<pre><code class="hljs css language-python">def make_executable_schema(type_defs, *bindables, directives=None)
 </code></pre>
 <p>Construct executable schema - GraphQL schema against which queries can be executed.</p>
 <p>Returns <code>GraphQLSchema</code> instance that can be used to run queries on.</p>
@@ -776,7 +776,25 @@ type_defs = <span class="hljs-string">"""
 <p>string or list of strings with valid GraphQL types definitions.</p>
 <h3><a class="anchor" aria-hidden="true" id="optional-arguments-2"></a><a href="#optional-arguments-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments</h3>
 <h4><a class="anchor" aria-hidden="true" id="bindables"></a><a href="#bindables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>bindables</code></h4>
-<p><a href="/docs/next/bindables">Bindable or list of bindables</a> with Python logic to add to schema.</p>
+<p><a href="/docs/next/bindables">Bindable or list of bindables</a> with Python logic to add to schema:</p>
+<pre><code class="hljs css language-python">type_defs = ...  <span class="hljs-comment"># valid type defs string</span>
+
+<span class="hljs-comment"># Bindables can be passed as *args</span>
+schema = make_executable_schema(type_defs, query, user, datetime_scalar)
+
+<span class="hljs-comment"># ...or as list of types...</span>
+schema = make_executable_schema(type_defs, [query, user, datetime_scalar])
+
+<span class="hljs-comment"># ...or mixed!</span>
+third_party_bindables = [likes, likes_stats]
+schema = make_executable_schema(type_defs, query, user, datetime_scalar, third_party_bindables)
+</code></pre>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Passing bindables as list is supported for backwards-compatibility with Ariadne versions pre-0.8, and will be removed in future version of Ariadne. To future-proof your code, unpack lists of bindables using explicit syntax:</p>
+<pre><code class="hljs css language-python">schema = make_executable_schema(type_defs, query, user, datetime_scalar, *third_party_bindables)
+</code></pre>
+</blockquote>
 <h3><a class="anchor" aria-hidden="true" id="configuration-options-2"></a><a href="#configuration-options-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration options</h3>
 <h4><a class="anchor" aria-hidden="true" id="directives"></a><a href="#directives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>directives</code></h4>
 <p><code>dict</code> that maps schema directives to their Python implementations. See <a href="/docs/next/schema-directives">schema directives documentation</a> for more information and examples.</p>

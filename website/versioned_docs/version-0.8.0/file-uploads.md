@@ -1,6 +1,7 @@
 ---
-id: file-uploads
+id: version-0.8.0-file-uploads
 title: File uploads
+original_id: file-uploads
 ---
 
 Ariadne implements the [GraphQL multipart request specification](https://github.com/jaydenseric/graphql-multipart-request-spec) that describes how file uploads should be implemented by both API clients and servers.

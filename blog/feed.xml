@@ -18,7 +18,7 @@
             <link>https://ariadnegraphql.org/blog/2019/11/25/ariadne-0-8-0.html</link>
             <guid>https://ariadnegraphql.org/blog/2019/11/25/ariadne-0-8-0.html</guid>
             <pubDate>Mon, 25 Nov 2019 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p>Ariadne 0.8 release brings improvements to API modularization, makes <code>python-multipart</code> optional dependency, and updates dependencies to latest versions. We have also added Python 3.8 to the list pf officially supported Python versions.</p>
+            <description><![CDATA[<p>Ariadne 0.8 release brings improvements to API modularization, makes <code>python-multipart</code> optional dependency, and updates dependencies to latest versions. We have also added Python 3.8 to the list of officially supported Python versions.</p>
 ]]></description>
         </item>
         <item>

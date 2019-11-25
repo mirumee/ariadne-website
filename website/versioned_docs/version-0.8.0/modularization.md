@@ -1,6 +1,7 @@
 ---
-id: modularization
+id: version-0.8.0-modularization
 title: Modularization
+original_id: modularization
 ---
 
 

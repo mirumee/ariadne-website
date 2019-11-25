@@ -21,6 +21,15 @@ class HomeSplash extends React.Component {
     const langPart = `${language ? `${language}/` : ""}`;
     const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
 
+    const ShoutOut = () => (
+      <div className="shoutout">
+        <a href="https://schemattic.io" target="_blank">
+          Mirumee presents: <strong>Schemattic.io</strong> - Experiment, mock
+          and share your GraphQL APIs!
+        </a>
+      </div>
+    );
+
     const SplashContainer = props => (
       <div className="homeContainer">
         <div className="homeSplashFade">
@@ -58,6 +67,7 @@ class HomeSplash extends React.Component {
     return (
       <SplashContainer>
         <div className="inner">
+          <ShoutOut />
           <Lead />
           <PromoSection>
             <Button href={docUrl("intro.html")}>Get started</Button>

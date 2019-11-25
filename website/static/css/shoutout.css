@@ -1,0 +1,17 @@
+.shoutout {
+  background-color: #4f5eff;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+  .shoutout a,
+  .shoutout a:link
+  .shoutout a:visited {
+    display: block;
+    padding: 1rem;
+    color: #fff;
+  }
+
+  .shoutout a:hover {
+    text-decoration: underline;
+  }

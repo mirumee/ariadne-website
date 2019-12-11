@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Mon, 25 Nov 2019 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 11 Dec 2019 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,14 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne 0.9.0]]></title>
+            <link>https://ariadnegraphql.org/blog/2019/12/11/ariadne-0-9-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2019/12/11/ariadne-0-9-0.html</guid>
+            <pubDate>Wed, 11 Dec 2019 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Today we are releasing Ariadne 0.9 which moves from GraphQL-core-next to GraphQL-core v3 as its GraphQL implementation.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.8.0]]></title>
             <link>https://ariadnegraphql.org/blog/2019/11/25/ariadne-0-8-0.html</link>

@@ -40,7 +40,7 @@ Create a Python module somewhere in your project that will define the executable
 
 ```python
 # schema.py
-from ariadne import QueryType
+from ariadne import QueryType, make_executable_schema
 
 type_defs = """
     type Query {

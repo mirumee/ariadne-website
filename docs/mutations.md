@@ -85,7 +85,7 @@ def resolve_logout(_, info):
 
 > **Binding Mutation Resolvers**
 >
-> Recall that resolvers need to be bound to their respective resolvers via the `make_executable_schema` call. If you're following along from the introduction that call will look similar to the following:
+> Recall that resolvers need to be bound to their schema via the `make_executable_schema` call. If you're following along from the introduction that call will look similar to the following:
 >
 > ```python
 > make_executable_schema(type_defs, [query, mutations])
@@ -284,4 +284,4 @@ input PollOptionInput {
 
 Lastly, take note that inputs are not specific to mutations. You can create inputs to implement complex filtering in your `Query` fields.
 
-> **Note:** you can decorate your resolvers with [`convert_kwargs_to_snake_case`](api-reference.md#convert_kwargs_to_snake_case) to convert arguments and inputs names from `snakeCase` to `camel_case`.
+> **Note:** you can decorate your resolvers with [`convert_kwargs_to_snake_case`](api-reference.md#convert_kwargs_to_snake_case) to convert arguments and inputs names from `camelCase` to `snake_case`.

@@ -67,7 +67,7 @@ type_defs = """
     }
 
     type User {
-        name: String!
+        username: String!
     }
 """
 
@@ -82,7 +82,7 @@ user = ObjectType("User")
 
 @user.field("username")
 def resolve_username(obj, _*):
-    return f`{obj.first_name} {obj.last_name}`
+    return f'{obj.first_name} {obj.last_name}'
 
 
 schema = make_executable_schema(type_defs, query, user)
@@ -138,7 +138,7 @@ user = ObjectType("Query")
 @query.field("holidays")
 def resolve_holidays(*_, year=None):
     if year:
-        Calendar.get_holidays_in_year(year)
+        return Calendar.get_holidays_in_year(year)
     return Calendar.get_all_holidays()
 ```
 
@@ -148,7 +148,7 @@ If a field argument is marked as required (by following its type with `!`, eg. `
 @query.field("holidays")
 def resolve_holidays(*_, year):
     if year:
-        Calendar.get_holidays_in_year(year)
+        return Calendar.get_holidays_in_year(year)
     return Calendar.get_all_holidays()
 ```
 
@@ -224,7 +224,7 @@ class UserObj:
         return count_user_likes(self)
 
     def initials(self, length):
-        return self.name[:length]
+        return self.username[:length]
 
 user_dict = {
     "username": "admin",

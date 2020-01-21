@@ -427,12 +427,12 @@ from datetime import date
 date_scalar = ScalarType("Date")
 
 
-@date.serializer
+@date_scalar.serializer
 def serialize_datetime(value):
     return value.isoformat()
 
 
-@date.value_parser
+@date_scalar.value_parser
 def serialize_datetime(value):
     return date.strptime(value, "%Y-%m-%d")
 ```

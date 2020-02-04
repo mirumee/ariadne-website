@@ -105,7 +105,7 @@ type Product @key(fields: "upc") @extends {
 }
 ```
 
-Now, our federation schemas are ready. It's time for revolvers.
+Now, our federated schemas are ready. It's time for revolvers.
 
 We need to add `reference resolvers` for all our federated types. A reference resolver tells the gateway how to fetch an entity by its `@key` fields.
 

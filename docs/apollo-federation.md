@@ -192,7 +192,7 @@ def resolve_product_reviews(representation, *_):
 
 ```
 
-Finally, we need to use the `make_federated_schema` function in every our service to augment our schema definition with federation support:
+Finally, we need to use the `make_federated_schema` function in each of our services to augment the schema definition with federation support:
 
 ```python
 import uvicorn

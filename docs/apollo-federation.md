@@ -214,7 +214,7 @@ if __name__ == "__main__":
 We need to set up a federated gateway that fetches the schema from each implementing service and composes those schemas into a single graph. We use [Apollo Gateway](https://www.apollographql.com/docs/apollo-server/federation/implementing/#running-a-gateway) for that.
 
 ```javascript
-# gateway.js
+// gateway.js
 const { ApolloServer } = require('apollo-server');
 const { ApolloGateway } = require("@apollo/gateway");
 

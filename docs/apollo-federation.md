@@ -10,7 +10,7 @@ title: Apollo Federation
 
 Let's say we have three separate GraphQL services that we want to convert into a federated service:
 
-Users
+Users service:
 
 ```graphql
 type Query {
@@ -24,7 +24,7 @@ type User {
 }
 ```
 
-Reviews
+Reviews service:
 
 ```graphql
 type Query {
@@ -37,7 +37,7 @@ type Review {
 }
 ```
 
-Products
+Products service:
 
 ```graphql
 type Query {

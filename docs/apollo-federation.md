@@ -3,14 +3,14 @@ id: apollo-federation
 title: Apollo Federation
 ---
 
-[Apollo Federation](https://www.apollographql.com/docs/apollo-server/federation/introduction/) is an architecture that composes multiple GraphQL services into a single data graph. Ariadne supports building the federated schemas that rely on [additional types and directives](https://www.apollographql.com/docs/apollo-server/federation/federation-spec/) to instrument the behavior of the underlying graph and convey the relationships between schema types.
+[Apollo Federation](https://www.apollographql.com/docs/apollo-server/federation/introduction/) is an architecture that composes multiple GraphQL services into a single data graph. Ariadne supports building federated schemas that rely on [additional types and directives](https://www.apollographql.com/docs/apollo-server/federation/federation-spec/) to instrument the behaviour of the underlying graph and convey the relationships between schema types.
 
 
 ## Federated architecture example
 
 Let's say we have three separate GraphQL services that we want to convert into a federated service:
 
-Users service:
+Users Service:
 
 ```graphql
 type Query {
@@ -24,7 +24,7 @@ type User {
 }
 ```
 
-Reviews service:
+Reviews Service:
 
 ```graphql
 type Query {
@@ -37,7 +37,7 @@ type Review {
 }
 ```
 
-Products service:
+Products Service:
 
 ```graphql
 type Query {
@@ -52,11 +52,11 @@ type Product {
 }
 ```
 
-Our goal is to add a connection between them and combine the above services into a single graph.
+Our goal is to add a connection between each of them and combine the above services into a single graph.
 
-First of all, we need to add the `@key` directive to a type's definition to allow other services to refer to it or extend that type. This directive tells other services which fields to use to uniquely identify a particular instance of the type. 
+First of all, we need to add the `@key` directive to a type's definition as to allow other services to refer to it, or extend that type. This directive tells other services which fields to use in order to uniquely identify a particular instance of the type.
 
-In our case we should add it to the `User`, `Review` and `Product` types:
+In our case, we should add it to the `User`, `Review` and `Product` types:
 
 ```graphql
 type User @key(fields: "email") {
@@ -84,7 +84,7 @@ type Product @key(fields: "upc") {
 
 The next step is to connect together our types in the distributed architecture.
 
-Let's extend types that are defined by another implementing service to illustrate the power of the federation. In our case the reviews service extends the `User` and `Product` types by adding a reviews field to them:
+Let's extend types that are defined by another implementing service to illustrate the power of the federation. In our case, the reviews service extends the `User` and `Product` types by adding a reviews field to them:
 
 ```graphql
 type Review @key(fields: "id") {

@@ -3,8 +3,13 @@ id: apollo-federation
 title: Apollo Federation
 ---
 
-[Apollo Federation](https://www.apollographql.com/docs/apollo-server/federation/introduction/) is an architecture that composes multiple GraphQL services into a single data graph. Ariadne supports building federated schemas that rely on [additional types and directives](https://www.apollographql.com/docs/apollo-server/federation/federation-spec/) to instrument the behaviour of the underlying graph and convey the relationships between schema types.
+[Apollo Federation](https://www.apollographql.com/docs/apollo-server/federation/introduction/) is an approach for composing multiple GraphQL services into one data graph, queryable from a single GraphQL server.
 
+Ariadne supports building federated schemas through use of special [types and directives introduced by federation specification](https://www.apollographql.com/docs/apollo-server/federation/federation-spec/) that instruct Ariadne how it's GraphQL schema types and fields combine with types and fields defined in other GraphQL schemas forming the Federation.
+
+> **Note**
+>
+> You may have heard about [schema stitching](https://www.apollographql.com/docs/graphql-tools/schema-stitching/) when searching for GraphQL solutions for merging multiple GraphQL servers into a single one. This approach was originally proposed back in 2018 and implemented by the Apollo Server, but it had considerable downsides which resulted in it being scrapped and federations being proposed as the new, better solution.
 
 ## Federated architecture example
 

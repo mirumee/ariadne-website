@@ -16,7 +16,8 @@
       "bindables",
       "schema-directives",
       "local-development",
-      "logging"
+      "logging",
+      "apollo-federation"
     ],
     "Monitoring": [
       "apollo-tracing",

@@ -60,7 +60,7 @@ type Product {
 
 Our goal is to add a connection between each of them and combine the above services into a single graph.
 
-First of all, we need to add the `@key` directive to a type's definition as to allow other services to refer to it, or extend that type. This directive tells other services which fields to use in order to uniquely identify a particular instance of the type.
+First, we need to add the `@key` directive to a type's definition as to allow other services to refer to it, or extend that type. This directive tells other services which fields to use in order to uniquely identify a particular instance of the type.
 
 In our case, we should add it to the `User`, `Review` and `Product` types:
 
@@ -111,7 +111,7 @@ type Product @key(fields: "upc") @extends {
 }
 ```
 
-Now, our federated schemas are ready. It's time for revolvers.
+Now our federated schemas are ready. It's time for resolvers.
 
 We need to add `reference resolvers` for all our federated types. A reference resolver tells the gateway how to fetch an entity by its `@key` fields.
 

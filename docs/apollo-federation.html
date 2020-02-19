@@ -106,7 +106,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Our goal is to add a connection between each of them and combine the above services into a single graph.</p>
-<p>First of all, we need to add the <code>@key</code> directive to a type's definition as to allow other services to refer to it, or extend that type. This directive tells other services which fields to use in order to uniquely identify a particular instance of the type.</p>
+<p>First, we need to add the <code>@key</code> directive to a type's definition as to allow other services to refer to it, or extend that type. This directive tells other services which fields to use in order to uniquely identify a particular instance of the type.</p>
 <p>In our case, we should add it to the <code>User</code>, <code>Review</code> and <code>Product</code> types:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token directive function">@key</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"email"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token attr-name">id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span>
@@ -145,7 +145,7 @@
   <span class="token attr-name">reviews</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Review<span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>Now, our federated schemas are ready. It's time for revolvers.</p>
+<p>Now our federated schemas are ready. It's time for resolvers.</p>
 <p>We need to add <code>reference resolvers</code> for all our federated types. A reference resolver tells the gateway how to fetch an entity by its <code>@key</code> fields.</p>
 <pre><code class="hljs css language-python"><span class="hljs-comment"># service_users.py</span>
 <span class="hljs-keyword">from</span> ariadne.contrib.federation <span class="hljs-keyword">import</span> FederatedObjectType

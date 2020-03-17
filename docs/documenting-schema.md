@@ -20,7 +20,7 @@ GraphQL Playground allows developers and clients to explore the relationships be
 
 ## Descriptions
 
-The GraphQL schema definition language supports a special [description syntax](https://facebook.github.io/graphql/June2018/#sec-Descriptions). This allows you to provide additional context and information alongside your type definitions, which will be accessible both to developers and API consumers.
+The GraphQL schema definition language supports a special [description syntax](https://spec.graphql.org/June2018/#sec-Descriptions). This allows you to provide additional context and information alongside your type definitions, which will be accessible both to developers and API consumers.
 
 GraphQL descriptions are declared using a format that feels very similar to Python's `docstrings`:
 

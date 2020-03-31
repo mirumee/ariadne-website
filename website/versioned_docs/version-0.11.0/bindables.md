@@ -1,6 +1,7 @@
 ---
-id: bindables
+id: version-0.11.0-bindables
 title: Bindables
+original_id: bindables
 ---
 
 

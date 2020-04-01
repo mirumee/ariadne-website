@@ -47,7 +47,7 @@ Should return a Python `dict`.
 
 #### `error`
 
-Instance of [`graphql.error.GraphQLError`](https://github.com/graphql-python/graphql-core/blob/v1.0.5/graphql/error/graphql_error.py#L15) to be formatted.
+Instance of [`graphql.error.GraphQLError`](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/error/graphql_error.py#L14) to be formatted.
 
 
 #### `debug`
@@ -198,7 +198,7 @@ Object from which the value should be resolved. Can be `None` for root resolvers
 
 #### `info`
 
-Instance of the [`graphql.type.GraphQLResolveInfo`](https://github.com/graphql-python/graphql-core/blob/v1.0.5/graphql/type/definition.py#L487). Is specific to resolved field and query.
+Instance of the [`graphql.type.GraphQLResolveInfo`](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/type/definition.py#L533). Is specific to the resolved field and query.
 
 Has `context` attribute that contains [`ContextValue`](#contextvalue) specific to the server implementation.
 
@@ -243,7 +243,7 @@ The value that should be passed to the root-level [resolvers](#resolver) as thei
 If value is callable, it will be called with two arguments:
 
 - `context` - containing current `context_value`.
-- `document` - [`graphql.ast.DocumentNode`](https://github.com/graphql-python/graphql-core/blob/v1.0.5/graphql/language/ast.py#L180) that was result of parsing current GraphQL query.
+- `document` - [`graphql.ast.DocumentNode`](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/language/ast.py#L259) that was result of parsing current GraphQL query.
 
 Return value will then be used as `obj` passed to root resolvers.
 
@@ -292,7 +292,7 @@ Asynchronous generator that [subscription](subscriptions.md) field uses as data 
 
 #### `info`
 
-Instance of the [`graphql.type.GraphQLResolveInfo`](https://github.com/graphql-python/graphql-core/blob/v1.0.5/graphql/type/definition.py#L487). Is specific to resolved field and query.
+Instance of the [`graphql.type.GraphQLResolveInfo`](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/type/definition.py#L533). Is specific to the resolved field and query.
 
 Has `context` attribute that contains [`ContextValue`](#contextvalue) specific to the server implementation.
 

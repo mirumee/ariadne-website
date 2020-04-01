@@ -138,7 +138,7 @@ Expected type Datetime!, found "invalid string"; time data 'invalid string' does
 
 > Because the error message returned by the GraphQL server includes the original exception message from your Python code, it may contain details specific to your system or implementation that you may not want to make known to the API consumers. You may decide to catch the original exception with `except (ValueError, TypeError)` and then raise your own `ValueError` with a custom message (or no message at all) to prevent this from happening.
 
-If a value is specified as part of query content, its `ast` node is instead passed to `parse_datetime_literal` to give the scalar a chance to introspect the type of the node (implementations for those be found [here](https://github.com/graphql-python/graphql-core/blob/v1.0.5/graphql/language/ast.py#L265)).
+If a value is specified as part of query content, its `ast` node is instead passed to `parse_datetime_literal` to give the scalar a chance to introspect the type of the node (implementations for those be found [here](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/language/ast.py#L344)).
 
 Logic implemented in the `parse_datetime_literal` may be completely different from that in the `parse_datetime_value`, however, in this example the `ast` node is simply unpacked, coerced to `str` and then passed to `parse_datetime_value`, reusing the parsing logic.
 

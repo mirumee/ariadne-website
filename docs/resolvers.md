@@ -19,7 +19,7 @@ class FormResolver:
 
 `info` is the instance of a `GraphQLResolveInfo` object specific for this field and query. It defines a special `context` attribute that contains any value that GraphQL server provided for resolvers on the query execution. Its type and contents are application-specific, but it is generally expected to contain application-specific data such as authentication state of the user or an HTTP request.
 
-> `context` is just one of many attributes that can be found on `GraphQLResolveInfo`, but it is by far the most commonly used one. Other attributes enable developers to introspect the query that is currently executed and implement new utilities and abstractions, but documenting that is out of Ariadne's scope. If you are interested, you can find the list of all attributes [here](https://github.com/graphql-python/graphql-core/blob/v1.0.5/graphql/type/definition.py#L487).
+> `context` is just one of many attributes that can be found on `GraphQLResolveInfo`, but it is by far the most commonly used one. Other attributes enable developers to introspect the query that is currently executed and implement new utilities and abstractions, but documenting that is out of Ariadne's scope. If you are interested, you can find the list of all attributes [here](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/type/definition.py#L533).
 
 
 ## Binding resolvers

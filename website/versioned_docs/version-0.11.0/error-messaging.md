@@ -1,6 +1,7 @@
 ---
-id: error-messaging
+id: version-0.11.0-error-messaging
 title: Error messaging
+original_id: error-messaging
 ---
 
 

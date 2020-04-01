@@ -140,7 +140,7 @@
 <p>The default error formatter used by Ariadne performs the following tasks:</p>
 <ul>
 <li>Formats error by using its <code>formatted</code> property.</li>
-<li>Unwraps <code>GraphQL</code> error by accessing its <code>original_error</code> property.</li>
+<li>Recursively unwraps the <code>GraphQL</code> error by accessing its <code>original_error</code> property.</li>
 <li>If the unwrapped error is available and the <code>debug</code> argument is set to <code>True</code>, update the already formatted error to also include an <code>extensions</code> entry with an <code>exception</code> dictionary containing <code>stacktrace</code> and <code>context</code>.</li>
 </ul>
 <p>If you wish to change or customize this behavior, you can define a custom function in the <code>error_formatter</code> argument to a <code>GraphQL</code> object:</p>

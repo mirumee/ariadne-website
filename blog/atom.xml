@@ -2,12 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2020-02-11T06:00:00Z</updated>
+    <updated>2020-04-01T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne 0.11.0]]></title>
+        <id>https://ariadnegraphql.org/blog/2020/04/01/ariadne-0-11-0.html</id>
+        <link href="https://ariadnegraphql.org/blog/2020/04/01/ariadne-0-11-0.html">
+        </link>
+        <updated>2020-04-01T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>No joke, today we are releasing Ariadne 0.11!</p>
+<p>Ariadne 0.11 is an maintenance release focused on resolving few small but annoying issues reported by the community.</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.10.0]]></title>
         <id>https://ariadnegraphql.org/blog/2020/02/11/ariadne-0-10-0.html</id>

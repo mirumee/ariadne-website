@@ -1,0 +1,854 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>API reference · Ariadne</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Following items are importable directly from &lt;code&gt;ariadne&lt;/code&gt; package:&lt;/p&gt;
+"/><meta name="docsearch:version" content="0.10.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="API reference · Ariadne"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ariadnegraphql.org/"/><meta property="og:description" content="&lt;p&gt;Following items are importable directly from &lt;code&gt;ariadne&lt;/code&gt; package:&lt;/p&gt;
+"/><meta property="og:image" content="https://ariadnegraphql.org/img/share-image.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ariadnegraphql.org/img/twitter-image.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ariadnegraphql.org/blog/atom.xml" title="Ariadne Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ariadnegraphql.org/blog/feed.xml" title="Ariadne Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-10159761-23', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><a href="/versions"><h3>0.10.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/docs/0.10.0/intro" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/community" target="_self">Community</a></li><li class=""><a href="https://github.com/mirumee/ariadne" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>API reference</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/resolvers">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/mutations">Mutations</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/error-messaging">Error messaging</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/scalars">Custom scalars</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/enums">Enumeration types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/unions">Union types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/interfaces">Interface types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/subscriptions">Subscriptions</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/file-uploads">File uploads</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/documenting-schema">Documenting schema</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/modularization">Modularization</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/bindables">Bindables</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/schema-directives">Schema directives</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/local-development">Local development</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/logging">Logging</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/apollo-federation">Apollo Federation</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Monitoring</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/apollo-tracing">Apollo Tracing</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/open-tracing">OpenTracing</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Servers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/asgi">ASGI application</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/wsgi">WSGI application</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/django-integration">Django</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/flask-integration">Flask</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/starlette-integration">Starlette</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/other-integrations">Other technologies</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extensions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/extensions">Extension system</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/middleware">Middleware</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API reference</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/0.10.0/api-reference">ariadne</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/constants-reference">ariadne.constants</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/exceptions-reference">ariadne.exceptions</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/types-reference">ariadne.types</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/logo">Ariadne logo</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">API reference</h1></header><article><div><span><p>Following items are importable directly from <code>ariadne</code> package:</p>
+<h2><a class="anchor" aria-hidden="true" id="enumtype"></a><a href="#enumtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>EnumType</code></h2>
+<pre><code class="hljs css language-python">EnumType(name, values)
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for mapping python values to enumeration members defined in GraphQL schema.</p>
+<h3><a class="anchor" aria-hidden="true" id="required-arguments"></a><a href="#required-arguments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="name"></a><a href="#name" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>name</code></h4>
+<p><code>str</code> with name of enumeration type defined in schema.</p>
+<h4><a class="anchor" aria-hidden="true" id="values"></a><a href="#values" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>values</code></h4>
+<p><code>dict</code>, <code>enum.Enum</code> or <code>enum.IntEnum</code> instance that defines mappings between Enum members and values</p>
+<h3><a class="anchor" aria-hidden="true" id="example"></a><a href="#example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<p>Enum defined in schema:</p>
+<pre><code class="hljs css language-graphql"><span class="token keyword">enum</span> <span class="token class-name">ErrorType</span> <span class="token punctuation">{</span>
+  <span class="token constant">NOT_FOUND</span>
+  <span class="token constant">PERMISSION_DENIED</span>
+  <span class="token constant">VALIDATION_ERROR</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Python mapping using <code>dict</code>:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> EnumType
+
+
+error_type_enum = EnumType(
+    <span class="hljs-string">"ErrorType"</span>,
+    {
+      <span class="hljs-string">"NOT_FOUND"</span>: <span class="hljs-string">"NotFound"</span>,
+      <span class="hljs-string">"PERMISSION_DENIED"</span>: <span class="hljs-string">"PermissionDenied"</span>,
+      <span class="hljs-string">"VALIDATION_ERROR"</span>: <span class="hljs-string">"ValidationError"</span>,
+    }
+)
+</code></pre>
+<p>Python mapping using <code>enum.Enum</code>:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> enum <span class="hljs-keyword">import</span> Enum
+
+<span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> EnumType
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ErrorType</span><span class="hljs-params">(Enum)</span>:</span>
+    NOT_FOUND = <span class="hljs-string">"NotFound"</span>
+    PERMISSION_DENIED = <span class="hljs-string">"PermissionDenied"</span>
+    VALIDATION_ERROR = <span class="hljs-string">"ValidationError"</span>
+
+
+error_type_enum = EnumType(<span class="hljs-string">"ErrorType"</span>, ErrorType)
+</code></pre>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="fallbackresolverssetter"></a><a href="#fallbackresolverssetter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>FallbackResolversSetter</code></h2>
+<pre><code class="hljs css language-python">FallbackResolversSetter()
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for setting default resolvers on schema object types.</p>
+<blockquote>
+<p>Use <a href="#fallback_resolvers"><code>fallback_resolvers</code></a> instead of instantiating <code>FallbackResolversSetter</code>.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="custom-default-resolver-example"></a><a href="#custom-default-resolver-example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Custom default resolver example</h3>
+<p>You can create custom class extending <code>FallbackResolversSetter</code> to set custom default resolver on your GraphQL object types:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> FallbackResolversSetter
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">custom_resolver</span><span class="hljs-params">(obj, info, **kwargs)</span> -&gt; Any:</span>
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">return</span> obj.get(info.field_name)
+    <span class="hljs-keyword">except</span> AttributeError:
+        <span class="hljs-keyword">return</span> getattr(obj, info.field_name, <span class="hljs-literal">None</span>)
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomFallbackResolversSetter</span><span class="hljs-params">(FallbackResolversSetter)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">add_resolver_to_field</span><span class="hljs-params">(self, field_name, field_object)</span>:</span>
+        <span class="hljs-keyword">if</span> field_object.resolve <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+            field_object.resolve = custom_resolver
+</code></pre>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="interfacetype"></a><a href="#interfacetype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>InterfaceType</code></h2>
+<pre><code class="hljs css language-python">InterfaceType(name, type_resolver=<span class="hljs-literal">None</span>)
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for setting Python logic for GraphQL interfaces. Extends <a href="#objecttype"><code>ObjectType</code></a>.</p>
+<blockquote>
+<p>Because <code>InterfaceType</code> extends <code>ObjectType</code>, it can also be used to set field resolvers.</p>
+<p>InterfaceType will set its resolvers on fields of GraphQL types implementing the interface, but only if there is no resolver already set on the field.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="required-arguments-1"></a><a href="#required-arguments-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="name-1"></a><a href="#name-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>name</code></h4>
+<p><code>str</code> with name of interface type defined in schema.</p>
+<h3><a class="anchor" aria-hidden="true" id="optional-arguments"></a><a href="#optional-arguments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="type_resolver"></a><a href="#type_resolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>type_resolver</code></h4>
+<p>Valid <a href="/docs/0.10.0/types-reference#resolver">resolver</a> that is used to resolve the GraphQL type to which <code>obj</code> belongs. It should return a <code>str</code> with the name of the type. Not needed if <code>obj</code> contains a <code>__typename</code> key or attribute.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods"></a><a href="#methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="set_type_resolver"></a><a href="#set_type_resolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>set_type_resolver</code></h4>
+<pre><code class="hljs css language-python">InterfaceType.set_type_resolver(type_resolver)
+</code></pre>
+<p>Sets type <a href="/docs/0.10.0/types-reference#resolver">resolver</a> used to resolve the <code>str</code> with name of GraphQL type to which <code>obj</code> belongs to.</p>
+<p>Returns value passed to <code>type_resolver</code> argument.</p>
+<h4><a class="anchor" aria-hidden="true" id="type_resolver-1"></a><a href="#type_resolver-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>type_resolver</code></h4>
+<p>Decorator counterpart of <code>set_type_resolver</code>:</p>
+<pre><code class="hljs css language-python">search_result = InterfaceType(<span class="hljs-string">"SearchResult"</span>)
+
+
+<span class="hljs-meta">@search_result.type_resolver</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_search_result_type</span><span class="hljs-params">(obj, info)</span>:</span>
+    ...
+</code></pre>
+<p>Decorator doesn't change or wrap the decorated function into any additional logic.</p>
+<h3><a class="anchor" aria-hidden="true" id="example-1"></a><a href="#example-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<p>Interface type for search result that can be <code>User</code> or <code>Thread</code>, that defines the url field and sets default resolver for it:</p>
+<pre><code class="hljs css language-graphql"><span class="token keyword">interface</span> <span class="token class-name">SearchResult</span> <span class="token punctuation">{</span>
+  <span class="token attr-name">url</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="hljs css language-python">search_result = InterfaceType(<span class="hljs-string">"SearchResult"</span>)
+
+
+<span class="hljs-meta">@search_result.type_resolver</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_search_result_type</span><span class="hljs-params">(obj, info)</span>:</span>
+    <span class="hljs-keyword">if</span> isinstance(obj, User):
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"User"</span>
+    <span class="hljs-keyword">if</span> isinstance(obj, Thread):
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Thread"</span>
+
+
+<span class="hljs-meta">@search_result.field("url")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_search_result_url</span><span class="hljs-params">(obj, info)</span>:</span>
+    <span class="hljs-keyword">return</span> obj.get_absolute_url()
+</code></pre>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="mutationtype"></a><a href="#mutationtype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>MutationType</code></h2>
+<pre><code class="hljs css language-python">MutationType()
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for setting Python logic for GraphQL mutation type. Has the same API as <a href="#objecttype"><code>ObjectType</code></a>, but has GraphQL type name hardcoded to <code>Mutation</code>.</p>
+<blockquote>
+<p>This is an convenience utility that can be used in place of of <code>ObjectType(&quot;Mutation&quot;)</code>.</p>
+</blockquote>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="objecttype"></a><a href="#objecttype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>ObjectType</code></h2>
+<pre><code class="hljs css language-python">MutationType(name)
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for setting Python logic for GraphQL object types.</p>
+<h3><a class="anchor" aria-hidden="true" id="required-arguments-2"></a><a href="#required-arguments-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="name-2"></a><a href="#name-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>name</code></h4>
+<p><code>str</code> with name of an object type defined in schema.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods-1"></a><a href="#methods-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="field"></a><a href="#field" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>field</code></h4>
+<p>Decorator that takes single parameter, <code>name</code> of GraphQL field, and sets decorated callable as <a href="/docs/0.10.0/types-reference#resolver">a resolver</a> for it:</p>
+<pre><code class="hljs css language-python">user = ObjectType(<span class="hljs-string">"User"</span>)
+
+
+<span class="hljs-meta">@user.field("posts")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_posts</span><span class="hljs-params">(obj, info)</span>:</span>
+    ...
+</code></pre>
+<p>Decorator doesn't change or wrap the decorated function into any additional logic.</p>
+<h4><a class="anchor" aria-hidden="true" id="set_alias"></a><a href="#set_alias" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>set_alias</code></h4>
+<pre><code class="hljs css language-python">ObjectType.set_alias(name, to)
+</code></pre>
+<p>Makes a field <code>name</code> defined in the schema resolve to property <code>to</code> of an object.</p>
+<p>For example, if you want field <code>username</code> from schema resolve to attribute <code>user_name</code> of Python object, you can set an alias:</p>
+<pre><code class="hljs css language-python">user = ObjectType(<span class="hljs-string">"User"</span>)
+
+
+user.set_alias(<span class="hljs-string">"username"</span>, <span class="hljs-string">"user_name"</span>)
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="set_field"></a><a href="#set_field" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>set_field</code></h4>
+<pre><code class="hljs css language-python">ObjectType.set_field(name, resolver)
+</code></pre>
+<p>Sets <a href="/docs/0.10.0/types-reference#resolver"><code>resolver</code></a> as resolver that will be used to resolve the GraphQL field named <code>name</code>.</p>
+<p>Returns value passed to <code>resolver</code> argument.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="querytype"></a><a href="#querytype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>QueryType</code></h2>
+<pre><code class="hljs css language-python">QueryType()
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for setting Python logic for GraphQL mutation type. Has the same API as <a href="#objecttype"><code>ObjectType</code></a>, but has GraphQL type name hardcoded to <code>Query</code>.</p>
+<blockquote>
+<p>This is an convenience utility that can be used in place of of <code>ObjectType(&quot;Query&quot;)</code>.</p>
+</blockquote>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="scalartype"></a><a href="#scalartype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>ScalarType</code></h2>
+<pre><code class="hljs css language-python">ScalarType(name, *, serializer=<span class="hljs-literal">None</span>, value_parser=<span class="hljs-literal">None</span>, literal_parser=<span class="hljs-literal">None</span>)
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for setting Python logic for GraphQL scalar type.</p>
+<h3><a class="anchor" aria-hidden="true" id="required-arguments-3"></a><a href="#required-arguments-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="name-3"></a><a href="#name-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>name</code></h4>
+<p><code>str</code> with name of scalar type defined in schema.</p>
+<h4><a class="anchor" aria-hidden="true" id="serializer"></a><a href="#serializer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>serializer</code></h4>
+<p>Callable that is called to convert scalar value into JSON-serializable form.</p>
+<h4><a class="anchor" aria-hidden="true" id="value_parser"></a><a href="#value_parser" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>value_parser</code></h4>
+<p>Callable that is called to convert JSON-serialized value back into Python form.</p>
+<h4><a class="anchor" aria-hidden="true" id="literal_parser"></a><a href="#literal_parser" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>literal_parser</code></h4>
+<p>Callable that is called to convert AST <code>ValueNode</code> value into Python form.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods-2"></a><a href="#methods-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="literal_parser-1"></a><a href="#literal_parser-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>literal_parser</code></h4>
+<p>Decorator that sets decorated callable as literal parser for the scalar:</p>
+<pre><code class="hljs css language-python">datetime = ScalarType(<span class="hljs-string">"DateTime"</span>)
+
+
+<span class="hljs-meta">@datetime.literal_parser</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse_datetime_literal</span><span class="hljs-params">(ast)</span>:</span>
+    ...
+</code></pre>
+<p>Decorator doesn't change or wrap the decorated function into any additional logic.</p>
+<h4><a class="anchor" aria-hidden="true" id="serializer-1"></a><a href="#serializer-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>serializer</code></h4>
+<p>Decorator that sets decorated callable as serializer for the scalar:</p>
+<pre><code class="hljs css language-python">datetime = ScalarType(<span class="hljs-string">"DateTime"</span>)
+
+
+<span class="hljs-meta">@datetime.serializer</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">serialize_datetime</span><span class="hljs-params">(value)</span>:</span>
+    ...
+</code></pre>
+<p>Decorator doesn't change or wrap the decorated function into any additional logic.</p>
+<h4><a class="anchor" aria-hidden="true" id="set_serializer"></a><a href="#set_serializer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>set_serializer</code></h4>
+<pre><code class="hljs css language-python">ScalarType.set_serializer(serializer)
+</code></pre>
+<p>Sets <code>serializer</code> callable as serializer for the scalar.</p>
+<h4><a class="anchor" aria-hidden="true" id="set_literal_parser"></a><a href="#set_literal_parser" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>set_literal_parser</code></h4>
+<pre><code class="hljs css language-python">ScalarType.set_value_parser(literal_parser)
+</code></pre>
+<p>Sets <code>literal_parser</code> callable as literal parser for the scalar.</p>
+<h4><a class="anchor" aria-hidden="true" id="set_value_parser"></a><a href="#set_value_parser" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>set_value_parser</code></h4>
+<pre><code class="hljs css language-python">ScalarType.set_value_parser(value_parser)
+</code></pre>
+<p>Sets <code>value_parser</code> callable as value parser for the scalar.</p>
+<blockquote>
+<p>As convenience, this function will also set literal parser, if none was set already.</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="value_parser-1"></a><a href="#value_parser-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>value_parser</code></h4>
+<p>Decorator that sets decorated callable as value parser for the scalar:</p>
+<pre><code class="hljs css language-python">datetime = ScalarType(<span class="hljs-string">"DateTime"</span>)
+
+
+<span class="hljs-meta">@datetime.value_parser</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">parse_datetime_value</span><span class="hljs-params">(value)</span>:</span>
+    ...
+</code></pre>
+<p>Decorator doesn't change or wrap the decorated function into any additional logic.</p>
+<blockquote>
+<p>As convenience, this decorator will also set literal parser, if none was set already.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="example-2"></a><a href="#example-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<p>Read-only scalar that converts <code>datetime</code> object to string containing ISO8601 formatted date:</p>
+<pre><code class="hljs css language-python">datetime = ScalarType(<span class="hljs-string">"DateTime"</span>)
+
+
+<span class="hljs-meta">@datetime.serializer</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">serialize_datetime</span><span class="hljs-params">(value)</span>:</span>
+    <span class="hljs-keyword">return</span> value.isoformat()
+</code></pre>
+<p>Bidirectional scalar that converts <code>date</code> object to ISO8601 formatted date and reverses it back:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> date
+
+date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
+
+
+<span class="hljs-meta">@date_scalar.serializer</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">serialize_datetime</span><span class="hljs-params">(value)</span>:</span>
+    <span class="hljs-keyword">return</span> value.isoformat()
+
+
+<span class="hljs-meta">@date_scalar.value_parser</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">serialize_datetime</span><span class="hljs-params">(value)</span>:</span>
+    <span class="hljs-keyword">return</span> date.strptime(value, <span class="hljs-string">"%Y-%m-%d"</span>)
+</code></pre>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="schemadirectivevisitor"></a><a href="#schemadirectivevisitor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>SchemaDirectiveVisitor</code></h2>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor()
+</code></pre>
+<p>Base class for implementing <a href="/docs/0.10.0/schema-directives">schema directives</a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="attributes"></a><a href="#attributes" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Attributes</h3>
+<h4><a class="anchor" aria-hidden="true" id="args"></a><a href="#args" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>args</code></h4>
+<p><code>dict</code> with arguments passed to the directive.</p>
+<h4><a class="anchor" aria-hidden="true" id="name-4"></a><a href="#name-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>name</code></h4>
+<p><code>str</code> with name of the directive in the schema.</p>
+<h4><a class="anchor" aria-hidden="true" id="schema"></a><a href="#schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>schema</code></h4>
+<p>Instance of the <code>GraphQLSchema</code>, in which this directive is used.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods-3"></a><a href="#methods-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="visit_argument_definition"></a><a href="#visit_argument_definition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_argument_definition</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_argument_definition(argument, field, object_type)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>ARGUMENT_DEFINITION</code> location set on schema fields arguments:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">ARGUMENT_DEFINITION</span>
+
+<span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">rotateToken</span><span class="token punctuation">(</span><span class="token attr-name">token</span><span class="token punctuation">:</span> String <span class="token directive function">@example</span><span class="token punctuation">)</span><span class="token punctuation">:</span> String
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Takes following arguments:</p>
+<ul>
+<li><code>argument</code> - an instance of the <code>GraphQLArgument</code>.</li>
+<li><code>field</code> -  an instance of the <code>GraphQLField</code>.</li>
+<li><code>object_type</code> - an instance of the <code>GraphQLObjectType</code> or <code>GraphQLInterfaceType</code>.</li>
+</ul>
+<p>Must return an instance of the <code>GraphQLArgument</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_enum"></a><a href="#visit_enum" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_enum</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_enum(enum)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>ENUM</code> location set on enums:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">ENUM</span>
+
+<span class="token keyword">enum</span> <span class="token class-name">ErrorType</span> <span class="token directive function">@example</span> <span class="token punctuation">{</span>
+    <span class="token constant">NOT_FOUND</span>
+    <span class="token constant">PERMISSION_DENIED</span>
+    <span class="token constant">EXPIRED</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Takes single argument, an instance <code>GraphQLEnumType</code>.</p>
+<p>Must return an instance of the <code>GraphQLEnumType</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_enum_value"></a><a href="#visit_enum_value" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_enum_value</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_enum_value(value, enum_type)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>ENUM_VALUE</code> location set on enum values:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">ENUM</span>
+
+<span class="token keyword">enum</span> <span class="token class-name">ErrorType</span> <span class="token punctuation">{</span>
+    <span class="token constant">NOT_FOUND</span>
+    <span class="token constant">PERMISSION_DENIED</span> <span class="token directive function">@example</span>
+    <span class="token constant">EXPIRED</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Takes two arguments:</p>
+<ul>
+<li><code>value</code> - an instance the <code>GraphQLEnumValue</code>.</li>
+<li><code>enum_type</code> - instance of the <code>GraphQLEnumType</code> to which this value belongs.</li>
+</ul>
+<p>Must return an instance of the <code>GraphQLEnumValue</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_field_definition"></a><a href="#visit_field_definition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_field_definition</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_field_definition(field, object_type)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>FIELD_DEFINITION</code> location set on objects and interfaces fields:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">FIELD_DEFINITION</span>
+
+<span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">id</span><span class="token punctuation">:</span> ID
+    <span class="token attr-name">username</span><span class="token punctuation">:</span> String <span class="token directive function">@example</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Searchable</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">document</span><span class="token punctuation">:</span> String <span class="token directive function">@example</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Takes two arguments:</p>
+<ul>
+<li><code>field</code> - an instance the <code>GraphQLField</code>.</li>
+<li><code>object_type</code> - an instance of the <code>GraphQLObjectType</code> or <code>GraphQLInterfaceType</code> to which this field belongs.</li>
+</ul>
+<p>Must return an instance of the <code>GraphQLField</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_input_field_definition"></a><a href="#visit_input_field_definition" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_input_field_definition</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_input_field_definition(field, object_type)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>INPUT_FIELD_DEFINITION</code> location set on inputs fields:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">INPUT_FIELD_DEFINITION</span>
+
+<span class="token keyword">input</span> UserInput <span class="token punctuation">{</span>
+    <span class="token attr-name">username</span><span class="token punctuation">:</span> String <span class="token directive function">@example</span>
+    <span class="token attr-name">email</span><span class="token punctuation">:</span> String
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Takes two arguments:</p>
+<ul>
+<li><code>field</code> - an instance the <code>GraphQLInputField</code>.</li>
+<li><code>object_type</code> - an instance of the <code>GraphQLInputObjectType</code> to which this field belongs.</li>
+</ul>
+<p>Must return an instance of the <code>GraphQLInputField</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_input_object"></a><a href="#visit_input_object" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_input_object</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_input_object(object_)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>INPUT_OBJECT</code> location set on input types:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">INPUT_OBJECT</span>
+
+<span class="token keyword">input</span> UserInput <span class="token directive function">@example</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">username</span><span class="token punctuation">:</span> String
+    <span class="token attr-name">email</span><span class="token punctuation">:</span> String
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Takes single argument, an instance <code>GraphQLInputObjectType</code>.</p>
+<p>Must return an instance of the <code>GraphQLInputObjectType</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_interface"></a><a href="#visit_interface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_interface</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_interface(interface)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>INTERFACE</code> location set on interfaces:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">INTERFACE</span>
+
+<span class="token keyword">interface</span> <span class="token class-name">Searchable</span> <span class="token directive function">@example</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">document</span><span class="token punctuation">:</span> String
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Takes single argument, an instance <code>GraphQLInterfaceType</code>.</p>
+<p>Must return an instance of the <code>GraphQLInterfaceType</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_object"></a><a href="#visit_object" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_object</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_object(object_)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>OBJECT</code> location set on objects:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">OBJECT</span>
+
+<span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token directive function">@example</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">id</span><span class="token punctuation">:</span> ID
+    <span class="token attr-name">username</span><span class="token punctuation">:</span> String
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Takes single argument, an instance <code>GraphQLObjectType</code>.</p>
+<p>Must return an instance of the <code>GraphQLObjectType</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_scalar"></a><a href="#visit_scalar" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_scalar</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_scalar(scalar)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>SCALAR</code> location set on scalars:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">SCALAR</span>
+
+<span class="token keyword">scalar</span> <span class="token class-name">Datetime</span> <span class="token directive function">@example</span>
+</code></pre>
+<p>Takes single argument, an instance <code>GraphQLScalarType</code>.</p>
+<p>Must return an instance of the <code>GraphQLScalarType</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_schema"></a><a href="#visit_schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_schema</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_schema(schema)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>SCHEMA</code> location set on schema:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">SCHEMA</span>
+
+<span class="token keyword">schema</span> <span class="token directive function">@example</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">query</span><span class="token punctuation">:</span> Query
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Takes single argument, an instance of current <code>GraphQLSchema</code>. Should mutate this instance in place - returning anything from this method causes an <code>ValueError</code> to be raised.</p>
+<h4><a class="anchor" aria-hidden="true" id="visit_union"></a><a href="#visit_union" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>visit_union</code></h4>
+<pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_union(union)
+</code></pre>
+<p>Called during the executable schema creation for directives supporting the <code>UNION</code> location set on unions:</p>
+<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">UNION</span>
+
+<span class="token keyword">union</span> <span class="token class-name">SearchResult</span> <span class="token operator">=</span> User <span class="token operator">|</span> Thread <span class="token directive function">@example</span>
+</code></pre>
+<p>Takes single argument, an instance <code>GraphQLUnionType</code>.</p>
+<p>Must return an instance of the <code>GraphQLUnionType</code>.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="snakecasefallbackresolverssetter"></a><a href="#snakecasefallbackresolverssetter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>SnakeCaseFallbackResolversSetter</code></h2>
+<pre><code class="hljs css language-python">SnakeCaseFallbackResolversSetter()
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for setting default resolvers on schema object types. Subclasses <a href="#fallbackresolverssetter"><code>FallbackResolversSetter</code></a> and sets default resolver that performs case conversion between GraphQL's <code>camelCase</code> and Python's <code>snake_case</code>:</p>
+<pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
+  <span class="token string">"Default resolver for this field will read value from contact_address"</span>
+  <span class="token attr-name">contactAddress</span><span class="token punctuation">:</span> String
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>Use <a href="#snake_case_fallback_resolvers"><code>fallback_resolvers</code></a> instead of instantiating <code>SnakeCaseFallbackResolversSetter</code>.</p>
+</blockquote>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="subscriptiontype"></a><a href="#subscriptiontype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>SubscriptionType</code></h2>
+<pre><code class="hljs css language-python">SubscriptionType()
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for setting Python logic for GraphQL subscription type.</p>
+<blockquote>
+<p>Like <a href="#querytype"><code>QueryType</code></a> and <a href="#mutationtype"><code>MutationType</code></a> this type is hardcoded to bind only to <code>Subscription</code> type in schema.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="methods-4"></a><a href="#methods-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="field-1"></a><a href="#field-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>field</code></h4>
+<p>Decorator that takes single parameter, <code>name</code> of GraphQL field, and sets decorated callable as resolver for it.</p>
+<pre><code class="hljs css language-python">subscription = SubscriptionType()
+
+
+<span class="hljs-meta">@subscription.field("alerts")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_alerts</span><span class="hljs-params">(obj, info)</span>:</span>
+    ...
+</code></pre>
+<p>Decorator doesn't change or wrap the decorated function into any additional logic.</p>
+<blockquote>
+<p>Root resolvers set on subscription type are called with value returned by field's <code>source</code> resolver as first argument.</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="set_field-1"></a><a href="#set_field-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>set_field</code></h4>
+<pre><code class="hljs css language-python">SubscriptionType.set_field(name, resolver)
+</code></pre>
+<p>Sets <code>resolver</code> callable as resolver that will be used to resolve the GraphQL field named <code>name</code>.</p>
+<p>Returns value passed to <code>resolver</code> argument.</p>
+<blockquote>
+<p>Root resolvers set on subscription type are called with value returned by field's <code>source</code> resolver as first argument.</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="set_source"></a><a href="#set_source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>set_source</code></h4>
+<pre><code class="hljs css language-python">SubscriptionType.set_source(name, generator)
+</code></pre>
+<p>Sets <code>generator</code> generator as source that will be used to resolve the GraphQL field named <code>name</code>.</p>
+<p>Returns value passed to <code>generator</code> argument.</p>
+<h4><a class="anchor" aria-hidden="true" id="source"></a><a href="#source" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>source</code></h4>
+<p>Decorator that takes single parameter, <code>name</code> of GraphQL field, and sets decorated generator as source for it.</p>
+<pre><code class="hljs css language-python">subscription = SubscriptionType()
+
+
+<span class="hljs-meta">@subscription.source("alerts")</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">alerts_generator</span><span class="hljs-params">(obj, info)</span>:</span>
+    ...
+</code></pre>
+<p>Decorator doesn't change or wrap the decorated function into any additional logic.</p>
+<h3><a class="anchor" aria-hidden="true" id="example-3"></a><a href="#example-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<p>Simple counter API that counts to 5 and ends subscription:</p>
+<pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Subscription</span> <span class="token punctuation">{</span>
+  <span class="token attr-name">counter</span><span class="token punctuation">:</span> Int
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">import</span> asyncio
+
+
+subscription = SubscriptionType()
+
+
+<span class="hljs-meta">@subscription.source("counter")</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">counter_generator</span><span class="hljs-params">(obj, info)</span>:</span>
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">5</span>):
+        <span class="hljs-keyword">await</span> asyncio.sleep(<span class="hljs-number">1</span>)
+        <span class="hljs-keyword">yield</span> i
+
+
+<span class="hljs-meta">@subscription.field("counter")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">counter_resolver</span><span class="hljs-params">(count, info)</span>:</span>
+    <span class="hljs-keyword">return</span> count
+</code></pre>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="uniontype"></a><a href="#uniontype" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>UnionType</code></h2>
+<pre><code class="hljs css language-python">UnionType(name, type_resolver=<span class="hljs-literal">None</span>)
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> used for setting Python logic for GraphQL union type.</p>
+<h3><a class="anchor" aria-hidden="true" id="required-arguments-4"></a><a href="#required-arguments-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="name-5"></a><a href="#name-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>name</code></h4>
+<p><code>str</code> with name of union type defined in schema.</p>
+<h3><a class="anchor" aria-hidden="true" id="optional-arguments-1"></a><a href="#optional-arguments-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="type_resolver-2"></a><a href="#type_resolver-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>type_resolver</code></h4>
+<p>Valid <a href="/docs/0.10.0/types-reference#resolver">resolver</a> that is used to resolve the GraphQL type to which <code>obj</code> belongs. It should return a <code>str</code> with the name of the type. Not needed if <code>obj</code> contains a <code>__typename</code> key or attribute.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods-5"></a><a href="#methods-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="set_type_resolver-1"></a><a href="#set_type_resolver-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>set_type_resolver</code></h4>
+<pre><code class="hljs css language-python">UnionType.set_type_resolver(type_resolver)
+</code></pre>
+<p>Sets type <a href="/docs/0.10.0/types-reference#resolver">resolver</a> used to resolve the <code>str</code> with name of GraphQL type to which <code>obj</code> belongs to.</p>
+<p>Returns value passed to <code>type_resolver</code> argument.</p>
+<h4><a class="anchor" aria-hidden="true" id="type_resolver-3"></a><a href="#type_resolver-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>type_resolver</code></h4>
+<p>Decorator counterpart of <code>set_type_resolver</code>:</p>
+<pre><code class="hljs css language-python">search_result = UnionType(<span class="hljs-string">"SearchResult"</span>)
+
+
+<span class="hljs-meta">@search_result.type_resolver</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_search_result_type</span><span class="hljs-params">(obj, info)</span>:</span>
+    ...
+</code></pre>
+<p>Decorator doesn't change or wrap the decorated function into any additional logic.</p>
+<h3><a class="anchor" aria-hidden="true" id="example-4"></a><a href="#example-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<p>Union type for search result that can be <code>User</code> or <code>Thread</code>:</p>
+<pre><code class="hljs css language-graphql"><span class="token keyword">union</span> <span class="token class-name">SearchResult</span> <span class="token operator">=</span> User <span class="token operator">|</span> Thread
+</code></pre>
+<pre><code class="hljs css language-python">search_result = UnionType(<span class="hljs-string">"SearchResult"</span>)
+
+
+<span class="hljs-meta">@search_result.type_resolver</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_search_result_type</span><span class="hljs-params">(obj, info)</span>:</span>
+    <span class="hljs-keyword">if</span> isinstance(obj, User):
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"User"</span>
+    <span class="hljs-keyword">if</span> isinstance(obj, Thread):
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Thread"</span>
+</code></pre>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="combine_multipart_data"></a><a href="#combine_multipart_data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>combine_multipart_data</code></h2>
+<pre><code class="hljs css language-python">combine_multipart_data(operations, files_map, files)
+</code></pre>
+<p>Combines data from <a href="https://github.com/jaydenseric/graphql-multipart-request-spec">GraphQL multipart request</a> into a query <a href="#data"><code>data</code></a>.</p>
+<h3><a class="anchor" aria-hidden="true" id="required-arguments-5"></a><a href="#required-arguments-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="operations"></a><a href="#operations" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>operations</code></h4>
+<p><code>dict</code> containing GraphQL query data or <code>list</code> of those.</p>
+<h4><a class="anchor" aria-hidden="true" id="files_map"></a><a href="#files_map" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>files_map</code></h4>
+<p><code>dict</code> containing data mapping <code>files</code> to Query variables.</p>
+<h4><a class="anchor" aria-hidden="true" id="files"></a><a href="#files" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>files</code></h4>
+<p><code>dict</code> (or object implementing <code>__getitem__</code>) containing uploaded files.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="convert_camel_case_to_snake"></a><a href="#convert_camel_case_to_snake" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>convert_camel_case_to_snake</code></h2>
+<pre><code class="hljs css language-python">convert_camel_case_to_snake(graphql_name)
+</code></pre>
+<p>Utility function that converts GraphQL name written in <code>camelCase</code> to its Python <code>snake_case</code> counterpart.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="convert_kwargs_to_snake_case"></a><a href="#convert_kwargs_to_snake_case" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>convert_kwargs_to_snake_case</code></h2>
+<pre><code class="hljs css language-python"><span class="hljs-meta">@convert_kwargs_to_snake_case</span>
+</code></pre>
+<p>Decorator for <a href="/docs/0.10.0/types-reference#resolver"><code>Resolver</code></a> that recursively converts arguments case from <code>camelCase</code> to <code>snake_case</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="example-5"></a><a href="#example-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
+<p><code>user</code> field in schema defines <code>firstName</code> and <code>lastName</code> arguments which are converted by the decorator to <code>first_name</code> and <code>last_name</code> before being passed to the resolver:</p>
+<pre><code class="hljs"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> QueryType, convert_kwargs_to_snake_case
+
+query = QueryType()
+
+type_defs = <span class="hljs-string">"""
+  type Query {
+    user(firstName: String, lastName: String): User
+  }
+"""</span>
+
+
+<span class="hljs-meta">@query.field("user")</span>
+<span class="hljs-meta">@convert_kwargs_to_snake_case</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_user</span><span class="hljs-params">(*_, first_name=None, last_name=None)</span>:</span>
+    ...
+</code></pre>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="default_resolver"></a><a href="#default_resolver" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>default_resolver</code></h2>
+<pre><code class="hljs css language-python">def default_resolver(parent, info)
+</code></pre>
+<p>Default resolver used by Ariadne. If <code>parent</code> is <code>dict</code>, will use <code>dict.get(info.field_name)</code> to resolve the value. Uses <code>getattr(parent, info.field_name, None)</code> otherwise.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="fallback_resolvers"></a><a href="#fallback_resolvers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>fallback_resolvers</code></h2>
+<pre><code class="hljs css language-python">fallback_resolvers
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> instace of <a href="#fallbackresolverssetter"><code>FallbackResolversSetter</code></a>.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="format_error"></a><a href="#format_error" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>format_error</code></h2>
+<pre><code class="hljs css language-python">def format_error(error, debug=False)
+</code></pre>
+<p>Default error formatter used by Ariadne. Takes instance of <code>GraphQLError</code> as first argument and debug flag as second.</p>
+<p>Returns <code>dict</code> containing formatted error data ready for returning to API client.</p>
+<p>If <code>debug</code> is <code>True</code>, updates returned data <code>extensions</code> key with <code>exception</code> <code>dict</code> that contains traceback to original Python exception and its context variables.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="get_error_extension"></a><a href="#get_error_extension" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>get_error_extension</code></h2>
+<pre><code class="hljs css language-python">def get_error_extension(error)
+</code></pre>
+<p>Takes <code>GraphQLError</code> instance as only argument and returns <code>dict</code> with traceback and context of original Python exception. If error was not caused by exception in resolver, returns <code>None</code> instead.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="get_formatted_error_context"></a><a href="#get_formatted_error_context" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>get_formatted_error_context</code></h2>
+<pre><code class="hljs css language-python">def get_formatted_error_context(error)
+</code></pre>
+<p>Takes exception instance as only argument and returns context values for it that are JSON-serializeable and can be included in the error result JSON.</p>
+<p>Used by <code>get_error_extension</code> to include <code>context</code> in the <code>exception</code> JSON that Ariadne's default error formatter returns in debug mode.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="get_formatted_error_traceback"></a><a href="#get_formatted_error_traceback" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>get_formatted_error_traceback</code></h2>
+<pre><code class="hljs css language-python">def get_formatted_error_traceback(error)
+</code></pre>
+<p>Takes exception instance as only argument and returns traceback (stacktrace) for it that is JSON-serializeable and can be included in the error result JSON.</p>
+<p>Used by <code>get_error_extension</code> to include <code>stacktrace</code> in the <code>exception</code> JSON that Ariadne's default error formatter returns in debug mode.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="gql"></a><a href="#gql" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>gql</code></h2>
+<pre><code class="hljs css language-python">def gql(value)
+</code></pre>
+<p>Utility function that takes GraphQL string as only argument, validates it and returns same string unchanged or raises <code>GraphQLError</code> if string was invalid.</p>
+<p>Wrapping GraphQL strings declarations with this utility will make errors easier to track down and debug, as their traceback will point to place of declaration instead of Ariadne internals:</p>
+<pre><code class="hljs css language-python">type_defs = gql(<span class="hljs-string">"""
+    type Query {
+      username: String!
+    }
+"""</span>)
+</code></pre>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="graphql"></a><a href="#graphql" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>graphql</code></h2>
+<pre><code class="hljs css language-python">async def graphql(schema, data, *, root_value=None, context_value=None, logger=None, debug=False, validation_rules, error_formatter, extensions=None, middleware, **kwargs)
+</code></pre>
+<p>Asynchronously executes query against the schema.</p>
+<p>Returns <a href="/docs/0.10.0/types-reference#graphqlresult"><code>GraphQLResult</code></a> instance.</p>
+<blockquote>
+<p>This function is an asynchronous coroutine so you will need to <code>await</code> on the returned value.</p>
+</blockquote>
+<blockquote>
+<p>Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use <a href="#graphql_sync"><code>graphql_sync</code></a> instead.</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="required-arguments-6"></a><a href="#required-arguments-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="schema-1"></a><a href="#schema-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>schema</code></h4>
+<p>An executable schema created using <a href="#make_executable_schema"><code>make_executable_schema</code></a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="data"></a><a href="#data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>data</code></h4>
+<p>Decoded input data sent by the client (eg. for POST requests in JSON format, pass in the structure decoded from JSON). Exact shape of <code>data</code> depends on the query type and protocol.</p>
+<h3><a class="anchor" aria-hidden="true" id="configuration-options"></a><a href="#configuration-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration options</h3>
+<h4><a class="anchor" aria-hidden="true" id="context_value"></a><a href="#context_value" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>context_value</code></h4>
+<p><a href="/docs/0.10.0/types-reference#contextvalue">Context value</a> to be passed to resolvers.</p>
+<blockquote>
+<p>If <code>context_value</code> is callable, it should be evaluated on higher level of abstraction (in server integration) before passing to <code>graphql()</code>.</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="root_value"></a><a href="#root_value" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>root_value</code></h4>
+<p><a href="/docs/0.10.0/types-reference#rootvalue">Root value</a> to be passed to root resolvers.</p>
+<h4><a class="anchor" aria-hidden="true" id="logger"></a><a href="#logger" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>logger</code></h4>
+<p>String with the name of logger that should be used to log GraphQL errors. Defaults to <code>ariadne</code>.</p>
+<h4><a class="anchor" aria-hidden="true" id="debug"></a><a href="#debug" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>debug</code></h4>
+<p>If <code>True</code> will cause the server to include debug information in error responses.</p>
+<h4><a class="anchor" aria-hidden="true" id="validation_rules"></a><a href="#validation_rules" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>validation_rules</code></h4>
+<p>optional additional validators (as defined by <code>graphql.validation.rules</code>) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and There's no need to provide them here).</p>
+<h4><a class="anchor" aria-hidden="true" id="extensions"></a><a href="#extensions" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>extensions</code></h4>
+<p>List of classes extending <a href="/docs/0.10.0/types-reference#extension"><code>Extension</code></a> that will be used during query processing.</p>
+<blockquote>
+<p>If <code>extensions</code> is callable, it should be evaluated on higher level of abstraction (in server integration) before passing to <code>graphql()</code>.</p>
+</blockquote>
+<h4><a class="anchor" aria-hidden="true" id="error_formatter"></a><a href="#error_formatter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>error_formatter</code></h4>
+<p><a href="/docs/0.10.0/types-reference#errorformatter">Error formatter</a> that should be used to format errors.</p>
+<p>Defaults to <a href="#format_error"><code>format_error</code></a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="middleware"></a><a href="#middleware" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>middleware</code></h4>
+<p>List of middleware that should be used during the query execution.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="graphql_sync"></a><a href="#graphql_sync" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>graphql_sync</code></h2>
+<pre><code class="hljs css language-python">def graphql(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
+</code></pre>
+<p>Synchronously executes query against schema.</p>
+<p>Returns <a href="/docs/0.10.0/types-reference#graphqlresult"><code>GraphQLResult</code></a> instance.</p>
+<blockquote>
+<p>Use this function instead of <a href="#graphql"><code>graphql</code></a> to run queries in synchronous servers (WSGI, Django, Flask).</p>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="required-arguments-7"></a><a href="#required-arguments-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h3>
+<p>See <a href="#graphql"><code>graphql</code></a> required arguments.</p>
+<h3><a class="anchor" aria-hidden="true" id="configuration-options-1"></a><a href="#configuration-options-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration options</h3>
+<p>See <a href="#graphql"><code>graphql</code></a> configuration options</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="load_schema_from_path"></a><a href="#load_schema_from_path" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>load_schema_from_path</code></h2>
+<pre><code class="hljs css language-python">def load_schema_from_path(path)
+</code></pre>
+<p>Loads GraphQL schema from <code>path</code> using different strategy depending on <code>path</code>'s type:</p>
+<ul>
+<li>If <code>path</code> is single file, reads it.</li>
+<li>If <code>path</code> is directory, walks it recursively loading all <code>.graphql</code> files within it.</li>
+</ul>
+<p>Files are validated using the same logic that <a href="#gql"><code>gql</code></a> uses, concatenated into single string and returned.</p>
+<p>Raises <a href="/docs/0.10.0/exceptions-reference#graphqlfilesyntaxerror"><code>GraphQLFileSyntaxError</code></a> if any of the loaded files contained syntax errors.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="make_executable_schema"></a><a href="#make_executable_schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>make_executable_schema</code></h2>
+<pre><code class="hljs css language-python">def make_executable_schema(type_defs, *bindables, directives=None)
+</code></pre>
+<p>Construct executable schema - GraphQL schema against which queries can be executed.</p>
+<p>Returns <code>GraphQLSchema</code> instance that can be used to run queries on.</p>
+<h3><a class="anchor" aria-hidden="true" id="required-arguments-8"></a><a href="#required-arguments-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="type_defs"></a><a href="#type_defs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>type_defs</code></h4>
+<p>string or list of strings with valid GraphQL types definitions.</p>
+<h3><a class="anchor" aria-hidden="true" id="optional-arguments-2"></a><a href="#optional-arguments-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments</h3>
+<h4><a class="anchor" aria-hidden="true" id="bindables"></a><a href="#bindables" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>bindables</code></h4>
+<p><a href="/docs/0.10.0/bindables">Bindable or list of bindables</a> with Python logic to add to schema:</p>
+<pre><code class="hljs css language-python">type_defs = ...  <span class="hljs-comment"># valid type defs string</span>
+
+<span class="hljs-comment"># Bindables can be passed as *args</span>
+schema = make_executable_schema(type_defs, query, user, datetime_scalar)
+
+<span class="hljs-comment"># ...or as list of types...</span>
+schema = make_executable_schema(type_defs, [query, user, datetime_scalar])
+
+<span class="hljs-comment"># ...or mixed!</span>
+third_party_bindables = [likes, likes_stats]
+schema = make_executable_schema(type_defs, query, user, datetime_scalar, third_party_bindables)
+</code></pre>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Passing bindables as list is supported for backwards-compatibility with Ariadne versions pre-0.8, and will be removed in future version of Ariadne. To future-proof your code, unpack lists of bindables using explicit syntax:</p>
+<pre><code class="hljs css language-python">schema = make_executable_schema(type_defs, query, user, datetime_scalar, *third_party_bindables)
+</code></pre>
+</blockquote>
+<h3><a class="anchor" aria-hidden="true" id="configuration-options-2"></a><a href="#configuration-options-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration options</h3>
+<h4><a class="anchor" aria-hidden="true" id="directives"></a><a href="#directives" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>directives</code></h4>
+<p><code>dict</code> that maps schema directives to their Python implementations. See <a href="/docs/0.10.0/schema-directives">schema directives documentation</a> for more information and examples.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="resolve_to"></a><a href="#resolve_to" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>resolve_to</code></h2>
+<pre><code class="hljs css language-python">def resolve_to(name)
+</code></pre>
+<p>Returns <a href="#default_resolver"><code>default_resolver</code></a> that always resolves to named attribute. Used to create aliases by <a href="#set_alias"><code>ObjectType.set_alias</code></a>.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="snake_case_fallback_resolvers"></a><a href="#snake_case_fallback_resolvers" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>snake_case_fallback_resolvers</code></h2>
+<pre><code class="hljs css language-python">snake_case_fallback_resolvers
+</code></pre>
+<p><a href="/docs/0.10.0/bindables"><em>Bindable</em></a> instace of <a href="#snakecasefallbackresolverssetter"><code>SnakeCaseFallbackResolversSetter</code></a>.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="subscribe"></a><a href="#subscribe" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>subscribe</code></h2>
+<pre><code class="hljs css language-python">async def subscribe(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, **kwargs)
+</code></pre>
+<p>Asynchronously executes subscription query against schema, usually made over the websocket. Takes same arguments and options as <a href="#graphql"><code>graphql</code></a> except <code>middleware</code>.</p>
+<blockquote>
+<p>This function is an asynchronous coroutine so you will need to <code>await</code> on the returned value.</p>
+</blockquote>
+<blockquote>
+<p>Coroutines will not work under WSGI. If your server uses WSGI (Django and Flask do), use <a href="#graphql_sync"><code>graphql_sync</code></a> instead.</p>
+</blockquote>
+<blockquote>
+<p>This function doesn't support <code>extensions</code> option.</p>
+</blockquote>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="unwrap_graphql_error"></a><a href="#unwrap_graphql_error" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>unwrap_graphql_error</code></h2>
+<pre><code class="hljs css language-python">def unwrap_graphql_error(error)
+</code></pre>
+<p>Unwraps <code>GraphQLError</code> recursively, returning its <code>original_error</code> attribute value until non-<code>GraphQLError</code> instance is found, or <code>original_error</code> attribute has no value.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="upload_scalar"></a><a href="#upload_scalar" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>upload_scalar</code></h2>
+<pre><code class="hljs css language-python">upload_scalar
+</code></pre>
+<p>Instance of <a href="#scalartype"><code>ScalarType</code></a> that represents uploaded file.</p>
+<p>See <a href="/docs/0.10.0/file-uploads">file uploads</a> documentation for information about <a href="/docs/0.10.0/file-uploads#limitations">limitations</a> and <a href="/docs/0.10.0/file-uploads#implementation-differences">implementation specific</a> differences in behaviour.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/0.10.0/middleware"><span class="arrow-prev">← </span><span>Middleware</span></a><a class="docs-next button" href="/docs/0.10.0/constants-reference"><span>ariadne.constants</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#enumtype"><code>EnumType</code></a><ul class="toc-headings"><li><a href="#required-arguments">Required arguments</a></li><li><a href="#example">Example</a></li></ul></li><li><a href="#fallbackresolverssetter"><code>FallbackResolversSetter</code></a><ul class="toc-headings"><li><a href="#custom-default-resolver-example">Custom default resolver example</a></li></ul></li><li><a href="#interfacetype"><code>InterfaceType</code></a><ul class="toc-headings"><li><a href="#required-arguments-1">Required arguments</a></li><li><a href="#optional-arguments">Optional arguments</a></li><li><a href="#methods">Methods</a></li><li><a href="#example-1">Example</a></li></ul></li><li><a href="#mutationtype"><code>MutationType</code></a></li><li><a href="#objecttype"><code>ObjectType</code></a><ul class="toc-headings"><li><a href="#required-arguments-2">Required arguments</a></li><li><a href="#methods-1">Methods</a></li></ul></li><li><a href="#querytype"><code>QueryType</code></a></li><li><a href="#scalartype"><code>ScalarType</code></a><ul class="toc-headings"><li><a href="#required-arguments-3">Required arguments</a></li><li><a href="#methods-2">Methods</a></li><li><a href="#example-2">Example</a></li></ul></li><li><a href="#schemadirectivevisitor"><code>SchemaDirectiveVisitor</code></a><ul class="toc-headings"><li><a href="#attributes">Attributes</a></li><li><a href="#methods-3">Methods</a></li></ul></li><li><a href="#snakecasefallbackresolverssetter"><code>SnakeCaseFallbackResolversSetter</code></a></li><li><a href="#subscriptiontype"><code>SubscriptionType</code></a><ul class="toc-headings"><li><a href="#methods-4">Methods</a></li><li><a href="#example-3">Example</a></li></ul></li><li><a href="#uniontype"><code>UnionType</code></a><ul class="toc-headings"><li><a href="#required-arguments-4">Required arguments</a></li><li><a href="#optional-arguments-1">Optional arguments</a></li><li><a href="#methods-5">Methods</a></li><li><a href="#example-4">Example</a></li></ul></li><li><a href="#combine_multipart_data"><code>combine_multipart_data</code></a><ul class="toc-headings"><li><a href="#required-arguments-5">Required arguments</a></li></ul></li><li><a href="#convert_camel_case_to_snake"><code>convert_camel_case_to_snake</code></a></li><li><a href="#convert_kwargs_to_snake_case"><code>convert_kwargs_to_snake_case</code></a><ul class="toc-headings"><li><a href="#example-5">Example</a></li></ul></li><li><a href="#default_resolver"><code>default_resolver</code></a></li><li><a href="#fallback_resolvers"><code>fallback_resolvers</code></a></li><li><a href="#format_error"><code>format_error</code></a></li><li><a href="#get_error_extension"><code>get_error_extension</code></a></li><li><a href="#get_formatted_error_context"><code>get_formatted_error_context</code></a></li><li><a href="#get_formatted_error_traceback"><code>get_formatted_error_traceback</code></a></li><li><a href="#gql"><code>gql</code></a></li><li><a href="#graphql"><code>graphql</code></a><ul class="toc-headings"><li><a href="#required-arguments-6">Required arguments</a></li><li><a href="#configuration-options">Configuration options</a></li></ul></li><li><a href="#graphql_sync"><code>graphql_sync</code></a><ul class="toc-headings"><li><a href="#required-arguments-7">Required arguments</a></li><li><a href="#configuration-options-1">Configuration options</a></li></ul></li><li><a href="#load_schema_from_path"><code>load_schema_from_path</code></a></li><li><a href="#make_executable_schema"><code>make_executable_schema</code></a><ul class="toc-headings"><li><a href="#required-arguments-8">Required arguments</a></li><li><a href="#optional-arguments-2">Optional arguments</a></li><li><a href="#configuration-options-2">Configuration options</a></li></ul></li><li><a href="#resolve_to"><code>resolve_to</code></a></li><li><a href="#snake_case_fallback_resolvers"><code>snake_case_fallback_resolvers</code></a></li><li><a href="#subscribe"><code>subscribe</code></a></li><li><a href="#unwrap_graphql_error"><code>unwrap_graphql_error</code></a></li><li><a href="#upload_scalar"><code>upload_scalar</code></a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/icon.png" alt="Ariadne" height="107" width="128"/></a><div class="footerNavSpacer"></div><div class="footerNavTwoColumn"><h5>Documentation</h5><a href="/docs/intro.html">Introduction</a><a href="/docs/resolvers.html">Resolvers</a><a href="/docs/mutations.html">Mutations</a><a href="/docs/subscriptions.html">Subscriptions</a><a href="/docs/django-integration.html">Django integration</a><a href="/docs/flask-integration.html">Flask integration</a><a href="/docs/starlette-integration.html">Starlette integration</a><a href="/docs/other-integrations.html">Other integrations</a><a href="/docs/api-reference.html">API Reference</a><a href="/docs/logo.html">Logo</a></div><div><h5>Community</h5><a href="https://spectrum.chat/ariadne">Spectrum</a><a href="https://github.com/mirumee/ariadne">GitHub</a><a class="github-button" href="https://github.com/mirumee/ariadne" data-icon="octicon-star" data-count-href="/mirumee/ariadne/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright"><a href="https://mirumee.com">Copyright © 2020 Mirumee Software</a><a href="https://mirumee.com">Ariadne is crafted with love by<img src="/img/mirumee.png" alt="Mirumee"/></a></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '507581234da84aebc8fe9918f530b714',
+                indexName: 'ariadnegraphql',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

@@ -1102,7 +1102,7 @@ type_defs = gql("""
 ## `graphql`
 
 ```python
-async def graphql(schema, data, *, root_value=None, context_value=None, logger=None, debug=False, validation_rules, error_formatter, extensions=None, middleware, **kwargs)
+async def graphql(schema, data, *, root_value=None, context_value=None, logger=None, debug=False, introspection=True, validation_rules, error_formatter, extensions=None, middleware, **kwargs)
 ```
 
 Asynchronously executes query against the schema.
@@ -1149,6 +1149,10 @@ String with the name of logger that should be used to log GraphQL errors. Defaul
 
 If `True` will cause the server to include debug information in error responses.
 
+#### `introspection`
+
+If `False` will prevent clients from introspecting the schema, returning an error in the response.
+
 
 #### `validation_rules`
 
@@ -1180,7 +1184,7 @@ List of middleware that should be used during the query execution.
 ## `graphql_sync`
 
 ```python
-def graphql(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
+def graphql(schema, data, *, root_value=None, context_value=None, debug=False, introspection=True, validation_rules, error_formatter, middleware, **kwargs)
 ```
 
 Synchronously executes query against schema.

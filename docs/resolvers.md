@@ -81,7 +81,7 @@ def resolve_user(_, info):
 user = ObjectType("User")
 
 @user.field("username")
-def resolve_username(obj, _*):
+def resolve_username(obj, *_):
     return f'{obj.first_name} {obj.last_name}'
 
 

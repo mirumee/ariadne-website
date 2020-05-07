@@ -264,7 +264,7 @@ def resolve_update_discussion(_, info, discussion, input):
     except ValidationError as err:
         return {
             "status": False,
-            "error: err,
+            "error": err,
         }
 ```
 

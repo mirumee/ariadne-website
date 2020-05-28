@@ -217,7 +217,7 @@ def resolve_create_discussion(_, info, input):
     except ValidationError as err:
         return {
             "status": False,
-            "error: err,
+            "error": err,
         }
 ```
 
@@ -256,7 +256,7 @@ def resolve_update_discussion(_, info, discussion, input):
     except ValidationError as err:
         return {
             "status": False,
-            "error: err,
+            "error": err,
         }
 ```
 

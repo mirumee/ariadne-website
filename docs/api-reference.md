@@ -1166,7 +1166,9 @@ If `True` will cause the server to include debug information in error responses.
 
 #### `introspection`
 
-If `False` will prevent clients from introspecting the schema, returning an error in the response.
+If `False` will prevent clients from introspecting the schema, returning an error when any of introspection fields such as `__schema` are queried.
+
+Disabling introspection will also disable the GraphQL Playground, resulting in error 405 "method not allowed" being returned for GET requests.
 
 
 #### `validation_rules`

@@ -1185,7 +1185,19 @@ List of middleware that should be used during the query execution.
 ## `graphql_sync`
 
 ```python
-def graphql(schema, data, *, root_value=None, context_value=None, debug=False, introspection=True, validation_rules, error_formatter, middleware, **kwargs)
+def graphql(
+    schema,
+    data,
+    *,
+    root_value=None,
+    context_value=None,
+    debug=False,
+    introspection=True,
+    validation_rules,
+    error_formatter,
+    middleware,
+    **kwargs
+)
 ```
 
 Synchronously executes query against schema.

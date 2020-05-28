@@ -1102,7 +1102,21 @@ type_defs = gql("""
 ## `graphql`
 
 ```python
-async def graphql(schema, data, *, root_value=None, context_value=None, logger=None, debug=False, validation_rules, error_formatter, extensions=None, middleware, **kwargs)
+async def graphql(
+    schema,
+    data,
+    *,
+    root_value=None,
+    context_value=None,
+    logger=None,
+    debug=False,
+    introspection=True,
+    validation_rules,
+    error_formatter,
+    extensions=None,
+    middleware,
+    **kwargs
+)
 ```
 
 Asynchronously executes query against the schema.
@@ -1150,6 +1164,13 @@ String with the name of logger that should be used to log GraphQL errors. Defaul
 If `True` will cause the server to include debug information in error responses.
 
 
+#### `introspection`
+
+If `False` will prevent clients from introspecting the schema, returning an error when any of introspection fields such as `__schema` are queried.
+
+Disabling introspection will also disable the GraphQL Playground, resulting in error 405 "method not allowed" being returned for GET requests.
+
+
 #### `validation_rules`
 
 optional additional validators (as defined by `graphql.validation.rules`) to run before attempting to execute the query (the standard validators defined by the GraphQL specification are always used and There's no need to provide them here).
@@ -1180,7 +1201,19 @@ List of middleware that should be used during the query execution.
 ## `graphql_sync`
 
 ```python
-def graphql(schema, data, *, root_value=None, context_value=None, debug=False, validation_rules, error_formatter, middleware, **kwargs)
+def graphql(
+    schema,
+    data,
+    *,
+    root_value=None,
+    context_value=None,
+    debug=False,
+    introspection=True,
+    validation_rules,
+    error_formatter,
+    middleware,
+    **kwargs
+)
 ```
 
 Synchronously executes query against schema.

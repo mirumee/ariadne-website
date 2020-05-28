@@ -1149,6 +1149,7 @@ String with the name of logger that should be used to log GraphQL errors. Defaul
 
 If `True` will cause the server to include debug information in error responses.
 
+
 #### `introspection`
 
 If `False` will prevent clients from introspecting the schema, returning an error in the response.

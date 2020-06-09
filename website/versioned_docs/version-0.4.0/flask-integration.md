@@ -35,7 +35,7 @@ app = Flask(__name__)
 
 
 @app.route("/graphql", methods=["GET"])
-def graphql_playgroud():
+def graphql_playground():
     # On GET request serve GraphQL Playground
     # You don't need to provide Playground if you don't want to
     # but keep on mind this will not prohibit clients from

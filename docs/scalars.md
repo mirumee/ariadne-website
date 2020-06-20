@@ -3,13 +3,91 @@ id: scalars
 title: Custom scalars
 ---
 
+GraphQL standard describes plenty of default GraphQL scalars: `Int`, `String` or `Boolean` to name a few. But what when those types are not enough for our API?
 
-Custom scalars allow you to convert your Python objects to a JSON-serializable form in query results, as well as convert those JSON forms back to Python objects when they are passed as arguments or `input` values.
+This is where custom scalars enter the stage, enabling better control on how Python objects and values are represented in GraphQL query inputs and results.
 
 
-## Example read-only scalar
+## Basic custom scalar
 
-Consider this API defining a `Story` type with a `publishedOn` field:
+The minimum work required to add custom scalar to GraphQL server is to declare it in the schema using the `scalar` keyword:
+
+```graphql
+scalar Money
+
+type Query {
+    revenue: Money
+}
+```
+
+In the above example we have declared custom scalar named `Money` and used it as an return value for `revenue` field defined on the `Query` type.
+
+What will happen now if we will return any value from our `revenue` resolver and query for it?
+
+```python
+def resolve_revenue(*_):
+    revenue = get_revenue()
+    return {"amount": revenue, "currency": DEFAULT_CURRENCY}
+```
+
+```graphql
+query {
+    revenue
+}
+```
+
+We will find that our value will be JSON-serialized:
+
+```json
+{
+    "data": {
+        "revenue": {
+            "amount": 10.5,
+            "currency": "USD"
+        }
+    }
+}
+```
+
+This is a default behaviour for custom scalars: their values are JSON-serialized when included in query results.
+
+If resolver returns value that's not JSON serializable, GraphQL server will fail while creating Query result, and will return error 500 to the client, with error similar to one below being logged by the application:
+
+```
+TypeError: Object of type date is not JSON serializable
+```
+
+If value for our scalar appears in JSON with variables, it's JSON representation will parsed. Likewise, if value appears within query, its AST (abstract syntax tree) representation will be automatically converted to matching Python representation:
+
+```graphql
+scalar Money
+
+type Query {
+    revenue: Money
+}
+
+type Mutation {
+    postSale(price: Money!, ref: String!): Boolean
+}
+```
+
+```graphql
+mutation PostSale {
+    postSale(price: {amount: 9.99, currency: "USD"}, "usd-2412")
+}
+```
+
+```python
+def resolve_post_sale(*_, price, ref):
+    repr(price)  # {'amount': 9.99, 'currency': 'USD'}
+```
+
+If JSON with varibles or Query AST is incorrect the server will return `400 BAD REQUEST` and will not attempt to execute query.
+
+
+## Customizing scalar serialization
+
+Consider this API defining the `Story` type with the `publishedOn` field thats date of story publication:
 
 ```graphql
 type Story {
@@ -38,25 +116,25 @@ However, the developer now has to remember to define a custom resolver for every
 Instead, GraphQL API can be told how to serialize dates by defining the custom scalar type:
 
 ```graphql
+scalar Datetime
+
 type Story {
     content: String
     publishedOn: Datetime
 }
-
-scalar Datetime
 ```
 
-If you try to query this field now, you will get an error:
+If you try to query this field now, the server will crash with error 500 and following error will be logged:
 
-```json
-{
-    "error": "Unexpected token A in JSON at position 0"
-}
+```
+TypeError: Object of type date is not JSON serializable
 ```
 
 This is because a custom scalar has been defined, but it's currently missing logic for serializing Python values to JSON form and `Datetime` instances are not JSON serializable by default.
 
-We need to add a special serializing resolver to our `Datetime` scalar that will implement the logic we are expecting. Ariadne provides the `ScalarType` class that enables just that:
+We need to tell our GraphQL server how `Datetime` scalar values should be converted in order for them to be JSON serializable.
+
+Ariadne provides the `ScalarType` class that enables us to implement this behaviour using Python function:
 
 ```python
 from ariadne import ScalarType
@@ -68,7 +146,13 @@ def serialize_datetime(value):
     return value.isoformat()
 ```
 
-Include the `datetime_scalar` in the list of `resolvers` passed to your GraphQL server. Custom serialization logic will now be used when a resolver for the `Datetime` field returns a value other than `None`:
+Now we need to include the `datetime_scalar` on the executable schema creation:
+
+```python
+schema = make_executable_schema(type_defs, some_type, some_other_type, datetime_scalar)
+```
+
+Custom serialization logic will now be used when a resolver for the `Datetime` field returns a value other than `None`:
 
 ```json
 {
@@ -94,61 +178,54 @@ def resolve_stories(*_, **data):
     print(data.get("publishedOn"))  # what value will "publishedOn" be?
 ```
 
-`data.get("publishedOn")` will print whatever value was passed to the argument, coerced to the respective Python type. For some scalars this may do the trick, but for this one it's expected that input gets converted back to the `datetime` instance.
+`data.get("publishedOn")` will print a result of JSON parsing whatever value was passed to the field. It may be a string with ISO 8601 representation of date but it may also be an integer, float, or some complex type like dict or list.
 
-To turn our *read-only* scalar into *bidirectional* scalar, we will need to add two functions to the `ScalarType` that was created in the previous step:
-
-- `value_parser(value)` that will be used when the scalar value is passed as part of query `variables`.
-- `literal_parser(ast)` that will be used when the scalar value is passed as part of query content (e.g. `{ stories(publishedOn: "2018-10-26T17:45:08.805278") { ... } }`).
-
-Those functions can be implemented as such:
+We will need to add custom parsing logic on top of whatever JSON and GraphQL parsers are doing in order for our scalar to be helpful. To do that, we will need to implement another Python function called _"value parser"_ and use `ScalarType` that was created in the previous step to make GraphQL server use it for parsing incoming value:
 
 ```python
 @datetime_scalar.value_parser
 def parse_datetime_value(value):
     # dateutil is provided by python-dateutil library
-    if value:
-        return dateutil.parser.parse(value)
-
-@datetime_scalar.literal_parser
-def parse_datetime_literal(ast):
-    value = str(ast.value)
-    return parse_datetime_value(value)  # reuse logic from parse_value
+    return dateutil.parser.parse(value)
 ```
 
 There are a few things happening in the above code, so let's go through it step by step:
 
-If the `value` is passed as part of a query's `variables`, it's passed to `parse_datetime_value`.
+1. If the `value` is passed as part of a query's `variables`, `parse_datetime_value` will be called with it as only argument, but only if its not `null`.
+2. `dateutil.parser.parse` is used to parse it to the valid Python `datetime` object instance that is then returned.
+3. If `value` is incorrect and either a `ValueError` or `TypeError` exception is raised by the `dateutil.parser.parse`.
 
-If the `value` is not empty, `dateutil.parser.parse` is used to parse it to the valid Python `datetime` object instance that is then returned.
-
-If `value` is incorrect and either a `ValueError` or `TypeError` exception is raised by the `dateutil.parser.parse`, the GraphQL server interprets this as a sign that the entered value is incorrect because it can't be transformed to an internal representation and returns an automatically generated error message to the client that consists of two parts:
-
-- A message from GraphQL: `Expected type Datetime!, found "invalid string"`
-- The internal exception message: `time data 'invalid string' does not match format '%Y-%m-%d'`
-
-The complete error message returned by the API will look like this: 
+If error was raised, the GraphQL server interprets this as a sign that the entered value is incorrect because it can't be transformed to an internal representation and returns an automatically generated error message to the client:
 
 ```
-Expected type Datetime!, found "invalid string"; time data 'invalid string' does not match format '%Y-%m-%d'
+Expected type Datetime!, found "invalid string": time data 'invalid string' does not match format '%Y-%m-%d'
 ```
 
-> You can raise either `ValueError` or `TypeError` in your parsers.
+An error will also be logged:
 
-> Because the error message returned by the GraphQL server includes the original exception message from your Python code, it may contain details specific to your system or implementation that you may not want to make known to the API consumers. You may decide to catch the original exception with `except (ValueError, TypeError)` and then raise your own `ValueError` with a custom message (or no message at all) to prevent this from happening.
+```
+time data 'invalid string' does not match format '%Y-%m-%d'
+```
 
-If a value is specified as part of query content, its `ast` node is instead passed to `parse_datetime_literal` to give the scalar a chance to introspect the type of the node (implementations for those be found [here](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/language/ast.py#L344)).
+Because the error message returned by the GraphQL server includes the original exception message from your Python code, it may contain details specific to your system or implementation that you may not want to make known to the API consumers. You may decide to catch the original exception with `except (ValueError, TypeError)` and then raise your own `ValueError` with a custom message (or no message at all) to prevent this from happening:
 
-Logic implemented in the `parse_datetime_literal` may be completely different from that in the `parse_datetime_value`, however, in this example the `ast` node is simply unpacked, coerced to `str` and then passed to `parse_datetime_value`, reusing the parsing logic.
+```python
+@datetime_scalar.value_parser
+def parse_datetime_value(value):
+    try:
+        return dateutil.parser.parse(value)
+    except (ValueError, TypeError):
+        raise ValueError(f'"{value}" is not a valid ISO 8601 string')
+```
 
-> Defining a `literal_parser` that only calls `value_parser` with `ast.value` is optional. Ariadne will create one for you when you set the scalar's value parser and there's no literal parser already set.
+> There is no difference in handling between `ValueError` and `TypeError`. Both will produce the same error message in Query result.
 
 
 ## Configuration reference
 
 In addition to the decorators documented above, `ScalarType` provides two more ways for configuring its logic.
 
-You can pass your functions as values to `serializer`, `value_parser` and `literal_parser` keyword arguments on instantiation:
+You can pass your functions as values to `serializer`, `value_parser` keyword arguments on instantiation:
 
 ```python
 from ariadne import ScalarType
@@ -157,7 +234,7 @@ from thirdpartylib import json_serialize_money, json_deserialize_money
 money = ScalarType("Money", serializer=json_serialize_money, value_parser=json_deserialize_money)
 ```
 
-Alternatively you can use `set_serializer`, `set_value_parser` and `set_literal_parser` setters:
+Alternatively you can use `set_serializer`, `set_value_parser` setters:
 
 ```python
 from ariadne import ScalarType
@@ -166,5 +243,8 @@ from thirdpartylib import json_serialize_money, json_deserialize_money
 money = ScalarType("Money")
 money.set_serializer(json_serialize_money)
 money.set_value_parser(json_deserialize_money)
-money.set_literal_parser(json_deserialize_money)
 ```
+
+> **Note:** the previous versions of this document also introduced the `literal_parser`. However in the light of `literal_parser` [reference documentation being incorrect](https://github.com/graphql/graphql-js/issues/2567) and the very usefulness of custom literal parsers [being discussed](https://github.com/graphql/graphql-js/issues/2657) we've decided to don't document it here anymore.
+>
+> GraphQL query executor provides default literal parser for all scalars that converts `AST` to Python value then calls scalar's value parser with it, making implementation of custom literal parsers for scalars unnecessary.

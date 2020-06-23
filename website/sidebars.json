@@ -35,7 +35,8 @@
     ],
     "Extensions": [
       "extensions",
-      "middleware"
+      "middleware",
+      "query-validators"
     ],
     "API reference": [
       "api-reference",

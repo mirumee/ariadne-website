@@ -109,9 +109,19 @@ application = URLRouter([
 > Use asynchronous ORM such as [Gino](https://github.com/fantix/gino) for database queries in your resolvers.
 
 
-## `Date` and `Datetime` scalars
+## ModelField Scalars
 
-For convenience Ariadne also provides `Date` and `DateTime` scalar implementations that can be used to represent Django dates and datetimes in form understood by JS date and time handling libraries like [Moment.js](https://momentjs.com/).
+For your convenience, Ariadne provides `Date`, `DateTime`, `Decimal`, and `UUID` scalars.
+
+### Decimal Scalar
+
+The `Decimal` scalar implementation allows for conversion of strings to decimal types for usage in fixed point 
+arithmetic.  Django provides a set of customizable settings for configuring decimal parsing 
+(e.g. `USE_THOUSANDS_SEPARATOR`). 
+
+### `Date` and `Datetime` scalars
+
+The `Date` and `DateTime` scalar implementations that can be used to represent Django dates and datetimes in form understood by JS date and time handling libraries like [Moment.js](https://momentjs.com/).
 
 > Scalars have dependency on [dateutil library](https://github.com/dateutil/dateutil).
 

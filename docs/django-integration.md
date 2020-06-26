@@ -131,3 +131,51 @@ type_defs = """
 
 schema = make_executable_schema(type_defs, [date_scalar, datetime_scalar, ...])
 ```
+
+
+## Mutation Helpers
+### Resolvers leveraging Django REST Framework's ModelSerializers
+
+Django REST Framework's serializers offer a consistent, easy to use interface to perform input validation to perform create, update, and delete operations.
+Ariadne provides an out of the box integration that allows you to quickly build mutations atop ModelSerializer instances.
+
+```shell script
+class DummyMutationResolver(SerializerMutationResolver):
+    serializer_class = DummySerializer
+    partial = True
+    model_lookup_field = "id"
+
+    def get_queryset(self):
+        return DummyModel.objects.all()
+
+    def __call__(self, info, input, *args, **kwargs):
+        mutated_object = DummyMutationResolver(info=info, input=input).create_or_update()
+        return mutated_object
+
+
+class DummyDeletionResolver(SerializerMutationResolver):
+    serializer_class = DummySerializer
+    partial = True
+    model_lookup_field = "id"
+
+    def get_queryset(self):
+        return DummyModel.objects.all()
+
+    def __call__(self, info, input, *args, **kwargs):
+        deleted_object = DummyMutationResolver(info=info, input=input).delete()
+        return deleted_object
+```
+
+This has been designed to roughly follow the rest framework's ModelViewSet API.
+
+#### Configurables
+- The partial field allows you to set partial on the serializer class when it is invoked (default: False)
+- serializer_class: The class of the serializer to use to perform operations with
+- model_lookup_field: The field we should lookup by to get an instance for update/delete (default: "id")
+
+#### Overridable functions
+
+- You *must* always override get_queryset.
+- Override get_context to allow for additional context variables, which can be used for populating ValueFromContext fields.
+- Override perform_create_or_update if you need a hook when create/update is called for additional behaviors.
+- Override perform_destroy if you need a hook when delete is called for additional behaviors.

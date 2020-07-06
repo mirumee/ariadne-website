@@ -245,6 +245,6 @@ money.set_serializer(json_serialize_money)
 money.set_value_parser(json_deserialize_money)
 ```
 
-> **Note:** the previous versions of this document also introduced the `literal_parser`. However in the light of `literal_parser` [reference documentation being incorrect](https://github.com/graphql/graphql-js/issues/2567) and the very usefulness of custom literal parsers [being discussed](https://github.com/graphql/graphql-js/issues/2657) we've decided to don't document it here anymore.
+> **Note:** the previous versions of this document also introduced the `literal_parser`. However in the light of `literal_parser` [reference documentation being incorrect](https://github.com/graphql/graphql-js/issues/2567) and the usefulness of custom literal parsers [being discussed](https://github.com/graphql/graphql-js/issues/2657) we've decided to no longer document it in this section.
 >
 > GraphQL query executor provides default literal parser for all scalars that converts `AST` to Python value then calls scalar's value parser with it, making implementation of custom literal parsers for scalars unnecessary.

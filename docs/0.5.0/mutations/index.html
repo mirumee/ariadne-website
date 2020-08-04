@@ -213,23 +213,23 @@ mutation.set_field(<span class="hljs-string">"logout"</span>, auth_mutations.res
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Now, when client wants to create a new discussion, they need to provide an <code>input</code> object that matches the <code>DiscussionInput</code> definition. This input will then be validated and passed to the mutation's resolver as dict available under the <code>input</code> keyword argument:</p>
-<pre><code class="hljs css language-python">def resolve_create_discussion(_, info, input):
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_create_discussion</span><span class="hljs-params">(_, info, input)</span>:</span>
     clean_input = {
-        "category": input["category"],
-        "title": input["title"],
-        "is_announcement": input.get("isAnnouncement"),
-        "is_closed": input.get("isClosed"),
+        <span class="hljs-string">"category"</span>: input[<span class="hljs-string">"category"</span>],
+        <span class="hljs-string">"title"</span>: input[<span class="hljs-string">"title"</span>],
+        <span class="hljs-string">"is_announcement"</span>: input.get(<span class="hljs-string">"isAnnouncement"</span>),
+        <span class="hljs-string">"is_closed"</span>: input.get(<span class="hljs-string">"isClosed"</span>),
     }
 
-    try:
-        return {
-            "status": True,
-            "discussion": create_new_discussion(info.context, clean_input),
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">"status"</span>: <span class="hljs-literal">True</span>,
+            <span class="hljs-string">"discussion"</span>: create_new_discussion(info.context, clean_input),
         }
-    except ValidationError as err:
-        return {
-            "status": False,
-            "error: err,
+    <span class="hljs-keyword">except</span> ValidationError <span class="hljs-keyword">as</span> err:
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">"status"</span>: <span class="hljs-literal">False</span>,
+            <span class="hljs-string">"error"</span>: err,
         }
 </code></pre>
 <p>Another advantage of <code>input</code> types is that they are reusable. If we later decide to implement another mutation for updating the <code>Discussion</code>, we can do it like this:</p>
@@ -246,23 +246,23 @@ mutation.set_field(<span class="hljs-string">"logout"</span>, auth_mutations.res
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Our <code>updateDiscussion</code> mutation will now accept two arguments: <code>discussion</code> and <code>input</code>:</p>
-<pre><code class="hljs css language-python">def resolve_update_discussion(_, info, discussion, input):
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_update_discussion</span><span class="hljs-params">(_, info, discussion, input)</span>:</span>
     clean_input = {
-        "category": input["category"],
-        "title": input["title"],
-        "is_announcement": input.get("isAnnouncement"),
-        "is_closed": input.get("isClosed"),
+        <span class="hljs-string">"category"</span>: input[<span class="hljs-string">"category"</span>],
+        <span class="hljs-string">"title"</span>: input[<span class="hljs-string">"title"</span>],
+        <span class="hljs-string">"is_announcement"</span>: input.get(<span class="hljs-string">"isAnnouncement"</span>),
+        <span class="hljs-string">"is_closed"</span>: input.get(<span class="hljs-string">"isClosed"</span>),
     }
 
-    try:
-        return {
-            "status": True,
-            "discussion": update_discussion(info.context, discussion, clean_input),
+    <span class="hljs-keyword">try</span>:
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">"status"</span>: <span class="hljs-literal">True</span>,
+            <span class="hljs-string">"discussion"</span>: update_discussion(info.context, discussion, clean_input),
         }
-    except ValidationError as err:
-        return {
-            "status": False,
-            "error: err,
+    <span class="hljs-keyword">except</span> ValidationError <span class="hljs-keyword">as</span> err:
+        <span class="hljs-keyword">return</span> {
+            <span class="hljs-string">"status"</span>: <span class="hljs-literal">False</span>,
+            <span class="hljs-string">"error"</span>: err,
         }
 </code></pre>
 <p>You may wonder why you would want to use <code>input</code> instead of reusing already defined type. This is because input types provide some guarantees that regular objects don't: they are serializable, and they don't implement interfaces or unions. However, input fields are not limited to scalars. You can create fields that are lists, or even reference other inputs:</p>

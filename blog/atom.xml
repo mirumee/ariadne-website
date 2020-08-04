@@ -2,12 +2,26 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2020-04-01T06:00:00Z</updated>
+    <updated>2020-08-04T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne 0.12.0]]></title>
+        <id>https://ariadnegraphql.org/blog/2020/08/04/ariadne-0-12-0.html</id>
+        <link href="https://ariadnegraphql.org/blog/2020/08/04/ariadne-0-12-0.html">
+        </link>
+        <updated>2020-08-04T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>This one took us a while, but Ariadne 0.12 is now available!</p>
+<p>Ariadne 0.12 is a feature release that adds support for custom query validators, adds query cost validator that enables developers to limit maximum complexity of GraphQL query that can be executed by the server, and adds an option for disabling the GraphQL introspection and the GraphQL Playground IDE on servers.</p>
+<p>This release also locks required GraphQL core version at 3.0. Support for 3.1 is coming in future version.</p>
+<p>Finally, this release also adds <code>extensions</code> support to the Django view, and fixes a reported bug in <code>ScalarType</code> default <code>parse_literal</code> producing an error when GraphQL query contained both literal and query variables.</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.11.0]]></title>
         <id>https://ariadnegraphql.org/blog/2020/04/01/ariadne-0-11-0.html</id>

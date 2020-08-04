@@ -126,7 +126,7 @@ query = ObjectType(<span class="hljs-string">"Query"</span>)
 user = ObjectType(<span class="hljs-string">"User"</span>)
 
 <span class="hljs-meta">@user.field("username")</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_username</span><span class="hljs-params">(obj, _*)</span>:</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_username</span><span class="hljs-params">(obj, *_)</span>:</span>
     <span class="hljs-keyword">return</span> f`{obj.first_name} {obj.last_name}`
 
 

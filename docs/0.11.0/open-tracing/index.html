@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>OpenTracing · Ariadne</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Ariadne provides an extension that implements the &lt;a href=&quot;https://opentracing.io/&quot;&gt;OpenTracing&lt;/a&gt; specification, making it easy to monitor GraphQL API performance and errors using popular APM tools like &lt;a href=&quot;https://www.datadoghq.com/&quot;&gt;Datadog&lt;/a&gt; or &lt;a href=&quot;https://www.jaegertracing.io/&quot;&gt;Jaeger&lt;/a&gt;.&lt;/p&gt;
+"/><meta name="docsearch:version" content="0.11.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="OpenTracing · Ariadne"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ariadnegraphql.org/"/><meta property="og:description" content="&lt;p&gt;Ariadne provides an extension that implements the &lt;a href=&quot;https://opentracing.io/&quot;&gt;OpenTracing&lt;/a&gt; specification, making it easy to monitor GraphQL API performance and errors using popular APM tools like &lt;a href=&quot;https://www.datadoghq.com/&quot;&gt;Datadog&lt;/a&gt; or &lt;a href=&quot;https://www.jaegertracing.io/&quot;&gt;Jaeger&lt;/a&gt;.&lt;/p&gt;
+"/><meta property="og:image" content="https://ariadnegraphql.org/img/share-image.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ariadnegraphql.org/img/twitter-image.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ariadnegraphql.org/blog/atom.xml" title="Ariadne Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ariadnegraphql.org/blog/feed.xml" title="Ariadne Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-10159761-23', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><a href="/versions"><h3>0.11.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/docs/0.11.0/intro" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/community" target="_self">Community</a></li><li class=""><a href="https://github.com/mirumee/ariadne" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Monitoring</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/resolvers">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/mutations">Mutations</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/error-messaging">Error messaging</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/scalars">Custom scalars</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/enums">Enumeration types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/unions">Union types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/interfaces">Interface types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/subscriptions">Subscriptions</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/file-uploads">File uploads</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/documenting-schema">Documenting schema</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/modularization">Modularization</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/bindables">Bindables</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/schema-directives">Schema directives</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/local-development">Local development</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/logging">Logging</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/apollo-federation">Apollo Federation</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Monitoring</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/apollo-tracing">Apollo Tracing</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/0.11.0/open-tracing">OpenTracing</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Servers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/asgi">ASGI application</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/wsgi">WSGI application</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/django-integration">Django</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/flask-integration">Flask</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/starlette-integration">Starlette</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/other-integrations">Other technologies</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extensions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/extensions">Extension system</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/middleware">Middleware</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/api-reference">ariadne</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/constants-reference">ariadne.constants</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/exceptions-reference">ariadne.exceptions</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/types-reference">ariadne.types</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/logo">Ariadne logo</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">OpenTracing</h1></header><article><div><span><p>Ariadne provides an extension that implements the <a href="https://opentracing.io/">OpenTracing</a> specification, making it easy to monitor GraphQL API performance and errors using popular APM tools like <a href="https://www.datadoghq.com/">Datadog</a> or <a href="https://www.jaegertracing.io/">Jaeger</a>.</p>
+<blockquote>
+<p><strong>Note:</strong> for performance reasons OpenTracing extension excludes default resolvers.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="enabling-opentracing-in-the-api"></a><a href="#enabling-opentracing-in-the-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enabling OpenTracing in the API</h2>
+<p>To enable OpenTracing in your API, import the <code>OpenTracingExtension</code> class from <code>ariadne.contrib.tracing.opentracing</code> and pass it to your server <code>extensions</code> option:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne.contrib.tracing.opentracing <span class="hljs-keyword">import</span> OpenTracingExtension
+
+app = GraphQL(
+    schema,
+    debug=<span class="hljs-literal">True</span>,
+    extensions=[OpenTracingExtension],
+)
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> If using WSGI, use <code>OpenTracingExtensionSync</code> in place of <code>OpenTracingExtension</code>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Note:</strong> If you don't have OpenTracing already configured in your project, you will need to install the <a href="https://github.com/opentracing/opentracing-python"><code>opentracing-python</code></a> package and <a href="https://opentracing.io/guides/python/tracers/">configure tracer</a> for your APM solution.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="sanitizing-sensitive-arguments-data"></a><a href="#sanitizing-sensitive-arguments-data" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Sanitizing sensitive arguments data</h2>
+<p>By default all arguments are sent to the APM service. If your API fields have arguments for sensitive data like passwords or tokens, you will need to sanitize those before sending tracking data to the service.</p>
+<p><code>OpenTracingExtension</code> has single configuration option named <code>arg_filter</code>, that can be a function that extension will call with the copy of the dict of arguments previously passed to field's resolver.</p>
+<p>Because extension instances are created per request, <code>OpenTracingExtension</code> can't be instantiated inside the <code>extensions</code>. Instead Ariadne provides <code>opentracing_extension</code> utility that creates partial function that initializes the <code>OpenTracingExtension</code> with <code>arg_filter</code> option per request.</p>
+<p>Here is an example defining custom sanitizing function named <code>my_arg_filter</code> and using <code>opentracing_extension</code> to enable OpenTracing with it:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne.contrib.tracing <span class="hljs-keyword">import</span> opentracing_extension
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_arg_filter</span><span class="hljs-params">(args, info)</span>:</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-string">"password"</span> <span class="hljs-keyword">in</span> args:
+        args[<span class="hljs-string">"password"</span>] = <span class="hljs-string">"[redacted]"</span>
+    <span class="hljs-keyword">if</span> <span class="hljs-string">"secret"</span> <span class="hljs-keyword">in</span> args:
+        args[<span class="hljs-string">"password"</span>] = <span class="hljs-string">"[redacted]"</span>
+    <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> args.items():
+        <span class="hljs-keyword">if</span> isinstance(value, dict):
+            args[key] = my_arg_filter(value)
+        <span class="hljs-keyword">if</span> isinstance(value, list):
+            args[key] = [my_arg_filter(v) <span class="hljs-keyword">for</span> v <span class="hljs-keyword">in</span> value]
+    <span class="hljs-keyword">return</span> args
+
+
+schema = make_executable_schema(type_def, [query, mutation])
+app = GraphQL(
+    schema,
+    debug=<span class="hljs-literal">True</span>,
+    extensions=[
+        opentracing_extension(arg_filter=my_arg_filter),
+    ],
+)
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> If you are using WSGI, use <code>opentracing_extension_sync</code> in place of <code>opentracing_extension</code>.</p>
+</blockquote>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/0.11.0/apollo-tracing"><span class="arrow-prev">← </span><span>Apollo Tracing</span></a><a class="docs-next button" href="/docs/0.11.0/asgi"><span>ASGI application</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#enabling-opentracing-in-the-api">Enabling OpenTracing in the API</a></li><li><a href="#sanitizing-sensitive-arguments-data">Sanitizing sensitive arguments data</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/icon.png" alt="Ariadne" height="107" width="128"/></a><div class="footerNavSpacer"></div><div class="footerNavTwoColumn"><h5>Documentation</h5><a href="/docs/intro.html">Introduction</a><a href="/docs/resolvers.html">Resolvers</a><a href="/docs/mutations.html">Mutations</a><a href="/docs/subscriptions.html">Subscriptions</a><a href="/docs/django-integration.html">Django integration</a><a href="/docs/flask-integration.html">Flask integration</a><a href="/docs/starlette-integration.html">Starlette integration</a><a href="/docs/other-integrations.html">Other integrations</a><a href="/docs/api-reference.html">API Reference</a><a href="/docs/logo.html">Logo</a></div><div><h5>Community</h5><a href="https://spectrum.chat/ariadne">Spectrum</a><a href="https://github.com/mirumee/ariadne">GitHub</a><a class="github-button" href="https://github.com/mirumee/ariadne" data-icon="octicon-star" data-count-href="/mirumee/ariadne/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright"><a href="https://mirumee.com">Copyright © 2020 Mirumee Software</a><a href="https://mirumee.com">Ariadne is crafted with love by<img src="/img/mirumee.png" alt="Mirumee"/></a></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '507581234da84aebc8fe9918f530b714',
+                indexName: 'ariadnegraphql',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

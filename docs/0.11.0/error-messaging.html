@@ -1,0 +1,180 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Error messaging · Ariadne</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;If you&#x27;ve experimented with GraphQL, you should be familiar that when things don&#x27;t go according to plan, GraphQL servers include an additional key &lt;code&gt;errors&lt;/code&gt; in the returned response:&lt;/p&gt;
+"/><meta name="docsearch:version" content="0.11.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Error messaging · Ariadne"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ariadnegraphql.org/"/><meta property="og:description" content="&lt;p&gt;If you&#x27;ve experimented with GraphQL, you should be familiar that when things don&#x27;t go according to plan, GraphQL servers include an additional key &lt;code&gt;errors&lt;/code&gt; in the returned response:&lt;/p&gt;
+"/><meta property="og:image" content="https://ariadnegraphql.org/img/share-image.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ariadnegraphql.org/img/twitter-image.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ariadnegraphql.org/blog/atom.xml" title="Ariadne Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ariadnegraphql.org/blog/feed.xml" title="Ariadne Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-10159761-23', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><a href="/versions"><h3>0.11.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/docs/0.11.0/intro" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/community" target="_self">Community</a></li><li class=""><a href="https://github.com/mirumee/ariadne" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Docs</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/resolvers">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/mutations">Mutations</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/0.11.0/error-messaging">Error messaging</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/scalars">Custom scalars</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/enums">Enumeration types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/unions">Union types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/interfaces">Interface types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/subscriptions">Subscriptions</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/file-uploads">File uploads</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/documenting-schema">Documenting schema</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/modularization">Modularization</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/bindables">Bindables</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/schema-directives">Schema directives</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/local-development">Local development</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/logging">Logging</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/apollo-federation">Apollo Federation</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Monitoring</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/apollo-tracing">Apollo Tracing</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/open-tracing">OpenTracing</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Servers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/asgi">ASGI application</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/wsgi">WSGI application</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/django-integration">Django</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/flask-integration">Flask</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/starlette-integration">Starlette</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/other-integrations">Other technologies</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extensions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/extensions">Extension system</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/middleware">Middleware</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/api-reference">ariadne</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/constants-reference">ariadne.constants</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/exceptions-reference">ariadne.exceptions</a></li><li class="navListItem"><a class="navItem" href="/docs/0.11.0/types-reference">ariadne.types</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.11.0/logo">Ariadne logo</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Error messaging</h1></header><article><div><span><p>If you've experimented with GraphQL, you should be familiar that when things don't go according to plan, GraphQL servers include an additional key <code>errors</code> in the returned response:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"errors"</span>: [
+        {
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Variable \"$input\" got invalid value {}.\nIn field \"name\": Expected \"String!\", found null."</span>,
+            <span class="hljs-attr">"locations"</span>: [
+                {
+                    <span class="hljs-attr">"line"</span>: <span class="hljs-number">1</span>,
+                    <span class="hljs-attr">"column"</span>: <span class="hljs-number">21</span>
+                }
+            ]
+        }
+    ]
+}
+</code></pre>
+<p>Your first instinct when planning error messaging may be to use this approach to communicate custom errors (like permission or validation errors) raised by your resolvers.</p>
+<p><strong>Don't do this.</strong></p>
+<p>The <code>errors</code> key is, by design, supposed to relay errors to other developers working with the API. Messages present under this key are technical in nature and shouldn't be displayed to your end users.</p>
+<p>Instead, you should define custom fields that your queries and mutations will include in result sets, to relay eventual errors and problems to clients, like this:</p>
+<pre><code class="hljs css language-python">type_def = <span class="hljs-string">"""
+    type Mutation {
+        login(username: String!, password: String!) {
+            error: String
+            user: User
+        }
+    }
+"""</span>
+</code></pre>
+<p>Depending on success or failure, your mutation resolver may return either an <code>error</code> message to be displayed to the user, or <code>user</code> that has been logged in. Your API result-handling logic may then interpret the response based on the content of those two keys, only falling back to the main <code>errors</code> key to make sure there wasn't an error in query syntax, connection or application.</p>
+<p>Likewise, your <code>Query</code> resolvers may return a requested object or <code>None</code> that will then cause a message such as &quot;Requested item doesn't exist or you don't have permission to see it&quot; to be displayed to the user in place of the requested resource.</p>
+<h2><a class="anchor" aria-hidden="true" id="debugging-errors"></a><a href="#debugging-errors" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Debugging errors</h2>
+<p>By default individual <code>errors</code> elements contain a very limited amount of information about errors occurring inside the resolvers, forcing a developer to search an application's logs for details about the error's possible causes.</p>
+<p>Developer experience can be improved by including <code>debug=True</code> in the list of arguments passed to Ariadne's <code>GraphQL</code> object:</p>
+<pre><code class="hljs css language-python">app = GraphQL(schema, debug=<span class="hljs-literal">True</span>)
+</code></pre>
+<p>This will result in each error having an additional <code>exception</code> key containing both a complete stacktrace and current context for which the error has occurred:</p>
+<pre><code class="hljs css language-json">{
+    <span class="hljs-attr">"errors"</span>: [
+        {
+            <span class="hljs-attr">"message"</span>: <span class="hljs-string">"'dict' object has no attribute 'build_name'"</span>,
+            <span class="hljs-attr">"locations"</span>: [
+                [
+                    <span class="hljs-number">3</span>,
+                    <span class="hljs-number">5</span>
+                ]
+            ],
+            <span class="hljs-attr">"path"</span>: [
+                <span class="hljs-string">"people"</span>,
+                <span class="hljs-number">0</span>,
+                <span class="hljs-string">"fullName"</span>
+            ],
+            <span class="hljs-attr">"extensions"</span>: {
+                <span class="hljs-attr">"exception"</span>: {
+                    <span class="hljs-attr">"stacktrace"</span>: [
+                        <span class="hljs-string">"Traceback (most recent call last):"</span>,
+                        <span class="hljs-string">"  File \"/Users/lib/python3.6/site-packages/graphql/execution/execute.py\", line 619, in resolve_field_value_or_error"</span>,
+                        <span class="hljs-string">"    result = resolve_fn(source, info, **args)"</span>,
+                        <span class="hljs-string">"  File \"myapp.py\", line 40, in resolve_person_fullname"</span>,
+                        <span class="hljs-string">"    return get_person_fullname(person)"</span>,
+                        <span class="hljs-string">"  File \"myapp.py\", line 47, in get_person_fullname"</span>,
+                        <span class="hljs-string">"    return person.build_name()"</span>,
+                        <span class="hljs-string">"AttributeError: 'dict' object has no attribute 'build_name'"</span>
+                    ],
+                    <span class="hljs-attr">"context"</span>: {
+                        <span class="hljs-attr">"person"</span>: <span class="hljs-string">"{'firstName': 'John', 'lastName': 'Doe', 'age': 21}"</span>
+                    }
+                }
+            }
+        }
+    ]
+}
+</code></pre>
+<h2><a class="anchor" aria-hidden="true" id="replacing-default-error-formatter"></a><a href="#replacing-default-error-formatter" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Replacing default error formatter</h2>
+<p>The default error formatter used by Ariadne performs the following tasks:</p>
+<ul>
+<li>Formats error by using its <code>formatted</code> property.</li>
+<li>Recursively unwraps the <code>GraphQL</code> error by accessing its <code>original_error</code> property.</li>
+<li>If the unwrapped error is available and the <code>debug</code> argument is set to <code>True</code>, update the already formatted error to also include an <code>extensions</code> entry with an <code>exception</code> dictionary containing <code>stacktrace</code> and <code>context</code>.</li>
+</ul>
+<p>If you wish to change or customize this behavior, you can define a custom function in the <code>error_formatter</code> argument to a <code>GraphQL</code> object:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> format_error
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_format_error</span><span class="hljs-params">(error: GraphQLError, debug: bool = False)</span> -&gt; dict:</span>
+    <span class="hljs-keyword">if</span> debug:
+        <span class="hljs-comment"># If debug is enabled, reuse Ariadne's formatting logic (not required)</span>
+        <span class="hljs-keyword">return</span> format_error(error, debug)
+
+    <span class="hljs-comment"># Create formatted error data</span>
+    formatted = error.formatted
+    <span class="hljs-comment"># Replace original error message with custom one</span>
+    formatted[<span class="hljs-string">"message"</span>] = <span class="hljs-string">"INTERNAL SERVER ERROR"</span>
+    <span class="hljs-keyword">return</span> formatted
+
+app = GraphQL(schema, error_formatter=my_format_error)
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/0.11.0/mutations"><span class="arrow-prev">← </span><span>Mutations</span></a><a class="docs-next button" href="/docs/0.11.0/scalars"><span>Custom scalars</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#debugging-errors">Debugging errors</a></li><li><a href="#replacing-default-error-formatter">Replacing default error formatter</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/icon.png" alt="Ariadne" height="107" width="128"/></a><div class="footerNavSpacer"></div><div class="footerNavTwoColumn"><h5>Documentation</h5><a href="/docs/intro.html">Introduction</a><a href="/docs/resolvers.html">Resolvers</a><a href="/docs/mutations.html">Mutations</a><a href="/docs/subscriptions.html">Subscriptions</a><a href="/docs/django-integration.html">Django integration</a><a href="/docs/flask-integration.html">Flask integration</a><a href="/docs/starlette-integration.html">Starlette integration</a><a href="/docs/other-integrations.html">Other integrations</a><a href="/docs/api-reference.html">API Reference</a><a href="/docs/logo.html">Logo</a></div><div><h5>Community</h5><a href="https://spectrum.chat/ariadne">Spectrum</a><a href="https://github.com/mirumee/ariadne">GitHub</a><a class="github-button" href="https://github.com/mirumee/ariadne" data-icon="octicon-star" data-count-href="/mirumee/ariadne/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright"><a href="https://mirumee.com">Copyright © 2020 Mirumee Software</a><a href="https://mirumee.com">Ariadne is crafted with love by<img src="/img/mirumee.png" alt="Mirumee"/></a></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '507581234da84aebc8fe9918f530b714',
+                indexName: 'ariadnegraphql',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

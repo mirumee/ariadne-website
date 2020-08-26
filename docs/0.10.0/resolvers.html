@@ -164,7 +164,7 @@ user.set_field(<span class="hljs-string">"email"</span>, resolve_email_with_perm
     }
 """</span>
 
-user = ObjectType(<span class="hljs-string">"Query"</span>)
+query = ObjectType(<span class="hljs-string">"Query"</span>)
 
 <span class="hljs-meta">@query.field("holidays")</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_holidays</span><span class="hljs-params">(*_, year=None)</span>:</span>

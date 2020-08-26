@@ -133,7 +133,7 @@ type_def = """
     }
 """
 
-user = ObjectType("Query")
+query = ObjectType("Query")
 
 @query.field("holidays")
 def resolve_holidays(*_, year=None):

@@ -109,25 +109,28 @@ application = URLRouter([
 > Use asynchronous ORM such as [Gino](https://github.com/fantix/gino) for database queries in your resolvers.
 
 
-## `Date` and `Datetime` scalars
+## `Date`, `Datetime` and `Time` scalars
 
-For convenience Ariadne also provides `Date` and `DateTime` scalar implementations that can be used to represent Django dates and datetimes in form understood by JS date and time handling libraries like [Moment.js](https://momentjs.com/).
+For convenience Ariadne also provides `Date`, `DateTime` and `Time` scalar implementations that can be used to represent Django dates and datetimes in form understood by JS date and time handling libraries like [Moment.js](https://momentjs.com/).
 
 > Scalars have dependency on [dateutil library](https://github.com/dateutil/dateutil).
 
-To use them in your project, update your schema to define `Date` and `Datetime` scalar and pass their Python implementations to `make_executable_schema`:
+To use them in your project, update your schema to define `Date`, `Datetime` and/or `Time` scalar and pass their Python implementations to `make_executable_schema`:
 
 ```python
-from ariadne.contrib.django.scalars import date_scalar, datetime_scalar
+from ariadne.contrib.django.scalars import date_scalar, datetime_scalar, time_scalar
 
 type_defs = """
     scalar Date
     scalar DateTime
+    scalar Time
 
     type Query {
         hello: String
     }
 """
 
-schema = make_executable_schema(type_defs, [date_scalar, datetime_scalar, ...])
+schema = make_executable_schema(
+    type_defs, [date_scalar, datetime_scalar, time_scalar, ...]
+)
 ```

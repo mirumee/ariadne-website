@@ -13,7 +13,7 @@ def lowercase_middleware(resolver, obj, info, **args)
 
 > **Note**
 >
-> GraphQL middleware is sometimes confused with the ASGI or WSGI middleware, bit its not the same thing!
+> GraphQL middleware is sometimes confused with the ASGI or WSGI middleware, but its not the same thing!
 
 > **Note**
 >

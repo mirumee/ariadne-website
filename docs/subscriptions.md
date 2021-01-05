@@ -9,6 +9,7 @@ Let's introduce a third type of operation. While queries offer a way to query a 
 This is where the `Subscription` type is useful. It's similar to `Query` but as each subscription remains an open channel you can send anywhere from zero to millions of responses over its lifetime.
 
 > Because of their nature, subscriptions are only possible to implement in asynchronous servers that implement the WebSockets protocol.
+> (If you are using `uvicorn` you need to `pip install websockets` otherwise you'll get `Could not connect to websocket endpoint ws://localhost:8000/. Please check if the endpoint url is correct.`)
 >
 > *WSGI*-based servers (including Django) are synchronous in nature and *unable* to handle WebSockets which makes them incapable of implementing subscriptions.
 >

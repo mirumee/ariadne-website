@@ -40,7 +40,7 @@ directive @cost(complexity: Int, multipliers: [String!], useMultipliers: Boolean
 To make your schema future proof, directive's definition is available as import from Ariadne:
 
 ```python
-from ariande.validation import cost_directive
+from ariadne.validation import cost_directive
 
 schema = make_executable_schema([type_defs, cost_directive], ...)
 ```

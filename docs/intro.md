@@ -36,7 +36,7 @@ The `type Query { }` block declares the type, `hello` is the field definition, `
 
 ## Validating schema
 
-Ariadne provides the `gql` utility function to validate schema. It that takes a single argument, a GraphQL string, like the following example:
+Ariadne provides the `gql` utility function to validate schema. It takes a single argument (a GraphQL string) like the following example:
 
 ```python
 from ariadne import gql
@@ -105,7 +105,7 @@ Now we need to set our resolver on the `hello` field of type `Query`. To do this
 from ariadne import QueryType, gql
 ```
 
-Next, we will instantiate the `QueryType` and set our function as resolver for `hello` field using it's field decorator:
+Next, we will instantiate the `QueryType` and set our function as resolver for `hello` field using its field decorator:
 
 ```python
 # Create QueryType instance for Query type defined in our schema...

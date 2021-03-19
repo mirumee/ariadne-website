@@ -40,7 +40,7 @@ function Community(props) {
           <h2>Discuss</h2>
           <MarkdownBlock>
             Share the love, ask questions or simply say hello on our
-            [Spectrum](https://spectrum.chat/ariadne) community.
+            [GitHub](https://github.com/mirumee/ariadne/discussions/) community.
           </MarkdownBlock>
           <hr />
           <h2>Stay up to date</h2>

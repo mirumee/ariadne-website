@@ -58,7 +58,9 @@ class Footer extends React.Component {
           </div>
           <div>
             <h5>Community</h5>
-            <a href="https://spectrum.chat/ariadne">Spectrum</a>
+            <a href="https://github.com/mirumee/ariadne/discussions/">
+              Discuss
+            </a>
             <a href="https://github.com/mirumee/ariadne">GitHub</a>
             <a
               className="github-button"

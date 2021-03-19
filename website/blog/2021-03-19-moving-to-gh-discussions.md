@@ -1,5 +1,5 @@
 ---
-title: Ariadne's community is moving to GitHub discussions
+title: Ariadne community is moving to GitHub discussions
 ---
 
 Hello!

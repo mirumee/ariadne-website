@@ -2,12 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2021-03-17T06:00:00Z</updated>
+    <updated>2021-03-19T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne community is moving to GitHub discussions]]></title>
+        <id>https://ariadnegraphql.org/blog/2021/03/19/moving-to-gh-discussions.html</id>
+        <link href="https://ariadnegraphql.org/blog/2021/03/19/moving-to-gh-discussions.html">
+        </link>
+        <updated>2021-03-19T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Hello!</p> <p>If you've recently visited any Spectrum community, you are likely aware that <a href="https://spectrum.chat/spectrum/general/join-us-on-our-new-journey~e4ca0386-f15c-4ba8-8184-21cf5fa39cf5">GitHub is now sunsetting</a> Spectrum for GitHub discussions.</p> <p>Because of this, we've made decision to move Ariadne's community to <a href="https://github.com/mirumee/ariadne/discussions">GitHub discussions</a>!</p> <p>Thanks and see you t...</p>]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.13.0]]></title>
         <id>https://ariadnegraphql.org/blog/2021/03/17/ariadne-0-13-0.html</id>

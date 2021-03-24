@@ -127,6 +127,33 @@ graphql = Graphql(
 ```
 
 
+### Using `cost_validator` when query requires variables
+
+`cost_validator` require queries to be executable. This means that any variables defined in the query have to be provided to the validator too, otherwise, it will raise `GraphQLError` saying that `Argument was provided the variable which was not provided a runtime value`.
+
+To resolve this one can use dynamic configuration of the `validation_rules`.
+
+```python
+type_defs = gql(
+    """
+    type Query {
+        hello(id: Int!): String!
+    }
+    """)
+
+
+def get_validation_rules(context_value, document, data):
+    return [cost_validator(maximum_cost=5, variables=data.get("variables"))]
+
+
+schema = make_executable_schema(type_defs)
+graphql = Graphql(
+    schema,
+    validation_rules=get_validation_rules
+)
+```
+
+
 ### Complexity of lists of items
 
 Query cost validation runs before query execution. This makes it impossible for field cost to depend on real number of returned children.

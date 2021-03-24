@@ -19,7 +19,7 @@ class HomeSplash extends React.Component {
     const { baseUrl, docsUrl } = siteConfig;
     const docsPart = `${docsUrl ? `${docsUrl}/` : ""}`;
     const langPart = `${language ? `${language}/` : ""}`;
-    const docUrl = doc => `${baseUrl}${docsPart}${langPart}${doc}`;
+    const docUrl = (doc) => `${baseUrl}${docsPart}${langPart}${doc}`;
 
     const ShoutOut = () => (
       <div className="shoutout">
@@ -30,7 +30,7 @@ class HomeSplash extends React.Component {
       </div>
     );
 
-    const SplashContainer = props => (
+    const SplashContainer = (props) => (
       <div className="homeContainer">
         <div className="homeSplashFade">
           <div className="wrapper homeWrapper">{props.children}</div>
@@ -48,7 +48,7 @@ class HomeSplash extends React.Component {
       </h1>
     );
 
-    const PromoSection = props => (
+    const PromoSection = (props) => (
       <div className="section promoSection homeCtaSection">
         <div className="promoRow">
           <div className="pluginRowBlock">{props.children}</div>
@@ -56,7 +56,7 @@ class HomeSplash extends React.Component {
       </div>
     );
 
-    const Button = props => (
+    const Button = (props) => (
       <div className="pluginWrapper buttonWrapper">
         <a className="button ctaButton" href={props.href} target={props.target}>
           {props.children}
@@ -67,7 +67,7 @@ class HomeSplash extends React.Component {
     return (
       <SplashContainer>
         <div className="inner">
-          <ShoutOut />
+          {/* <ShoutOut /> */}
           <Lead />
           <PromoSection>
             <Button href={docUrl("intro.html")}>Get started</Button>
@@ -87,7 +87,7 @@ class Index extends React.Component {
     const { config: siteConfig, language = "" } = this.props;
     const { baseUrl } = siteConfig;
 
-    const Block = props => (
+    const Block = (props) => (
       <Container id={props.id} background={props.background}>
         <GridBlock contents={props.children} layout={props.layout} />
       </Container>
@@ -121,22 +121,22 @@ class Index extends React.Component {
                 "Describe your GraphQL API using Schema Definition Language and connect your business logic using a minimal amount of Python boilerplate.",
               image: `${baseUrl}img/schema-first.svg`,
               imageAlign: "top",
-              title: "Schema First"
+              title: "Schema First",
             },
             {
               content:
                 "A small and easy-to-learn Pythonic API with simplicity as the guiding force behind its design.",
               image: `${baseUrl}img/simple.svg`,
               imageAlign: "top",
-              title: "Simple"
+              title: "Simple",
             },
             {
               content:
                 "Easily add new features to the library, and replace or extend existing ones. Integrate with any web framework you like.",
               image: `${baseUrl}img/open-design.svg`,
               imageAlign: "top",
-              title: "Open Design"
-            }
+              title: "Open Design",
+            },
           ]}
         </Block>
       </div>
@@ -148,7 +148,7 @@ class Index extends React.Component {
           {[
             "Enable frontend and backend teams to cooperate effectively. Ariadne taps into the leading approach in the GraphQL community and opens up hundreds of developer tools, examples, and learning resources.",
             "",
-            "Ariadne provides out of the box utilities for loading schema from GraphQL files or Python strings."
+            "Ariadne provides out of the box utilities for loading schema from GraphQL files or Python strings.",
           ].join("\n")}
         </FocusContent>
         <FocusCode>
@@ -181,7 +181,7 @@ schema = gql("""
       <FocusBlock>
         <FocusContent title="Add business logic to schema with minimal boilerplate">
           {[
-            "Use specialized objects that connect business logic to the schema. Replace whatever you like and roll out your own implementations to fit your team’s needs."
+            "Use specialized objects that connect business logic to the schema. Replace whatever you like and roll out your own implementations to fit your team’s needs.",
           ].join("\n")}
         </FocusContent>
         <FocusCode>
@@ -213,7 +213,7 @@ query.set_field("hello", resolve_hello)
           {[
             "Use asynchronous query execution and ASGI to speed up your API with minimal effort.",
             "",
-            "If your stack is not yet ready for `async`, don't worry - synchronous query execution is also available."
+            "If your stack is not yet ready for `async`, don't worry - synchronous query execution is also available.",
           ].join("\n")}
         </FocusContent>
         <FocusCode>
@@ -243,7 +243,7 @@ async def resolve_promotions(*_):
           {[
             "Ariadne provides WSGI and ASGI apps enabling easy implementation of custom GraphQL services, and full interoperability with popular web frameworks.",
             "",
-            "Even if your technology has no resources for adding GraphQL to your stack, use the simple guide to create new integrations with Ariadne."
+            "Even if your technology has no resources for adding GraphQL to your stack, use the simple guide to create new integrations with Ariadne.",
           ].join("\n")}
         </FocusContent>
         <FocusCode>

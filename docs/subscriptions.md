@@ -18,7 +18,7 @@ This is where the `Subscription` type is useful. It's similar to `Query` but as 
 
 ## Defining subscriptions
 
-In schema definitions subscriptions look similar to queries:
+In schema definition subscriptions look similar to queries:
 
 ```graphql
 type Query {
@@ -56,6 +56,7 @@ async def counter_generator(obj, info):
         await asyncio.sleep(1)
         yield i
 
+
 def counter_resolver(count, info):
     return count + 1
 ```
@@ -90,39 +91,277 @@ async def counter_generator(
 ```
 
 
-## Complete example
+## Publisher-consumer
 
-For reference here is a complete example of the GraphQL API that supports a subscription:
+Pubisher-consumer ("pub-sub") is a pattern in which parts of the system listen for ("subscribe to") events ("messages") from other parts of the system, usually reacting to them with very small delay.
+
+To implement subscriptions, you will need to introduce a pub-sub solution to your stack. Multiple technologies are available here, starting with dedicated solutions like Apache Kafka, RabbitMQ and ending with data stores supporting subscribing to updates like Redis and PostgreSQL. Each of those solutions offers different features and trade offs, making them useful for different use-cases.
+
+Only requirement by Ariadne is that technology has Python implementation that supports `async` subscriber.
+
+
+### Simple pub-sub setup with Broadcaster
+
+[Broadcaster](https://github.com/encode/broadcaster) is a simple pub-sub library that supports Redis, PostgreSQL and Apache Kafka as backends. It can be installed with `pip`:
+
+```console
+pip install broadcaster
+```
+
+In our example we will use Redis server running on localhost at port 6379 for messaging. We instantiate `Broadcaster` with connection URL in our app:
 
 ```python
-import asyncio
-from ariadne import SubscriptionType, make_executable_schema
+broadcast = Broadcast("redis://localhost:6379")
+```
+
+We also need to run its `connect` and `disconnect` methods when our ASGI app starts or stops:
+
+```python
+app = Starlette(on_startup=[broadcast.connect], on_shutdown=[broadcast.disconnect])
+```
+
+
+### Publisher
+
+We can publish our messages using the `publish` method:
+
+```python
+await broadcast.publish(channel="chatroom", message="Hello world!")
+```
+
+> **Note:** Channels are a way to group publishers and subscribers together. Your system may use single channel or multiple ones, each for different feature.
+
+Where publishing code should live at? Simplest answer is _at the same place that events occur that you would like your users to subscribe to_. Here are few examples:
+
+- In GraphQL mutations: `postComment` mutation could publish event to notify other clients on same page that new commend was posted.
+- In task queues: `process_video_file` Celery task could publish event with current progress on processing uploaded video file.
+- In regular views: your JSON API or standard HTTP form view can send an event that contact form was sent to notify customer service members on-line.
+
+
+### Subscriber
+
+Unlike publishers, which can go anywhere, subscribers in GraphQL API's have single dedicated place: subscriptions _source_:
+
+```python
+@subscription.source("chat")
+async def chat_generator(
+    _: Any, info: GraphQLResolveInfo
+) -> AsyncGenerator[str, None]:
+    async with broadcast.subscribe(channel="chatroom") as subscriber:
+        async for message in subscriber:
+            yield message
+```
+
+In addition to that, generators can be used to filter which messages should and which shouldn't be sent further to the subscribers:
+
+```python
+@subscription.source("chat")
+async def chat_generator(
+    _: Any, info: GraphQLResolveInfo
+) -> AsyncGenerator[str, None]:
+    swearwords = await load_swearwords()
+
+    async with broadcast.subscribe(channel="chatroom") as subscriber:
+        async for message in subscriber:
+            if not contains_swearwords(message, swearwords):
+                yield message
+```
+
+
+### Simple chat example:
+
+Here's example implementing simple GraphQL chat with mutation for sending messages and subscription for receiving them:
+
+```python
+import json
+
+from ariadne import MutationType, SubscriptionType, make_executable_schema
 from ariadne.asgi import GraphQL
+from broadcaster import Broadcast
+from starlette.applications import Starlette
 
-type_def = """
-    type Query {
-        _unused: Boolean
-    }
 
-    type Subscription {
-        counter: Int!
-    }
+broadcast = Broadcast("memory://")
+
+
+type_defs = """
+  type Query {
+    _unused: Boolean
+  }
+
+  type Message {
+    sender: String
+    message: String
+  }
+
+  type Mutation {
+    send(sender: String!, message: String!): Boolean
+  }
+
+  type Subscription {
+    message: Message
+  }
 """
+
+
+mutation = MutationType()
+
+
+@mutation.field("send")
+async def resolve_send(*_, **message):
+    await broadcast.publish(channel="chatroom", message=json.dumps(message))
+    return True
+
 
 subscription = SubscriptionType()
 
-@subscription.source("counter")
-async def counter_generator(obj, info):
-    for i in range(5):
-        await asyncio.sleep(1)
-        yield i
+
+@subscription.source("message")
+async def source_message(_, info):
+    async with broadcast.subscribe(channel="chatroom") as subscriber:
+        async for event in subscriber:
+            yield json.loads(event.message)
 
 
-@subscription.field("counter")
-def counter_resolver(count, info):
-    return count + 1
+schema = make_executable_schema(type_defs, mutation, subscription)
+graphql = GraphQL(schema=schema, debug=True)
+
+app = Starlette(
+    debug=True,
+    on_startup=[broadcast.connect],
+    on_shutdown=[broadcast.disconnect],
+)
+
+app.mount("/", graphql)
+```
 
 
-schema = make_executable_schema(type_def, subscription)
-app = GraphQL(schema, debug=True)
+## Connection params
+
+Because subscriptions in GraphQL are done over the websockets, you can't use custom HTTP headers to pass additional data from client to server. This makes it impossible to use `Authorization` header for authentication within subscriptions.
+
+To work around this limitation, websocket clients include this data in initial message sent to the server as part of connection negotiation.
+
+
+### Using `on_connect` to access connection's parameters
+
+To access connection parameters, custom function needs to be implemented and passed to Ariadene's `on_connect` option:
+
+```python
+def on_connect(websocket, params: Any):
+    ...
+
+
+graphql = GraphQL(schema, on_connect=on_connect)
+```
+
+This function is called exactly once: at the time when websocket connection is opened by the client. It's always called with two arguments: a `starlette.websockets.WebSocket` instance and a payload. It can be synchronous or asynchronous.
+
+Please note that because `params` value is set by the client there are no guarantees on what type and concents this value will be. Due care needs to be taken here:
+
+```python
+def on_connect(websocket, params: Any):
+    if not isinstance(params, dict):
+        return
+
+    token = params.get("token")
+    if token:
+        ...
+```
+
+In order to make params available to the resolvers, they need to be passed through the `WebSocket.scope` dict to context factory:
+
+```python
+def on_connect(websocket, params: Any):
+    if not isinstance(params, dict):
+        websocket.scope["connection_params"] = {}
+        return
+
+    # websocket.scope is a dict acting as a "bag"
+    # stores data for the duration of connection
+    websocket.scope["connection_params"] = {
+        "token": params.get("token"),
+    }
+
+
+def context_value(request):
+    context = {}
+
+    if request.scope["type"] == "websocket":
+        # request is an instance of WebSocket
+        context.update(websocket.scope["connection_params"])
+    else:
+        context["token"] = request.META.get("authorization)
+
+    return context
+
+
+graphql = GraphQL(schema, context_value=context_value, on_connect=on_connect)
+```
+
+
+### `on_connect` vs `context_value`
+
+There's important difference between `on_connect` and `context_value`:
+
+`on_connect` is called once, at the time of websocket connection negotiation between client and GraphQL server.
+
+`context_value` is called every time new subscription query is made by the client.
+
+If your client has two separate UI components (eg. notification bell on the navbar and list of on-line users), and those components do GraphQL `subscribe` queries, `context_value` will be ran for each of those separately while `on_connect` will only be ran once. 
+
+> **Note:** This behavior is true for most popular GraphQL client implementations (`gql` and Apollo-Client) but may not be true for some libraries.
+
+This can have implications for application performance. It may be preferable to cache data on `websocket.scope` instead of `info.context` to avoid repeated database reads for multiple subscriptions accessing same data. Or pre-load user object in `on_connect`.
+
+
+## Refusing websocket connection
+
+To refuse websocket connection from client, you can raise `ariadne.asgi.WebSocketConnectionError` from `on_connect`:
+
+```python
+def on_connect(websocket, params: Any):
+    if not isinstance(params, dict):
+        raise WebSocketConnectionError("Invalid payload")
+
+    token = params.get("token")
+    if not token:
+        raise WebSocketConnectionError("Missing auth")
+```
+
+If you have control on client implementation as well, you can pass custom error payload instead of string:
+
+```python
+def on_connect(websocket, params: Any):
+    if not isinstance(params, dict):
+        raise WebSocketConnectionError({"message": "Invalid payload", "code": "invalid_payload"})
+
+    token = params.get("token")
+    if not token:
+        raise WebSocketConnectionError({"message": "Missing auth", "code": "auth"})
+```
+
+
+## `on_disconnect`
+
+`on_disconnect` option can be set to callable function taking single argument, `WebSocket` instance, that should be ran after Ariadne closes the websocket connection:
+
+```python
+def on_connect(websocket, params: Any):
+    if not isinstance(params, dict):
+        websocket.scope["connection_params"] = {}
+        return
+
+    chat_user = get_user_from_ws(params)
+    chat_user.set_online()
+    websocket.scope["chat_user"] = chat_user
+
+
+def on_disconnect(websocket):
+    chat_user = websocket.scope.get("chat_user")
+    if chat_user:
+        chat_user.set_offline()
+
+
+graphql = GraphQL(schema, on_connect=on_connect, on_disconnect=on_disconnect)
 ```

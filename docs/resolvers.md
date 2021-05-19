@@ -90,7 +90,7 @@ schema = make_executable_schema(type_defs, query, user)
 
 > **Note**
 >
-> In previous versions of Ariadne recommended approach to passing multiple bindables to `make_executable_schema` was to combine those into a list:
+> In previous versions of Ariadne, the recommended approach to pass multiple bindables to `make_executable_schema` was to combine those into a list:
 >
 > ```python
 > schema = make_executable_schema(type_defs, [query, user])

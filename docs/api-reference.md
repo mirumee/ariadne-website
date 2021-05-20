@@ -208,7 +208,7 @@ MutationType()
 
 [_Bindable_](bindables.md) used for setting Python logic for GraphQL mutation type. Has the same API as [`ObjectType`](#objecttype), but has GraphQL type name hardcoded to `Mutation`.
 
-> This is an convenience utility that can be used in place of of `ObjectType("Mutation")`.
+> This is an convenience utility that can be used in place of `ObjectType("Mutation")`.
 
 
 - - - - -
@@ -288,7 +288,7 @@ QueryType()
 
 [_Bindable_](bindables.md) used for setting Python logic for GraphQL mutation type. Has the same API as [`ObjectType`](#objecttype), but has GraphQL type name hardcoded to `Query`.
 
-> This is an convenience utility that can be used in place of of `ObjectType("Query")`.
+> This is an convenience utility that can be used in place of `ObjectType("Query")`.
 
 
 - - - - -
@@ -1015,7 +1015,7 @@ Default resolver used by Ariadne. If `parent` is `dict`, will use `dict.get(info
 fallback_resolvers
 ```
 
-[_Bindable_](bindables.md) instace of [`FallbackResolversSetter`](#fallbackresolverssetter).
+[_Bindable_](bindables.md) instance of [`FallbackResolversSetter`](#fallbackresolverssetter).
 
 
 - - - - -
@@ -1329,7 +1329,7 @@ Returns [`default_resolver`](#default_resolver) that always resolves to named at
 snake_case_fallback_resolvers
 ```
 
-[_Bindable_](bindables.md) instace of [`SnakeCaseFallbackResolversSetter`](#snakecasefallbackresolverssetter).
+[_Bindable_](bindables.md) instance of [`SnakeCaseFallbackResolversSetter`](#snakecasefallbackresolverssetter).
 
 
 - - - - -

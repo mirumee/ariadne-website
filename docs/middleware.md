@@ -38,7 +38,7 @@ To use this middleware in your queries, simply pass it to `middleware` option:
 from ariadne.asgi import GraphQL
 
 
-app = GrapqhQL(schema, middleware=[lowercase_middleware])
+app = GraphQL(schema, middleware=[lowercase_middleware])
 ```
 
 In case when more than one middleware is enabled on the server, the `resolver` argument will point to the partial function constructed from the next middleware in the execution chain.

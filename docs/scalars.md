@@ -82,7 +82,7 @@ def resolve_post_sale(*_, price, ref):
     repr(price)  # {'amount': 9.99, 'currency': 'USD'}
 ```
 
-If JSON with varibles or Query AST is incorrect the server will return `400 BAD REQUEST` and will not attempt to execute query.
+If JSON with variables or Query AST is incorrect the server will return `400 BAD REQUEST` and will not attempt to execute query.
 
 
 ## Customizing scalar serialization

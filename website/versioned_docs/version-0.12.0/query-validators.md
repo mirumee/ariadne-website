@@ -66,7 +66,7 @@ type Query {
 
 In the above example, final complexity will be multiplied by both `promoted` and `regular` values.
 
-You can also use `useMultipliers` to remove query cost mulitplication for specified field without removing `@cost` from it:
+You can also use `useMultipliers` to remove query cost multiplication for specified field without removing `@cost` from it:
 
 ```graphql
 type Query {

@@ -146,6 +146,7 @@ def get_validation_rules(context_value, document, data):
 
 
 schema = make_executable_schema(type_defs)
+
 graphql = Graphql(
     schema,
     validation_rules=get_validation_rules

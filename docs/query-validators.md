@@ -128,7 +128,7 @@ graphql = Graphql(
 
 ### Exposing query variables to `cost_validator`
 
-`cost_validator` require queries to be executable. This means that any variables defined in the query have to be provided to the validator too, otherwise, it will raise `GraphQLError` saying that `Argument was provided the variable which was not provided a runtime value`.
+Cost validator will raise an error if query containing variables is made, but variable values are not made available to the validator. Use dynamic configuration to avoid this:
 
 To resolve this one can use dynamic configuration of the `validation_rules`.
 

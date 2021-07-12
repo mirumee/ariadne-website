@@ -125,7 +125,7 @@ graphql = Graphql(
 )
 ```
 
-### Using `cost_validator` when query requires variables
+### Exposing query variables to `cost_validator`
 
 `cost_validator` require queries to be executable. This means that any variables defined in the query have to be provided to the validator too, otherwise, it will raise `GraphQLError` saying that `Argument was provided the variable which was not provided a runtime value`.
 

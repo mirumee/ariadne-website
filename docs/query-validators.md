@@ -130,7 +130,6 @@ graphql = Graphql(
 
 Cost validator will raise an error if query containing variables is made, but variable values are not made available to the validator. Use dynamic configuration to avoid this:
 
-To resolve this one can use dynamic configuration of the `validation_rules`.
 
 ```python
 type_defs = gql(

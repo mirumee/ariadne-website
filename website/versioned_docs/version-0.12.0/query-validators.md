@@ -150,7 +150,7 @@ schema = make_executable_schema(type_defs)
 
 graphql = Graphql(
     schema,
-    validation_rules=get_validation_rules
+    validation_rules=get_validation_rules,
 )
 ```
 

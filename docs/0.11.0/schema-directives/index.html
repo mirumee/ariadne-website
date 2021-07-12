@@ -141,7 +141,7 @@ In Ariadne, schema directive behaviour is implemented by extending the <a href="
         field.resolve = resolve_formatted_date
         <span class="hljs-keyword">return</span> field
 </code></pre>
-<p>Finally, use <code>directives</code> option of <code>make_executable_schema</code> to attach the behaviour implemented by <code>DateDirective</code> with <code>date</code> directive definied by schema:</p>
+<p>Finally, use <code>directives</code> option of <code>make_executable_schema</code> to attach the behaviour implemented by <code>DateDirective</code> with <code>date</code> directive defined by schema:</p>
 <pre><code class="hljs css language-python">schema = make_executable_schema(type_defs, resolvers, directives={<span class="hljs-string">"date"</span>: DateDirective})
 </code></pre>
 <p>You can now update your schema and use your <code>@date</code> directive to format dates returned by your API:</p>

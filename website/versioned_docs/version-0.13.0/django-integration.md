@@ -8,6 +8,12 @@ original_id: django-integration
 
 Ariadne ships with `ariadne.contrib.django` package that should be used as Django app and provides utilities for adding GraphQL server to Django projects.
 
+> **Deprecation notice**
+>
+> `ariadne.contrib.django` has been deprecated and will be removed in future version of Ariadne. It's also not receiving any more features and bug fixes.
+>
+> See [`ariadne_django`](https://github.com/reset-button/ariadne_django) for the drop-in replacement.
+
 
 ## Adding GraphQL API to Django project
 

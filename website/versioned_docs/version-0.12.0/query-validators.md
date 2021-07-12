@@ -139,7 +139,8 @@ type_defs = gql(
     type Query {
         hello(id: Int!): String!
     }
-    """)
+    """
+)
 
 
 def get_validation_rules(context_value, document, data):

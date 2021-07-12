@@ -127,6 +127,33 @@ graphql = Graphql(
 ```
 
 
+### Exposing query variables to `cost_validator`
+
+Cost validator will raise an error if query containing variables is made, but variable values are not made available to the validator. Use dynamic configuration to avoid this:
+
+```python
+type_defs = gql(
+    """
+    type Query {
+        hello(id: Int!): String!
+    }
+    """
+)
+
+
+def get_validation_rules(context_value, document, data):
+    return [cost_validator(maximum_cost=5, variables=data.get("variables"))]
+
+
+schema = make_executable_schema(type_defs)
+
+graphql = Graphql(
+    schema,
+    validation_rules=get_validation_rules,
+)
+```
+
+
 ### Complexity of lists of items
 
 Query cost validation runs before query execution. This makes it impossible for field cost to depend on real number of returned children.

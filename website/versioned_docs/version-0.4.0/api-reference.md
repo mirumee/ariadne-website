@@ -679,7 +679,7 @@ Default resolver used by Ariadne. If `parent` is `dict`, will use `dict.get(info
 fallback_resolvers
 ```
 
-[_Bindable_](bindables.md) instace of [`FallbackResolversSetter`](#fallbackresolverssetter).
+[_Bindable_](bindables.md) instance of [`FallbackResolversSetter`](#fallbackresolverssetter).
 
 
 - - - - -
@@ -878,7 +878,7 @@ Returns [`default_resolver`](#default_resolver) that always resolves to named at
 snake_case_fallback_resolvers
 ```
 
-[_Bindable_](bindables.md) instace of [`SnakeCaseFallbackResolversSetter`](#snakecasefallbackresolverssetter).
+[_Bindable_](bindables.md) instance of [`SnakeCaseFallbackResolversSetter`](#snakecasefallbackresolverssetter).
 
 
 - - - - -

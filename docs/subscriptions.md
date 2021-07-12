@@ -245,7 +245,7 @@ To work around this limitation, websocket clients include this data in initial m
 
 ### Using `on_connect` to access connection's parameters
 
-To access connection parameters, custom function needs to be implemented and passed to Ariadene's `on_connect` option:
+To access connection parameters, custom function needs to be implemented and passed to Ariadne's `on_connect` option:
 
 ```python
 def on_connect(websocket, params: Any):

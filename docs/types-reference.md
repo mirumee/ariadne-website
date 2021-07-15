@@ -298,7 +298,7 @@ Has `context` attribute that contains [`ContextValue`](#contextvalue) specific t
 
 #### `**kwargs`
 
-If subscriptions's GraphQL field accepts any arguments, those arguments values will be passed to the field as kwargs:
+If subscriptions' GraphQL field accepts any arguments, those arguments values will be passed to the field as kwargs:
 
 ```graphql
 type Subscription {

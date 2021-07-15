@@ -65,7 +65,7 @@ type Query {
 
 In the above example, final complexity will be multiplied by both `promoted` and `regular` values.
 
-You can also use `useMultipliers` to remove query cost mulitplication for specified field without removing `@cost` from it:
+You can also use `useMultipliers` to remove query cost multiplication for specified field without removing `@cost` from it:
 
 ```graphql
 type Query {
@@ -125,6 +125,31 @@ graphql = Graphql(
 )
 ```
 
+
+### Exposing query variables to `cost_validator`
+
+Cost validator will raise an error if query containing variables is made, but variable values are not made available to the validator. Use dynamic configuration to avoid this:
+```python
+type_defs = gql(
+    """
+    type Query {
+        hello(id: Int!): String!
+    }
+    """
+)
+
+
+def get_validation_rules(context_value, document, data):
+    return [cost_validator(maximum_cost=5, variables=data.get("variables"))]
+
+
+schema = make_executable_schema(type_defs)
+
+graphql = Graphql(
+    schema,
+    validation_rules=get_validation_rules,
+)
+```
 
 ### Complexity of lists of items
 

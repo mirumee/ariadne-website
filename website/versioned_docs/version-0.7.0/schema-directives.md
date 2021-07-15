@@ -114,7 +114,7 @@ class DateDirective(SchemaDirectiveVisitor):
         return field
 ```
 
-Finally, use `directives` option of `make_executable_schema` to attach the behaviour implemented by `DateDirective` with `date` directive definied by schema:
+Finally, use `directives` option of `make_executable_schema` to attach the behaviour implemented by `DateDirective` with `date` directive defined by schema:
 
 ```python
 schema = make_executable_schema(type_defs, resolvers, directives={"date": DateDirective})

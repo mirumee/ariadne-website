@@ -123,3 +123,9 @@ def my_format_error(error: GraphQLError, debug: bool = False) -> dict:
 
 app = GraphQL(schema, error_formatter=my_format_error)
 ```
+
+### Django
+
+A default error formatted that covers a number of django and djangorestframework-specific errors has been provided 
+in `ariadne.contrib.django.format_error.format_graphql_error`.  You can an updated set of constants as a dictionary
+to override messaging.  If not, this file can serve as a helpful starting point for building your own formatter.

@@ -140,3 +140,23 @@ schema = make_executable_schema(
     type_defs, [date_scalar, datetime_scalar, time_scalar, ...]
 )
 ```
+
+## Error Formatting
+
+Ariadne sets clear expectations for delivery of validation messages and similar server side errors in 
+[Error Messaging](error-messaging.md).  A default formatter with django-specific error handling is provided.
+This formatter also handles djangorestframework's errors if you use that as well.  This can be configured 
+similar to the following:
+
+```python
+from ariadne.contrib.django.format_error import format_graphql_error
+from ariadne.contrib.django.views import GraphQLView
+from django.urls import path
+
+from .schema import schema
+
+urlpatterns = [
+    ...
+    path("graphql/", GraphQLView.as_view(schema=schema, error_formatter=format_graphql_error), name="graphql"),
+]
+```

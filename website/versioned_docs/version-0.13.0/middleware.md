@@ -48,3 +48,29 @@ In case when more than one middleware is enabled on the server, the `resolver` a
 ## Middleware and extensions
 
 Extensions [`resolve`](types-reference.md#resolve) hook is actually a middleware. In case when GraphQL server is configured to use both middleware and extensions, extensions `resolve` hook will be executed before the `middleware` functions.
+
+
+## Performance impact
+
+Middlewares are called for **EVERY** resolver call.
+
+Considering this query:
+
+```graphql
+{
+    users {
+        id
+        email
+        username
+    }
+}
+```
+
+If `users` resolver returns 100 users, middleware function will be called 301 times:
+
+- one time for `Query.users` resolver
+- 100 times for `id`
+- 100 times for `email`
+- 100 times for username
+
+Avoid implementing costful or slow logic in middlewares. Use python decorators applied explicitly to resolver functions or ASGI/WSGI middlewares combined with callable `context_value`.

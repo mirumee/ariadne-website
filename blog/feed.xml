@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Fri, 19 Mar 2021 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 24 Nov 2021 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,16 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne 0.14.0]]></title>
+            <link>https://ariadnegraphql.org/blog/2021/11/24/ariadne-0-14-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2021/11/24/ariadne-0-14-0.html</guid>
+            <pubDate>Wed, 24 Nov 2021 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><img src="/blog/assets/ariadne-0-14.jpg" alt="Ariadne shipped!"></p>
+<p>Ariadne 0.14 is now available!</p>
+<p>0.14 is a maintenance release focused mostly on addressing bugs and updating dependencies. It also brings one breaking change for Django users.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne community is moving to GitHub discussions]]></title>
             <link>https://ariadnegraphql.org/blog/2021/03/19/moving-to-gh-discussions.html</link>

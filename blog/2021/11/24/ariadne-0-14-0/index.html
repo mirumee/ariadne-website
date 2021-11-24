@@ -1,0 +1,115 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Ariadne 0.14.0 · Ariadne</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="Ariadne 0.14 is now available!"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Ariadne 0.14.0 · Ariadne"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ariadnegraphql.org/blog/2021/11/24/ariadne-0-14-0"/><meta property="og:description" content="Ariadne 0.14 is now available!"/><meta property="og:image" content="https://ariadnegraphql.org/img/share-image.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ariadnegraphql.org/img/twitter-image.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ariadnegraphql.org/blog/atom.xml" title="Ariadne Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ariadnegraphql.org/blog/feed.xml" title="Ariadne Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-10159761-23', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><a href="/versions"><h3>0.14.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class=""><a href="/docs/intro" target="_self">Docs</a></li><li class="siteNavGroupActive"><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/community" target="_self">Community</a></li><li class=""><a href="https://github.com/mirumee/ariadne" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Recent Posts</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Recent Posts</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/blog/2021/11/24/ariadne-0-14-0">Ariadne 0.14.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2021/03/19/moving-to-gh-discussions">Ariadne community is moving to GitHub discussions</a></li><li class="navListItem"><a class="navItem" href="/blog/2021/03/17/ariadne-0-13-0">Ariadne 0.13.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/08/04/ariadne-0-12-0">Ariadne 0.12.0</a></li><li class="navListItem"><a class="navItem" href="/blog/2020/04/01/ariadne-0-11-0">Ariadne 0.11.0</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer postContainer blogContainer"><div class="wrapper"><div class="lonePost"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle"><a href="/blog/2021/11/24/ariadne-0-14-0">Ariadne 0.14.0</a></h1><p class="post-meta">November 24, 2021</p><div class="authorBlock"></div></header><div><span><p><img src="/blog/assets/ariadne-0-14.jpg" alt="Ariadne shipped!"></p>
+<p>Ariadne 0.14 is now available!</p>
+<p>0.14 is a maintenance release focused mostly on addressing bugs and updating dependencies. It also brings one breaking change for Django users.</p>
+<!--truncate-->
+<h2><a class="anchor" aria-hidden="true" id="ariadnecontribdjango-has-been-moved-into-a-third-party-library"></a><a href="#ariadnecontribdjango-has-been-moved-into-a-third-party-library" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>ariadne.contrib.django</code> has been moved into a third party library</h2>
+<p><code>ariadne.contrib.django</code> has been removed from Ariadne's codebase and is now available as <a href="https://github.com/reset-button/ariadne_django">ariadne_django</a> library maintained by third party.</p>
+<p>This was <a href="/blog/2020/08/04/ariadne-0-12-0#notice-about-ariadnecontribdjango">originally planned for Ariadne 0.13</a> but we've decided to delay it by one release, to 0.14.</p>
+<p>We have explained our justification for this decision in the past, but I would like to take a moment to reiterate it here. Originally it was our goal to have good Django support in the core, but we've quickly migrated our Ariadne GraphQL APIs to ASGI frameworks like Starlette and FastAPI. This resulted in us having to maintain three backends (ASGI, WSGI and Django).</p>
+<p>This also had three additional downsides, each worsened by previous one:</p>
+<ul>
+<li>It tied releases of fixes to Django to Ariadne.</li>
+<li>It made people try contributing additional features and improvements to Django GraphQL support to Ariadne instead of releasing them as their own libs.</li>
+<li>It sent message to other frameworks communities that they can expect support for their frameworks to eventually appear under <code>ariadne.contrib</code> (eg. <code>ariadne.contrib.flask</code>), while we would like those communities to develop and maintain those as their own libraries.</li>
+</ul>
+<p>Thank you for your understanding. 🙏</p>
+<blockquote>
+<p>Please note that <code>ariadne_django</code> package is currently looking for maintainers.</p>
+<p>As copyright holders for <code>ariadne.contrib.django</code> and it's documentation, we also offer our backing to initiative for extracting this code into library under</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="updated-starlette-dependency-to-0171"></a><a href="#updated-starlette-dependency-to-0171" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Updated Starlette dependency to 0.17.1</h2>
+<p>Usually we don't single updated dependencies, but we've got a word that old Starlette version that Ariadne used caused conflict with recent versions of FastAPI.</p>
+<p>This issue should now be resolved.</p>
+<h2><a class="anchor" aria-hidden="true" id="changelog"></a><a href="#changelog" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Changelog</h2>
+<ul>
+<li>Added <code>on_connect</code> and <code>on_disconnect</code> options to <code>ariadne.asgi.GraphQL</code>, enabling developers to run additional initialization and cleanup for websocket connections.</li>
+<li>Updated Starlette dependency to 0.17.1.</li>
+<li>Added support for multiple keys for GraphQL federations.</li>
+<li>Made <code>Query</code> type optional in federated schemas.</li>
+<li>Updated default resolvers to test for <code>Mapping</code> instead of <code>dict</code>.</li>
+<li>Removed <code>ariadne.contrib.django</code>. (Use <a href="https://github.com/reset-button/ariadne_django">ariadne_django</a> instead).</li>
+<li>Updated query cost validator to handle optional variables.</li>
+</ul>
+</span></div></div><div class="blogSocialSection"><div class="blogSocialSectionItem"><a href="https://twitter.com/share" class="twitter-share-button" data-text="Ariadne 0.14.0" data-url="https://ariadnegraphql.org/blog/2021/11/24/ariadne-0-14-0" data-related="true" data-show-count="false">Tweet</a></div></div></div><div class="blog-recent"><a class="button" href="/blog">Recent Posts</a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#ariadnecontribdjango-has-been-moved-into-a-third-party-library"><code>ariadne.contrib.django</code> has been moved into a third party library</a></li><li><a href="#updated-starlette-dependency-to-0171">Updated Starlette dependency to 0.17.1</a></li><li><a href="#changelog">Changelog</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/icon.png" alt="Ariadne" height="107" width="128"/></a><div class="footerNavSpacer"></div><div class="footerNavTwoColumn"><h5>Documentation</h5><a href="/docs/intro.html">Introduction</a><a href="/docs/resolvers.html">Resolvers</a><a href="/docs/mutations.html">Mutations</a><a href="/docs/subscriptions.html">Subscriptions</a><a href="/docs/django-integration.html">Django integration</a><a href="/docs/flask-integration.html">Flask integration</a><a href="/docs/starlette-integration.html">Starlette integration</a><a href="/docs/other-integrations.html">Other integrations</a><a href="/docs/api-reference.html">API Reference</a><a href="/docs/logo.html">Logo</a></div><div><h5>Community</h5><a href="https://github.com/mirumee/ariadne/discussions/">Discuss</a><a href="https://github.com/mirumee/ariadne">GitHub</a><a class="github-button" href="https://github.com/mirumee/ariadne" data-icon="octicon-star" data-count-href="/mirumee/ariadne/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright"><a href="https://mirumee.com">Copyright © 2021 Mirumee Software</a><a href="https://mirumee.com">Ariadne is crafted with love by<img src="/img/mirumee.png" alt="Mirumee"/></a></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '507581234da84aebc8fe9918f530b714',
+                indexName: 'ariadnegraphql',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

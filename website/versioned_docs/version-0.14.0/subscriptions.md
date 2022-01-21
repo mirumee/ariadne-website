@@ -290,7 +290,7 @@ def context_value(request):
 
     if request.scope["type"] == "websocket":
         # request is an instance of WebSocket
-        context.update(websocket.scope["connection_params"])
+        context.update(request.scope["connection_params"])
     else:
         context["token"] = request.META.get("authorization")
 

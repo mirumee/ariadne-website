@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Django integration · Ariadne</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;Ariadne ships with &lt;code&gt;ariadne.contrib.django&lt;/code&gt; package that should be used as Django app and provides utilities for adding GraphQL server to Django projects.&lt;/p&gt;
+"/><meta name="docsearch:version" content="0.10.0"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Django integration · Ariadne"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ariadnegraphql.org/"/><meta property="og:description" content="&lt;p&gt;Ariadne ships with &lt;code&gt;ariadne.contrib.django&lt;/code&gt; package that should be used as Django app and provides utilities for adding GraphQL server to Django projects.&lt;/p&gt;
+"/><meta property="og:image" content="https://ariadnegraphql.org/img/share-image.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ariadnegraphql.org/img/twitter-image.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ariadnegraphql.org/blog/atom.xml" title="Ariadne Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ariadnegraphql.org/blog/feed.xml" title="Ariadne Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-10159761-23', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><a href="/versions"><h3>0.10.0</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/docs/0.10.0/intro" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/community" target="_self">Community</a></li><li class=""><a href="https://github.com/mirumee/ariadne" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Integrations</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/resolvers">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/mutations">Mutations</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/error-messaging">Error messaging</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/scalars">Custom scalars</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/enums">Enumeration types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/unions">Union types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/interfaces">Interface types</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/subscriptions">Subscriptions</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/file-uploads">File uploads</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/documenting-schema">Documenting schema</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/modularization">Modularization</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/bindables">Bindables</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/schema-directives">Schema directives</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/local-development">Local development</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/logging">Logging</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/apollo-federation">Apollo Federation</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Monitoring</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/apollo-tracing">Apollo Tracing</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/open-tracing">OpenTracing</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Servers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/asgi">ASGI application</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/wsgi">WSGI application</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/0.10.0/django-integration">Django</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/flask-integration">Flask</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/starlette-integration">Starlette</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/other-integrations">Other technologies</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extensions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/extensions">Extension system</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/middleware">Middleware</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/api-reference">ariadne</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/constants-reference">ariadne.constants</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/exceptions-reference">ariadne.exceptions</a></li><li class="navListItem"><a class="navItem" href="/docs/0.10.0/types-reference">ariadne.types</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/0.10.0/logo">Ariadne logo</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Django integration</h1></header><article><div><span><p>Ariadne ships with <code>ariadne.contrib.django</code> package that should be used as Django app and provides utilities for adding GraphQL server to Django projects.</p>
+<h2><a class="anchor" aria-hidden="true" id="adding-graphql-api-to-django-project"></a><a href="#adding-graphql-api-to-django-project" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Adding GraphQL API to Django project</h2>
+<h3><a class="anchor" aria-hidden="true" id="add-app-to-installed_apps"></a><a href="#add-app-to-installed_apps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add app to <code>INSTALLED_APPS</code></h3>
+<p>Add <code>ariadne.contrib.django</code> to your project's <code>INSTALLED_APPS</code> setting (usually located in <code>settings.py</code>):</p>
+<pre><code class="hljs css language-python">INSTALLED_APPS = [
+    ...
+    <span class="hljs-string">"ariadne.contrib.django"</span>,
+]
+</code></pre>
+<p>Ariadne app provides Django template for GraphQL Playground. Make sure that your Django project is configured to load templates from application directories. This can be done by checking if <code>APP_DIRS</code> option located in <code>TEMPLATES</code> setting is set to <code>True</code>:</p>
+<pre><code class="hljs css language-python">TEMPLATES = [
+    {
+        ...,
+        <span class="hljs-string">'APP_DIRS'</span>: <span class="hljs-literal">True</span>,
+        ...
+    },
+]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="create-executable-schema"></a><a href="#create-executable-schema" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create executable schema</h3>
+<p>Create a Python module somewhere in your project that will define the executable schema. It may be <code>schema</code> module living right next to your settings and urls:</p>
+<pre><code class="hljs css language-python"><span class="hljs-comment"># schema.py</span>
+<span class="hljs-keyword">from</span> ariadne <span class="hljs-keyword">import</span> QueryType, make_executable_schema
+
+type_defs = <span class="hljs-string">"""
+    type Query {
+        hello: String!
+    }
+"""</span>
+
+query = QueryType()
+
+<span class="hljs-meta">@query.field("hello")</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_hello</span><span class="hljs-params">(*_)</span>:</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello world!"</span>
+
+schema = make_executable_schema(type_defs, query)
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="add-a-graphql-view-to-your-urls"></a><a href="#add-a-graphql-view-to-your-urls" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add a GraphQL view to your urls</h3>
+<p>Add a GraphQL view to your project's <code>urls.py</code>:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne.contrib.django.views <span class="hljs-keyword">import</span> GraphQLView
+<span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path
+
+<span class="hljs-keyword">from</span> .schema <span class="hljs-keyword">import</span> schema
+
+urlpatterns = [
+    ...
+    path(<span class="hljs-string">'graphql/'</span>, GraphQLView.as_view(schema=schema), name=<span class="hljs-string">'graphql'</span>),
+]
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="configuration-options"></a><a href="#configuration-options" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configuration options</h3>
+<p><code>GraphQLView.as_view()</code> takes mostly the same options that <a href="/docs/0.10.0/api-reference#configuration-options"><code>graphql</code></a> does, but with one difference:</p>
+<ul>
+<li><code>debug</code> option is not available and it's set to the value of <code>settings.DEBUG</code></li>
+</ul>
+<p>Django GraphQL view supports extra option specific to it: <code>playground_options</code>, a dict of <a href="https://github.com/prisma/graphql-playground#settings">GraphQL Playground options</a> that should be used.</p>
+<h2><a class="anchor" aria-hidden="true" id="django-channels"></a><a href="#django-channels" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Django Channels</h2>
+<p>Ariadne's <a href="/docs/0.10.0/asgi">ASGI application</a> can be used together with <a href="https://github.com/django/channels">Django Channels</a> to implement asynchronous GraphQL API with features like <a href="/docs/0.10.0/subscriptions">subscriptions</a>:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne.asgi <span class="hljs-keyword">import</span> GraphQL
+<span class="hljs-keyword">from</span> channels.http <span class="hljs-keyword">import</span> AsgiHandler
+<span class="hljs-keyword">from</span> channels.routing <span class="hljs-keyword">import</span> URLRouter
+<span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path, re_path
+
+
+schema = ...
+
+
+application = URLRouter([
+    path(<span class="hljs-string">"graphql/"</span>, GraphQL(schema, debug=<span class="hljs-literal">True</span>)),
+    re_path(<span class="hljs-string">r""</span>, AsgiHandler),
+])
+</code></pre>
+<blockquote>
+<p>At the moment Django ORM doesn't support asynchronous query execution and there is <strong>noticeable performance loss</strong> when using it for database access in asynchronous resolvers.</p>
+<p>Use asynchronous ORM such as <a href="https://github.com/fantix/gino">Gino</a> for database queries in your resolvers.</p>
+</blockquote>
+<h2><a class="anchor" aria-hidden="true" id="date-and-datetime-scalars"></a><a href="#date-and-datetime-scalars" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>Date</code> and <code>Datetime</code> scalars</h2>
+<p>For convenience Ariadne also provides <code>Date</code> and <code>DateTime</code> scalar implementations that can be used to represent Django dates and datetimes in form understood by JS date and time handling libraries like <a href="https://momentjs.com/">Moment.js</a>.</p>
+<blockquote>
+<p>Scalars have dependency on <a href="https://github.com/dateutil/dateutil">dateutil library</a>.</p>
+</blockquote>
+<p>To use them in your project, update your schema to define <code>Date</code> and <code>Datetime</code> scalar and pass their Python implementations to <code>make_executable_schema</code>:</p>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">from</span> ariadne.contrib.django.scalars <span class="hljs-keyword">import</span> date_scalar, datetime_scalar
+
+type_defs = <span class="hljs-string">"""
+    scalar Date
+    scalar DateTime
+
+    type Query {
+        hello: String
+    }
+"""</span>
+
+schema = make_executable_schema(type_defs, [date_scalar, datetime_scalar, ...])
+</code></pre>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/0.10.0/wsgi"><span class="arrow-prev">← </span><span>WSGI application</span></a><a class="docs-next button" href="/docs/0.10.0/flask-integration"><span>Flask</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#adding-graphql-api-to-django-project">Adding GraphQL API to Django project</a><ul class="toc-headings"><li><a href="#add-app-to-installed_apps">Add app to <code>INSTALLED_APPS</code></a></li><li><a href="#create-executable-schema">Create executable schema</a></li><li><a href="#add-a-graphql-view-to-your-urls">Add a GraphQL view to your urls</a></li><li><a href="#configuration-options">Configuration options</a></li></ul></li><li><a href="#django-channels">Django Channels</a></li><li><a href="#date-and-datetime-scalars"><code>Date</code> and <code>Datetime</code> scalars</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/icon.png" alt="Ariadne" height="107" width="128"/></a><div class="footerNavSpacer"></div><div class="footerNavTwoColumn"><h5>Documentation</h5><a href="/docs/intro.html">Introduction</a><a href="/docs/resolvers.html">Resolvers</a><a href="/docs/mutations.html">Mutations</a><a href="/docs/subscriptions.html">Subscriptions</a><a href="/docs/django-integration.html">Django integration</a><a href="/docs/flask-integration.html">Flask integration</a><a href="/docs/starlette-integration.html">Starlette integration</a><a href="/docs/other-integrations.html">Other integrations</a><a href="/docs/api-reference.html">API Reference</a><a href="/docs/logo.html">Logo</a></div><div><h5>Community</h5><a href="https://github.com/mirumee/ariadne/discussions/">Discuss</a><a href="https://github.com/mirumee/ariadne">GitHub</a><a class="github-button" href="https://github.com/mirumee/ariadne" data-icon="octicon-star" data-count-href="/mirumee/ariadne/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright"><a href="https://mirumee.com">Copyright © 2022 Mirumee Software</a><a href="https://mirumee.com">Ariadne is crafted with love by<img src="/img/mirumee.png" alt="Mirumee"/></a></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '507581234da84aebc8fe9918f530b714',
+                indexName: 'ariadnegraphql',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

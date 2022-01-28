@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Wed, 24 Nov 2021 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 28 Jan 2022 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,16 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne 0.14.1]]></title>
+            <link>https://ariadnegraphql.org/blog/2022/01/28/ariadne-0-14-1.html</link>
+            <guid>https://ariadnegraphql.org/blog/2022/01/28/ariadne-0-14-1.html</guid>
+            <pubDate>Fri, 28 Jan 2022 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne 0.14.1 has been releaded!</p>
+<p>0.14.1 is a maintenance release that locks <code>graphql-core</code> dependency version at <code>&lt;3.2</code>, preventing Ariadne from crashing due to incompatibility with recently released GraphQL-core 3.2 package.</p>
+<p>This release also removes <code>ariadne.contrib.django</code> package which by mistake made it's way to 0.14 release which was supposed to be first Ariadne release without it.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.14.0]]></title>
             <link>https://ariadnegraphql.org/blog/2021/11/24/ariadne-0-14-0.html</link>

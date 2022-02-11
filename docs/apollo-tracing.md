@@ -27,7 +27,7 @@ app = GraphQL(
 
 ## Tracing default resolvers
 
-By default tracing of default resolvers are set to False but if you want to trace base field types for which resolvers are not explicitly set then it can be done by setting the parameter `trace_default_resolver` to `True`. This is useful when used in conjunction with Apollo Studio to see which base fields are being accessed for a entity and thereby helping api lifecycle management.
+For performance reasons tracing is disabled for default resolvers. To reverse this behavior you can initialize `ApolloTracingExtension` with `trace_default_resolver` option set to `True`:
 
 ```python
 from ariadne.contrib.tracing.apollotracing import ApolloTracingExtension

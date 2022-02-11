@@ -23,3 +23,18 @@ app = GraphQL(
 ```
 
 > **Note:** If you are using WSGI, use `ApolloTracingExtensionSync` in place of `ApolloTracingExtension`.
+
+
+## Tracing default resolvers
+
+For performance reasons tracing is disabled for default resolvers. To reverse this behavior you can initialize `ApolloTracingExtension` with `trace_default_resolver` option set to `True`:
+
+```python
+from ariadne.contrib.tracing.apollotracing import ApolloTracingExtension
+
+app = GraphQL(
+    schema,
+    debug=True,
+    extensions=[ApolloTracingExtension(trace_default_resolver=True)],
+)
+```

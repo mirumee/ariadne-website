@@ -98,7 +98,7 @@
 <p>If resolver returns value that's not JSON serializable, GraphQL server will fail while creating Query result, and will return error 500 to the client, with error similar to one below being logged by the application:</p>
 <pre><code class="hljs">TypeError: Object of<span class="hljs-built_in"> type </span>date is <span class="hljs-keyword">not</span> JSON serializable
 </code></pre>
-<p>If value for our scalar appears in JSON with variables, it's JSON representation will parsed. Likewise, if value appears within query, its AST (abstract syntax tree) representation will be automatically converted to matching Python representation:</p>
+<p>If value for our scalar appears in JSON with variables, its JSON representation will parsed. Likewise, if value appears within query, its AST (abstract syntax tree) representation will be automatically converted to matching Python representation:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">scalar</span> <span class="token class-name">Money</span>
 
 <span class="token keyword">type</span> <span class="token class-name">Query</span> <span class="token punctuation">{</span>

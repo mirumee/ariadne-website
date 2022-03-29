@@ -58,7 +58,7 @@ If resolver returns value that's not JSON serializable, GraphQL server will fail
 TypeError: Object of type date is not JSON serializable
 ```
 
-If value for our scalar appears in JSON with variables, it's JSON representation will parsed. Likewise, if value appears within query, its AST (abstract syntax tree) representation will be automatically converted to matching Python representation:
+If value for our scalar appears in JSON with variables, its JSON representation will parsed. Likewise, if value appears within query, its AST (abstract syntax tree) representation will be automatically converted to matching Python representation:
 
 ```graphql
 scalar Money

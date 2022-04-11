@@ -15,6 +15,8 @@ This is where the `Subscription` type is useful. It's similar to `Query` but as 
 >
 > If you wish to use subscriptions with Django, consider wrapping your Django application in a Django Channels container and using Ariadne as an *ASGI* server.
 
+> **Note:** Ariadne implements [subscriptions-transport-ws](https://github.com/apollographql/subscriptions-transport-ws/blob/master/PROTOCOL.md) protocol for GraphQL subscriptions.
+
 
 ## Defining subscriptions
 
@@ -339,6 +341,35 @@ def on_connect(websocket, params: Any):
     token = params.get("token")
     if not token:
         raise WebSocketConnectionError({"message": "Missing auth", "code": "auth"})
+```
+
+
+## `on_operation` and `on_complete`
+
+> **Warning:** This feature is considered experimental. It was implemented for feature parity with older version of Apollo Server. It's final shape (or presence in future Ariadne releases) is subject to change. Generally you try using `on_connect` and `on_disconnect` first before trying out those features.
+
+`on_operation` and `on_complete` options allow you to run extra python code when client subscribes or unsubscribes from Subscription field within same WebSocket connection:
+
+```python
+def on_operation(websocket, operation: Operation):
+    ...
+
+
+def on_complete(websocket, operation: Operation):
+    ...
+
+
+graphql = GraphQL(schema, on_operation=on_operation, on_complete=on_complete)
+```
+
+First argument for those functions is `WebSocket` instance and second one is `Operation` dataclass storing data about current subscription:
+
+```python
+@dataclass
+class Operation:
+    id: str
+    name: Optional[str]
+    generator: AsyncGenerator
 ```
 
 

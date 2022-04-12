@@ -61,31 +61,7 @@ class QueryExecutionTimeExtension(Extension):
     ...
 ```
 
-Our extension will measure the query execution time. This means we need to measure the time of two events, request start and finish:
-
-
-```python
-import time
-
-from ariadne.types import Extension
-
-
-class QueryExecutionTimeExtension(Extension):
-    def __init__(self):
-        self.start_timestamp = None
-        self.end_timestamp = None
-
-    def request_started(self, context):
-        self.start_timestamp = time.perf_counter_ns()
-
-    def request_finished(self, context):
-        self.end_timestamp = time.perf_counter_ns()
-```
-
-> See [`Extension`](types-reference.md#extension) reference for the list of available events.
-
-Lastly, extension has to define the `format` method that will be called by the extension system to obtain data that should be included in GraphQL result:
-
+Our extension will measure the query execution time. This means we need to measure the time of two events, request start and creation of JSON response:
 
 ```python
 import time
@@ -100,16 +76,15 @@ class QueryExecutionTimeExtension(Extension):
 
     def request_started(self, context):
         self.start_timestamp = time.perf_counter_ns()
-
-    def request_finished(self, context):
-        self.end_timestamp = time.perf_counter_ns()
 
     def format(self, context):
         if self.start_timestamp and self.end_timestamp:
             return {
-                "execution": self.start_timestamp - self.end_timestamp
+                "execution": time.perf_counter_ns() - self.start_timestamp
             }
 ```
+
+> See [`Extension`](types-reference.md#extension) reference for the list of available events.
 
 
 ## WSGI extension implementation

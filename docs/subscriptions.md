@@ -346,7 +346,7 @@ def on_connect(websocket, params: Any):
 
 ## `on_operation` and `on_complete`
 
-> **Warning:** This feature is considered experimental. It was implemented for feature parity with older version of Apollo Server. It's final shape (or presence in future Ariadne releases) is subject to change. Generally you try using `on_connect` and `on_disconnect` first before trying out those features.
+> **Warning:** This feature is considered experimental. It was implemented for feature parity with older version of Apollo Server. Its final shape (or presence in future Ariadne releases) is snot decided yet. Generally you should try using `on_connect` and `on_disconnect` first before using those features.
 
 `on_operation` and `on_complete` options allow you to run extra python code when client subscribes or unsubscribes from Subscription field within same WebSocket connection:
 

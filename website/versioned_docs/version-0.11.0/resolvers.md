@@ -99,7 +99,7 @@ schema = make_executable_schema(type_defs, query, user)
 >
 > This pattern is still supported for backwards compatibility reasons, but it may be deprecated in future version of Ariadne.
 
-In above example we define resolvers for two GraphQL types: `Query` and `User`. GraphQL knows that those two are connected thanks to relationships in schema. Take this query for example:
+In the above example we define resolvers for two GraphQL types: `Query` and `User`. GraphQL knows that those two are connected thanks to relationships in schema. Take this query for example:
 
 ```graphql
 {
@@ -109,7 +109,7 @@ In above example we define resolvers for two GraphQL types: `Query` and `User`. 
 }
 ```
 
-When GraphQL server receives this query, it will first run the `resolve_user` function assigned to `user` field on `Query` type. If this function returns value, GraphQL server will next take this value and look up what GraphQL type this value represents. It knows from schema that `user` field resolves to nothing or `User`. So GraphQL will look up resolvers for `User` fields and will call the `resolve_username` function of `User` type with value returned from the `resolve_user` function as first argument.
+When the GraphQL server receives this query, it will first call the `resolve_user` function assigned to the `user` field on the `Query` type. If this function returns value, the GraphQL server will next look up the type that this value represents. It knows from the schema that the `user` field resolves to the `User` type. So GraphQL will look up resolvers for the `User` fields and will call the `resolve_username` function of the `User` type with value returned from the `resolve_user` function as first argument.
 
 The `@query.field` decorator is non-wrapping - it simply registers a given function as a resolver for the specified field and then returns it as it is. This makes it easy to test or reuse resolver functions between different types or even APIs:
 

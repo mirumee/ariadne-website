@@ -79,7 +79,7 @@ Allows extensions to add data to `extensions` key in GraphQL response.
 
 Should return a `dict`.
 
-> **Note**: Because creation of GraphQL response occurs before request handling finishes, `format` is called before `request_finished` and is last possible time to run extension's logic that requires it's result to be returned to client.
+> **Note**: Because creation of GraphQL response occurs before request handling finishes, `format` is called before `request_finished` and is last possible time to run extension's logic that requires it's result to be returned to the client.
 
 ##### Example
 

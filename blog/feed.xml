@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Fri, 28 Jan 2022 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 13 Apr 2022 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -14,11 +14,30 @@
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
         <item>
+            <title><![CDATA[Introducing Ariadne GraphQL Modules]]></title>
+            <link>https://ariadnegraphql.org/blog/2022/04/13/ariadne-graphql-modules.html</link>
+            <guid>https://ariadnegraphql.org/blog/2022/04/13/ariadne-graphql-modules.html</guid>
+            <pubDate>Wed, 13 Apr 2022 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p><a href="https://github.com/mirumee/ariadne-graphql-modules">Ariadne GraphQL Modules library is now available</a> 🎉</p>
+<p>This library provides developers with modular way for implementing GraphQL schemas in their projects.</p>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Ariadne 0.15]]></title>
+            <link>https://ariadnegraphql.org/blog/2022/04/13/ariadne-0-15.html</link>
+            <guid>https://ariadnegraphql.org/blog/2022/04/13/ariadne-0-15.html</guid>
+            <pubDate>Wed, 13 Apr 2022 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne 0.15 is out!</p>
+<p>This release updates GraphQL Core compatibility to version 3.2 and Starlette to versions 0.18 and 0.19. It also brings bunch of bug fixes and small improvements to the library contributed by the community. ❤️</p>
+<p>With this release we are also dropping support for Python 3.6, which reached end of support as of 23 December 2021.</p>
+]]></description>
+        </item>
+        <item>
             <title><![CDATA[Ariadne 0.14.1]]></title>
             <link>https://ariadnegraphql.org/blog/2022/01/28/ariadne-0-14-1.html</link>
             <guid>https://ariadnegraphql.org/blog/2022/01/28/ariadne-0-14-1.html</guid>
             <pubDate>Fri, 28 Jan 2022 06:00:00 GMT</pubDate>
-            <description><![CDATA[<p>Ariadne 0.14.1 has been releaded!</p>
+            <description><![CDATA[<p>Ariadne 0.14.1 has been released!</p>
 <p>0.14.1 is a maintenance release that locks <code>graphql-core</code> dependency version at <code>&lt;3.2</code>, preventing Ariadne from crashing due to incompatibility with recently released GraphQL-core 3.2 package.</p>
 <p>This release also removes <code>ariadne.contrib.django</code> package which by mistake made it's way to 0.14 release which was supposed to be first Ariadne release without it.</p>
 ]]></description>

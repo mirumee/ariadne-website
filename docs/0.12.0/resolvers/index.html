@@ -139,6 +139,14 @@ schema = make_executable_schema(type_defs, query, user)
 </code></pre>
 <p>This pattern is still supported for backwards compatibility reasons, but it may be deprecated in future version of Ariadne.</p>
 </blockquote>
+<p>In the above example we define resolvers for two GraphQL types: <code>Query</code> and <code>User</code>. GraphQL knows that those two are connected thanks to relationships in schema. Take this query for example:</p>
+<pre><code class="hljs css language-graphql"><span class="token punctuation">{</span>
+    user <span class="token punctuation">{</span>
+        username
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>When the GraphQL server receives this query, it will first call the <code>resolve_user</code> function assigned to the <code>user</code> field on the <code>Query</code> type. If this function returns value, the GraphQL server will next look up the type that this value represents. It knows from the schema that the <code>user</code> field resolves to the <code>User</code> type. So GraphQL will look up resolvers for the <code>User</code> fields and will call the <code>resolve_username</code> function of the <code>User</code> type with value returned from the <code>resolve_user</code> function as first argument.</p>
 <p>The <code>@query.field</code> decorator is non-wrapping - it simply registers a given function as a resolver for the specified field and then returns it as it is. This makes it easy to test or reuse resolver functions between different types or even APIs:</p>
 <pre><code class="hljs css language-python">user = ObjectType(<span class="hljs-string">"User"</span>)
 client = ObjectType(<span class="hljs-string">"Client"</span>)
@@ -146,7 +154,7 @@ client = ObjectType(<span class="hljs-string">"Client"</span>)
 <span class="hljs-meta">@user.field("email")</span>
 <span class="hljs-meta">@client.field("email")</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_email_with_permission_check</span><span class="hljs-params">(obj, info)</span>:</span>
-    <span class="hljs-keyword">if</span> info.context.user.is_administrator:
+    <span class="hljs-keyword">if</span> info.context[<span class="hljs-string">"user"</span>].is_administrator:
         <span class="hljs-keyword">return</span> obj.email
     <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>
 </code></pre>

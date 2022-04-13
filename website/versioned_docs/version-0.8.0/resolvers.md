@@ -108,7 +108,7 @@ client = ObjectType("Client")
 @user.field("email")
 @client.field("email")
 def resolve_email_with_permission_check(obj, info):
-    if info.context.user.is_administrator:
+    if info.context["user"].is_administrator:
         return obj.email
     return None
 ```

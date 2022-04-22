@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Wed, 13 Apr 2022 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 22 Apr 2022 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne 0.15.1]]></title>
+            <link>https://ariadnegraphql.org/blog/2022/04/22/ariadne-0-15-1.html</link>
+            <guid>https://ariadnegraphql.org/blog/2022/04/22/ariadne-0-15-1.html</guid>
+            <pubDate>Fri, 22 Apr 2022 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne 0.15.1 has been released!</p>
+<p>0.15.1 is a maintenance release dedicated to fixing performance issue in <code>make_federated_schema</code> function that makes generation of schema object very slow when GraphQL types have descriptions.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Introducing Ariadne GraphQL Modules]]></title>
             <link>https://ariadnegraphql.org/blog/2022/04/13/ariadne-graphql-modules.html</link>

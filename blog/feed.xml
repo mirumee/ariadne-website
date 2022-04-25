@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Fri, 22 Apr 2022 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 25 Apr 2022 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne GraphQL Modules 0.3.0]]></title>
+            <link>https://ariadnegraphql.org/blog/2022/04/25/ariadne-graphql-modules-0-3-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2022/04/25/ariadne-graphql-modules-0-3-0.html</guid>
+            <pubDate>Mon, 25 Apr 2022 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne GraphQL Modules 0.3.0 is now available.</p>
+<p>0.3.0 is a bugfix release fixing dependency checker not recognizing <code>Float</code> as builtin scalar.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.15.1]]></title>
             <link>https://ariadnegraphql.org/blog/2022/04/22/ariadne-0-15-1.html</link>

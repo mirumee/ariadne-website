@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Mon, 25 Apr 2022 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 04 May 2022 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,25 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne GraphQL Modules 0.4.0]]></title>
+            <link>https://ariadnegraphql.org/blog/2022/05/04/ariadne-graphql-modules-0-4-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2022/05/04/ariadne-graphql-modules-0-4-0.html</guid>
+            <pubDate>Wed, 04 May 2022 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne GraphQL Modules 0.4.0 has been released!</p>
+<p>This release changes datamodel, simplifying the <code>BaseType</code> and moving its logic to new <code>DefinitionType</code> and <code>BindableType</code> base classes.</p>
+<p>It also introduces new <code>CollectionType</code> that can be used to gather multiple types into single type, eg.:</p>
+<pre><code class="hljs css language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserMutations</span><span class="hljs-params">(CollectionType)</span>:</span>
+    __types__ = [
+        UserAvatarUploadMutation,
+        UserAvatarRemoveMutation,
+        UserCreateMutation,
+        UserUpdateMutation,
+        UserDeleteMutation,
+    ]
+</code></pre>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne GraphQL Modules 0.3.0]]></title>
             <link>https://ariadnegraphql.org/blog/2022/04/25/ariadne-graphql-modules-0-3-0.html</link>

@@ -2,12 +2,34 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2022-04-25T06:00:00Z</updated>
+    <updated>2022-05-04T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne GraphQL Modules 0.4.0]]></title>
+        <id>https://ariadnegraphql.org/blog/2022/05/04/ariadne-graphql-modules-0-4-0.html</id>
+        <link href="https://ariadnegraphql.org/blog/2022/05/04/ariadne-graphql-modules-0-4-0.html">
+        </link>
+        <updated>2022-05-04T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne GraphQL Modules 0.4.0 has been released!</p>
+<p>This release changes datamodel, simplifying the <code>BaseType</code> and moving its logic to new <code>DefinitionType</code> and <code>BindableType</code> base classes.</p>
+<p>It also introduces new <code>CollectionType</code> that can be used to gather multiple types into single type, eg.:</p>
+<pre><code class="hljs css language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserMutations</span><span class="hljs-params">(CollectionType)</span>:</span>
+    __types__ = [
+        UserAvatarUploadMutation,
+        UserAvatarRemoveMutation,
+        UserCreateMutation,
+        UserUpdateMutation,
+        UserDeleteMutation,
+    ]
+</code></pre>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne GraphQL Modules 0.3.0]]></title>
         <id>https://ariadnegraphql.org/blog/2022/04/25/ariadne-graphql-modules-0-3-0.html</id>

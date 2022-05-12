@@ -1,6 +1,5 @@
 .shoutout {
-  background-color: #1b9cfc;
-  text-shadow: 0px 0px 3px #19517c;
+  background-color: #fff200;
   border-radius: 8px;
   margin-top: 1rem;
 }
@@ -10,7 +9,7 @@
   .shoutout a:visited {
     display: block;
     padding: 1rem;
-    color: #fff;
+    color: #000;
   }
 
   .shoutout a:hover {

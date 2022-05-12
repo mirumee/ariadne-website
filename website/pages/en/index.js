@@ -23,9 +23,12 @@ class HomeSplash extends React.Component {
 
     const ShoutOut = () => (
       <div className="shoutout">
-        <a href="https://schemattic.io" target="_blank">
-          🎉 Mirumee presents: <strong>Schemattic.io</strong> - Experiment, mock
-          and share your GraphQL APIs!
+        <a
+          href="https://github.com/mirumee/ariadne-graphql-modules"
+          target="_blank"
+        >
+          🎉 Introducing <strong>Ariadne GraphQL Modules</strong> for sane
+          definition and modularization of large GraphQL schemas!
         </a>
       </div>
     );
@@ -67,7 +70,7 @@ class HomeSplash extends React.Component {
     return (
       <SplashContainer>
         <div className="inner">
-          {/* <ShoutOut /> */}
+          <ShoutOut />
           <Lead />
           <PromoSection>
             <Button href={docUrl("intro.html")}>Get started</Button>

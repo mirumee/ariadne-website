@@ -27,7 +27,7 @@ class HomeSplash extends React.Component {
           href="https://github.com/mirumee/ariadne-graphql-modules"
           target="_blank"
         >
-          🎉 Introducing <strong>Ariadne GraphQL Modules</strong> for sane
+          🎉 Introducing <strong>Ariadne GraphQL Modules</strong> for easier
           definition and modularization of large GraphQL schemas!
         </a>
       </div>

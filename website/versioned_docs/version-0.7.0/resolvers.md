@@ -159,7 +159,7 @@ schema = make_executable_schema(type_defs, resolvers + [snake_case_fallback_reso
 
 Both `ObjectType.alias` and fallback resolvers use a default resolver provided by `graphql-core-next` library to implement its functionality.
 
-This resolver takes a target attribute name and (depending if `obj` is a `dict` or not) uses either `obj.get(attr_name)` or `getattr(obj, attr_name, None)` to resolve the value that should be returned. If resolved value is callable, its called with arguments that were passed to the resolver field, and its return value is then used instead.
+This resolver takes a target attribute name and (depending if `obj` is a `dict` or not) uses either `obj.get(attr_name)` or `getattr(obj, attr_name, None)` to resolve the value that should be returned. If the resolved value is callable, it is called with arguments that were passed to the resolver field, and its return value is then used instead.
 
 In the below example, both representations of `User` type are supported by the default resolver:
 

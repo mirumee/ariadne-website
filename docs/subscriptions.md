@@ -18,6 +18,40 @@ This is where the `Subscription` type is useful. It's similar to `Query` but as 
 > **Note:** Ariadne implements [subscriptions-transport-ws](https://github.com/apollographql/subscriptions-transport-ws/blob/master/PROTOCOL.md) protocol for GraphQL subscriptions.
 
 
+## Subscription protocols
+
+In the world of GraphQL clients, there are two subscription protocols that clients can implement for subscribing to GraphQL server.
+
+
+### `subscriptions-transport-ws`
+
+Default protocol used by Ariadne. Client library for it is still widely used although no it's no longer maintained. It has benefit of being supported by GraphQL-Playground out of the box.
+
+Repo link: [apollographql/subscriptions-transport-ws](https://github.com/apollographql/subscriptions-transport-ws)
+
+
+### `graphql-ws`
+
+New protocol that replaced `subscriptions-transport-ws`. Its actively maintained and supported by Apollo Studio Explorer.
+
+Repo link: [enisdenjo/graphql-ws](https://github.com/enisdenjo/graphql-ws)
+
+To make Ariadne use `graphql-ws` protocol for subscriptions, initialize `ariadne.asgi.GraphQL` app with `ariadne.asgi.handlers.GraphQLTransportWSHandler` instance:
+
+```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLTransportWSHandler
+
+
+graphql_app = GraphQL(
+    schema,
+    websocket_handler=GraphQLTransportWSHandler(),
+)
+```
+
+> **Note:** Name of class implementing `graphql-ws` is not a mistake. The subprotocol used for subscriptions is indeed named [`graphql-transport-ws`](https://github.com/enisdenjo/graphql-ws/blob/master/PROTOCOL.md).
+
+
 ## Defining subscriptions
 
 In schema definition subscriptions look similar to queries:

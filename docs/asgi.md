@@ -33,9 +33,25 @@ $ uvicorn myasgi:application
 
 ### Configuration options
 
-`GraphQL` takes the same options that [`graphql`](api-reference.md#configuration-options) does, but accepts extra option specific to it:
+`GraphQL` takes the same options that [`graphql`](api-reference.md#configuration-options) does, but accepts extra options specific to it:
 
 
 #### `keepalive`
 
 If given a number of seconds, will send "keepalive" packets to the client in an attempt to prevent the connection from being dropped due to inactivity.
+
+
+#### `http_handler`
+
+Instance of a class extending `ariadne.asgi.handlers.GraphQLHTTPHandler`. Used to handle HTTP requests.
+
+If not set, `ariadne.asgi.handlers.GraphQLHTTPHandler` is used.
+
+
+#### `websocket_handler`
+
+Instance of a class extending `ariadne.asgi.handlers.GraphQLWebsocketHandler`. Used to handle WebSocket connections.
+
+If not set, `GraphQLWSHandler` (implementing [`subscriptions-transport-ws`](https://github.com/apollographql/subscriptions-transport-ws) protocol) is used by default.
+
+See [subscriptions](/subscriptions#subscription-protocols) documentation for more details.

@@ -29,6 +29,17 @@ Default protocol used by Ariadne. Client library for it is still widely used alt
 
 Repo link: [apollographql/subscriptions-transport-ws](https://github.com/apollographql/subscriptions-transport-ws)
 
+```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLWSHandler
+
+
+graphql_app = GraphQL(
+    schema,
+    websocket_handler=GraphQLWSHandler(),
+)
+```
+
 
 ### `graphql-ws`
 
@@ -213,6 +224,7 @@ import json
 
 from ariadne import MutationType, SubscriptionType, make_executable_schema
 from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLWSHandler
 from broadcaster import Broadcast
 from starlette.applications import Starlette
 
@@ -260,7 +272,11 @@ async def source_message(_, info):
 
 
 schema = make_executable_schema(type_defs, mutation, subscription)
-graphql = GraphQL(schema=schema, debug=True)
+graphql = GraphQL(
+    schema=schema,
+    debug=True,
+    websocket_handler=GraphQLWSHandler(),
+)
 
 app = Starlette(
     debug=True,
@@ -284,11 +300,19 @@ To work around this limitation, websocket clients include this data in initial m
 To access connection parameters, custom function needs to be implemented and passed to Ariadne's `on_connect` option:
 
 ```python
+from ariadne.asgi.handlers import GraphQLWSHandler
+
+
 def on_connect(websocket, params: Any):
     ...
 
 
-graphql = GraphQL(schema, on_connect=on_connect)
+graphql = GraphQL(
+    schema,
+    websocket_handler=GraphQLWSHandler(
+        on_connect=on_connect,
+    ),
+)
 ```
 
 This function is called exactly once: at the time when websocket connection is opened by the client. It's always called with two arguments: a `starlette.websockets.WebSocket` instance and a payload. It can be synchronous or asynchronous.
@@ -332,7 +356,13 @@ def context_value(request):
     return context
 
 
-graphql = GraphQL(schema, context_value=context_value, on_connect=on_connect)
+graphql = GraphQL(
+    schema,
+    context_value=context_value,
+    websocket_handler=GraphQLWSHandler(
+        on_connect=on_connect,
+    ),
+)
 ```
 
 
@@ -412,6 +442,10 @@ class Operation:
 `on_disconnect` option can be set to callable function taking single argument, `WebSocket` instance, that should be ran after Ariadne closes the websocket connection:
 
 ```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLWSHandler
+
+
 def on_connect(websocket, params: Any):
     if not isinstance(params, dict):
         websocket.scope["connection_params"] = {}
@@ -428,5 +462,11 @@ def on_disconnect(websocket):
         chat_user.set_offline()
 
 
-graphql = GraphQL(schema, on_connect=on_connect, on_disconnect=on_disconnect)
+graphql = GraphQL(
+    schema,
+    websocket_handler=GraphQLWSHandler(
+        on_connect=on_connect,
+        on_disconnect=on_disconnect,
+    ),
+)
 ```

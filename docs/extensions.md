@@ -10,10 +10,11 @@ Ariadne implements simple extension system that allows developers to inject cust
 
 ## Enabling extensions
 
-To enable extensions, initialize `GraphQL` app with `extensions` parameter. This parameter accepts list of [extensions](types-reference.md#extension):
+To enable extensions, initialize handler with `extensions` parameter. This parameter accepts list of [extensions](types-reference.md#extension):
 
 ```python
 from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
 
 from .schema import schema
 from .extensions import MyExtension
@@ -21,7 +22,9 @@ from .extensions import MyExtension
 
 app = GraphQL(
     schema,
-    extensions=[MyExtension]
+    http_handler=GraphQLHTTPHandler(
+        extensions=[MyExtension],
+    ),
 )
 ```
 
@@ -29,6 +32,7 @@ Alternatively, if your extension depends on request or should be enabled conditi
 
 ```python
 from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
 
 from .schema import schema
 from .extensions import MyExtension
@@ -42,7 +46,9 @@ def get_extensions(request, context):
 
 app = GraphQL(
     schema,
-    extensions=get_extensions
+    http_handler=GraphQLHTTPHandler(
+        extensions=get_extensions,
+    ),
 )
 ```
 

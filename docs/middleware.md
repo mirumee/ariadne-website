@@ -32,14 +32,20 @@ def lowercase_middleware(resolver, obj, info, **args):
     return value
 ```
 
-To use this middleware in your queries, simply pass it to `middleware` option:
+To use this middleware in your queries, pass it to `middleware` option of user handlers:
 
 ```python
 from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
 from graphql import MiddlewareManager
 
 
-app = GrapqhQL(schema, middleware=MiddlewareManager(lowercase_middleware))
+app = GrapqhQL(
+    schema,
+    http_handler=GraphQLHTTPHandler(
+        middleware=MiddlewareManager(lowercase_middleware),
+    ),
+)
 ```
 
 In case when more than one middleware is enabled on the server, the `resolver` argument will point to the partial function constructed from the next middleware in the execution chain.

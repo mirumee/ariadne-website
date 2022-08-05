@@ -3,7 +3,7 @@ name: Publish on GitHub Pages
 on:
   push:
     branches: [master]
-    paths: [website/**]
+    paths: [docs/**, website/**]
 
 jobs:
   build-n-publish:

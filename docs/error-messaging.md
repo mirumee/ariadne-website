@@ -43,7 +43,7 @@ type_def = """
 
 Depending on success or failure, your mutation resolver may return either an `error` message to be displayed to the user, or `user` that has been logged in. Your API result-handling logic may then interpret the response based on the content of those two keys, only falling back to the main `errors` key to make sure there wasn't an error in query syntax, connection or application.
 
-Likewise, your `Query` resolvers may return a requested object or `None` that will then cause a message such as "Requested item doesn't exist or you don't have permission to see it" to be displayed to the user in place of the requested resource.
+Likewise, your `Query` resolvers may return `None` instead of requested object, which client developers may interpret as a signal from API to display "Requested item doesn't exist" message the user in place of the requested resource.
 
 
 ## Debugging errors

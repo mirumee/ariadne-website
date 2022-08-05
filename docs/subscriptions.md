@@ -20,6 +20,7 @@ This is where the `Subscription` type is useful. It's similar to `Query` but as 
 
 In the world of GraphQL clients, there are two subscription protocols that clients can implement for subscribing to GraphQL server.
 
+
 ### `subscriptions-transport-ws`
 
 Default protocol used by Ariadne. Client library for it is still widely used although no it's no longer maintained. It has benefit of being supported by GraphQL-Playground out of the box.

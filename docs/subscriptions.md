@@ -15,8 +15,6 @@ This is where the `Subscription` type is useful. It's similar to `Query` but as 
 >
 > If you wish to use subscriptions with Django, consider wrapping your Django application in a Django Channels container and using Ariadne as an *ASGI* server.
 
-> **Note:** Ariadne implements [subscriptions-transport-ws](https://github.com/apollographql/subscriptions-transport-ws/blob/master/PROTOCOL.md) protocol for GraphQL subscriptions.
-
 
 ## Subscription protocols
 

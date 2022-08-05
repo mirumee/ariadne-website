@@ -66,10 +66,6 @@
             });
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Apollo Federation</h1></header><article><div><span><p><a href="https://www.apollographql.com/docs/apollo-server/federation/introduction/">Apollo Federation</a> is an approach for composing multiple GraphQL services into one data graph, queryable from a single GraphQL server.</p>
 <p>Ariadne supports building federated schemas through use of special <a href="https://www.apollographql.com/docs/apollo-server/federation/federation-spec/">types and directives introduced by federation specification</a> that instruct Ariadne how it's GraphQL schema types and fields combine with types and fields defined in other GraphQL schemas forming the Federation.</p>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>You may have heard about <a href="https://www.apollographql.com/docs/graphql-tools/schema-stitching/">schema stitching</a> when searching for GraphQL solutions for merging multiple GraphQL servers into a single one. This approach was originally proposed back in 2018 and implemented by the Apollo Server, but it had considerable downsides which resulted in it being scrapped and federations being proposed as the new, better solution.</p>
-</blockquote>
 <h2><a class="anchor" aria-hidden="true" id="federated-architecture-example"></a><a href="#federated-architecture-example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Federated architecture example</h2>
 <p>Let's say we have three separate GraphQL services that we want to convert into a federated service:</p>
 <p>Users Service:</p>

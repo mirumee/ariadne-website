@@ -130,7 +130,7 @@ mutation.set_field(<span class="hljs-string">"logout"</span>, auth_mutations.res
 </code></pre>
 <blockquote>
 <p><strong>Binding Mutation Resolvers</strong></p>
-<p>Recall that resolvers need to be bound to their respective resolvers via the <code>make_executable_schema</code> call. If you're following along from the introduction that call will look similar to the following:</p>
+<p>Remember that all resolvers need to be bound to their respective fields in the schema via the <code>make_executable_schema</code> call. If you're following along from the introduction that call will look similar to the following:</p>
 <pre><code class="hljs css language-python">make_executable_schema(type_defs, [query, mutations])
 </code></pre>
 </blockquote>

@@ -77,15 +77,18 @@ GraphQL types definitions can be split across multiple modules or even packages,
 
 
 ```console
-graphql/
-    types/
-        __init__.py
-        book.py
-        query.py
-        user.py
+myapp/
     __init__.py
-    scalars.py
-    schema.py
+    ...
+    graphql/
+        types/
+            __init__.py
+            book.py
+            query.py
+            user.py
+        __init__.py
+        scalars.py
+        schema.py
 ```
 
 GraphQL types can be defined in dedicated modules under `types` namespace and combined into a list in `types/__init__.py`:

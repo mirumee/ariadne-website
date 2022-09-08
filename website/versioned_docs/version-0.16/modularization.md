@@ -27,7 +27,7 @@ from ariadne.asgi import GraphQL
 # Load schema from file...
 type_defs = load_schema_from_path("/path/to/schema.graphql")
 
-# ...or construct schema from all *.graphql/*.graphqls/*.gql files in directory
+# ...or construct schema from all *.graphql, *.graphqls/ and .gql files in directory
 type_defs = load_schema_from_path("/path/to/schema/")
 
 # Build an executable schema

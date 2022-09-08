@@ -2,12 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2022-05-04T06:00:00Z</updated>
+    <updated>2022-09-08T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne 0.16.0]]></title>
+        <id>https://ariadnegraphql.org/blog/2022/09/08/ariadne-0-16-0.html</id>
+        <link href="https://ariadnegraphql.org/blog/2022/09/08/ariadne-0-16-0.html">
+        </link>
+        <updated>2022-09-08T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne 0.16 release brings refactor to Ariadne's ASGI app which makes it more modular and adds support for old and new GraphQL websocket protocols. It also updates <code>load_schema_from_path</code> to support <code>gql</code> and <code>graphqls</code> file types. Finally it bumps library's support for Starlette to version 0.20 and updates other dependencies to latest versions.</p>
+<p>We thank our community for contributing features to this release. You rock! ❤️</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne GraphQL Modules 0.4.0]]></title>
         <id>https://ariadnegraphql.org/blog/2022/05/04/ariadne-graphql-modules-0-4-0.html</id>

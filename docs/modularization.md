@@ -11,7 +11,7 @@ Ariadne allows you to spread your GraphQL API implementation over multiple files
 
 ## Defining schema in `.graphql` files
 
-The recommended way to define schema is by using `.graphql` files. This approach offers certain advantages:
+The recommended way to define schema is by using `.graphql`, `.graphqls`, or `.gql` files. This approach offers certain advantages:
 
 - First class support from developer tools like [Apollo GraphQL plugin](https://marketplace.visualstudio.com/items?itemName=apollographql.vscode-apollo) for VS Code.
 - Easier cooperation and sharing of schema design between frontend and backend developers.
@@ -26,7 +26,7 @@ from ariadne.asgi import GraphQL
 # Load schema from file...
 type_defs = load_schema_from_path("/path/to/schema.graphql")
 
-# ...or construct schema from all *.graphql files in directory
+# ...or construct schema from all *.graphql/*.graphqls/*.gql files in directory
 type_defs = load_schema_from_path("/path/to/schema/")
 
 # Build an executable schema

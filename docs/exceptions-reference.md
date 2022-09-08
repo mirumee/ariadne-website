@@ -9,7 +9,7 @@ Ariadne defines some custom exception types that can be imported from `ariadne.e
 
 ## `GraphQLFileSyntaxError`
 
-Raised by the [`load_schema_from_path`](api-reference.md#load_schema_from_path) if any of loaded `gql` files contains syntax error.
+Raised by the [`load_schema_from_path`](api-reference.md#load_schema_from_path) if any of loaded GraphQL schema files contains syntax error.
 
 
 - - - - -

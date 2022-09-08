@@ -1245,7 +1245,7 @@ def load_schema_from_path(path)
 Loads GraphQL schema from `path` using different strategy depending on `path`'s type:
 
 - If `path` is single file, reads it.
-- If `path` is directory, walks it recursively loading all `.graphql` files within it.
+- If `path` is directory, walks it recursively loading all `.graphql`, `.graphqls`, and `.gql` files within it.
 
 Files are validated using the same logic that [`gql`](#gql) uses, concatenated into single string and returned.
 

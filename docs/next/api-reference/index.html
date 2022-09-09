@@ -790,7 +790,7 @@ type_defs = <span class="hljs-string">"""
 <p>Loads GraphQL schema from <code>path</code> using different strategy depending on <code>path</code>'s type:</p>
 <ul>
 <li>If <code>path</code> is single file, reads it.</li>
-<li>If <code>path</code> is directory, walks it recursively loading all <code>.graphql</code> files within it.</li>
+<li>If <code>path</code> is directory, walks it recursively loading all <code>.graphql</code>, <code>.graphqls</code>, and <code>.gql</code> files within it.</li>
 </ul>
 <p>Files are validated using the same logic that <a href="#gql"><code>gql</code></a> uses, concatenated into single string and returned.</p>
 <p>Raises <a href="/docs/next/exceptions-reference#graphqlfilesyntaxerror"><code>GraphQLFileSyntaxError</code></a> if any of the loaded files contained syntax errors.</p>

@@ -14,7 +14,7 @@
         <link href="https://ariadnegraphql.org/blog/2022/09/13/ariadne-graphql-modules-0-7-0.html">
         </link>
         <updated>2022-09-13T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>Ariadne GraphQL Modules 0.7 has been released. This release adds support for Ariadne's approach to defining a schema to <code>make_executable_schema</code>, enabling developers to incrementally switch their schema definition to modular approach (or vice versa).</p>
+        <summary type="html"><![CDATA[<p><a href="https://github.com/mirumee/ariadne-graphql-modules">Ariadne GraphQL Modules</a> 0.7 has been released. This release adds support for Ariadne's approach to defining a schema to <code>make_executable_schema</code>, enabling developers to incrementally switch their schema definition to modular approach (or vice versa).</p>
 ]]></summary>
         <author>
         </author>

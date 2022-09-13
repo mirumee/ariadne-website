@@ -2,12 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2022-09-08T06:00:00Z</updated>
+    <updated>2022-09-13T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne GraphQL Modules 0.7.0]]></title>
+        <id>https://ariadnegraphql.org/blog/2022/09/13/ariadne-graphql-modules-0-7-0.html</id>
+        <link href="https://ariadnegraphql.org/blog/2022/09/13/ariadne-graphql-modules-0-7-0.html">
+        </link>
+        <updated>2022-09-13T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne GraphQL Modules 0.7 has been released. This release adds support for Ariadne's approach to defining a schema to <code>make_executable_schema</code>, enabling developers to incrementally switch their schema definition to modular approach (or vice versa).</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.16.0]]></title>
         <id>https://ariadnegraphql.org/blog/2022/09/08/ariadne-0-16-0.html</id>

@@ -2,7 +2,7 @@
 title: Ariadne GraphQL Modules 0.7.0
 ---
 
-Ariadne GraphQL Modules 0.7 has been released. This release adds support for Ariadne's approach to defining a schema to `make_executable_schema`, enabling developers to incrementally switch their schema definition to modular approach (or vice versa).
+[Ariadne GraphQL Modules](https://github.com/mirumee/ariadne-graphql-modules) 0.7 has been released. This release adds support for Ariadne's approach to defining a schema to `make_executable_schema`, enabling developers to incrementally switch their schema definition to modular approach (or vice versa).
 
 
 <!--truncate-->

@@ -177,7 +177,7 @@ from graphql.validation import ValidationRule
 
 
 def is_introspection_field(field_name: str):
-    return key.lower() in [
+    return field_name.lower() in [
         "__schema",
         "__directive",
         "__directivelocation",

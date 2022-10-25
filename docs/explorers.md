@@ -3,7 +3,9 @@ id: explorers
 title: GraphQL explorers
 ---
 
-Ariadne implements three GraphQL explorers by default and supports implementing your own.
+Explorers provide web-based GUI for interacting with your GraphQL API. Ariadne implements support for multiple of explorers out of the box. It also supports disabling explorer UI altogether.
+
+Ariadne also makes it possible for developers to [implement custom support for any explorer](#custom-explorer).
 
 
 ## GraphiQL 2
@@ -14,12 +16,31 @@ from ariadne.explorer import ExplorerGraphiQL
 
 Default GraphQL explorer in Ariadne since 0.17 release.
 
+
 ### Supported options
 
 `ExplorerGraphiQL` constructor accepts following options:
 
 - `title: str = "Ariadne GraphQL"` - Used for page title and loading message.
-- `explorer_plugin: bool = False` - Enables [GraphQL Explorer plugin](https://www.youtube.com/watch?v=8DmtCPX4tdo).
+- `default_query: str = "..."` - Default content of editor area.
+- `explorer_plugin: bool = False` - Enables [GraphQL Explorer plugin](https://www.youtube.com/watch?v=8DmtCPX4tdo&nounroll=1).
+
+
+## Apollo Sandbox
+
+```python
+from ariadne.explorer import ExplorerApollo
+```
+
+Embedded Apollo Sandbox.
+
+
+### Supported options
+
+`ExplorerApollo` constructor accepts following options:
+
+- `title: str = "Ariadne GraphQL"` - Used for page title and loading message.
+- `default_query: str = "..."` - Default content of editor area.
 
 
 ## GraphQL Playground
@@ -28,7 +49,7 @@ Default GraphQL explorer in Ariadne since 0.17 release.
 from ariadne.explorer import ExplorerPlayground
 ```
 
-GraphQL Playground was default explorer in Ariadne until 0.17 release. It's no longer maintained, with its features being merged back to GraphiQL 2, but it's offered as an alternative for teams and projects that don't want to make a switch yet.
+GraphQL Playground was default explorer in Ariadne until 0.17 release. **It's no longer maintained**. with its features being merged in to GraphiQL 2. It's provided by Ariadne as an alternative for teams and projects that don't want to make a switch yet.
 
 
 ### Supported options
@@ -64,7 +85,7 @@ See Playground's readme for [complete reference of its settings](https://github.
 from ariadne.explorer import ExplorerHttp405
 ```
 
-This explorer always triggers HTTP 405 "method not allowed" response from Ariadne, serving as method to disable GraphQL explorer.
+This explorer always triggers HTTP 405 "method not allowed" response from Ariadne, serving as a way to disable GraphQL explorer.
 
 
 ## Custom explorer
@@ -90,7 +111,7 @@ class MyExplorer(Explorer):
         return "<div>Hello world</div>"
 ```
 
-If `html` methods returns `None`, HTTP 405 "method not allowed" method will be returned by the HTTP server:
+If `html` method returns `None`, HTTP 405 "method not allowed" error will be returned by the HTTP server:
 
 ```python
 from ariadne.explorer import Explorer
@@ -104,7 +125,7 @@ class MyExplorer(Explorer):
         return "<div>Hello world</div>"
 ```
 
-Some HTTP servers implemented by Ariadne also support returning awaitable from `html`:
+Some HTTP servers implemented by Ariadne (eg. `ariadne.asgi.GraphQL`) also support `html` returning awaitable:
 
 ```python
 from ariadne.explorer import Explorer

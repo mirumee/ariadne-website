@@ -57,6 +57,13 @@ If not set, `GraphQLWSHandler` (implementing [`subscriptions-transport-ws`](http
 See [subscriptions](/subscriptions#subscription-protocols) documentation for more details.
 
 
+#### `explorer`
+
+GraphQL Explorer to use by this server.
+
+See [explorers](/explorers) documentation for more details.
+
+
 ### `GraphQLHTTPHandler`
 
 ```python

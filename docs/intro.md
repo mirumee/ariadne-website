@@ -165,7 +165,7 @@ app = GraphQL(schema, debug=True)
 
 Run your script with `uvicorn myscript:app` (remember to replace `myscript.py` with the name of your file!). If all is well, you will see a message telling you that the simple GraphQL server is running at http://127.0.0.1:8000. Open this link in your web browser.
 
-You will see the GraphQL Playground, the open source API explorer for GraphQL APIs. You can enter a `{ hello }` query on the left, press the big, bright "run" button, and see the result on the right:
+You will see the GraphiQL, the open source API explorer for GraphQL APIs. You can enter a `{ hello }` query on the left, press the big purple "run" button, and see the result on the right:
 
 ![Your first Ariadne GraphQL in action!](assets/hello-world.png)
 

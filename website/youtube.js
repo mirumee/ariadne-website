@@ -2,7 +2,7 @@ module.exports = function enableYoutube(md) {
   const linkOpenRenderer = md.renderer.rules.link_open;
   const linkCloseRenderer = md.renderer.rules.link_close;
 
-  md.renderer.rules.link_open = function(tokens, idx, options, env) {
+  md.renderer.rules.link_open = function (tokens, idx, options, env) {
     const href = tokens[idx].href;
     const id = getYoutubeId(href);
 
@@ -25,7 +25,7 @@ module.exports = function enableYoutube(md) {
     return html;
   };
 
-  md.renderer.rules.link_close = function(tokens, idx, options, env) {
+  md.renderer.rules.link_close = function (tokens, idx, options, env) {
     if (!env.youtube) return linkCloseRenderer(tokens, idx, options, env);
 
     env.youtube = false;
@@ -41,6 +41,7 @@ module.exports = function enableYoutube(md) {
 function getYoutubeId(href) {
   let id = null;
   if (!href) return id;
+  if (href.indexOf("&nounroll=1") !== -1) return id;
 
   if (href.startsWith("https://www.youtube.com/watch?v=")) {
     id = href.substring("https://www.youtube.com/watch?v=".length);

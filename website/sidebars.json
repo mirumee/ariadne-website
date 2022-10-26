@@ -17,6 +17,7 @@
       "schema-directives",
       "local-development",
       "logging",
+      "explorers",
       "apollo-federation"
     ],
     "Monitoring": [

@@ -45,6 +45,13 @@ $ uwsgi --http :8000 --wsgi-file mywsgi
 `GraphQL` takes the same options that [`graphql`](api-reference.md#configuration-options) does.
 
 
+#### `explorer`
+
+GraphQL Explorer to use by this server.
+
+See [explorers](/explorers) documentation for more details.
+
+
 ## Using the middleware
 
 To add GraphQL API to your project using `GraphQLMiddleware`, instantiate it with your existing WSGI application as a first argument and your schema as the second:

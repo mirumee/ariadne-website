@@ -3,7 +3,7 @@ id: explorers
 title: GraphQL explorers
 ---
 
-Explorers provide web-based GUI for interacting with your GraphQL API. Ariadne implements support for multiple of explorers out of the box. It also supports disabling explorer UI altogether.
+Explorers provide web-based GUI for interacting with your GraphQL API. Ariadne implements support for multiple explorers out of the box. It also supports disabling explorer UI altogether.
 
 Ariadne also makes it possible for developers to [implement custom support for any explorer](#custom-explorer).
 

@@ -11,7 +11,7 @@ There is now a rich ecosystem of tools built on top of those features.  Some of 
 
 ## GraphQL explorers
 
-Popular GraphQL exploers allow developers and clients to explore the contents of your schema:
+Popular GraphQL explorers allow developers and clients to explore the contents of your schema:
 
 ![GraphQL Playground example](assets/graphql-playground-example.jpg)
 

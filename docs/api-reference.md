@@ -1157,7 +1157,7 @@ Decoded input data sent by the client (eg. for POST requests in JSON format, pas
 #### `logger`
 
 Instance of a Logger, LoggerAdapter OR
-String with the name of logger that should be used to log GraphQL errors. Defaults to `ariadne`.
+Instance of a `Logger`, `LoggerAdapter` or string with the name of logger that should be used to log GraphQL errors. Defaults to `ariadne`.
 
 
 #### `debug`

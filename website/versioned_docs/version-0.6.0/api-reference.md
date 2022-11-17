@@ -218,7 +218,7 @@ MutationType()
 ## `ObjectType`
 
 ```python
-MutationType(name)
+ObjectType(name)
 ```
 
 [_Bindable_](bindables.md) used for setting Python logic for GraphQL object types.

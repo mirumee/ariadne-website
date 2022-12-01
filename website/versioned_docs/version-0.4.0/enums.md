@@ -5,7 +5,7 @@ original_id: enums
 ---
 
 
-Ariadne supports [enumeration types](https://graphql.org/learn/schema/#enumeration-types), which are represented as strings in Python logic:
+Ariadne supports GraphQL [enumeration types](https://graphql.org/learn/schema/#enumeration-types) which by default are represented as strings in Python logic:
 
 ```python
 from ariadne import QueryType
@@ -27,6 +27,7 @@ query = QueryType()
 
 @query.field("users")
 def resolve_users(*_, status):
+    # Value of UserStatus passed to resolver is represented as Python string
     if status == "ACTIVE":
         return get_users(is_active=True)
     if status == "INACTIVE":
@@ -35,9 +36,9 @@ def resolve_users(*_, status):
         return get_users(is_banned=True)
 ```
 
-The above example defines a resolver that returns a list of users based on user status, defined using `UserStatus` enumerable from schema.
+The above example defines a resolver that returns a list of users based on user status, defined using the `UserStatus` enumerable from the schema.
 
-Implementing logic validating if `status` value is allowed is not required - this is done on a GraphQL level. This query will produce error:
+There is no need for resolver to validate if `status` value belongs to the enum. This is done by GraphQL during query execution. Below query will produce an error:
 
 ```graphql
 {
@@ -45,7 +46,7 @@ Implementing logic validating if `status` value is allowed is not required - thi
 }
 ```
 
-GraphQL failed to find `TEST` in `UserStatus`, and returned error without calling `resolve_users`:
+GraphQL failed to find `TEST` in `UserStatus`, and returned an error without calling `resolve_users`:
 
 ```json
 {
@@ -68,9 +69,9 @@ GraphQL failed to find `TEST` in `UserStatus`, and returned error without callin
 
 ## Mapping to internal values
 
-By default enum values are represented as Python strings, but Ariadne also supports mapping GraphQL enums to custom values.
+By default enum values are represented as Python strings, but Ariadne also supports mapping GraphQL enums to custom Python values.
 
-Imagine posts on social site that can have weights like "standard", "pinned" and "promoted":
+Imagine posts on a social site that can have weights like "standard", "pinned" and "promoted":
 
 ```graphql
 type Post {
@@ -84,9 +85,9 @@ enum PostWeight {
 }
 ```
 
-In the database, the application may store those weights as integers from 0 to 2. Normally, you would have to implement a custom resolver transforming GraphQL representation to the integer but, like with scalars, you would have to remember to use this boiler plate on every use.
+In the database, the application may store those weights as integers from 0 to 2. Normally, you would have to implement a custom resolver transforming GraphQL representation to the integer but, you would have to remember to use this boilerplate in every resolver.
 
-Ariadne provides an `EnumType` utility class thats allows you to delegate this task to GraphQL server:
+Ariadne provides an `EnumType` utility thats allows you to delegate this task to GraphQL server:
 
 ```python
 import enum
@@ -94,16 +95,26 @@ import enum
 from ariadne import EnumType
 
 class PostWeight(enum.IntEnum):
-    STANDARD = 1
-    PINNED = 2
-    PROMOTED = 3
+    STANDARD = 0
+    PINNED = 1
+    PROMOTED = 2
 
 post_weight = EnumType("PostWeight", PostWeight)
 ```
 
-Include the `post_weight` instance in list of types passed to your GraphQL server, and it will automatically translate Enums between their GraphQL and Python values.
+Include the `post_weight` instance in the list of types passed to `make_executable_schema`:
 
-Instead of `Enum` you may use `dict`:
+```python
+schema = make_executable_schema(type_defs, some_type, post_weight)
+```
+
+This will make the GraphQL server automatically translate `PostWeight` between their GraphQL and Python values:
+
+- If `PostWeight` enum's value is passed in argument of GraphQL field, Python resolver will be called with `PostWeight` member, like `PostWeight.PINNED`.
+- If Python resolver for field returning GraphQL enum returns Enum member this value will be converted into GraphQL enum. Eg. returning `PostWeight.PROMOTED` from resolver will appear as `"PROMOTED"` in GraphQL result).
+- If Python resolver for field returning GraphQL enum returns a value that's valid value of enum's member, this value will be converted into enum. Eg. returning `1` from resolver will appear as `"PINNED"` in GraphQL result).
+
+Instead of `Enum` you may use plain `dict`:
 
 ```python
 from ariadne import EnumType
@@ -111,9 +122,9 @@ from ariadne import EnumType
 post_weight = EnumType(
     "PostWeight",
     {
-        "STANDARD": 1,
-        "PINNED": 2,
-        "PROMOTED": 3,
+        "STANDARD": 0,
+        "PINNED": 1,
+        "PROMOTED": 2,
     },
 )
 ```

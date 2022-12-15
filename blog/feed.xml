@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Wed, 14 Dec 2022 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 15 Dec 2022 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,13 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne GraphQL Chat Example]]></title>
+            <link>https://ariadnegraphql.org/blog/2022/12/15/chat-example.html</link>
+            <guid>https://ariadnegraphql.org/blog/2022/12/15/chat-example.html</guid>
+            <pubDate>Thu, 15 Dec 2022 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>We have created the <a href="https://github.com/mirumee/ariadne-graphql-chat-example">Ariadne GraphQL Chat Example</a> repository on GitHub that expands the <a href="/docs/subscriptions#simple-chat-example">Chat example from &quot;Subscriptions&quot; documentation</a> with chat history, React.js client (using <a href="https://www.apollographql.com/docs/react/data/subscriptions/">Apollo-Client</a>), Redis for Broadcaster's messaging backend and U...</p>]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.17]]></title>
             <link>https://ariadnegraphql.org/blog/2022/12/14/ariadne-0-17-0.html</link>

@@ -2,12 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2022-12-14T06:00:00Z</updated>
+    <updated>2022-12-15T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne GraphQL Chat Example]]></title>
+        <id>https://ariadnegraphql.org/blog/2022/12/15/chat-example.html</id>
+        <link href="https://ariadnegraphql.org/blog/2022/12/15/chat-example.html">
+        </link>
+        <updated>2022-12-15T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>We have created the <a href="https://github.com/mirumee/ariadne-graphql-chat-example">Ariadne GraphQL Chat Example</a> repository on GitHub that expands the <a href="/docs/subscriptions#simple-chat-example">Chat example from &quot;Subscriptions&quot; documentation</a> with chat history, React.js client (using <a href="https://www.apollographql.com/docs/react/data/subscriptions/">Apollo-Client</a>), Redis for Broadcaster's messaging backend and U...</p>]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.17]]></title>
         <id>https://ariadnegraphql.org/blog/2022/12/14/ariadne-0-17-0.html</id>

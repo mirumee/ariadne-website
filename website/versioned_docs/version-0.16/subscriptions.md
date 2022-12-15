@@ -286,6 +286,10 @@ app = Starlette(
 app.mount("/", graphql)
 ```
 
+> **Note:** We have expanded the code above into a repository with complete example, including GraphQL server, React.js client, Redis for messaging and Uvicorn HTTP server.
+>
+> It can be found on our github: [Ariadne GraphQL Chat Example](https://github.com/mirumee/ariadne-graphql-chat-example)
+
 
 ## Connection params
 

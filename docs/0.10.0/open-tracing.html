@@ -95,7 +95,7 @@ app = GraphQL(
     <span class="hljs-keyword">if</span> <span class="hljs-string">"password"</span> <span class="hljs-keyword">in</span> args:
         args[<span class="hljs-string">"password"</span>] = <span class="hljs-string">"[redacted]"</span>
     <span class="hljs-keyword">if</span> <span class="hljs-string">"secret"</span> <span class="hljs-keyword">in</span> args:
-        args[<span class="hljs-string">"password"</span>] = <span class="hljs-string">"[redacted]"</span>
+        args[<span class="hljs-string">"secret"</span>] = <span class="hljs-string">"[redacted]"</span>
     <span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> args.items():
         <span class="hljs-keyword">if</span> isinstance(value, dict):
             args[key] = my_arg_filter(value)

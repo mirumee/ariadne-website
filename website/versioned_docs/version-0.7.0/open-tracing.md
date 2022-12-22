@@ -45,7 +45,7 @@ def my_arg_filter(args, info):
     if "password" in args:
         args["password"] = "[redacted]"
     if "secret" in args:
-        args["password"] = "[redacted]"
+        args["secret"] = "[redacted]"
     for key, value in args.items():
         if isinstance(value, dict):
             args[key] = my_arg_filter(value)

@@ -2,12 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2022-12-15T06:00:00Z</updated>
+    <updated>2023-01-09T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne 0.17.1]]></title>
+        <id>https://ariadnegraphql.org/blog/2023/01/09/ariadne-0-17-1.html</id>
+        <link href="https://ariadnegraphql.org/blog/2023/01/09/ariadne-0-17-1.html">
+        </link>
+        <updated>2023-01-09T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne 0.17.1 is a bug fix release that fixes an error that occurred when schema that defines an interface type with fields having enum arguments with default values (eg. <code>field(arg: Enum = ENUM_MEMBER)</code>) is introspected.</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne GraphQL Chat Example]]></title>
         <id>https://ariadnegraphql.org/blog/2022/12/15/chat-example.html</id>

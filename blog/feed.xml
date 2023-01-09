@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Thu, 15 Dec 2022 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 09 Jan 2023 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,14 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne 0.17.1]]></title>
+            <link>https://ariadnegraphql.org/blog/2023/01/09/ariadne-0-17-1.html</link>
+            <guid>https://ariadnegraphql.org/blog/2023/01/09/ariadne-0-17-1.html</guid>
+            <pubDate>Mon, 09 Jan 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne 0.17.1 is a bug fix release that fixes an error that occurred when schema that defines an interface type with fields having enum arguments with default values (eg. <code>field(arg: Enum = ENUM_MEMBER)</code>) is introspected.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne GraphQL Chat Example]]></title>
             <link>https://ariadnegraphql.org/blog/2022/12/15/chat-example.html</link>

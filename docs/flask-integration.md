@@ -31,13 +31,18 @@ def resolve_hello(_, info):
 schema = make_executable_schema(type_defs, query)
 
 app = Flask(__name__)
+
+# Retrieve HTML for the GraphiQL.
+# If explorer implements logic dependant on current request,
+# change the html(None) call to the html(request)
+# and move this line to the graphql_explorer function.
 explorer_html = ExplorerGraphiQL().html(None)
 
 
 @app.route("/graphql", methods=["GET"])
-def graphql_playground():
-    # On GET request serve GraphQL explorer.
-    # You don't need to provide explorer if you don't want to
+def graphql_explorer():
+    # On GET request serve the GraphQL explorer.
+    # You don't have to provide the explorer if you don't want to
     # but keep on mind this will not prohibit clients from
     # exploring your API using desktop GraphQL explorer app.
     return explorer_html, 200

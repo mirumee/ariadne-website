@@ -32,18 +32,24 @@ def lowercase_middleware(resolver, obj, info, **args):
     return value
 ```
 
-To use this middleware in your queries, pass it to `middleware` option of user handlers:
+To use this middleware in your queries, pass it to the `middleware` option of the HTTP handler:
 
 ```python
 from ariadne.asgi import GraphQL
 from ariadne.asgi.handlers import GraphQLHTTPHandler
-from graphql import MiddlewareManager
+
+
+def lowercase_middleware(resolver, obj, info, **args):
+    value = resolver(obj, info, **args)
+    if isinstance(value, str):
+        return value.lower()
+    return value
 
 
 app = GrapqhQL(
     schema,
     http_handler=GraphQLHTTPHandler(
-        middleware=MiddlewareManager(lowercase_middleware),
+        middleware=[lowercase_middleware],
     ),
 )
 ```
@@ -51,9 +57,55 @@ app = GrapqhQL(
 In case when more than one middleware is enabled on the server, the `resolver` argument will point to the partial function constructed from the next middleware in the execution chain.
 
 
+## Middleware managers
+
+Middleware are ran through special class implemented by GraphQL named `MiddlewareManager`. If you want to replace this manager with custom one, you provide your own implementation using the `middleware_manager_class` option:
+
+```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
+from graphql import GraphQLFieldResolver, MiddlewareManager
+
+
+def lowercase_middleware(resolver, obj, info, **args):
+    value = resolver(obj, info, **args)
+    if isinstance(value, str):
+        return value.lower()
+    return value
+
+
+class CustomMiddlewareManager(MiddlewareManager):
+    def get_field_resolver(
+        self, field_resolver: GraphQLFieldResolver
+    ) -> GraphQLFieldResolver:
+        """Wrap the provided resolver with the middleware.
+        Returns a function that chains the middleware functions with the provided
+        resolver function.
+        """
+        if self._middleware_resolvers is None:
+            return field_resolver
+        if field_resolver not in self._cached_resolvers:
+            self._cached_resolvers[field_resolver] = reduce(
+                lambda chained_fns, next_fn: partial(next_fn, chained_fns),
+                self._middleware_resolvers,
+                field_resolver,
+            )
+        return self._cached_resolvers[field_resolver]
+
+
+app = GrapqhQL(
+    schema,
+    http_handler=GraphQLHTTPHandler(
+        middleware=[lowercase_middleware],
+        middleware_manager_class=CustomMiddlewareManager,
+    ),
+)
+```
+
+
 ## Middleware and extensions
 
-Extensions [`resolve`](types-reference.md#resolve) hook is actually a middleware. In case when GraphQL server is configured to use both middleware and extensions, extensions `resolve` hook will be executed before the `middleware` functions.
+Extensions [`resolve`](types-reference.md#resolve) hook is actually a middleware. In case when GraphQL server is configured to use both middleware and extensions, extensions `resolve` hooks will be executed before the `middleware` functions.
 
 
 ## Performance impact

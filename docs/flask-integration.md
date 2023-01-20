@@ -9,8 +9,8 @@ The following example presents a basic GraphQL server built with Flask:
 
 ```python
 from ariadne import QueryType, graphql_sync, make_executable_schema
-from ariadne.constants import PLAYGROUND_HTML
-from flask import Flask, request, jsonify
+from ariadne.explorer import ExplorerGraphiQL
+from flask import Flask, jsonify, request
 
 type_defs = """
     type Query {
@@ -31,15 +31,16 @@ def resolve_hello(_, info):
 schema = make_executable_schema(type_defs, query)
 
 app = Flask(__name__)
+explorer_html = ExplorerGraphiQL().html(None)
 
 
 @app.route("/graphql", methods=["GET"])
 def graphql_playground():
-    # On GET request serve GraphQL Playground
-    # You don't need to provide Playground if you don't want to
+    # On GET request serve GraphQL explorer.
+    # You don't need to provide explorer if you don't want to
     # but keep on mind this will not prohibit clients from
-    # exploring your API using desktop GraphQL Playground app.
-    return PLAYGROUND_HTML, 200
+    # exploring your API using desktop GraphQL explorer app.
+    return explorer_html, 200
 
 
 @app.route("/graphql", methods=["POST"])

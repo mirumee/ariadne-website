@@ -30,6 +30,7 @@
     ],
     "Integrations": [
       "django-integration",
+      "fastapi-integration",
       "flask-integration",
       "starlette-integration",
       "other-integrations"

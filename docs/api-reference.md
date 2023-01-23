@@ -1239,10 +1239,10 @@ See [`graphql`](#graphql) configuration options
 ## `load_schema_from_path`
 
 ```python
-def load_schema_from_path(path)
+def load_schema_from_path(path: str | Path)
 ```
 
-Loads GraphQL schema from `path` using different strategy depending on `path`'s type:
+Loads GraphQL schema from `path` (string or `Path`-like object) using different strategy depending on `path`'s type:
 
 - If `path` is single file, reads it.
 - If `path` is directory, walks it recursively loading all `.graphql`, `.graphqls`, and `.gql` files within it.

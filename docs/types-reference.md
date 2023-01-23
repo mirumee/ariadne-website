@@ -16,14 +16,15 @@ Any
 ```
 
 ```python
-def get_context_value(request):
+def get_context_value(request_or_websocket, data):
 ```
 
 Context value that should be passed to [resolvers] through the [`info.context`](#info). Can be of any type.
 
 If value is callable, it will be called with single argument:
 
-- `request` - representation of HTTP request specific to the web stack used by your API.
+- `request_or_websocket` - representation of HTTP request or websocket connection specific to the web stack used by your API.
+- `data` - prevalidated JSON data from request.
 
 Return value will then be used as final `context` passed to resolvers.
 
@@ -236,7 +237,7 @@ Any
 ```
 
 ```python
-def get_root_value(context, document):
+def get_root_value(context, operation_name, variables, document):
 ```
 
 The value that should be passed to the root-level [resolvers](#resolver) as their [`obj`](#obj). Can be of any type.
@@ -244,6 +245,8 @@ The value that should be passed to the root-level [resolvers](#resolver) as thei
 If value is callable, it will be called with two arguments:
 
 - `context` - containing current `context_value`.
+- `operation_name` - `str` with name of operation or `None`.
+- `variables` - `dict` with variables or `None`.
 - `document` - [`graphql.ast.DocumentNode`](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/language/ast.py#L259) that was result of parsing current GraphQL query.
 
 Return value will then be used as `obj` passed to root resolvers.

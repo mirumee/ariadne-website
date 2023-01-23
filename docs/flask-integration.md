@@ -58,7 +58,7 @@ def graphql_server():
     success, result = graphql_sync(
         schema,
         data,
-        context_value=request,
+        context_value={"request": request},
         debug=app.debug
     )
 

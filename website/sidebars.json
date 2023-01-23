@@ -5,6 +5,7 @@
       "resolvers",
       "mutations",
       "error-messaging",
+      "case-conversion",
       "scalars",
       "enums",
       "unions",

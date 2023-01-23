@@ -346,7 +346,7 @@ def on_connect(websocket, params: Any):
     }
 
 
-def context_value(request):
+def context_value(request_or_websocket, data):
     context = {}
 
     if request.scope["type"] == "websocket":

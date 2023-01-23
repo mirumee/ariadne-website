@@ -45,8 +45,3 @@ Following constants are importable from `ariadne.constants` package:
 ## `HTTP_STATUS_405_METHOD_NOT_ALLOWED`
 
 `405 Method Not Allowed`
-
-
-## `PLAYGROUND_HTML`
-
-Minimal HTML of GraphQL Playground, copied from project's [GitHub](https://github.com/prisma/graphql-playground/blob/master/packages/graphql-playground-html/minimal.html).

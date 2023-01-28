@@ -73,9 +73,16 @@ type_defs = """
 
 query = ObjectType("Query")
 
+class User(object):
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+
 @query.field("user")
 def resolve_user(_, info):
-    return info.context["user"]
+    user = User("John", "Lennon")
+    return user
 
 
 user = ObjectType("User")

@@ -15,6 +15,11 @@
   font-weight: normal;
 }
 
+.post h5 {
+  font-size: 1.15em;
+  font-weight: normal;
+}
+
 @media only screen and (min-device-width: 736px) {
   .post h2 {
     font-size: 2.25em;
@@ -27,6 +32,11 @@
 
   .post h4 {
     font-size: 1.75em;
+    font-weight: normal;
+  }
+  
+  .post h5 {
+    font-size: 1.25em;
     font-weight: normal;
   }
 }
@@ -42,6 +52,10 @@
 
   .post h4 {
     font-size: 2em;
+  }
+
+  .post h5 {
+    font-size: 1.5em;
   }
 }
 

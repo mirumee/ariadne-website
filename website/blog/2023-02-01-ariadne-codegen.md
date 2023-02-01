@@ -23,7 +23,7 @@ This means we are writing a lot of GraphQL clients, and a lot of those clients f
 - Each of those functions takes arguments it packages into a variables dictionary, combines them with Python string containing a GraphQL query.
 - Each of those functions then does a `POST` request, handles errors and returns result.
 
-Basically, we wrote functions upon a functions upon a functions that look like this:
+Basically, we wrote functions upon a functions upon a functions that looked like this:
 
 ```python
 async def create_checkout(client, email: str,  lines: dict, address: Address):

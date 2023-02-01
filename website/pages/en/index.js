@@ -23,12 +23,9 @@ class HomeSplash extends React.Component {
 
     const ShoutOut = () => (
       <div className="shoutout">
-        <a
-          href="https://github.com/mirumee/ariadne-graphql-modules"
-          target="_blank"
-        >
-          🎉 Introducing <strong>Ariadne GraphQL Modules</strong> for easier
-          definition and modularization of large GraphQL schemas!
+        <a href="https://github.com/mirumee/ariadne-codegen" target="_blank">
+          🎉 Introducing <strong>Ariadne Codegen</strong> for lighting fast
+          development of GraphQL clients in Python! ⚡️⚡️⚡️
         </a>
       </div>
     );
@@ -273,6 +270,37 @@ urlpatterns = [
       </FocusBlock>
     );
 
+    const SeeAlsoBlock = () => (
+      <div className="homeSeeAlsoSection">
+        <div className="container">
+          <div className="wrapper">
+            <h2>Also check out:</h2>
+            <div className="homeSeeAlsoGrid">
+              <a
+                href="https://github.com/mirumee/ariadne-codegen"
+                target="_blank"
+              >
+                <strong>Ariadne Codegen</strong>
+                <p>
+                  Generate fully typed Python client for any GraphQL API from
+                  schema, queries and mutations.
+                </p>
+              </a>
+              <a
+                href="https://github.com/mirumee/ariadne-graphql-modules"
+                target="_blank"
+              >
+                <strong>Ariadne GraphQL Modules</strong>
+                <p>
+                  Implement GraphQL schemas of any size using modular approach.
+                </p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
     return (
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
@@ -282,6 +310,7 @@ urlpatterns = [
           <ResolversFocusBlock />
           <AsyncFocusBlock />
           <IntegrationsFocusBlock />
+          <SeeAlsoBlock />
         </div>
       </div>
     );

@@ -139,7 +139,7 @@ $ ariadne-codegen
 
 New directory `graphql_client` will be created for you. Feel free to explore its contents. It's `__init__.py` file will reexport what can be considered "public API" of your new GraphQL client.
 
-You can now use the client by importing `Client` class from `graphql_client`:
+You can now use the client in your project by importing the `Client` class from the `graphql_client` package:
 
 ```python
 from graphql_client import Client

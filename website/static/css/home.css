@@ -118,3 +118,53 @@
     margin-top: 0;
   }
 }
+
+/* See also section */
+.homeSeeAlsoSection {
+  margin-bottom: 16px;
+}
+
+.homeSeeAlsoSection h2 {
+  font-size: 3em;
+  font-weight: normal;
+}
+
+.homeSeeAlsoGrid a {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: block;
+  padding: 16px 24px;
+  margin-bottom: 16px;
+
+  color: #000;
+}
+
+.homeSeeAlsoGrid a strong {
+  display: block;
+  margin-bottom: .5em;
+
+  font-size: 2em;
+}
+
+.homeSeeAlsoGrid a p {
+  margin: 0;
+}
+
+.homeSeeAlsoGrid a:focus,
+.homeSeeAlsoGrid a:hover,
+.homeSeeAlsoGrid a:active {
+  border: 1px solid #dd3333;
+}
+
+@media only screen and (min-device-width: 735px) {
+  .homeSeeAlsoGrid {
+    display: flex;
+    margin: 0 -16px;
+  }
+
+  .homeSeeAlsoGrid a {
+    flex: 1;
+    margin: 0 16px;
+    margin-bottom: 16px;
+  }
+}

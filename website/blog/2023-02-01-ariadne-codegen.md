@@ -6,7 +6,7 @@ title: Announcing Ariadne Codegen !
 
 Today we are announcing first release of [Ariadne Codegen](https://github.com/mirumee/ariadne-codegen)! 
 
-Ariadne Codegen is our solution for the problem of writing and maintaining a Python boilerplate code for GraphQL clients.
+Ariadne Codegen is our solution for the problem of writing and maintaining a Python boilerplate code for GraphQL clients. It's a code generator that converts GraphQL queries into production ready GraphQL client for Python.
 
 
 <!--truncate-->

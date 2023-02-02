@@ -1,5 +1,5 @@
 ---
-title: Announcing Ariadne Codegen !
+title: Announcing Ariadne Codegen!
 ---
 
 ![Ariadne Codegen!](assets/ariadne-codegen.jpg)

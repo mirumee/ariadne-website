@@ -2,12 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2023-01-09T06:00:00Z</updated>
+    <updated>2023-02-02T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Announcing Ariadne Codegen !]]></title>
+        <id>https://ariadnegraphql.org/blog/2023/02/02/ariadne-codegen.html</id>
+        <link href="https://ariadnegraphql.org/blog/2023/02/02/ariadne-codegen.html">
+        </link>
+        <updated>2023-02-02T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/blog/assets/ariadne-codegen.jpg" alt="Ariadne Codegen!"></p>
+<p>Today we are announcing first release of <a href="https://github.com/mirumee/ariadne-codegen">Ariadne Codegen</a>!</p>
+<p>Ariadne Codegen is our solution for the problem of writing and maintaining a Python boilerplate code for GraphQL clients. It's a code generator that converts GraphQL queries into production ready GraphQL client for Python.</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.17.1]]></title>
         <id>https://ariadnegraphql.org/blog/2023/01/09/ariadne-0-17-1.html</id>

@@ -20,8 +20,8 @@ This means we are writing a lot of GraphQL clients, and a lot of those clients f
 
 - There's a module that evolves into a package named `saleor_client`.
 - This client implements functions like `get_shipping_methods` or `create_checkout` that map 1:1 to GraphQL queries and mutations implemented by Saleor.
-- Each of those functions takes arguments it packages into a variables dictionary, combines them with Python string containing a GraphQL query.
-- Each of those functions then does a `POST` request, handles errors and returns result.
+- Each of those functions takes arguments it packages into a variables dictionary and combines them with Python string containing a GraphQL query.
+- Each of those functions then does a `POST` request, handles errors and returns the result.
 
 Basically, we wrote functions upon a functions upon a functions that looked like this:
 
@@ -85,29 +85,31 @@ There's actually a very little variety in logic of those functions, and many of 
 
 ### Automatization
 
-Very quickly we've started to experiment with different approaches to automatizing this away:
+Very quickly we've started to experiment with different approaches to automating this away:
 
-- Code generator which was aware of GraphQL schema and converted GraphQL operations into a Python package.
-- An WSDL-like client for GraphQL which also was aware of GraphQL schema and did it's logic on the fly.
+- Code generator which is aware of the GraphQL schema and converted GraphQL operations into a Python package.
+- An WSDL-like client for GraphQL which also is aware of the GraphQL schema but did it's logic on the fly.
 
-First approach had a downside of requiring package to be regenerated on every new or changed query, but it had three advantages:
+First approach had a downside of requiring package to be regenerated on every new or changed query, but it had three upsides that we liked:
 
 - It didn't have extra logic executed on the runtime, making it __faster__.
-- It's behavior didn't change on the runtime, making it easy to learn and debug.
-- Generated code played nicely with code suggestions in IDEs and Mypy without extra work.
+- It's behavior didn't change on the runtime, making it easy to __learn and debug__.
+- Generated code played nicely with code suggestions in IDEs and Mypy without need for any extra work.
 
 Ariadne Codegen has grown from a complete rewrite of the original code generator that was created and used internally by a member of the Saleor Integrations Team.
 
 
 ## Ariadne Codegen
 
-Ariadne Codegen can be installed from pip:
+Ariadne Codegen can be installed with pip:
 
 ```
 $ pip install ariadne-codegen
 ```
 
-This will give you a new command, `ariadne-codegen`, which consumes the `ariadne-codegen` configuration from the `pyproject.toml` file:
+This will give you a new command, `ariadne-codegen`, which consumes the `ariadne-codegen` configuration from the `pyproject.toml` file.
+
+Minimum required configuration is just paths to where the schema and queries are:
 
 ```
 [ariadne-codegen]
@@ -169,8 +171,6 @@ See the [readme file](https://github.com/mirumee/ariadne-codegen#readme) for all
 ## Known limitations
 
 File uploads and GraphQL subscriptions are not supported.
-
-Remote schemas need to be downloaded to a local file as remote schemas are not supported.
 
 
 ## Moving forward

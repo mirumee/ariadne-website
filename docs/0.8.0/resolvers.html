@@ -120,14 +120,14 @@ query = ObjectType(<span class="hljs-string">"Query"</span>)
 
 <span class="hljs-meta">@query.field("user")</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_user</span><span class="hljs-params">(_, info)</span>:</span>
-    <span class="hljs-keyword">return</span> info.context[<span class="hljs-string">"user"</span>]
+    <span class="hljs-keyword">return</span> {<span class="hljs-string">"first_name"</span>: <span class="hljs-string">"John"</span>, <span class="hljs-string">"last_name"</span>: <span class="hljs-string">"Lennon"</span>}
 
 
 user = ObjectType(<span class="hljs-string">"User"</span>)
 
 <span class="hljs-meta">@user.field("username")</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">resolve_username</span><span class="hljs-params">(obj, *_)</span>:</span>
-    <span class="hljs-keyword">return</span> f`{obj.first_name} {obj.last_name}`
+    <span class="hljs-keyword">return</span> <span class="hljs-string">f"<span class="hljs-subst">{obj[<span class="hljs-string">'first_name'</span>]}</span> <span class="hljs-subst">{obj[<span class="hljs-string">'last_name'</span>]}</span>"</span>
 
 
 schema = make_executable_schema(type_defs, query, user)

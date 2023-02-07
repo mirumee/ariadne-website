@@ -76,14 +76,14 @@ query = ObjectType("Query")
 
 @query.field("user")
 def resolve_user(_, info):
-    return info.context["user"]
+    return {"first_name": "John", "last_name": "Lennon"}
 
 
 user = ObjectType("User")
 
 @user.field("username")
 def resolve_username(obj, *_):
-    return f`{obj.first_name} {obj.last_name}`
+    return f"{obj['first_name']} {obj['last_name']}"
 
 
 schema = make_executable_schema(type_defs, query, user)

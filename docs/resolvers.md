@@ -73,23 +73,17 @@ type_defs = """
 
 query = ObjectType("Query")
 
-class User(object):
-    def __init__(self, first_name, last_name):
-        self.first_name = first_name
-        self.last_name = last_name
-
 
 @query.field("user")
 def resolve_user(_, info):
-    user = User("John", "Lennon")
-    return user
+    return {"first_name": "John", "last_name": "Lennon"}
 
 
 user = ObjectType("User")
 
 @user.field("username")
 def resolve_username(obj, *_):
-    return f'{obj.first_name} {obj.last_name}'
+    return f"{obj['first_name']} {obj['last_name']}"
 
 
 schema = make_executable_schema(type_defs, query, user)

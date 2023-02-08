@@ -11,6 +11,7 @@
       "unions",
       "interfaces",
       "subscriptions",
+      "dataloaders",
       "file-uploads",
       "documenting-schema",
       "modularization",

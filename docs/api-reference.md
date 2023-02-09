@@ -123,6 +123,96 @@ user_role_type = EnumType(
 - - - - -
 
 
+## `Extension`
+
+```python
+class Extension(Protocol):
+    ...
+```
+
+Base class for async extensions.
+
+Subclasses of this this class should override default methods to run
+custom logic during Query execution.
+
+
+### Methods
+
+#### `request_started`
+
+```python
+def request_started(self, context: ContextValue) -> None:
+    ...
+```
+
+Extension hook executed at request's start.
+
+
+#### `request_finished`
+
+```python
+def request_finished(self, context: ContextValue) -> None:
+    ...
+```
+
+Extension hook executed at request's end.
+
+
+#### `resolve`
+
+```python
+async def resolve(
+    self,
+    next_: Resolver,
+    obj: Any,
+    info: GraphQLResolveInfo,
+    **kwargs,
+) -> Any:
+    ...
+```
+
+Async extension hook wrapping field's value resolution.
+
+
+##### Arguments
+
+`next_`: a `resolver` or next extension's `resolve` method.
+
+`obj`: a Python data structure to resolve value from.
+
+`info`: a `GraphQLResolveInfo` instance for executed resolver.
+
+`**kwargs`: extra arguments from GraphQL to pass to resolver.
+
+
+#### `has_errors`
+
+```python
+def has_errors(
+    self,
+    errors: List[GraphQLError],
+    context: ContextValue,
+) -> None:
+    ...
+```
+
+Extension hook executed when GraphQL encountered errors.
+
+
+#### `format`
+
+```python
+def format(self, context: ContextValue) -> Optional[dict]:
+    ...
+```
+
+Extension hook executed to retrieve extra data to include in result's
+`extensions` data.
+
+
+- - - - -
+
+
 ## `ExtensionManager`
 
 ```python
@@ -227,6 +317,51 @@ Gathers data from extensions for inclusion in server's response JSON.
 This data can be retrieved from the `extensions` key in response JSON.
 
 Returns `dict` with JSON-serializable data.
+
+
+- - - - -
+
+
+## `ExtensionSync`
+
+```python
+class ExtensionSync(Extension):
+    ...
+```
+
+Base class for sync extensions, extends `Extension`.
+
+Subclasses of this this class should override default methods to run
+custom logic during Query execution.
+
+
+### Methods
+
+#### `resolve`
+
+```python
+def resolve(
+    self,
+    next_: Resolver,
+    obj: Any,
+    info: GraphQLResolveInfo,
+    **kwargs,
+) -> Any:
+    ...
+```
+
+Sync extension hook wrapping field's value resolution.
+
+
+##### Arguments
+
+`next_`: a `resolver` or next extension's `resolve` method.
+
+`obj`: a Python data structure to resolve value from.
+
+`info`: a `GraphQLResolveInfo` instance for executed resolver.
+
+`**kwargs`: extra arguments from GraphQL to pass to resolver.
 
 
 - - - - -

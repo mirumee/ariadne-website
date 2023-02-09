@@ -30,7 +30,8 @@ Initializes the `GraphQLFileSyntaxError` with file name and error.
 
 #### Required arguments
 
-`file_path`: a `str` or `PathLike` object pointing to a file that failed to validate.
+`file_path`: a `str` or `PathLike` object pointing to a file that
+failed to validate.
 
 `message`: a `str` with validation message.
 
@@ -55,7 +56,8 @@ Returns `str` with final error message.
 
 ##### Required arguments
 
-`file_path`: a `str` or `PathLike` object pointing to a file that failed to validate.
+`file_path`: a `str` or `PathLike` object pointing to a file that
+failed to validate.
 
 `message`: a `str` with validation message.
 
@@ -80,7 +82,8 @@ class HttpBadRequestError(HttpError):
     ...
 ```
 
-Raised when request did not contain the data required to execute the GraphQL query.
+Raised when request did not contain the data required to execute
+the GraphQL query.
 
 
 - - - - -
@@ -108,4 +111,5 @@ Initializes the `HttpError` with optional error message.
 
 #### Optional arguments
 
-`message`: a `str` with error message to return in response body or `None`.
+`message`: a `str` with error message to return in response body or
+`None`.

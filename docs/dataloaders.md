@@ -240,7 +240,7 @@ from starlette.requests import Request
 from .schema import schema
 
 
-async def get_users_from_api(users_ids: list[int]) -> dict[int, dict]:
+async def get_users_from_api(users_ids: list[int]) -> list[dict]:
     # Build API URL
     api_values = "&".join(f"id={uid}" for uid in users_ids)
     api_url = f"http://api.example.com/users/?{api_values}"

@@ -229,7 +229,7 @@ Container and runner for extensions and middleware, used by the GraphQL servers.
 
 `extensions`: a `tuple` with instances of initialized extensions.
 
-`extensions_reversed`: a `tuple` from created from reversing `extensions`.
+`extensions_reversed`: a `tuple` created from reversing `extensions`.
 
 
 ### Constructor
@@ -453,7 +453,7 @@ value from the field:
 ```python
 def example_type_resolver(obj: Any, *_) -> str:
     if isinstance(obj, PythonReprOfUser):
-        return "USer"
+        return "User"
 
     if isinstance(obj, PythonReprOfComment):
         return "Comment"
@@ -1669,7 +1669,7 @@ class MyDirective(SchemaDirectiveVisitor):
 SchemaNameConverter = Callable[[str, GraphQLSchema, Tuple[str, ...]], str]
 ```
 
-A type of a function implementing a strategy for names conversion in schema. Passed as  an option to `make_executable_schema` and `convert_schema_names` functions.
+A type of a function implementing a strategy for names conversion in schema. Passed as an option to `make_executable_schema` and `convert_schema_names` functions.
 
 Takes three arguments:
 

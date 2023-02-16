@@ -12,6 +12,10 @@ The same way applications are now automatically deployed by CI/CD pipelines, you
 
 ## CI/CD security testing tools
 
+### [graphql.security](https://graphql.security/)
+
+`graphql.security` is a *free*, *quick* graphql security testing tool, allowing you to quickly assess the most common vulnerabilities in your application.
+
 ### [Escape](https://escape.tech/)
 
 Escape is a GraphQL security SaaS platform, running a DAST (dynamic application security testing) tool on your api directly from a CI/CD environment.
@@ -21,7 +25,3 @@ This platform can be [easily integrated into your existing CI/CD pipeline](https
 Security alerts will be directly reported in your CI/CD platform, making it faster than ever to address them.
 
 [See how to setup Escape for your GraphQL application](https://escape.tech/docs/introduction)
-
-### [graphql.security](https://graphql.security/)
-
-`graphql.security` is a *free*, *quick* graphql security testing tool, allowing you to quickly assess the most common vulnerabilities in your application.

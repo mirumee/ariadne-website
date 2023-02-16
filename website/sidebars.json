@@ -20,12 +20,17 @@
       "local-development",
       "logging",
       "explorers",
-      "apollo-federation",
-      "security"
+      "apollo-federation"
     ],
     "Monitoring": [
       "apollo-tracing",
       "open-tracing"
+    ],
+    "Security": [
+      "security-overview",
+      "hiding-field-suggestions",
+      "disabling-stack-traces",
+      "continuous-security-testing"
     ],
     "Servers": [
       "asgi",

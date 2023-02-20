@@ -47,7 +47,7 @@ Initializes the WSGI app.
 
 #### Required arguments
 
-`schema`: an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to execute queries against.
+`schema`: an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to execute queries against.
 
 
 #### Optional arguments

@@ -581,7 +581,7 @@ class SchemaBindable(Protocol):
 Base class for [bindable](bindables.md) types.
 
 Subclasses should extend the `bind_to_schema` method with custom logic for
-populating an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with Python logic and values.
+populating an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic and values.
 
 
 ### Methods
@@ -593,7 +593,7 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Binds this `Schema[Bindable`](bindables.md) instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Binds this `Schema[Bindable`](bindables.md) instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 
 ### Example

@@ -14,7 +14,7 @@ class EnumType(SchemaBindable):
     ...
 ```
 
-[Bindable](bindables.md) mapping Python values to enumeration members in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+[Bindable](bindables.md) mapping Python values to enumeration members in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 
 ### Constructor
@@ -33,7 +33,7 @@ Initializes the `EnumType` with `name` and `values` mapping.
 
 #### Required arguments
 
-`name`: a `str` with the name of GraphQL enum type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with the name of GraphQL enum type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind to.
 
 `values`: a `dict` or `enums.Enum` with values to use to represent GraphQL
@@ -49,7 +49,7 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Binds this `EnumType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Binds this `EnumType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 
 #### `bind_to_default_values`
@@ -59,7 +59,7 @@ def bind_to_default_values(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Populates default values of input fields and args in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Populates default values of input fields and args in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 This step is required because GraphQL query executor doesn't perform a
 lookup for default values defined in schema. Instead it simply pulls the
@@ -374,7 +374,7 @@ class FallbackResolversSetter(SchemaBindable):
     ...
 ```
 
-[Bindable](bindables.md) that recursively scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) for fields and explicitly
+[Bindable](bindables.md) that recursively scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) for fields and explicitly
 sets their resolver to `graphql.default_field_resolver` package if
 they don't have any resolver set yet.
 
@@ -395,7 +395,7 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) for types with fields that don't have set resolver.
+Scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) for types with fields that don't have set resolver.
 
 
 #### `add_resolvers_to_object_fields`
@@ -431,7 +431,7 @@ class InterfaceType(ObjectType):
     ...
 ```
 
-[Bindable](bindables.md) populating interfaces in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with Python logic.
+[Bindable](bindables.md) populating interfaces in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic.
 
 Extends `ObjectType`, providing `field` decorator and `set_field` and `set_alias`
 methods. If those are used to set resolvers for interface's fields, those
@@ -494,7 +494,7 @@ setter or `type_resolver` decorator.
 
 #### Required arguments
 
-`name`: a `str` with the name of GraphQL interface type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with the name of GraphQL interface type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind to.
 
 
@@ -533,12 +533,12 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Binds this `InterfaceType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Binds this `InterfaceType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 Sets `resolve_type` attribute on GraphQL interface. If this attribute was
 previously set, it will be replaced to new value.
 
-If this interface has any resolvers set, it also scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) for
+If this interface has any resolvers set, it also scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) for
 types implementing this interface and sets those resolvers on those types
 fields, but only if those fields don't already have other resolver set.
 
@@ -559,7 +559,7 @@ is an `interface`.
 
 ### Example
 
-Following code creates a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with a field that returns random
+Following code creates a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with a field that returns random
 result of either `User` or `Post` GraphQL type. It also supports dict with
 `__typename` key that explicitly declares its GraphQL type:
 
@@ -686,7 +686,7 @@ class ObjectType(SchemaBindable):
     ...
 ```
 
-[Bindable](bindables.md) populating object types in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with Python logic.
+[Bindable](bindables.md) populating object types in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic.
 
 
 ### Constructor
@@ -701,7 +701,7 @@ Initializes the `ObjectType` with a `name`.
 
 #### Required arguments
 
-`name`: a `str` with the name of GraphQL object type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with the name of GraphQL object type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind to.
 
 
@@ -722,7 +722,7 @@ string.
 
 ##### Required arguments
 
-`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind decorated resolver to.
 
 
@@ -741,7 +741,7 @@ Return a decorator that sets decorated function as a resolver for named field.
 
 ##### Required arguments
 
-`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind decorated resolver to.
 
 
@@ -757,7 +757,7 @@ Set a resolver for the field name.
 
 ##### Required arguments
 
-`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 set this resolver for.
 
 `resolver`: a `Resolver` function to use.
@@ -775,7 +775,7 @@ Set an alias resolver for the field name to given Python nme.
 
 ##### Required arguments
 
-`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 set this resolver for.
 
 `to`: a `str` of an attribute or dict key to resolve this field to.
@@ -788,7 +788,7 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Binds this `ObjectType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Binds this `ObjectType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 If it has any resolver functions set, it assigns those to GraphQL type's
 fields `resolve` attributes. If field already has other resolver set on
@@ -820,12 +820,12 @@ def bind_resolvers_to_graphql_type(
     ...
 ```
 
-Binds this `ObjectType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Binds this `ObjectType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 
 ### Example
 
-Following code creates a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with single object type named `Query`
+Following code creates a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with single object type named `Query`
 and uses `ObjectType` to set resolvers on its fields:
 
 ```python
@@ -1011,7 +1011,7 @@ class ScalarType(SchemaBindable):
     ...
 ```
 
-[Bindable](bindables.md) populating scalars in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with Python logic.
+[Bindable](bindables.md) populating scalars in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic.
 
 GraphQL scalars implement default serialization and deserialization logic.
 This class is only useful when custom logic is needed, most commonly
@@ -1107,7 +1107,7 @@ Initializes the `ScalarType` with a `name`.
 
 #### Required arguments
 
-`name`: a `str` with the name of GraphQL scalar in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with the name of GraphQL scalar in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind to.
 
 
@@ -1219,7 +1219,7 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Binds this `ScalarType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Binds this `ScalarType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 If it has serializer or parser functions set, it assigns those to GraphQL
 scalar's attributes. If scalar's attribute already has other function
@@ -1300,7 +1300,7 @@ schema = make_executable_schema(
 Generic scalar is a pass-through scalar that doesn't perform any value
 conversion. Most common use case for those is for GraphQL fields that
 return unstructured JSON to the client. To create a scalar like this,
-you can simply include  `scalar Generic` in your [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)):
+you can simply include  `scalar Generic` in your [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema):
 
 ```python
 from ariadne import QueryType, make_executable_schema
@@ -1350,7 +1350,7 @@ class SchemaBindable(Protocol):
 Base class for [bindable](bindables.md) types.
 
 Subclasses should extend the `bind_to_schema` method with custom logic for
-populating an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with Python logic and values.
+populating an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic and values.
 
 
 ### Methods
@@ -1362,7 +1362,7 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Binds this `Schema[Bindable`](bindables.md) instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Binds this `Schema[Bindable`](bindables.md) instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 
 ### Example
@@ -1495,7 +1495,7 @@ Instantiates the directive for schema object.
 
 `visited_type`: an GraphQL type this directive is set on.
 
-`schema`: the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) instance.
+`schema`: the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance.
 
 `context`: `None`, unused but present for historic reasons.
 
@@ -1513,14 +1513,14 @@ def get_directive_declaration(
     ...
 ```
 
-Get GraphQL directive declaration from [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) by it's name.
+Get GraphQL directive declaration from [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) by it's name.
 
 Returns `GraphQLDirective` object or `None`.
 
 
 ##### Required arguments
 
-`directive_name`: a `str` with name of directive in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+`directive_name`: a `str` with name of directive in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 `schema`: a [`GraphQLSchema`](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance to retrieve the directive
 declaration from.
@@ -1537,16 +1537,16 @@ def get_declared_directives(
     ...
 ```
 
-Get GraphQL directives declaration from [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) by their names.
+Get GraphQL directives declaration from [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) by their names.
 
 Returns a `dict` where keys are strings with directive names in schema
 and values are `GraphQLDirective` objects with their declarations in the
-[GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+[GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 
 ##### Required arguments
 
-`directive_name`: a `str` with name of directive in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+`directive_name`: a `str` with name of directive in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 `schema`: a [`GraphQLSchema`](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance to retrieve the directive
 declaration from.
@@ -1565,9 +1565,9 @@ def visit_schema_directives(
     ...
 ```
 
-Apply directives to the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Apply directives to the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
-Applied directives mutate the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) in place.
+Applied directives mutate the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) in place.
 
 Returns dict with names of GraphQL directives as keys and list of
 directive instances created for each directive name.
@@ -1575,11 +1575,11 @@ directive instances created for each directive name.
 
 ##### Required arguments
 
-`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to which directives should be applied.
+`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to which directives should be applied.
 
 `directive_visitors`: a `dict` with `str` and
 `Type[SchemaDirectiveVisitor]` pairs defining mapping of
-`SchemaDirectiveVisitor` types to their names in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+`SchemaDirectiveVisitor` types to their names in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 
 ##### Optional arguments
@@ -1591,7 +1591,7 @@ directive instances created for each directive name.
 
 `SchemaDirectiveVisitor` subclasses can implement any of below methods
 that will be called when directive is applied to different elements of
-[GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)):
+[GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema):
 
 ```python
 from ariadne import SchemaDirectiveVisitor
@@ -1675,7 +1675,7 @@ Takes three arguments:
 
 `name`: a `str` with schema name to convert.
 
-`schema`: the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) in which names are converted.
+`schema`: the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) in which names are converted.
 
 `path`: a tuple of `str` representing a path to the schema item which name is being converted.
 
@@ -1725,7 +1725,7 @@ class SubscriptionType(ObjectType):
     ...
 ```
 
-[Bindable](bindables.md) populating the Subscription type in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with Python logic.
+[Bindable](bindables.md) populating the Subscription type in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic.
 
 Extends `ObjectType`, providing `source` decorator and `set_source` method, used
 to set subscription sources for it's fields.
@@ -1751,7 +1751,7 @@ async def source_fn(
 
 Subscription resolvers are called with message returned from the source. Their role
 is to convert this message into Python representation of a type associated with
-subscription's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)). Its called with message yielded from
+subscription's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema). Its called with message yielded from
 source function as first argument.
 
 ```python
@@ -1796,7 +1796,7 @@ string.
 
 ##### Required arguments
 
-`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind decorated source to.
 
 
@@ -1815,7 +1815,7 @@ Return a decorator that sets decorated function as a source for named field.
 
 ##### Required arguments
 
-`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind decorated source to.
 
 
@@ -1831,7 +1831,7 @@ Set a source for the field name.
 
 ##### Required arguments
 
-`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 set this source for.
 
 `generator`: a `Subscriber` function to use as an source.
@@ -1844,7 +1844,7 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Binds this `SubscriptionType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Binds this `SubscriptionType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 If it has any previously set subscription resolvers or source functions,
 those will be replaced with new ones from this instance.
@@ -1933,7 +1933,7 @@ class UnionType(SchemaBindable):
     ...
 ```
 
-[Bindable](bindables.md) populating interfaces in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with Python logic.
+[Bindable](bindables.md) populating interfaces in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic.
 
 
 ### Type resolver
@@ -1990,7 +1990,7 @@ setter or `type_resolver` decorator.
 
 #### Required arguments
 
-`name`: a `str` with the name of GraphQL union type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to
+`name`: a `str` with the name of GraphQL union type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind to.
 
 
@@ -2029,7 +2029,7 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
     ...
 ```
 
-Binds this `UnionType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+Binds this `UnionType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 Sets `resolve_type` attribute on GraphQL union. If this attribute was
 previously set, it will be replaced to new value.
@@ -2051,7 +2051,7 @@ is an `union`.
 
 ### Example
 
-Following code creates a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) with a field that returns random
+Following code creates a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with a field that returns random
 result of either `User` or `Post` GraphQL type. It also supports dict with
 `__typename` key that explicitly declares its GraphQL type:
 
@@ -2268,7 +2268,7 @@ same conversion to keys of nested dicts and dicts in lists of elements.
 Returns decorated resolver function.
 
 > **Deprecated:** This decorator is deprecated and will be deleted in future
-version of Ariadne. Set `out_name`s explicitly in your [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) or use
+version of Ariadne. Set `out_name`s explicitly in your [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) or use
 the `convert_schema_names` option on `make_executable_schema`.
 
 
@@ -2285,9 +2285,9 @@ def convert_schema_names(
     ...
 ```
 
-Set mappings in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) from `camelCase` names to `snake_case`.
+Set mappings in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) from `camelCase` names to `snake_case`.
 
-This function scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) and:
+This function scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) and:
 
 If objects field has name in `camelCase` and this field doesn't have a
 resolver already set on it, new resolver is assigned to it that resolves
@@ -2311,7 +2311,7 @@ libraries to use.
 
 ### Required arguments
 
-`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to update.
+`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to update.
 
 `name_converter`: an `SchemaNameConverter` function to use to convert the
 names from `camelCase` to `snake_case`. If not provided, default one
@@ -2516,7 +2516,7 @@ client.
 
 ### Required arguments
 
-`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) instance that defines `Query` type.
+`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance that defines `Query` type.
 
 `data`: a `dict` with query data (`query` string, optionally `operationName`
 string and `variables` dictionary).
@@ -2607,7 +2607,7 @@ client.
 
 ### Required arguments
 
-`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) instance that defines `Query` type.
+`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance that defines `Query` type.
 
 `data`: a `dict` with query data (`query` string, optionally `operationName`
 string and `variables` dictionary).
@@ -2745,11 +2745,11 @@ which [bindables](bindables.md) are passed to `make_executable_schema` matters d
 individual [bindable](bindables.md)'s implementation.
 
 `directives`: a dict of GraphQL directives to apply to schema. Dict's keys must
-correspond to directives names in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) and values should be
+correspond to directives names in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) and values should be
 `SchemaDirectiveVisitor` classes (_not_ instances) implementing their logic.
 
 `convert_names_case`: a `bool` or function of `SchemaNameConverter` type to
-use to convert names in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) between `camelCase` used by GraphQL
+use to convert names in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) between `camelCase` used by GraphQL
 and `snake_case` used by Python. Defaults to `False`, making all conversion
 explicit and up to developer to implement. Set `True` to use
 default strategy using `convert_camel_case_to_snake` for name conversions or
@@ -3054,7 +3054,7 @@ def set_default_enum_values_on_schema(schema: GraphQLSchema) -> None:
 
 Sets missing Python values for GraphQL enums in schema.
 
-Recursively scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) for enums and their values. If `value`
+Recursively scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) for enums and their values. If `value`
 attribute is empty, its populated with with a string of its GraphQL name.
 
 This string is then used to represent enum's value in Python instead of `None`.
@@ -3062,7 +3062,7 @@ This string is then used to represent enum's value in Python instead of `None`.
 
 ### Requires arguments
 
-`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) to set enums default values in.
+`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to set enums default values in.
 
 
 - - - - -
@@ -3115,7 +3115,7 @@ consume to retrieve messages to send to client.
 
 ### Required arguments
 
-'schema': a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) instance that defines `Subscription` type.
+'schema': a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance that defines `Subscription` type.
 
 `data`: a `dict` with query data (`query` string, optionally `operationName`
 string and `variables` dictionary).
@@ -3166,14 +3166,14 @@ def type_implements_interface(
     ...
 ```
 
-Test if type definition from [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) implements an interface.
+Test if type definition from [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) implements an interface.
 
 Returns `True` if type implements interface and `False` if it doesn't.
 
 
 ### Required arguments
 
-`interface`: a `str` with name of interface in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)).
+`interface`: a `str` with name of interface in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 `graphql_type`: a `GraphQLType` interface to test. It may or may not have
 the `interfaces` attribute.
@@ -3288,7 +3288,7 @@ def validate_schema_enum_values(schema: GraphQLSchema) -> None:
     ...
 ```
 
-Raises `ValueError` if [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.[GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)) has input fields or arguments with
+Raises `ValueError` if [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) has input fields or arguments with
 default values that are undefined enum values.
 
 

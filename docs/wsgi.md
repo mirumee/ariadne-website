@@ -42,14 +42,7 @@ $ uwsgi --http :8000 --wsgi-file mywsgi
 
 ### Configuration options
 
-`GraphQL` takes the same options that [`graphql`](api-reference.md#configuration-options) does.
-
-
-#### `explorer`
-
-GraphQL Explorer to use by this server.
-
-See [explorers](/explorers) documentation for more details.
+See the [reference](wsgi-reference.md#constructor).
 
 
 ## Using the middleware

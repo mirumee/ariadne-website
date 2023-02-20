@@ -50,9 +50,12 @@
     ],
     "API reference": [
       "api-reference",
+      "asgi-reference",
+      "asgi-handlers-reference",
       "constants-reference",
       "exceptions-reference",
-      "types-reference"
+      "types-reference",
+      "wsgi-reference"
     ],
     "Other": [
       "logo"

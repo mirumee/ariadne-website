@@ -1,0 +1,760 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>ASGI handlers reference · Ariadne</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="&lt;p&gt;The &lt;code&gt;ariadne.asgi.handlers&lt;/code&gt; package exports following&lt;/p&gt;
+"/><meta name="docsearch:version" content="0.18"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="ASGI handlers reference · Ariadne"/><meta property="og:type" content="website"/><meta property="og:url" content="https://ariadnegraphql.org/"/><meta property="og:description" content="&lt;p&gt;The &lt;code&gt;ariadne.asgi.handlers&lt;/code&gt; package exports following&lt;/p&gt;
+"/><meta property="og:image" content="https://ariadnegraphql.org/img/share-image.png"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://ariadnegraphql.org/img/twitter-image.png"/><link rel="shortcut icon" href="/img/favicon.ico"/><link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css"/><link rel="alternate" type="application/atom+xml" href="https://ariadnegraphql.org/blog/atom.xml" title="Ariadne Blog ATOM Feed"/><link rel="alternate" type="application/rss+xml" href="https://ariadnegraphql.org/blog/feed.xml" title="Ariadne Blog RSS Feed"/><script>
+              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+              })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+              ga('create', 'UA-10159761-23', 'auto');
+              ga('send', 'pageview');
+            </script><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="https://unpkg.com/vanilla-back-to-top@7.1.14/dist/vanilla-back-to-top.min.js"></script><script>
+        document.addEventListener('DOMContentLoaded', function() {
+          addBackToTop(
+            {"zIndex":100}
+          )
+        });
+        </script><link rel="stylesheet" href="/css/prism.css"/><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/logo-horizontal.png" alt="Ariadne"/></a><a href="/versions"><h3>0.18</h3></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="navSearchWrapper reactNavSearchWrapper"><input type="text" id="search_input_react" placeholder="Search" title="Search"/></li><li class="siteNavGroupActive"><a href="/docs/intro" target="_self">Docs</a></li><li class=""><a href="/blog/" target="_self">Blog</a></li><li class=""><a href="/community" target="_self">Community</a></li><li class=""><a href="https://github.com/mirumee/ariadne" target="_self">GitHub</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="container docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>API reference</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Docs</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/intro">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/resolvers">Resolvers</a></li><li class="navListItem"><a class="navItem" href="/docs/mutations">Mutations</a></li><li class="navListItem"><a class="navItem" href="/docs/error-messaging">Error messaging</a></li><li class="navListItem"><a class="navItem" href="/docs/case-conversion">Name case conversion</a></li><li class="navListItem"><a class="navItem" href="/docs/scalars">Custom scalars</a></li><li class="navListItem"><a class="navItem" href="/docs/enums">Enumeration types</a></li><li class="navListItem"><a class="navItem" href="/docs/unions">Union types</a></li><li class="navListItem"><a class="navItem" href="/docs/interfaces">Interface types</a></li><li class="navListItem"><a class="navItem" href="/docs/subscriptions">Subscriptions</a></li><li class="navListItem"><a class="navItem" href="/docs/dataloaders">Dataloaders</a></li><li class="navListItem"><a class="navItem" href="/docs/file-uploads">File uploads</a></li><li class="navListItem"><a class="navItem" href="/docs/documenting-schema">Documenting schema</a></li><li class="navListItem"><a class="navItem" href="/docs/modularization">Modularization</a></li><li class="navListItem"><a class="navItem" href="/docs/bindables">Bindables</a></li><li class="navListItem"><a class="navItem" href="/docs/schema-directives">Schema directives</a></li><li class="navListItem"><a class="navItem" href="/docs/local-development">Local development</a></li><li class="navListItem"><a class="navItem" href="/docs/logging">Logging</a></li><li class="navListItem"><a class="navItem" href="/docs/explorers">GraphQL explorers</a></li><li class="navListItem"><a class="navItem" href="/docs/apollo-federation">Apollo Federation</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Monitoring</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/apollo-tracing">Apollo Tracing</a></li><li class="navListItem"><a class="navItem" href="/docs/open-tracing">OpenTracing</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Security</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/security-overview">Security Overview</a></li><li class="navListItem"><a class="navItem" href="/docs/hiding-field-suggestions">Hiding field suggestions</a></li><li class="navListItem"><a class="navItem" href="/docs/disabling-stack-traces">Disabling stack traces</a></li><li class="navListItem"><a class="navItem" href="/docs/continuous-security-testing">Continuous security testing</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Servers</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/asgi">ASGI application</a></li><li class="navListItem"><a class="navItem" href="/docs/wsgi">WSGI application</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Integrations</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/django-integration">Django</a></li><li class="navListItem"><a class="navItem" href="/docs/fastapi-integration">FastAPI</a></li><li class="navListItem"><a class="navItem" href="/docs/flask-integration">Flask</a></li><li class="navListItem"><a class="navItem" href="/docs/starlette-integration">Starlette</a></li><li class="navListItem"><a class="navItem" href="/docs/other-integrations">Other technologies</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Extensions</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/extensions">Extension system</a></li><li class="navListItem"><a class="navItem" href="/docs/middleware">Middleware</a></li><li class="navListItem"><a class="navItem" href="/docs/query-validators">Query validators</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">API reference</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/api-reference">ariadne</a></li><li class="navListItem"><a class="navItem" href="/docs/asgi-reference">ariadne.asgi</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/asgi-handlers-reference">ariadne.asgi.handlers</a></li><li class="navListItem"><a class="navItem" href="/docs/constants-reference">ariadne.constants</a></li><li class="navListItem"><a class="navItem" href="/docs/exceptions-reference">ariadne.exceptions</a></li><li class="navListItem"><a class="navItem" href="/docs/types-reference">ariadne.types</a></li><li class="navListItem"><a class="navItem" href="/docs/wsgi-reference">ariadne.wsgi</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Other</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/logo">Ariadne logo</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              const headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                if (event.target.tagName === 'A') {
+                  document.body.classList.remove('tocActive');
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">ASGI handlers reference</h1></header><article><div><span><p>The <code>ariadne.asgi.handlers</code> package exports following
+ASGI request handlers:</p>
+<h2><a class="anchor" aria-hidden="true" id="graphqlhttphandler"></a><a href="#graphqlhttphandler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>GraphQLHTTPHandler</code></h2>
+<pre><code class="hljs css language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GraphQLHTTPHandler</span><span class="hljs-params">(GraphQLHttpHandlerBase)</span>:</span>
+    ...
+</code></pre>
+<p>Default ASGI handler for HTTP requests.</p>
+<p>Supports the <code>Query</code> and <code>Mutation</code> operations.</p>
+<h3><a class="anchor" aria-hidden="true" id="constructor"></a><a href="#constructor" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constructor</h3>
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(
+    self,
+    extensions: Optional[Extensions] = None,
+    middleware: Optional[Middlewares] = None,
+    middleware_manager_class: Optional[Type[MiddlewareManager]] = None,
+)</span>:</span>
+    ...
+</code></pre>
+<p>Initializes the HTTP handler.</p>
+<h4><a class="anchor" aria-hidden="true" id="optional-arguments"></a><a href="#optional-arguments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments</h4>
+<p><a href="/docs/types-reference#extensions"><code>extensions</code></a>: an <a href="/docs/types-reference#extensions"><code>Extensions</code></a> list or callable returning a
+list of extensions server should use during query execution. Defaults
+to no extensions.</p>
+<p><code>middleware</code>: a <a href="/docs/types-reference#middlewares"><code>Middlewares</code></a> list or callable returning a list of
+middlewares server should use during query execution. Defaults to no
+middlewares.</p>
+<p><code>middleware_manager_class</code>: a <code>MiddlewareManager</code> type or subclass to
+use for combining provided middlewares into single wrapper for resolvers
+by the server. Defaults to <code>graphql.MiddlewareManager</code>. Is only used
+if <a href="/docs/types-reference#extensions"><code>extensions</code></a> or <code>middleware</code> options are set.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods"></a><a href="#methods" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="handle"></a><a href="#handle" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle</span><span class="hljs-params">(self, scope: Scope, receive: Receive, send: Send)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>An entrypoint for the GraphQL HTTP handler.</p>
+<p>This method is called by the Ariadne ASGI GraphQL application to execute
+queries done using the HTTP protocol.</p>
+<p>It creates the <code>starlette.requests.Request</code> instance, calls
+<code>handle_request</code> method with it, then sends response back to the client.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments"></a><a href="#required-arguments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>scope</code>: The <a href="https://asgi.readthedocs.io/en/latest/specs/main.html#connection-scope">connection scope</a> information, a dictionary that contains
+at least a type key specifying the protocol that is incoming.</p>
+<p><code>receive</code>: an awaitable callable that will yield a new event dictionary
+when one is available.</p>
+<p><code>send</code>: an awaitable callable taking a single event dictionary as a
+positional argument that will return once the send has been completed
+or the connection has been closed.</p>
+<p>Details about the arguments and their usage are described in the
+ASGI specification:</p>
+<p><a href="https://asgi.readthedocs.io/en/latest/specs/main.html">https://asgi.readthedocs.io/en/latest/specs/main.html</a></p>
+<h4><a class="anchor" aria-hidden="true" id="handle_request"></a><a href="#handle_request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_request</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_request</span><span class="hljs-params">(self, request: Request)</span> -&gt; Response:</span>
+    ...
+</code></pre>
+<p>Handle GraphQL request and return response for the client.</p>
+<p>Is called by the <code>handle</code> method and <code>handle_request</code> method of the
+ASGI GraphQL application.</p>
+<p>Handles three HTTP methods:</p>
+<p><code>GET</code>: returns GraphQL explorer or 405 error response if explorer or
+introspection is disabled.</p>
+<p><code>POST</code>: executes the GraphQL query from either <code>application/json</code> or
+<code>multipart/form-data</code> requests.</p>
+<p><code>OPTIONS</code>: returns supported HTTP methods.</p>
+<p>Returns Starlette's <code>Response</code> instance, which is also works in FastAPI.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-1"></a><a href="#required-arguments-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments:</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<h4><a class="anchor" aria-hidden="true" id="render_explorer"></a><a href="#render_explorer" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>render_explorer</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">render_explorer</span><span class="hljs-params">(self, request: Request, explorer: Explorer)</span> -&gt; Response:</span>
+    ...
+</code></pre>
+<p>Return a HTML response with GraphQL explorer.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-2"></a><a href="#required-arguments-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments:</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<p><a href="/docs/explorers"><code>explorer</code></a>: an <a href="/docs/explorers"><code>Explorer</code></a> instance that implements the
+<code>html(request: Request)</code> method which returns either the <code>str</code> with HTML
+or <code>None</code>. If explorer returns <code>None</code>, <code>405</code> method not allowed response
+is returned instead.</p>
+<h4><a class="anchor" aria-hidden="true" id="graphql_http_server"></a><a href="#graphql_http_server" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>graphql_http_server</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">graphql_http_server</span><span class="hljs-params">(self, request: Request)</span> -&gt; Response:</span>
+    ...
+</code></pre>
+<p>Handles the HTTP request with GraphQL query.</p>
+<p>Extracts GraphQL query data from requests and then executes it using
+the <code>execute_graphql_query</code> method.</p>
+<p>Returns the JSON response from Sta</p>
+<p>If request's data was invalid or missing, plaintext response with
+error message and 400 status code is returned instead.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-3"></a><a href="#required-arguments-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments:</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<h4><a class="anchor" aria-hidden="true" id="extract_data_from_request"></a><a href="#extract_data_from_request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>extract_data_from_request</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract_data_from_request</span><span class="hljs-params">(self, request: Request)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Extracts GraphQL request data from request.</p>
+<p>Returns a <code>dict</code> with GraphQL query data that was not yet validated.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-4"></a><a href="#required-arguments-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<h4><a class="anchor" aria-hidden="true" id="extract_data_from_json_request"></a><a href="#extract_data_from_json_request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>extract_data_from_json_request</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract_data_from_json_request</span><span class="hljs-params">(self, request: Request)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Extracts GraphQL data from JSON request.</p>
+<p>Returns a <code>dict</code> with GraphQL query data that was not yet validated.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-5"></a><a href="#required-arguments-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<h4><a class="anchor" aria-hidden="true" id="extract_data_from_multipart_request"></a><a href="#extract_data_from_multipart_request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>extract_data_from_multipart_request</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract_data_from_multipart_request</span><span class="hljs-params">(self, request: Request)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Extracts GraphQL data from <code>multipart/form-data</code> request.</p>
+<p>Returns an unvalidated <code>dict</code> with GraphQL query data.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-6"></a><a href="#required-arguments-6" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<h4><a class="anchor" aria-hidden="true" id="execute_graphql_query"></a><a href="#execute_graphql_query" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>execute_graphql_query</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">execute_graphql_query</span><span class="hljs-params">(
+    self,
+    request: Any,
+    data: Any,
+    *,
+    context_value: Any,
+    query_document: Optional[DocumentNode],
+)</span> -&gt; GraphQLResult:</span>
+    ...
+</code></pre>
+<p>Executes GraphQL query from <code>request</code> and returns <a href="/docs/types-reference#graphqlresult"><code>GraphQLResult</code></a>.</p>
+<p>Creates GraphQL <a href="/docs/types-reference#contextvalue"><code>ContextValue</code></a>, initializes extensions and middlewares,
+then runs the <code>graphql</code> function from Ariadne to execute the query.</p>
+<h5><a class="anchor" aria-hidden="true" id="requires-arguments"></a><a href="#requires-arguments" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Requires arguments</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<p><code>data</code>: a GraphQL data.</p>
+<h5><a class="anchor" aria-hidden="true" id="optional-arguments-1"></a><a href="#optional-arguments-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments</h5>
+<p><code>context_value</code>: a <a href="/docs/types-reference#contextvalue"><code>ContextValue</code></a> for this request.</p>
+<p><code>query_document</code>: an already parsed GraphQL query. Setting this option
+will prevent <code>graphql</code> from parsing <code>query</code> string from <code>data</code> second time.</p>
+<h4><a class="anchor" aria-hidden="true" id="get_extensions_for_request"></a><a href="#get_extensions_for_request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>get_extensions_for_request</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_extensions_for_request</span><span class="hljs-params">(
+    self,
+    request: Any,
+    context: Optional[ContextValue],
+)</span> -&gt; ExtensionList:</span>
+    ...
+</code></pre>
+<p>Returns extensions to use when handling the GraphQL request.</p>
+<p>Returns <a href="/docs/types-reference#extensionlist"><code>ExtensionList</code></a>, a list of extensions to use or <code>None</code>.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-7"></a><a href="#required-arguments-7" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<p><code>context</code>: a <a href="/docs/types-reference#contextvalue"><code>ContextValue</code></a> for this request.</p>
+<h4><a class="anchor" aria-hidden="true" id="get_middleware_for_request"></a><a href="#get_middleware_for_request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>get_middleware_for_request</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_middleware_for_request</span><span class="hljs-params">(
+    self,
+    request: Any,
+    context: Optional[ContextValue],
+)</span> -&gt; MiddlewareList:</span>
+    ...
+</code></pre>
+<p>Returns GraphQL middlewares to use when handling the GraphQL request.</p>
+<p>Returns <a href="/docs/types-reference#middlewarelist"><code>MiddlewareList</code></a>, a list of middlewares to use or <code>None</code>.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-8"></a><a href="#required-arguments-8" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<p><code>context</code>: a <a href="/docs/types-reference#contextvalue"><code>ContextValue</code></a> for this request.</p>
+<h4><a class="anchor" aria-hidden="true" id="create_json_response"></a><a href="#create_json_response" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>create_json_response</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create_json_response</span><span class="hljs-params">(
+    self,
+    request: Request,
+    result: dict,
+    success: bool,
+)</span> -&gt; Response:</span>
+    ...
+</code></pre>
+<p>Creates JSON response from GraphQL's query result.</p>
+<p>Returns Starlette's <code>JSONResponse</code> instance that's also compatible
+with FastAPI. If <code>success</code> is <code>True</code>, response's status code is 200.
+Status code 400 is used otherwise.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-9"></a><a href="#required-arguments-9" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<p><code>result</code>: a JSON-serializable <code>dict</code> with query result.</p>
+<p><code>success</code>: a <code>bool</code> specifying if</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_not_allowed_method"></a><a href="#handle_not_allowed_method" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_not_allowed_method</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_not_allowed_method</span><span class="hljs-params">(self, request: Request)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles request for unsupported HTTP method.</p>
+<p>Returns 200 response for <code>OPTIONS</code> request and 405 response for other
+methods. All responses have empty body.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-10"></a><a href="#required-arguments-10" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>request</code>: the <code>Request</code> instance from Starlette or FastAPI.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="graphqlhandler"></a><a href="#graphqlhandler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>GraphQLHandler</code></h2>
+<pre><code class="hljs css language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GraphQLHandler</span><span class="hljs-params">(ABC)</span>:</span>
+    ...
+</code></pre>
+<p>Base class for ASGI connection handlers.</p>
+<h3><a class="anchor" aria-hidden="true" id="constructor-1"></a><a href="#constructor-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constructor</h3>
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+    ...
+</code></pre>
+<p>Initialize the handler instance with empty configuration.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods-1"></a><a href="#methods-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="handle-1"></a><a href="#handle-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle</span><span class="hljs-params">(self, scope: Scope, receive: Receive, send: Send)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>An entrypoint for the ASGI connection handler.</p>
+<p>This method is called by Ariadne ASGI GraphQL application. Subclasses
+should replace it with custom implementation.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-11"></a><a href="#required-arguments-11" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>scope</code>: The <a href="https://asgi.readthedocs.io/en/latest/specs/main.html#connection-scope">connection scope</a> information, a dictionary that contains
+at least a type key specifying the protocol that is incoming.</p>
+<p><code>receive</code>: an awaitable callable that will yield a new event dictionary
+when one is available.</p>
+<p><code>send</code>: an awaitable callable taking a single event dictionary as a
+positional argument that will return once the send has been completed
+or the connection has been closed.</p>
+<p>Details about the arguments and their usage are described in the
+ASGI specification:</p>
+<p><a href="https://asgi.readthedocs.io/en/latest/specs/main.html">https://asgi.readthedocs.io/en/latest/specs/main.html</a></p>
+<h4><a class="anchor" aria-hidden="true" id="configure"></a><a href="#configure" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>configure</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">configure</span><span class="hljs-params">(
+    self,
+    schema: GraphQLSchema,
+    context_value: Optional[ContextValue] = None,
+    root_value: Optional[RootValue] = None,
+    query_parser: Optional[QueryParser] = None,
+    validation_rules: Optional[ValidationRules] = None,
+    debug: bool = False,
+    introspection: bool = True,
+    explorer: Optional[Explorer] = None,
+    logger: Union[None, str, Logger, LoggerAdapter] = None,
+    error_formatter: ErrorFormatter = format_error,
+    execution_context_class: Optional[Type[ExecutionContext]] = None,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Configures the handler with options from the ASGI application.</p>
+<p>Called by Ariadne ASGI GraphQL application as part of its
+initialization, propagating the configuration to it's handlers.</p>
+<h4><a class="anchor" aria-hidden="true" id="get_context_for_request"></a><a href="#get_context_for_request" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>get_context_for_request</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_context_for_request</span><span class="hljs-params">(self, request: Any, data: dict)</span> -&gt; Any:</span>
+    ...
+</code></pre>
+<p>Returns GraphQL context value for ASGI connection.</p>
+<p>Resolves final context value from the <a href="/docs/types-reference#contextvalue"><code>ContextValue</code></a> value passed to
+<code>context_value</code> option. If <code>context_value</code> is None, sets default context
+value instead, which is a <code>dict</code> with single <code>request</code> key that contains
+either <code>starlette.requests.Request</code> instance or
+<code>starlette.websockets.WebSocket</code> instance.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-12"></a><a href="#required-arguments-12" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>request</code>: an instance of ASGI connection. It's type depends on handler.</p>
+<p><code>data</code>: a GraphQL data from connection.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="graphqlhttphandlerbase"></a><a href="#graphqlhttphandlerbase" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>GraphQLHttpHandlerBase</code></h2>
+<pre><code class="hljs css language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GraphQLHttpHandlerBase</span><span class="hljs-params">(GraphQLHandler)</span>:</span>
+    ...
+</code></pre>
+<p>Base class for ASGI HTTP connection handlers.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods-2"></a><a href="#methods-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="handle_request-1"></a><a href="#handle_request-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_request</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_request</span><span class="hljs-params">(self, request: Any)</span> -&gt; Any:</span>
+    ...
+</code></pre>
+<p>Abstract method for handling the request.</p>
+<p>Should return valid ASGI response.</p>
+<h4><a class="anchor" aria-hidden="true" id="execute_graphql_query-1"></a><a href="#execute_graphql_query-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>execute_graphql_query</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">execute_graphql_query</span><span class="hljs-params">(
+    self,
+    request: Any,
+    data: Any,
+    *,
+    context_value: Optional[Any],
+    query_document: Optional[DocumentNode],
+)</span> -&gt; GraphQLResult:</span>
+    ...
+</code></pre>
+<p>Abstract method for GraphQL query execution.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="graphqltransportwshandler"></a><a href="#graphqltransportwshandler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>GraphQLTransportWSHandler</code></h2>
+<pre><code class="hljs css language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GraphQLTransportWSHandler</span><span class="hljs-params">(GraphQLWebsocketHandler)</span>:</span>
+    ...
+</code></pre>
+<p>Implementation of the (newer) graphql-transport-ws subprotocol
+from the graphql-ws library.</p>
+<p>For more details see it's GH page:</p>
+<p><a href="https://github.com/enisdenjo/graphql-ws/blob/master/PROTOCOL.md">https://github.com/enisdenjo/graphql-ws/blob/master/PROTOCOL.md</a></p>
+<h3><a class="anchor" aria-hidden="true" id="constructor-2"></a><a href="#constructor-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constructor</h3>
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(
+    self,
+    *args,
+    connection_init_wait_timeout: timedelta,
+    **kwargs,
+)</span>:</span>
+    ...
+</code></pre>
+<p>Initializes the websocket handler.</p>
+<h4><a class="anchor" aria-hidden="true" id="optional-arguments-2"></a><a href="#optional-arguments-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments</h4>
+<p><code>connection_init_wait_timeout</code>: a <code>timedelta</code> with timeout for new
+websocket connections before first message is received. Defaults to
+60 seconds.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods-3"></a><a href="#methods-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="handle-2"></a><a href="#handle-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle</span><span class="hljs-params">(self, scope: Scope, receive: Receive, send: Send)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>An entrypoint for the GraphQL WebSocket handler.</p>
+<p>This method is called by the Ariadne ASGI GraphQL application to handle
+the websocket connections.</p>
+<p>It creates the <code>starlette.websockets.WebSocket</code> instance and calls
+<code>handle_websocket</code> method with it.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-13"></a><a href="#required-arguments-13" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>scope</code>: The <a href="https://asgi.readthedocs.io/en/latest/specs/main.html#connection-scope">connection scope</a> information, a dictionary that contains
+at least a type key specifying the protocol that is incoming.</p>
+<p><code>receive</code>: an awaitable callable that will yield a new event dictionary
+when one is available.</p>
+<p><code>send</code>: an awaitable callable taking a single event dictionary as a
+positional argument that will return once the send has been completed
+or the connection has been closed.</p>
+<p>Details about the arguments and their usage are described in the
+ASGI specification:</p>
+<p><a href="https://asgi.readthedocs.io/en/latest/specs/main.html">https://asgi.readthedocs.io/en/latest/specs/main.html</a></p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket"></a><a href="#handle_websocket" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket</span><span class="hljs-params">(self, websocket: WebSocket)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handle GraphQL the WebSocket connection.</p>
+<p>Is called by the <code>handle</code> method and <code>handle_websocket</code> method of the
+ASGI GraphQL application.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-14"></a><a href="#required-arguments-14" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments:</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_connection_init_timeout"></a><a href="#handle_connection_init_timeout" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_connection_init_timeout</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_connection_init_timeout</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    client_context: ClientContext,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_message"></a><a href="#handle_websocket_message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_message</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_message</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    message: dict,
+    client_context: ClientContext,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles new message from websocket connection.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-15"></a><a href="#required-arguments-15" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>message</code>: a <code>dict</code> with message payload.</p>
+<p><code>client_context</code>: a <code>ClientContext</code> object with extra state of current
+websocket connection.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_connection_init_message"></a><a href="#handle_websocket_connection_init_message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_connection_init_message</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_connection_init_message</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    message: dict,
+    client_context: ClientContext,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles <code>connection_init</code> websocket message.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-16"></a><a href="#required-arguments-16" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>message</code>: a <code>dict</code> with message payload.</p>
+<p><code>client_context</code>: a <code>ClientContext</code> object with extra state of current
+websocket connection.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_ping_message"></a><a href="#handle_websocket_ping_message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_ping_message</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_ping_message</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    client_context: ClientContext,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles <code>ping</code> websocket message, answering with <code>pong</code> message.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-17"></a><a href="#required-arguments-17" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>client_context</code>: a <code>ClientContext</code> object with extra state of current
+websocket connection.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_pong_message"></a><a href="#handle_websocket_pong_message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_pong_message</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_pong_message</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    client_context: ClientContext,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles <code>pong</code> websocket message.</p>
+<p>Unlike <code>ping</code> message, <code>pong</code> is unidirectional heartbeat sent by the
+client to the server. It doesn't require a result.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-18"></a><a href="#required-arguments-18" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>client_context</code>: a <code>ClientContext</code> object with extra state of current
+websocket connection.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_complete_message"></a><a href="#handle_websocket_complete_message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_complete_message</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_complete_message</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    operation_id: str,
+    client_context: ClientContext,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles <code>complete</code> websocket message.</p>
+<p><code>complete</code> message tells the GraphQL server to stop sending events for
+GraphQL operation specified in the message</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-19"></a><a href="#required-arguments-19" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>operation_id</code>: a <code>str</code> with id of operation that should be stopped.</p>
+<p><code>client_context</code>: a <code>ClientContext</code> object with extra state of current
+websocket connection.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_subscribe"></a><a href="#handle_websocket_subscribe" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_subscribe</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_subscribe</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    data: Any,
+    operation_id: str,
+    client_context: ClientContext,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles <code>subscribe</code> websocket message.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-20"></a><a href="#required-arguments-20" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>data</code>: any data from <code>subscribe</code> message.</p>
+<p><code>operation_id</code>: a <code>str</code> with id of new subscribe operation.</p>
+<p><code>client_context</code>: a <code>ClientContext</code> object with extra state of current
+websocket connection.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_invalid_type"></a><a href="#handle_websocket_invalid_type" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_invalid_type</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_invalid_type</span><span class="hljs-params">(self, websocket: WebSocket)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles unsupported or invalid websocket message.</p>
+<p>Closes open websocket connection with error code <code>4400</code>.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-21"></a><a href="#required-arguments-21" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_on_complete"></a><a href="#handle_on_complete" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_on_complete</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_on_complete</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    operation: Operation,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles completed websocket operation.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-22"></a><a href="#required-arguments-22" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><a href="/docs/types-reference#operation"><code>operation</code></a>: a completed <a href="/docs/types-reference#operation"><code>Operation</code></a>.</p>
+<h4><a class="anchor" aria-hidden="true" id="stop_websocket_operation"></a><a href="#stop_websocket_operation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>stop_websocket_operation</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">stop_websocket_operation</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    operation_id: str,
+    client_context: ClientContext,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Stops specified GraphQL operation for given connection and context.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-23"></a><a href="#required-arguments-23" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>operation_id</code>: a <code>str</code> with id of operation to stop.</p>
+<p><code>client_context</code>: a <code>ClientContext</code> object with extra state of current
+websocket connection.</p>
+<h4><a class="anchor" aria-hidden="true" id="observe_async_results"></a><a href="#observe_async_results" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>observe_async_results</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">observe_async_results</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    results_producer: AsyncGenerator,
+    operation_id: str,
+    client_context: ClientContext,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Converts results from Ariadne's <code>subscribe</code> generator into websocket
+messages it next sends to the client.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-24"></a><a href="#required-arguments-24" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>results_producer</code>: the <code>AsyncGenerator</code> returned from Ariadne's
+<code>subscribe</code> function.</p>
+<p><code>operation_id</code>: a <code>str</code> with id of operation.</p>
+<p><code>client_context</code>: a <code>ClientContext</code> object with extra state of current
+websocket connection.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="graphqlwshandler"></a><a href="#graphqlwshandler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>GraphQLWSHandler</code></h2>
+<pre><code class="hljs css language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GraphQLWSHandler</span><span class="hljs-params">(GraphQLWebsocketHandler)</span>:</span>
+    ...
+</code></pre>
+<p>Implementation of the (older) graphql-ws subprotocol from the
+subscriptions-transport-ws library.</p>
+<p>For more details see it's GH page:</p>
+<p><a href="https://github.com/apollographql/subscriptions-transport-ws/blob/master/PROTOCOL.md">https://github.com/apollographql/subscriptions-transport-ws/blob/master/PROTOCOL.md</a></p>
+<h3><a class="anchor" aria-hidden="true" id="constructor-3"></a><a href="#constructor-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constructor</h3>
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, *args, keepalive: Optional[float], **kwargs)</span>:</span>
+    ...
+</code></pre>
+<p>Initializes the websocket handler.</p>
+<h4><a class="anchor" aria-hidden="true" id="optional-arguments-3"></a><a href="#optional-arguments-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments</h4>
+<p><code>keepalive</code>: a <code>float</code> with time frequency for sending the keep-alive
+messages to clients with open websocket connections. <code>1.0</code> is 1 second.
+If set to <code>None</code> or <code>0</code>, no keep-alive messages are sent.
+Defaults to <code>None</code>.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods-4"></a><a href="#methods-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="handle-3"></a><a href="#handle-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle</span><span class="hljs-params">(self, scope: Scope, receive: Receive, send: Send)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>An entrypoint for the GraphQL WebSocket handler.</p>
+<p>This method is called by the Ariadne ASGI GraphQL application to handle
+the websocket connections.</p>
+<p>It creates the <code>starlette.websockets.WebSocket</code> instance and calls
+<code>handle_websocket</code> method with it.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-25"></a><a href="#required-arguments-25" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>scope</code>: The <a href="https://asgi.readthedocs.io/en/latest/specs/main.html#connection-scope">connection scope</a> information, a dictionary that contains
+at least a type key specifying the protocol that is incoming.</p>
+<p><code>receive</code>: an awaitable callable that will yield a new event dictionary
+when one is available.</p>
+<p><code>send</code>: an awaitable callable taking a single event dictionary as a
+positional argument that will return once the send has been completed
+or the connection has been closed.</p>
+<p>Details about the arguments and their usage are described in the
+ASGI specification:</p>
+<p><a href="https://asgi.readthedocs.io/en/latest/specs/main.html">https://asgi.readthedocs.io/en/latest/specs/main.html</a></p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket-1"></a><a href="#handle_websocket-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket</span><span class="hljs-params">(self, websocket: WebSocket)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handle GraphQL the WebSocket connection.</p>
+<p>Is called by the <code>handle</code> method and <code>handle_websocket</code> method of the
+ASGI GraphQL application.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-26"></a><a href="#required-arguments-26" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments:</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_message-1"></a><a href="#handle_websocket_message-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_message</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_message</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    message: dict,
+    operations: Dict[str, Operation],
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles new message from websocket connection.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-27"></a><a href="#required-arguments-27" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>message</code>: a <code>dict</code> with message payload.</p>
+<p><code>operations</code>: a <code>dict</code> with currently active GraphQL operations.</p>
+<h4><a class="anchor" aria-hidden="true" id="process_single_message"></a><a href="#process_single_message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>process_single_message</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_single_message</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    data: Any,
+    operation_id: str,
+    operations: Dict[str, Operation],
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Processes websocket message containing new GraphQL operation.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-28"></a><a href="#required-arguments-28" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>data</code>: a <code>dict</code> with message's payload.</p>
+<p><code>operation_id</code>: a <code>str</code> with an ID of new operation.</p>
+<p><code>operations</code>: a <code>dict</code> with currently active GraphQL operations.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_connection_init_message-1"></a><a href="#handle_websocket_connection_init_message-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_connection_init_message</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_connection_init_message</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    message: dict,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles <code>connection_init</code> websocket message.</p>
+<p>Initializes new websocket instance.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-29"></a><a href="#required-arguments-29" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>message</code>: a <code>dict</code> with message's payload.</p>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket_connection_terminate_message"></a><a href="#handle_websocket_connection_terminate_message" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket_connection_terminate_message</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket_connection_terminate_message</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Handles <code>terminate</code> websocket message.</p>
+<p>Closes open websocket connection.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-30"></a><a href="#required-arguments-30" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<h4><a class="anchor" aria-hidden="true" id="keep_websocket_alive"></a><a href="#keep_websocket_alive" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>keep_websocket_alive</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">keep_websocket_alive</span><span class="hljs-params">(self, websocket: WebSocket)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="start_websocket_operation"></a><a href="#start_websocket_operation" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>start_websocket_operation</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">start_websocket_operation</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    data: Any,
+    context_value: Any,
+    query_document: DocumentNode,
+    operation_id: str,
+    operations: Dict[str, Operation],
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<h4><a class="anchor" aria-hidden="true" id="stop_websocket_operation-1"></a><a href="#stop_websocket_operation-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>stop_websocket_operation</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">stop_websocket_operation</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    operation: Operation,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Stops specified GraphQL operation for given connection.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-31"></a><a href="#required-arguments-31" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><a href="/docs/types-reference#operation"><code>operation</code></a>: an <a href="/docs/types-reference#operation"><code>Operation</code></a> to stop.</p>
+<h4><a class="anchor" aria-hidden="true" id="observe_async_results-1"></a><a href="#observe_async_results-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>observe_async_results</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">observe_async_results</span><span class="hljs-params">(
+    self,
+    websocket: WebSocket,
+    results: AsyncGenerator,
+    operation_id: str,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Converts results from Ariadne's <code>subscribe</code> generator into websocket
+messages it next sends to the client.</p>
+<h5><a class="anchor" aria-hidden="true" id="required-arguments-32"></a><a href="#required-arguments-32" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Required arguments</h5>
+<p><code>websocket</code>: the <code>WebSocket</code> instance from Starlette or FastAPI.</p>
+<p><code>results</code>: the <code>AsyncGenerator</code> returned from Ariadne's
+<code>subscribe</code> function.</p>
+<p><code>operation_id</code>: a <code>str</code> with id of operation.</p>
+<hr>
+<h2><a class="anchor" aria-hidden="true" id="graphqlwebsockethandler"></a><a href="#graphqlwebsockethandler" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>GraphQLWebsocketHandler</code></h2>
+<pre><code class="hljs css language-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GraphQLWebsocketHandler</span><span class="hljs-params">(GraphQLHandler)</span>:</span>
+    ...
+</code></pre>
+<p>Base class for ASGI websocket connection handlers.</p>
+<h3><a class="anchor" aria-hidden="true" id="constructor-4"></a><a href="#constructor-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Constructor</h3>
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(
+    self,
+    on_connect: Optional[OnConnect] = None,
+    on_disconnect: Optional[OnDisconnect] = None,
+    on_operation: Optional[OnOperation] = None,
+    on_complete: Optional[OnComplete] = None,
+)</span>:</span>
+    ...
+</code></pre>
+<p>Initialize websocket handler with optional options specific to it.</p>
+<h4><a class="anchor" aria-hidden="true" id="optional-arguments-4"></a><a href="#optional-arguments-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments:</h4>
+<p><code>on_connect</code>: an <a href="/docs/types-reference#onconnect"><code>OnConnect</code></a> callback used on new websocket connection.</p>
+<p><code>on_disconnect</code>: an <a href="/docs/types-reference#ondisconnect"><code>OnDisconnect</code></a> callback used when existing
+websocket connection is closed.</p>
+<p><code>on_operation</code>: an <a href="/docs/types-reference#onoperation"><code>OnOperation</code></a> callback, used when new GraphQL
+operation is received from websocket connection.</p>
+<p><code>on_complete</code>: an <a href="/docs/types-reference#oncomplete"><code>OnComplete</code></a> callback, used when GraphQL operation
+received over the websocket connection was completed.</p>
+<h3><a class="anchor" aria-hidden="true" id="methods-5"></a><a href="#methods-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Methods</h3>
+<h4><a class="anchor" aria-hidden="true" id="handle_websocket-2"></a><a href="#handle_websocket-2" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>handle_websocket</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_websocket</span><span class="hljs-params">(self, websocket: Any)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Abstract method for handling the websocket connection.</p>
+<h4><a class="anchor" aria-hidden="true" id="configure-1"></a><a href="#configure-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>configure</code></h4>
+<pre><code class="hljs css language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">configure</span><span class="hljs-params">(
+    self,
+    *args,
+    http_handler: Optional[GraphQLHttpHandlerBase],
+    **kwargs,
+)</span> -&gt; <span class="hljs-keyword">None</span>:</span>
+    ...
+</code></pre>
+<p>Configures the handler with options from the ASGI application.</p>
+<p>Called by Ariadne ASGI GraphQL application as part of its
+initialization, propagating the configuration to it's handlers.</p>
+<h5><a class="anchor" aria-hidden="true" id="optional-arguments-5"></a><a href="#optional-arguments-5" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Optional arguments</h5>
+<p><code>http_handler</code>: the <code>GraphQLHttpHandlerBase</code> subclass instance to use
+to execute the <code>Query</code> and <code>Mutation</code> operations made over the
+websocket connections.</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/asgi-reference"><span class="arrow-prev">← </span><span>ariadne.asgi</span></a><a class="docs-next button" href="/docs/constants-reference"><span>ariadne.constants</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#graphqlhttphandler"><code>GraphQLHTTPHandler</code></a><ul class="toc-headings"><li><a href="#constructor">Constructor</a></li><li><a href="#methods">Methods</a></li></ul></li><li><a href="#graphqlhandler"><code>GraphQLHandler</code></a><ul class="toc-headings"><li><a href="#constructor-1">Constructor</a></li><li><a href="#methods-1">Methods</a></li></ul></li><li><a href="#graphqlhttphandlerbase"><code>GraphQLHttpHandlerBase</code></a><ul class="toc-headings"><li><a href="#methods-2">Methods</a></li></ul></li><li><a href="#graphqltransportwshandler"><code>GraphQLTransportWSHandler</code></a><ul class="toc-headings"><li><a href="#constructor-2">Constructor</a></li><li><a href="#methods-3">Methods</a></li></ul></li><li><a href="#graphqlwshandler"><code>GraphQLWSHandler</code></a><ul class="toc-headings"><li><a href="#constructor-3">Constructor</a></li><li><a href="#methods-4">Methods</a></li></ul></li><li><a href="#graphqlwebsockethandler"><code>GraphQLWebsocketHandler</code></a><ul class="toc-headings"><li><a href="#constructor-4">Constructor</a></li><li><a href="#methods-5">Methods</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/icon.png" alt="Ariadne" height="107" width="128"/></a><div class="footerNavSpacer"></div><div class="footerNavTwoColumn"><h5>Documentation</h5><a href="/docs/intro.html">Introduction</a><a href="/docs/resolvers.html">Resolvers</a><a href="/docs/mutations.html">Mutations</a><a href="/docs/subscriptions.html">Subscriptions</a><a href="/docs/django-integration.html">Django integration</a><a href="/docs/flask-integration.html">Flask integration</a><a href="/docs/starlette-integration.html">Starlette integration</a><a href="/docs/other-integrations.html">Other integrations</a><a href="/docs/api-reference.html">API Reference</a><a href="/docs/logo.html">Logo</a></div><div><h5>Community</h5><a href="https://github.com/mirumee/ariadne/discussions/">Discuss</a><a href="https://github.com/mirumee/ariadne">GitHub</a><a class="github-button" href="https://github.com/mirumee/ariadne" data-icon="octicon-star" data-count-href="/mirumee/ariadne/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><section class="copyright"><a href="https://mirumee.com">Copyright © 2023 Mirumee Software</a><a href="https://mirumee.com">Ariadne is crafted with love by<img src="/img/mirumee.png" alt="Mirumee"/></a></section></footer></div><script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script><script>
+                document.addEventListener('keyup', function(e) {
+                  if (e.target !== document.body) {
+                    return;
+                  }
+                  // keyCode for '/' (slash)
+                  if (e.keyCode === 191) {
+                    const search = document.getElementById('search_input_react');
+                    search && search.focus();
+                  }
+                });
+              </script><script>
+              var search = docsearch({
+                
+                apiKey: '507581234da84aebc8fe9918f530b714',
+                indexName: 'ariadnegraphql',
+                inputSelector: '#search_input_react'
+              });
+            </script></body></html>

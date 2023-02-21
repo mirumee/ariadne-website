@@ -1,0 +1,64 @@
+{
+  "version-0.18-docs": {
+    "Docs": [
+      "version-0.18-intro",
+      "version-0.18-resolvers",
+      "version-0.18-mutations",
+      "version-0.18-error-messaging",
+      "version-0.18-case-conversion",
+      "version-0.18-scalars",
+      "version-0.18-enums",
+      "version-0.18-unions",
+      "version-0.18-interfaces",
+      "version-0.18-subscriptions",
+      "version-0.18-dataloaders",
+      "version-0.18-file-uploads",
+      "version-0.18-documenting-schema",
+      "version-0.18-modularization",
+      "version-0.18-bindables",
+      "version-0.18-schema-directives",
+      "version-0.18-local-development",
+      "version-0.18-logging",
+      "version-0.18-explorers",
+      "version-0.18-apollo-federation"
+    ],
+    "Monitoring": [
+      "version-0.18-apollo-tracing",
+      "version-0.18-open-tracing"
+    ],
+    "Security": [
+      "version-0.18-security-overview",
+      "version-0.18-hiding-field-suggestions",
+      "version-0.18-disabling-stack-traces",
+      "version-0.18-continuous-security-testing"
+    ],
+    "Servers": [
+      "version-0.18-asgi",
+      "version-0.18-wsgi"
+    ],
+    "Integrations": [
+      "version-0.18-django-integration",
+      "version-0.18-fastapi-integration",
+      "version-0.18-flask-integration",
+      "version-0.18-starlette-integration",
+      "version-0.18-other-integrations"
+    ],
+    "Extensions": [
+      "version-0.18-extensions",
+      "version-0.18-middleware",
+      "version-0.18-query-validators"
+    ],
+    "API reference": [
+      "version-0.18-api-reference",
+      "version-0.18-asgi-reference",
+      "version-0.18-asgi-handlers-reference",
+      "version-0.18-constants-reference",
+      "version-0.18-exceptions-reference",
+      "version-0.18-types-reference",
+      "version-0.18-wsgi-reference"
+    ],
+    "Other": [
+      "version-0.18-logo"
+    ]
+  }
+}

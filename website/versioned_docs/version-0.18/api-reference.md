@@ -24,7 +24,7 @@ class EnumType(SchemaBindable):
 def __init__(
     self,
     name: str,
-    values: Union[Dict[str, Any], enum.Enum, enum.IntEnum],
+    values: Union[Dict[str, Any], Type[enum.Enum], Type[enum.IntEnum]],
 ):
     ...
 ```

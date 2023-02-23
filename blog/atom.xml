@@ -2,12 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2023-02-21T06:00:00Z</updated>
+    <updated>2023-02-22T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne 0.18.1]]></title>
+        <id>https://ariadnegraphql.org/blog/2023/02/22/ariadne-0-18-1.html</id>
+        <link href="https://ariadnegraphql.org/blog/2023/02/22/ariadne-0-18-1.html">
+        </link>
+        <updated>2023-02-22T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne 0.18.1 has been released.</p> <p>0.18.1 is a bugfix release that fixes types annotation on <code>EnumType</code>'s constructor, Mypy errors on correct use.</p> ]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.18]]></title>
         <id>https://ariadnegraphql.org/blog/2023/02/21/ariadne-0-18.html</id>

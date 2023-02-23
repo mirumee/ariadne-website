@@ -34,7 +34,8 @@
     ],
     "Servers": [
       "asgi",
-      "wsgi"
+      "wsgi",
+      "aws-lambda"
     ],
     "Integrations": [
       "django-integration",

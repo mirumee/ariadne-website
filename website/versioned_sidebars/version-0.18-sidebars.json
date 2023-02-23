@@ -34,7 +34,8 @@
     ],
     "Servers": [
       "version-0.18-asgi",
-      "version-0.18-wsgi"
+      "version-0.18-wsgi",
+      "version-0.18-aws-lambda"
     ],
     "Integrations": [
       "version-0.18-django-integration",

@@ -34,6 +34,8 @@ handler = Mangum(app, lifespan="off")
 
 This approach is recommended because it gives immediate availability of Ariadne's features through the `GraphQL` object's options, and doesn't require implementation of custom translation layer between GraphQL engine and AWS lambda.
 
+> **Note:** Mangum doesn't require Ariadne's ASGI application exactly. If you need your lambda function to offer other API endpoints in addition to the GraphQL, you can combine your Ariadne's app with [Starlette](starlette-integration.md) or [FastAPI](fastapi-integration.md).
+
 
 ## Minimal lambda handler example
 
@@ -93,8 +95,6 @@ def response(body: dict, status_code: int = 200):
 ```
 
 This lambda function will expect a JSON request with at least one key, a `query` with a `str` containing the GraphQL query.
-
-> **Note:** Mangum doesn't require Ariadne's ASGI application exactly. If you need your lambda function to offer other API endpoints in addition to the GraphQL, you can combine your Ariadne's app with [Starlette](starlette-integration.md) or [FastAPI](fastapi-integration.md).
 
 
 ### Asynchronous example

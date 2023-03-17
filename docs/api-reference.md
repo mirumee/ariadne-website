@@ -2719,7 +2719,7 @@ with files to load.
 ```python
 def make_executable_schema(
     type_defs: Union[str, List[str]],
-    *bindables: Union[SchemaBindable, List[SchemaBindable]],
+    *bindables: SchemaBindables,
     directives: Optional[Dict[str, Type[SchemaDirectiveVisitor]]],
     convert_names_case: Union[bool, SchemaNameConverter],
 ) -> GraphQLSchema:
@@ -2794,13 +2794,19 @@ Below code creates executable schema that combines different ways of passing
 
 ```python
 from dataclasses import dataclass
+from enum import Enum
 from ariadne import ObjectType, QueryType, UnionType, graphql_sync, make_executable_schema
 
 # Define some types representing database models in real applications
+class UserLevel(str, Enum):
+    USER = "user"
+    ADMIN = "admin"
+
 @dataclass
 class UserModel:
     id: str
     name: str
+    level: UserLevel
 
 @dataclass
 class PostModel:
@@ -2809,9 +2815,9 @@ class PostModel:
 
 # Create fake "database"
 results = (
-    UserModel(id=1, name="Bob"),
-    UserModel(id=2, name="Alice"),
-    UserModel(id=3, name="Jon"),
+    UserModel(id=1, name="Bob", level=UserLevel.USER),
+    UserModel(id=2, name="Alice", level=UserLevel.ADMIN),
+    UserModel(id=3, name="Jon", level=UserLevel.USER),
     PostModel(id=1, body="Hello world!"),
     PostModel(id=2, body="How's going?"),
     PostModel(id=3, body="Sure thing!"),
@@ -2862,11 +2868,17 @@ schema = make_executable_schema(
     type User {
         id: ID!
         username: String!
+        level: UserLevel!
     }
 
     type Post {
         id: ID!
         message: String!
+    }
+
+    enum UserLevel {
+        USER
+        ADMIN
     }
     """,
     # Bindables *args accept single instances:
@@ -2875,6 +2887,8 @@ schema = make_executable_schema(
     # Bindables *args accepts lists of instances:
     [user_type, post_type],
     # Both approaches can be mixed
+    # Python Enums are also valid bindables:
+    UserLevel,
 )
 
 # Query the schema for results
@@ -2892,6 +2906,7 @@ no_errors, result = graphql_sync(
                     ... on User {
                         id
                         username
+                        level
                     }
                 }
             }
@@ -2908,14 +2923,17 @@ assert result == {
             {
                 "id": "1",
                 "username": "Bob",
+                "level": "USER",
             },
             {
                 "id": "2",
                 "username": "Alice",
+                "level": "ADMIN",
             },
             {
                 "id": "3",
                 "username": "Jon",
+                "level": "USER",
             },
             {
                 "id": "1",

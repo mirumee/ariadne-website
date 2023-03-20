@@ -2,12 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2023-02-22T06:00:00Z</updated>
+    <updated>2023-03-20T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne Codegen 0.4]]></title>
+        <id>https://ariadnegraphql.org/blog/2023/03/20/ariadne-codegen-0-4.html</id>
+        <link href="https://ariadnegraphql.org/blog/2023/03/20/ariadne-codegen-0-4.html">
+        </link>
+        <updated>2023-03-20T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne Codegen 0.4 is now available!</p> <p>This release deprecates <code>[ariadne-codegen]</code> as configuration section used by the library. New section used is <code>[tool.ariadne-codegen]</code> which follows PEP 518. While old name will still be support for a while, you are ...</p>]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.18.1]]></title>
         <id>https://ariadnegraphql.org/blog/2023/02/22/ariadne-0-18-1.html</id>

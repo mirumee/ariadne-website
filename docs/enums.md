@@ -250,7 +250,7 @@ query_type = QueryType()
 
 @query_type.field("post")
 def resolve_post(*_):
-    return {"weight": 2}  # 0 will be returned as PROMOTED by GraphQL
+    return {"weight": 2}  # 2 will be returned as PROMOTED by GraphQL
 
 
 schema = make_executable_schema(

@@ -68,7 +68,7 @@ GraphQL failed to find `TEST` in `UserStatus`, and returned an error without cal
 
 ## Associating GraphQL and Python enums
 
-By default enum values are represented as Python strings, but Ariadne also supports mapping GraphQL enums to their Python counterparts.
+By default enum values are represented as Python strings, but Ariadne also supports associating GraphQL enums with their Python counterparts.
 
 Imagine posts on a social site that can have weights like "standard", "pinned" and "promoted":
 

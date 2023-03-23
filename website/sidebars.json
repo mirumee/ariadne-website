@@ -4,6 +4,7 @@
       "intro",
       "resolvers",
       "mutations",
+      "inputs",
       "error-messaging",
       "case-conversion",
       "scalars",

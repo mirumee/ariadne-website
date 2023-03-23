@@ -424,6 +424,210 @@ Sets `default_field_resolver` as a resolver on a field that doesn't have any.
 - - - - -
 
 
+## `InputType`
+
+```python
+class InputType(SchemaBindable):
+    ...
+```
+
+[Bindable](bindables.md) populating input types in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic.
+
+
+### Constructor
+
+```python
+def __init__(
+    self,
+    name: str,
+    out_type: Optional[GraphQLInputFieldOutType] = None,
+    out_names: Optional[Dict[str, str]] = None,
+):
+    ...
+```
+
+Initializes the `InputType` with a `name` and optionally out type
+and out names.
+
+
+#### Required arguments
+
+`name`: a `str` with the name of GraphQL object type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
+bind to.
+
+
+#### Optional arguments
+
+`out_type`: a `GraphQLInputFieldOutType`, Python callable accepting single
+argument, a dict with data from GraphQL query, required to return
+a Python representation of input type.
+
+`out_names`: a `Dict[str, str]` with mappings from GraphQL field names
+to dict keys in a Python dictionary used to contain a data passed as
+input.
+
+
+### Methods
+
+#### `bind_to_schema`
+
+```python
+def bind_to_schema(self, schema: GraphQLSchema) -> None:
+    ...
+```
+
+Binds this `InputType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
+
+if it has an out type function, it assigns it to GraphQL type's
+`out_type` attribute. If type already has other function set on
+it's `out_type` attribute, this type is replaced with new one.
+
+If it has any out names set, it assigns those to GraphQL type's
+fields `out_name` attributes. If field already has other out name set on
+its `out_name` attribute, this name is replaced with the new one.
+
+
+#### `validate_graphql_type`
+
+```python
+def validate_graphql_type(
+    self,
+    graphql_type: Optional[GraphQLNamedType],
+) -> None:
+    ...
+```
+
+Validates that schema's GraphQL type associated with this `InputType`
+is an `input`.
+
+
+### Example input value represented as dataclass
+
+Following code creates a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with object type named `Query`
+with single field which has an argument of an input type. It then uses
+the `InputType` to set `ExampleInput` dataclass as Python representation
+of this GraphQL type:
+
+```python
+from dataclasses import dataclass
+
+from ariadne import InputType, QueryType, make_executable_schema
+
+@dataclass
+class ExampleInput:
+    id: str
+    message: str
+
+query_type = QueryType()
+
+@query_type.field("repr")
+def resolve_repr(*_, input: ExampleInput):
+    return repr(input)
+
+schema = make_executable_schema(
+    """
+    type Query {
+        repr(input: ExampleInput): String!
+    }
+
+    input ExampleInput {
+        id: ID!
+        message: String!
+    }
+    """,
+    query_type,
+    # Lambda is used because out type (second argument of InputType)
+    # is called with single dict and dataclass requires each value as
+    # separate argument.
+    InputType("ExampleInput", lambda data: ExampleInput(**data)),
+)
+```
+
+
+### Example input with its fields mapped to custom dict keys
+
+Following code creates a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with object type named `Query`
+with single field which has an argument of an input type. It then uses
+the `InputType` to set custom "out names" values, mapping GraphQL
+`shortMessage` to `message` key in Python dict:
+
+```python
+from ariadne import InputType, QueryType, make_executable_schema
+
+query_type = QueryType()
+
+@query_type.field("repr")
+def resolve_repr(*_, input: dict):
+    # Dict will have `id` and `message` keys
+    input_id = input["id"]
+    input_message = input["message"]
+    return f"id: {input_id}, message: {input_message}"
+
+schema = make_executable_schema(
+    """
+    type Query {
+        repr(input: ExampleInput): String!
+    }
+
+    input ExampleInput {
+        id: ID!
+        shortMessage: String!
+    }
+    """,
+    query_type,
+    InputType("ExampleInput", out_names={"shortMessage": "message"}),
+)
+```
+
+
+### Example input value as dataclass with custom named fields
+
+Following code creates a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with object type named `Query`
+with single field which has an argument of an input type. It then uses
+the `InputType` to set `ExampleInput` dataclass as Python representation
+of this GraphQL type, and maps `shortMessage` input field to it's
+`message` attribute:
+
+```python
+from dataclasses import dataclass
+
+from ariadne import InputType, QueryType, make_executable_schema
+
+@dataclass
+class ExampleInput:
+    id: str
+    message: str
+
+query_type = QueryType()
+
+@query_type.field("repr")
+def resolve_repr(*_, input: ExampleInput):
+    return repr(input)
+
+schema = make_executable_schema(
+    """
+    type Query {
+        repr(input: ExampleInput): String!
+    }
+
+    input ExampleInput {
+        id: ID!
+        shortMessage: String!
+    }
+    """,
+    query_type,
+    InputType(
+        "ExampleInput",
+        lambda data: ExampleInput(**data),
+        {"shortMessage": "message"},
+    ),
+)
+```
+
+
+- - - - -
+
+
 ## `InterfaceType`
 
 ```python

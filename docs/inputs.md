@@ -208,6 +208,10 @@ In the above example we are using the `out_names` option of `InputType` to tell 
 
 We are passing this value as named argument because `out_names` is actually a third argument of `InputType`.
 
+> **Note:** Instead of setting the `out_names` option for each input type, you can enable the `convert_names_case` option on `make_executable_schema` to set those automatically for entire schema.
+>
+> See [this guide](case-conversion.md) for the details.
+
 
 ## Representing GraphQL inputs with custom Python types
 

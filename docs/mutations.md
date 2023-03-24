@@ -91,19 +91,19 @@ def resolve_logout(_, info):
 > make_executable_schema(type_defs, [query, mutations])
 > ```
 
-## Mutation payloads
+## Mutation results
 
 The `login` and `logout` mutations introduced earlier in this guide work, but give very limited feedback to the client: they return either `False` or `True`.  The application could use additional information like an error message that could be displayed in the interface if the mutation request fails, or a user state updated after a mutation completed.
 
-In GraphQL this is achieved by making mutations return special *payload* types containing additional information about the result, such as errors or current object state:
+In GraphQL this is achieved by making mutations return special *result* types containing additional information about the result, such as errors or current object state:
 
 ```python
 type_def = """
     type Mutation {
-        login(username: String!, password: String!): LoginPayload
+        login(username: String!, password: String!): LoginResult
     }
 
-    type LoginPayload {
+    type LoginResult {
         status: Boolean!
         error: Error
         user: User
@@ -111,7 +111,7 @@ type_def = """
 """
 ```
 
-The above mutation will return a special type containing information about the mutation's status, as well as either an `Error` message or a logged in `User`. In Python this payload can be represented as a simple `dict`:
+The above mutation will return a special type containing information about the mutation's status, as well as either an `Error` message or a logged in `User`. In Python this result can be represented as a simple `dict`:
 
 ```python
 def resolve_login(_, info, username, password):
@@ -123,14 +123,14 @@ def resolve_login(_, info, username, password):
     return {"status": False, "error": "Invalid username or password"}
 ```
 
-Let's take one more look at the payload's fields:
+Let's take one more look at the result's fields:
 
 - `status` makes it easier for the frontend logic to check if mutation succeeded or not.
 - `error` contains an error message returned by mutation or `null`. Errors can be simple strings, or more complex types that contain additional information for use by the client.
 
 `user` field is especially noteworthy. Modern GraphQL client libraries like [Apollo Client](https://www.apollographql.com/docs/react/) implement automatic caching and state management, using GraphQL types to track and automatically update stored object data whenever a new one is returned from the API.
 
-Consider a mutation that changes a user's username and its payload:
+Consider a mutation that changes a user's username and its result:
 
 ```graphql
 type Mutation {
@@ -152,4 +152,4 @@ If the mutation failed, changes performed by an optimistic update are overwritte
 
 For the above reasons it is considered a good design for mutations to return an updated object whenever possible.
 
-> There is no requirement for every mutation to have its own `Payload` type. `login` and `logout` mutations can both define `LoginPayload` as their return type. It is up to the developer to decide how generic or specific mutation payloads should be.
+> There is no requirement for every mutation to have its own `Payload` type. `login` and `logout` mutations can both define `LoginResult` as their return type. It is up to the developer to decide how generic or specific mutation results should be.

@@ -9,7 +9,7 @@ When designing your API, you may run into a situation where you want your field 
 The most obvious solution may be creating a custom "intermediary" type that would define dedicated fields to different types:
 
 ```graphql
-type MutationPayload {
+type MutationResult {
     status: Boolean!
     validationError: ValidationError
     permissionError: AccessError
@@ -37,7 +37,7 @@ union Error = NotFoundError | AccessError | ValidationError
 This `Error` type can be used just like any other type:
 
 ```graphql
-type MutationPayload {
+type MutationResult {
     status: Boolean!
     error: Error
     user: User

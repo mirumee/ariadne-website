@@ -134,10 +134,10 @@ Consider a mutation that changes a user's username and its result:
 
 ```graphql
 type Mutation {
-    updateUsername(id: ID!, username: String!): userMutationPayload
+    updateUsername(id: ID!, username: String!): userMutationResult
 }
 
-type UsernameMutationPayload {
+type UsernameMutationResult {
     status: Boolean!
     error: Error
     user: User

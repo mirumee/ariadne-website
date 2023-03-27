@@ -184,7 +184,7 @@ graphql = Graphql(
 
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_introspection_field</span><span class="hljs-params">(field_name: str)</span>:</span>
-    <span class="hljs-keyword">return</span> key.lower() <span class="hljs-keyword">in</span> [
+    <span class="hljs-keyword">return</span> field_name.lower() <span class="hljs-keyword">in</span> [
         <span class="hljs-string">"__schema"</span>,
         <span class="hljs-string">"__directive"</span>,
         <span class="hljs-string">"__directivelocation"</span>,

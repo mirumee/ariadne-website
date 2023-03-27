@@ -236,8 +236,8 @@ class IssueInput:
 Then we could define custom logic converting dict with input's data to this class:
 
 ```python
-def get_issue_input_repr(data: dict) -> DiscussionInput:
-    return DiscussionInput(**data)
+def get_issue_input_repr(data: dict) -> IssueInput:
+    return IssueInput(**data)
 ```
 
 Finally, we need update `InputType` to use this function for creating Python representation of `IssueInput` GraphQL type:

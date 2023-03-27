@@ -152,4 +152,4 @@ If the mutation failed, changes performed by an optimistic update are overwritte
 
 For the above reasons it is considered a good design for mutations to return an updated object whenever possible.
 
-> There is no requirement for every mutation to have its own `Payload` type. `login` and `logout` mutations can both define `LoginResult` as their return type. It is up to the developer to decide how generic or specific mutation results should be.
+> There is no requirement for every mutation to have its own `Result` type. `login` and `logout` mutations can both define `LoginResult` as their return type. It is up to the developer to decide how generic or specific mutation results should be.

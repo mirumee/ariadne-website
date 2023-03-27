@@ -98,7 +98,7 @@ type IssueMutationResult {
 }
 ```
 
-Our `updateDiscussion` mutation will now accept two arguments: `discussion` and `input`:
+Our `issueUpdate` mutation will now accept two arguments: `id` and `input`:
 
 ```python
 def resolve_issue_update(_, info, id: str, input: dict):

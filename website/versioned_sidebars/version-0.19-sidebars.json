@@ -1,0 +1,66 @@
+{
+  "version-0.19-docs": {
+    "Docs": [
+      "version-0.19-intro",
+      "version-0.19-resolvers",
+      "version-0.19-mutations",
+      "version-0.19-inputs",
+      "version-0.19-error-messaging",
+      "version-0.19-case-conversion",
+      "version-0.19-scalars",
+      "version-0.19-enums",
+      "version-0.19-unions",
+      "version-0.19-interfaces",
+      "version-0.19-subscriptions",
+      "version-0.19-dataloaders",
+      "version-0.19-file-uploads",
+      "version-0.19-documenting-schema",
+      "version-0.19-modularization",
+      "version-0.19-bindables",
+      "version-0.19-schema-directives",
+      "version-0.19-local-development",
+      "version-0.19-logging",
+      "version-0.19-explorers",
+      "version-0.19-apollo-federation"
+    ],
+    "Monitoring": [
+      "version-0.19-apollo-tracing",
+      "version-0.19-open-tracing"
+    ],
+    "Security": [
+      "version-0.19-security-overview",
+      "version-0.19-hiding-field-suggestions",
+      "version-0.19-disabling-stack-traces",
+      "version-0.19-continuous-security-testing"
+    ],
+    "Servers": [
+      "version-0.19-asgi",
+      "version-0.19-wsgi",
+      "version-0.19-aws-lambda"
+    ],
+    "Integrations": [
+      "version-0.19-django-integration",
+      "version-0.19-fastapi-integration",
+      "version-0.19-flask-integration",
+      "version-0.19-starlette-integration",
+      "version-0.19-other-integrations"
+    ],
+    "Extensions": [
+      "version-0.19-extensions",
+      "version-0.19-middleware",
+      "version-0.19-query-validators"
+    ],
+    "API reference": [
+      "version-0.19-api-reference",
+      "version-0.19-asgi-reference",
+      "version-0.19-asgi-handlers-reference",
+      "version-0.19-constants-reference",
+      "version-0.19-exceptions-reference",
+      "version-0.19-types-reference",
+      "version-0.19-wsgi-reference"
+    ],
+    "Other": [
+      "version-0.19-logo"
+    ]
+  }
+}

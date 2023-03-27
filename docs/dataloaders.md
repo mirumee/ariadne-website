@@ -357,7 +357,7 @@ def get_context_value(request: Request):
 If you are using sync approach, use [`graphql-sync-dataloaders`](https://github.com/jkimbo/graphql-sync-dataloaders) (Python 3.8 and later only):
 
 ```
-$ pip install pip install graphql-sync-dataloaders
+$ pip install graphql-sync-dataloaders
 ```
 
 ### Loader function

@@ -307,16 +307,16 @@ urlpatterns = [
 
     const brands = [
       {
-        name: "Lulu",
-        image: "lulu.png",
-        width: 456,
-        url: "https://www.lulu.com/",
-      },
-      {
         name: "IKTOS",
         image: "iktos.png",
         width: 550,
         url: "https://iktos.ai/",
+      },
+      {
+        name: "Lulu",
+        image: "lulu.png",
+        width: 456,
+        url: "https://www.lulu.com/",
       },
     ];
 

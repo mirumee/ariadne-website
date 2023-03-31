@@ -305,6 +305,43 @@ urlpatterns = [
       </div>
     );
 
+    const brands = [
+      {
+        name: "Lulu",
+        image: "lulu.png",
+        width: 456,
+        url: "https://www.lulu.com/",
+      },
+      {
+        name: "IKTOS",
+        image: "iktos.png",
+        width: 550,
+        url: "https://iktos.ai/",
+      },
+    ];
+
+    const TrustedByBlock = ({ brands }) => (
+      <div className="homeTrustedBySection">
+        <div className="container">
+          <div className="wrapper">
+            <h2>Powering GraphQL at:</h2>
+            <div className="homeTrustedByGrid">
+              {brands.map(({ name, image, width, url }, i) => (
+                <a key={i} href={url} target="_blank" title={name}>
+                  <img
+                    src={"/brand/" + image}
+                    alt={`${name} logo`}
+                    width={width / 2}
+                    height="128"
+                  />
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+
     return (
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
@@ -315,6 +352,7 @@ urlpatterns = [
           <AsyncFocusBlock />
           <IntegrationsFocusBlock />
           <SeeAlsoBlock />
+          <TrustedByBlock brands={brands} />
         </div>
       </div>
     );

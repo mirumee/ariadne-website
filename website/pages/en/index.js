@@ -327,7 +327,13 @@ urlpatterns = [
             <h2>Powering GraphQL at:</h2>
             <div className="homeTrustedByGrid">
               {brands.map(({ name, image, width, url }, i) => (
-                <a key={i} href={url} target="_blank" title={name}>
+                <a
+                  key={i}
+                  href={url}
+                  target="_blank"
+                  title={name}
+                  rel="nofollow"
+                >
                   <img
                     src={"/brand/" + image}
                     alt={`${name} logo`}

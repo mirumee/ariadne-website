@@ -26,7 +26,7 @@ License
 
 Contents of this repository are licensed under the BSD three clause license.
 
-Corporate trademarks in `static/brands` directory are property of their respectable owners and are used with their permission.
+Corporate trademarks in `static/brands` directory are property of their respective owners and are used with their permission.
 
 **Crafted with ❤️ by [Mirumee Software](http://mirumee.com)**
 hello@mirumee.com

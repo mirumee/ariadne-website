@@ -20,5 +20,13 @@ We are welcoming contributions! If you've found an issue or have any ideas or fe
 
 For guidance and instructions, please see [CONTRIBUTING.md](CONTRIBUTING.md).
 
+
+License
+-------
+
+Contents of this repository are licensed under the BSD three clause license.
+
+Corporate trademarks in `static/brands` directory are property of their respectable owners and are used with their permission.
+
 **Crafted with ❤️ by [Mirumee Software](http://mirumee.com)**
 hello@mirumee.com

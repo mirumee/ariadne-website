@@ -168,3 +168,31 @@
     margin-bottom: 16px;
   }
 }
+
+.homeTrustedBySection h2 {
+  font-size: 3em;
+  font-weight: normal;
+}
+
+.homeTrustedByGrid {
+  margin-bottom: -3em;
+  text-align: center;
+}
+
+.homeTrustedByGrid a {
+  display: block;
+  text-align: center;
+  margin: 32px 16px;
+}
+
+@media only screen and (min-device-width: 735px) {
+  .homeTrustedByGrid {
+    margin-bottom: -2em;
+    text-align: left;
+  }
+
+  .homeTrustedByGrid a {
+    display: inline-block;
+    margin: 16px 64px 16px 0;
+  }
+}

@@ -4,7 +4,7 @@ title: Ariadne Codegen 0.5
 
 Ariadne Codegen 0.5 is now available!
 
-This release brings multiple small new options and improvements to `ariande-codegen` command.
+This release brings multiple bunch of new options and improvements to the `ariande-codegen` command.
 
 <!--truncate-->
 
@@ -17,7 +17,7 @@ This option is enabled by default and should only be disabled with good reasons,
 
 ## Support for custom names of operation types
 
-`ariadne-codegen` previously assumed that root types in GraphQL schema are always named `Query` and `Mutation`, but we were informed that `Hasura` uses `query_root` and `mutation_root` instead.
+`ariadne-codegen` previously assumed that root types in GraphQL schema are always named `Query` and `Mutation`, but we were informed that this is not always the case as for example [Hasura](https://hasura.io/) defaults to `query_root` and `mutation_root` instead.
 
 Starting with 0.5 release operation roots are instead resolved from `Schema` types's `query` and `mutation` fields.
 
@@ -27,6 +27,13 @@ Starting with 0.5 release operation roots are instead resolved from `Schema` typ
 `ariadne-codegen` has new `graphqlschema` mode which generates a Python file containing complete declaration of GraphQL schema as `graphql.GraphQLSchema` instance.
 
 This schema can be further converted into a string using the `graphql.print_schema` utility.
+
+
+## Unlocked dependencies used in development
+
+Versions of `black`, `isort`, `autoflake` and other dependencies used by code generation logic as final processing step were previously pinned, forcing projects that used `ariadne-codegen` as their dependency to pin those themselves.
+
+We've unpinned those packages versions in `ariadne-codegen`, assuming that its better for project owners do use `ariadne-codegen` version used by them compatible with their dev deps than for us to force them into specific versions.
 
 
 ## Changelog

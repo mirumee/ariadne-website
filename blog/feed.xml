@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Tue, 28 Mar 2023 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 05 Apr 2023 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne Codegen 0.5]]></title>
+            <link>https://ariadnegraphql.org/blog/2023/04/05/ariadne-codegen-0-5.html</link>
+            <guid>https://ariadnegraphql.org/blog/2023/04/05/ariadne-codegen-0-5.html</guid>
+            <pubDate>Wed, 05 Apr 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne Codegen 0.5 is now available!</p>
+<p>This release brings multiple bunch of new options and improvements to the <code>ariande-codegen</code> command.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.19.1]]></title>
             <link>https://ariadnegraphql.org/blog/2023/03/28/ariadne-0-19-1.html</link>

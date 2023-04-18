@@ -5,7 +5,6 @@ sidebar_label: FastAPI
 original_id: fastapi-integration
 ---
 
-
 ## Mounting ASGI application
 
 Ariadne is an ASGI application that can be mounted under FastAPI. It will support both HTTP and WebSocket traffic used by subscriptions:
@@ -37,7 +36,6 @@ app = FastAPI()
 
 app.mount("/graphql/", GraphQL(schema, debug=True))
 ```
-
 
 ## GraphQL routes
 
@@ -92,6 +90,10 @@ app = FastAPI()
 async def handle_graphql_explorer(request: Request):
     return await graphql_app.handle_request(request)
 
+# Handle OPTIONS requests for CORS
+@app.options("/graphql/")
+async def handle_graphql_explorer(request: Request):
+    return await graphql_app.handle_request(request)
 
 # Handle POST requests to execute GraphQL queries
 @app.post("/graphql/")

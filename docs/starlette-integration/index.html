@@ -127,7 +127,7 @@ graphql_app = GraphQL(
 <span class="hljs-comment"># Create Starlette App instance using method handlers from GraphQL as endpoints</span>
 app = Starlette(
     routes=[
-        Route(<span class="hljs-string">"/graphql/"</span>, graphql_app.handle_request, methods=[<span class="hljs-string">"GET"</span>, <span class="hljs-string">"POST"</span>]),
+        Route(<span class="hljs-string">"/graphql/"</span>, graphql_app.handle_request, methods=[<span class="hljs-string">"GET"</span>, <span class="hljs-string">"POST"</span>, <span class="hljs-string">"OPTIONS"</span>]),
         WebSocketRoute(<span class="hljs-string">"/graphql/"</span>, graphql_app.handle_websocket),
     ],
 )
@@ -181,7 +181,7 @@ graphql_app = GraphQL(
 <span class="hljs-comment"># Create Starlette App instance using custom routes</span>
 app = Starlette(
     routes=[
-        Route(<span class="hljs-string">"/graphql/"</span>, graphql_route, methods=[<span class="hljs-string">"GET"</span>, <span class="hljs-string">"POST"</span>]),
+        Route(<span class="hljs-string">"/graphql/"</span>, graphql_route, methods=[<span class="hljs-string">"GET"</span>, <span class="hljs-string">"POST"</span>, <span class="hljs-string">"OPTIONS"</span>]),
         WebSocketRoute(<span class="hljs-string">"/graphql/"</span>, graphql_app.handle_websocket),
     ],
 )

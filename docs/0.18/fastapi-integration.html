@@ -138,10 +138,11 @@ app = FastAPI()
 
 
 <span class="hljs-comment"># Handle GET requests to serve GraphQL explorer</span>
+<span class="hljs-comment"># Handle OPTIONS requests for CORS</span>
 <span class="hljs-meta">@app.get("/graphql/")</span>
+<span class="hljs-meta">@app.options("/graphql/")</span>
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">handle_graphql_explorer</span><span class="hljs-params">(request: Request)</span>:</span>
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> graphql_app.handle_request(request)
-
 
 <span class="hljs-comment"># Handle POST requests to execute GraphQL queries</span>
 <span class="hljs-meta">@app.post("/graphql/")</span>

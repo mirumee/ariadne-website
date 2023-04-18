@@ -85,11 +85,8 @@ app = FastAPI()
 
 
 # Handle GET requests to serve GraphQL explorer
-@app.get("/graphql/")
-async def handle_graphql_explorer(request: Request):
-    return await graphql_app.handle_request(request)
-
 # Handle OPTIONS requests for CORS
+@app.get("/graphql/")
 @app.options("/graphql/")
 async def handle_graphql_explorer(request: Request):
     return await graphql_app.handle_request(request)

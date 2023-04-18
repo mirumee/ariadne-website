@@ -44,7 +44,7 @@ The `in` field will be represented as following declaration in generated Python 
 
 ```python
 class MyExampleResult:
-    in_: str
+    in_: Optional[str] = Field(alias="in")
 ```
 
 

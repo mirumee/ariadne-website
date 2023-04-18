@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Wed, 05 Apr 2023 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 18 Apr 2023 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne Codegen 0.6]]></title>
+            <link>https://ariadnegraphql.org/blog/2023/04/18/ariadne-codegen-0-6.html</link>
+            <guid>https://ariadnegraphql.org/blog/2023/04/18/ariadne-codegen-0-6.html</guid>
+            <pubDate>Tue, 18 Apr 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne Codegen 0.6 has been released!</p>
+<p>This release brings further improvements and fixes to issues reported to us by our amazing community. It also adds <code>process_name</code> plugin hook as an escape hatch for developers not happy with Python names created for GraphQL schema items.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne Codegen 0.5]]></title>
             <link>https://ariadnegraphql.org/blog/2023/04/05/ariadne-codegen-0-5.html</link>

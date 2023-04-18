@@ -5,7 +5,6 @@ sidebar_label: Starlette
 original_id: starlette-integration
 ---
 
-
 ## Mounting ASGI application
 
 Ariadne is an ASGI application that can be mounted under Starlette. It will support both HTTP and WebSocket traffic used by subscriptions:
@@ -37,7 +36,6 @@ app = Starlette(debug=True)
 
 app.mount("/graphql/", GraphQL(schema, debug=True))
 ```
-
 
 ## Using routes
 
@@ -77,12 +75,11 @@ graphql_app = GraphQL(
 # Create Starlette App instance using method handlers from GraphQL as endpoints
 app = Starlette(
     routes=[
-        Route("/graphql/", graphql_app.handle_request, methods=["GET", "POST"]),
+        Route("/graphql/", graphql_app.handle_request, methods=["GET", "POST", "OPTIONS"]),
         WebSocketRoute("/graphql/", graphql_app.handle_websocket),
     ],
 )
 ```
-
 
 ## Using in custom routes
 
@@ -136,7 +133,7 @@ async def websocket_route(websocket):
 # Create Starlette App instance using custom routes
 app = Starlette(
     routes=[
-        Route("/graphql/", graphql_route, methods=["GET", "POST"]),
+        Route("/graphql/", graphql_route, methods=["GET", "POST", "OPTIONS"]),
         WebSocketRoute("/graphql/", graphql_app.handle_websocket),
     ],
 )

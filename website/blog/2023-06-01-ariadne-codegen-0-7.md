@@ -4,15 +4,15 @@ title: Ariadne Codegen 0.7
 
 Ariadne Codegen 0.7 is now available!
 
-This release brings support for subscriptions, changes how fragments are represented in generated code, introduces `ShorterResultsPlugin` plugin developed by our amazing community and more features and fixes.
+This release brings support for subscriptions, changes how fragments are represented in generated code, introduces the `ShorterResultsPlugin` plugin developed by our amazing community, and more features and fixes.
 
 <!--truncate-->
 
 ## Subscriptions
 
-Version `0.7` introduces support for subscriptions. We generate them as async generators, which means that we don't support subscriptions when generated client is not async (`async_client` is set to `false`).
+Version `0.7` introduces support for subscriptions. We generate them as async generators, which means that we don't support subscriptions when the generated client is not async (`async_client` is set to `false`).
 
-For example, given following operation:
+For example, given the following operation:
 
 ```gql
 subscription GetUsersCounter {
@@ -38,7 +38,7 @@ Generated client will have following method:
 
 Our default async base client uses [websockets](https://github.com/python-websockets/websockets) package and implements [graphql-transport-ws](https://github.com/enisdenjo/graphql-ws/blob/master/PROTOCOL.md) subprotocol.
 
-Required dependencies can by installed with pip:
+Required dependencies can be installed with pip:
 
 ```
 $ pip install ariadne-codegen[subscriptions]
@@ -47,7 +47,7 @@ $ pip install ariadne-codegen[subscriptions]
 
 ## Fragments
 
-In previous versions of Codegen fragments were "unpacked" in queries. For example, given following operations:
+In previous versions of Codegen fragments were "unpacked" in queries. For example, given the following operations:
 
 ```gql
 query GetA {
@@ -94,9 +94,9 @@ class ListAListTypeA(BaseModel):
     name: str
 ```
 
-Both of these operations use the same `FragmentA` to represnt `TypeA`, but generated models didn't reflect that.
+Both of these operations use the same `FragmentA` to represent `TypeA`, but generated models didn't reflect that.
 
-To make working with fragments easier, in Ariadne Codegen 0.7 we are changing this behavior. Instead of unpacking fragments, we generate separate models from them and use those as mixins. Above operation will now result in 3 files being generated: `get_a.py`, `list_a.py` and `fragments.py`
+To make working with fragments easier, in Ariadne Codegen 0.7 we are changing this behavior. Instead of unpacking fragments, we generate separate models from them and use those as mixins. The above operation will now result in 3 files being generated: `get_a.py`, `list_a.py`, and `fragments.py`
 
 ```py
 # get_a.py
@@ -128,12 +128,12 @@ class FragmentA(BaseModel):
     name: str
 ```
 
-With this change you can use fragments as reusable types in your Python logic using the client, eg. `def process_a(a: FragmentA)...`. New `fragments.py` consists fragments collected from all parsed operations.
+With this change you can use fragments as reusable types in your Python logic using the client, eg. `def process_a(a: FragmentA)...`. New `fragments.py` consists of fragments collected from all parsed operations.
 
 
 ### Unions and Interfaces
 
-There is an exception from new fragments behaviour. If fragment represents `Union` then we unpack it as before:
+There is an exception from new fragments behaviour. If a fragment represents `Union` then we unpack it as before:
 
 ```gql
 query getAnimal {
@@ -153,7 +153,7 @@ fragment AnimalData on AnimalInterface {
 }
 ```
 
-For above fragment this Python code will be generated:
+For the above fragment, this Python code will be generated:
 
 ```py
 class GetAnimal(BaseModel):
@@ -182,7 +182,7 @@ class GetAnimalAnimalCat(BaseModel):
 
 ## `ShorterResultsPlugin`
 
-In version 0.7 we are including `ShorterResultsPlugin` developed by our community. It can be used when operations have only one top level field. For example, given following operation:
+In version 0.7 we are including `ShorterResultsPlugin` developed by our community. It can be used when operations have only one top-level field. For example, given the following operation:
 
 ```gql
 query GetUser($userId: ID!) {
@@ -192,7 +192,7 @@ query GetUser($userId: ID!) {
 }
 ```
 
-From this operation, generated method looks like this:
+From this operation, the generated method looks like this:
 
 ```py
 async def get_user(self, user_id: str) -> GetUser:
@@ -211,7 +211,7 @@ async def get_user(self, user_id: str) -> GetUser:
     return GetUser.parse_obj(data)
 ```
 
-To get value of `user`, we need to always get it by attribute, eg. `await get_user("1").user`. By using `ShorterResultsPlugin` our `get_user` returns value of `user` directly.
+To get the value of `user`, we need to always get it by attribute, eg. `await get_user("1").user`. By using `ShorterResultsPlugin` our `get_user` returns the value of `user` directly.
 ```toml
 [tool.ariadne-codegen]
 ...
@@ -228,7 +228,7 @@ async def get_user(self, user_id: str) -> GetUserUser:
 
 ## Discriminated unions 
 
-To ensure that data is represented as correct class we use pydantic's [discriminated unions](https://docs.pydantic.dev/dev-v2/usage/types/unions/#discriminated-unions-aka-tagged-unions). We add `__typename` to queries with unions and then use it's value as `discriminator`. Let's take example schema and query:
+To ensure that data is represented as a correct class we use pydantic's [discriminated unions](https://docs.pydantic.dev/dev-v2/usage/types/unions/#discriminated-unions-aka-tagged-unions). We add `__typename` to queries with unions and then use its value as `discriminator`. Let's take an example schema and query:
 
 ```gql
 type Query {
@@ -268,7 +268,7 @@ query GetAnimal {
 }
 ```
 
-From this query and operation we generate following types:
+From this query and operation, we generate following types:
 
 ```py
 class GetAnimal(BaseModel):
@@ -294,24 +294,24 @@ class GetAnimalAnimalCat(BaseModel):
     cat_field: str = Field(alias="catField")
 ```
 
-We added `typename__` to this query, and by it's value pydantic determines which model to chose.
+We added `typename__` to this query, and by its value pydantic determines which model to choose.
 
 
 ## Leading underscores
 
-Ariadne Codegen 0.7 will remove leading `_` from field names. Fields with `_` are ignored by pydantic and it was impossible to save value of such fields.
+Ariadne Codegen 0.7 will remove leading `_` from field names. Fields with `_` are ignored by pydantic and it is impossible to save the value of such fields.
 
 
-## Removal of `mixin` directive from operation sent to server
+## Removal of `mixin` directive from operation sent to a server
 
-We support custom `mixin` directive, which allows extending of generated types. In 0.7 we are removing it from operation string included in generated client's methods. This directive is only used in process of generation and caused servers to return error becouse of of unknown directive.
+We support a custom `mixin` directive, which allows extending of generated types. In 0.7 we are removing it from the operation string included in generated client's methods. This directive is only used in the process of generation and caused servers to return errors because of an unknown directive.
 
 
 ## `process_schema` plugin hook
 
-Plugins can now define `process_schema` hook to change schema before Codegen uses it for generation. From now we allow invalid schemas to be parsed from files or url, and then we call this plugin hook. After `process_schema` is finished processed schema must pass `graphql.assert_valid_schema` validation.
+Plugins can now define a `process_schema` hook to change schema before Codegen uses it for generation. From now on we allow invalid schemas to be parsed from files or URLs, and then we call this plugin hook. After `process_schema` is finished, the processed schema must pass `graphql.assert_valid_schema` validation.
 
-For example it can be used to add Apollo Federation directives definitions:
+For example, it can be used to add Apollo Federation directives definitions:
 
 ```py
 class MyPlugin:

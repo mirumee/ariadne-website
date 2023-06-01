@@ -51,13 +51,13 @@ In previous versions of Codegen fragments were "unpacked" in queries. For exampl
 
 ```gql
 query GetA {
-    GetTypeA {
+    getTypeA {
         ...FragmentA
     }
 }
 
 query ListA {
-    ListTypeA {
+    listTypeA {
         ...FragmentA
     }
 }
@@ -94,9 +94,9 @@ class ListAListTypeA(BaseModel):
     name: str
 ```
 
-Both of these operations use the same `FragmentA` to represnt `TypeA`, but our models didn't show that.
+Both of these operations use the same `FragmentA` to represnt `TypeA`, but generated models didn't reflect that.
 
-To make working with fragment easier, in Ariadne Codegen 0.7 we are changing this behaviour. Instead of unpacking fragments, we generate separate models for them and use them as mixins. From the same operation now we will get 3 files: `get_a.py`, `list_a.py` and `fragments.py`
+To make working with fragments easier, in Ariadne Codegen 0.7 we are changing this behavior. Instead of unpacking fragments, we generate separate models from them and use those as mixins. Above operation will now result in 3 files being generated: `get_a.py`, `list_a.py` and `fragments.py`
 
 ```py
 # get_a.py
@@ -128,13 +128,20 @@ class FragmentA(BaseModel):
     name: str
 ```
 
-With this change you can use fragments to implement logic for multiple types, eg. `def process_a(a: FragmentA)...`. New `fragments.py` consists fragments collected from all parsed operations.
+With this change you can use fragments as reusable types in your Python logic using the client, eg. `def process_a(a: FragmentA)...`. New `fragments.py` consists fragments collected from all parsed operations.
+
 
 ### Unions and Interfaces
 
-There is exception from new fragments behaviour, if fragment represents `Union` then we unpack it as before. Example of such fragment:
+There is an exception from new fragments behaviour. If fragment represents `Union` then we unpack it as before:
 
 ```gql
+query getAnimal {
+    animal {
+        ...AnimalData
+    }
+}
+
 fragment AnimalData on AnimalInterface {
     name
     ... on Dog {
@@ -144,6 +151,32 @@ fragment AnimalData on AnimalInterface {
         catField
     }
 }
+```
+
+For above fragment this Python code will be generated:
+
+```py
+class GetAnimal(BaseModel):
+    animal: Union[
+        "GetAnimalAnimalAnimalInterface", "GetAnimalAnimalDog", "GetAnimalAnimalCat"
+    ] = Field(discriminator="typename__")
+
+
+class GetAnimalAnimalAnimalInterface(BaseModel):
+    typename__: Literal["AnimalInterface", "Fish"] = Field(alias="__typename")
+    name: str
+
+
+class GetAnimalAnimalDog(BaseModel):
+    typename__: Literal["Dog"] = Field(alias="__typename")
+    name: str
+    dog_field: str = Field(alias="dogField")
+
+
+class GetAnimalAnimalCat(BaseModel):
+    typename__: Literal["Cat"] = Field(alias="__typename")
+    name: str
+    cat_field: str = Field(alias="catField")
 ```
 
 

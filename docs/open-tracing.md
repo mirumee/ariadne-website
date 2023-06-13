@@ -13,31 +13,38 @@ Ariadne provides an extension that implements the [OpenTracing](https://opentrac
 To enable OpenTracing in your API, import the `OpenTracingExtension` class from `ariadne.contrib.tracing.opentracing` and pass it to your server `extensions` option:
 
 ```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
 from ariadne.contrib.tracing.opentracing import OpenTracingExtension
 
 app = GraphQL(
     schema,
     debug=True,
-    extensions=[OpenTracingExtension],
+    http_handler=GraphQLHTTPHandler(
+        extensions=[OpenTracingExtension],
+    ),
 )
 ```
-
-> **Note:** If using WSGI, use `OpenTracingExtensionSync` in place of `OpenTracingExtension`.
 
 > **Note:** If you don't have OpenTracing already configured in your project, you will need to install the [`opentracing-python`](https://github.com/opentracing/opentracing-python) package and [configure tracer](https://opentracing.io/guides/python/tracers/) for your APM solution.
 
 
-## Sanitizing sensitive arguments data
+## Configuration options
 
-By default all arguments are sent to the APM service. If your API fields have arguments for sensitive data like passwords or tokens, you will need to sanitize those before sending tracking data to the service.
+The `ariadne.contrib.tracing.opentracing` module exports `opentracing_extension` utility function that can be used to setup `OpenTracingExtension` with custom options:
 
-`OpenTracingExtension` has single configuration option named `arg_filter`, that can be a function that extension will call with the copy of the dict of arguments previously passed to field's resolver.
 
-Because extension instances are created per request, `OpenTracingExtension` can't be instantiated inside the `extensions`. Instead Ariadne provides `opentracing_extension` utility that creates partial function that initializes the `OpenTracingExtension` with `arg_filter` option per request.
+### Filtering sensitive arguments data
 
-Here is an example defining custom sanitizing function named `my_arg_filter` and using `opentracing_extension` to enable OpenTracing with it:
+By default all arguments field was resolved with are sent to the APM service. If your API fields have arguments for sensitive data like passwords or tokens, you will need to filter those before sending tracking data to the service.
+
+`OpenTracingExtension` has configuration option named `arg_filter` which accepts a function that extension will call with the copy of the dict of arguments previously passed to field's resolver.
+
+Here is an example defining custom filtering function named `my_arg_filter` and using `opentracing_extension` to setup OpenTracing with it:
 
 ```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
 from ariadne.contrib.tracing import opentracing_extension
 
 def my_arg_filter(args, info):
@@ -60,7 +67,123 @@ app = GraphQL(
     extensions=[
         opentracing_extension(arg_filter=my_arg_filter),
     ],
+    http_handler=GraphQLHTTPHandler(
+        extensions=[
+            opentracing_extension(arg_filter=my_arg_filter),
+        ],
+    ),
 )
 ```
 
-> **Note:** If you are using WSGI, use `opentracing_extension_sync` in place of `opentracing_extension`.
+
+### Customizing root span name
+
+Ariadne uses `GraphQL Operation` for root span's name. You can customize this name using the `root_span_name` option:
+
+```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
+from ariadne.contrib.tracing import opentracing_extension
+
+
+schema = make_executable_schema(type_def, [query, mutation])
+app = GraphQL(
+    schema,
+    debug=True,
+    extensions=[
+        opentracing_extension(arg_filter=my_arg_filter),
+    ],
+    http_handler=GraphQLHTTPHandler(
+        extensions=[
+            opentracing_extension(root_span_name="Admin GraphQL"),
+        ],
+    ),
+)
+```
+
+You can also have a dynamic name by passing a function to the `root_span_name`:
+
+```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
+from ariadne.contrib.tracing import opentracing_extension
+
+
+def get_root_span_name(context) -> str:
+    return context.get("operationName") or "GraphQL Mutation"
+
+
+schema = make_executable_schema(type_def, [query, mutation])
+app = GraphQL(
+    schema,
+    debug=True,
+    extensions=[
+        opentracing_extension(arg_filter=my_arg_filter),
+    ],
+    http_handler=GraphQLHTTPHandler(
+        extensions=[
+            opentracing_extension(root_span_name=get_root_span_name),
+        ],
+    ),
+)
+```
+
+
+### Setting explicit tracer
+
+`OpenTracing` extension uses `get_tracer("ariadne")` to retrieve tracer instance to use from configured tracer provider.
+
+You can provide tracer instance to use explicitly via `tracer` option:
+
+```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
+from ariadne.contrib.tracing import opentracing_extension
+
+from myproject import tracer
+
+
+schema = make_executable_schema(type_def, [query, mutation])
+app = GraphQL(
+    schema,
+    debug=True,
+    extensions=[
+        opentracing_extension(arg_filter=my_arg_filter),
+    ],
+    http_handler=GraphQLHTTPHandler(
+        extensions=[
+            opentracing_extension(tracer=tracer),
+        ],
+    ),
+)
+```
+
+
+### Setting explicit root context
+
+`OpenTracing` extension uses `get_tracer("ariadne")` to retrieve tracer instance to use from configured tracer provider.
+
+You can provide tracer instance to use explicitly via `tracer` option:
+
+```python
+from ariadne.asgi import GraphQL
+from ariadne.asgi.handlers import GraphQLHTTPHandler
+from ariadne.contrib.tracing import opentracing_extension
+
+from myproject import tracer
+
+
+schema = make_executable_schema(type_def, [query, mutation])
+app = GraphQL(
+    schema,
+    debug=True,
+    extensions=[
+        opentracing_extension(arg_filter=my_arg_filter),
+    ],
+    http_handler=GraphQLHTTPHandler(
+        extensions=[
+            opentracing_extension(tracer=tracer),
+        ],
+    ),
+)
+```

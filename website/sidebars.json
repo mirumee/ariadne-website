@@ -24,8 +24,9 @@
       "apollo-federation"
     ],
     "Monitoring": [
-      "apollo-tracing",
-      "open-tracing"
+      "open-telemetry",
+      "open-tracing",
+      "apollo-tracing"
     ],
     "Security": [
       "security-overview",

@@ -2,12 +2,32 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2023-06-01T06:00:00Z</updated>
+    <updated>2023-06-15T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Introducing Ariadne GraphQL Proxy]]></title>
+        <id>https://ariadnegraphql.org/blog/2023/06/15/ariadne-graphql-proxy.html</id>
+        <link href="https://ariadnegraphql.org/blog/2023/06/15/ariadne-graphql-proxy.html">
+        </link>
+        <updated>2023-06-15T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne GraphQL Proxy is now available!</p>
+<p>Ariadne GraphQL Proxy is a Python toolkit for implementing GraphQL APIs that can combine local and remote schemas into single graph.</p>
+<p>While this is a 0.1 release, plenty of utilities are already implemented:</p>
+<ul>
+<li>Query router that splits GraphQL queries from clients into a valid subqueries for upstream GraphQL servers.</li>
+<li>Foreign keys and relations between schemas.</li>
+<li>Caching framework for both resolvers and parts of queries.</li>
+<li>Functions for schema manipulation that enable adding, replacing and removing existing GraphQL types, fields and resolvers.</li>
+</ul>
+<p>Please note that Ariadne GraphQL Proxy is currently in technology preview stage.</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne Codegen 0.7]]></title>
         <id>https://ariadnegraphql.org/blog/2023/06/01/ariadne-codegen-0-7.html</id>

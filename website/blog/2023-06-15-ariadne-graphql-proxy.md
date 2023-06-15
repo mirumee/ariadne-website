@@ -4,9 +4,16 @@ title: Introducing Ariadne GraphQL Proxy
 
 Ariadne GraphQL Proxy is now available!
 
-Ariadne GraphQL Proxy is a Python toolkit for implementing GraphQL APIs that combine local and remote schemas into single graph. It also supports schema manipulation for adding, replacing and removing existing GraphQL types, fields and resolvers. It also provides a query router ("splitter") and caching framework for both resolvers and parts of queries.
+Ariadne GraphQL Proxy is a Python toolkit for implementing GraphQL APIs that can combine local and remote schemas into single graph.
 
-> **Note:** Ariadne GraphQL Proxy is currently in technology preview stage.
+While this is a 0.1 release, plenty of utilities are already implemented:
+
+- Query router that splits GraphQL queries from clients into a valid subqueries for upstream GraphQL servers.
+- Foreign keys and relations between schemas.
+- Caching framework for both resolvers and parts of queries.
+- Functions for schema manipulation that enable adding, replacing and removing existing GraphQL types, fields and resolvers.
+
+Please note that Ariadne GraphQL Proxy is currently in technology preview stage.
 
 <!--truncate-->
 

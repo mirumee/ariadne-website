@@ -3,6 +3,8 @@ id: open-tracing
 title: OpenTracing
 ---
 
+> **Deprecation notice:** OpenTracing standard was superseded by [OpenTelemetry](./open-telemetry.md) and is considered deprecated. OpenTracing extension will be delete in a future version of Ariadne.
+
 Ariadne provides an extension that implements the [OpenTracing](https://opentracing.io/) specification, making it easy to monitor GraphQL API performance and errors using popular APM tools like [Datadog](https://www.datadoghq.com/) or [Jaeger](https://www.jaegertracing.io/).
 
 > **Note:** for performance reasons OpenTracing extension excludes default resolvers.
@@ -123,66 +125,6 @@ app = GraphQL(
     http_handler=GraphQLHTTPHandler(
         extensions=[
             opentracing_extension(root_span_name=get_root_span_name),
-        ],
-    ),
-)
-```
-
-
-### Setting explicit tracer
-
-`OpenTracing` extension uses `get_tracer("ariadne")` to retrieve tracer instance to use from configured tracer provider.
-
-You can provide tracer instance to use explicitly via `tracer` option:
-
-```python
-from ariadne.asgi import GraphQL
-from ariadne.asgi.handlers import GraphQLHTTPHandler
-from ariadne.contrib.tracing import opentracing_extension
-
-from myproject import tracer
-
-
-schema = make_executable_schema(type_def, [query, mutation])
-app = GraphQL(
-    schema,
-    debug=True,
-    extensions=[
-        opentracing_extension(arg_filter=my_arg_filter),
-    ],
-    http_handler=GraphQLHTTPHandler(
-        extensions=[
-            opentracing_extension(tracer=tracer),
-        ],
-    ),
-)
-```
-
-
-### Setting explicit root context
-
-`OpenTracing` extension uses `get_tracer("ariadne")` to retrieve tracer instance to use from configured tracer provider.
-
-You can provide tracer instance to use explicitly via `tracer` option:
-
-```python
-from ariadne.asgi import GraphQL
-from ariadne.asgi.handlers import GraphQLHTTPHandler
-from ariadne.contrib.tracing import opentracing_extension
-
-from myproject import tracer
-
-
-schema = make_executable_schema(type_def, [query, mutation])
-app = GraphQL(
-    schema,
-    debug=True,
-    extensions=[
-        opentracing_extension(arg_filter=my_arg_filter),
-    ],
-    http_handler=GraphQLHTTPHandler(
-        extensions=[
-            opentracing_extension(tracer=tracer),
         ],
     ),
 )

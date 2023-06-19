@@ -126,13 +126,13 @@ user_role_type = EnumType(
 ## `Extension`
 
 ```python
-class Extension(Protocol):
+class Extension:
     ...
 ```
 
-Base class for async extensions.
+Base class for extensions.
 
-Subclasses of this this class should override default methods to run
+Subclasses of this class should override default methods to run
 custom logic during Query execution.
 
 
@@ -161,7 +161,7 @@ Extension hook executed at request's end.
 #### `resolve`
 
 ```python
-async def resolve(
+def resolve(
     self,
     next_: Resolver,
     obj: Any,
@@ -171,7 +171,7 @@ async def resolve(
     ...
 ```
 
-Async extension hook wrapping field's value resolution.
+Extension hook wrapping field's value resolution.
 
 
 ##### Arguments
@@ -183,6 +183,49 @@ Async extension hook wrapping field's value resolution.
 `info`: a `GraphQLResolveInfo` instance for executed resolver.
 
 `**kwargs`: extra arguments from GraphQL to pass to resolver.
+
+
+# Example
+
+`resolve` should handle both sync and async `next_`:
+
+```python
+from inspect import iscoroutinefunction
+from time import time
+
+from ariadne.types import Extension, Resolver
+from graphql import GraphQLResolveInfo
+from graphql.pyutils import is_awaitable
+
+class MyExtension(Extension):
+    def __init__(self):
+        self.paths = []
+
+    def resolve(
+        self, next_: Resolver, obj: Any, info: GraphQLResolveInfo, **kwargs
+    ) -> Any:
+        path = ".".join(map(str, info.path.as_list()))
+
+        # Fast implementation for synchronous resolvers
+        if not iscoroutinefunction(next_):
+            start_time = time()
+            result = next_(obj, info, **kwargs)
+            self.paths.append((path, time() - start_time))
+            return result
+
+        # Create async closure for async `next_` that GraphQL
+        # query executor will handle for us.
+        async def async_my_extension():
+            start_time = time()
+            result = await next_(obj, info, **kwargs)
+            if is_awaitable(result):
+                result = await result
+            self.paths.append((path, time() - start_time))
+            return result
+
+        # GraphQL query executor will execute this closure for us
+        return async_my_extension()
+```
 
 
 #### `has_errors`
@@ -317,51 +360,6 @@ Gathers data from extensions for inclusion in server's response JSON.
 This data can be retrieved from the [`extensions`](types-reference.md#extensions) key in response JSON.
 
 Returns `dict` with JSON-serializable data.
-
-
-- - - - -
-
-
-## `ExtensionSync`
-
-```python
-class ExtensionSync(Extension):
-    ...
-```
-
-Base class for sync extensions, extends `Extension`.
-
-Subclasses of this this class should override default methods to run
-custom logic during Query execution.
-
-
-### Methods
-
-#### `resolve`
-
-```python
-def resolve(
-    self,
-    next_: Resolver,
-    obj: Any,
-    info: GraphQLResolveInfo,
-    **kwargs,
-) -> Any:
-    ...
-```
-
-Sync extension hook wrapping field's value resolution.
-
-
-##### Arguments
-
-`next_`: a `resolver` or next extension's `resolve` method.
-
-`obj`: a Python data structure to resolve value from.
-
-`info`: a `GraphQLResolveInfo` instance for executed resolver.
-
-`**kwargs`: extra arguments from GraphQL to pass to resolver.
 
 
 - - - - -
@@ -2692,6 +2690,7 @@ async def graphql(
     context_value: Optional[Any],
     root_value: Optional[RootValue],
     query_parser: Optional[QueryParser],
+    query_validator: Optional[QueryValidator],
     query_document: Optional[DocumentNode],
     debug: bool,
     introspection: bool,
@@ -2736,6 +2735,9 @@ of second argument (`info`) passed to resolvers.
 
 `query_parser`: a [`QueryParser`](types-reference.md#queryparser) to use instead of default one. Is called
 with two arguments: `context_value`, and `data` dict.
+
+`query_validator`: a `QueryValidator` to use instead of default one. Is called
+with five arguments: `schema`, 'document_ast', 'rules', 'max_errors' and 'type_info'.
 
 `query_document`: an already parsed GraphQL query. Setting this option will
 prevent `graphql` from parsing `query` string from `data` second time.
@@ -2783,6 +2785,7 @@ def graphql_sync(
     context_value: Optional[Any],
     root_value: Optional[RootValue],
     query_parser: Optional[QueryParser],
+    query_validator: Optional[QueryValidator],
     query_document: Optional[DocumentNode],
     debug: bool,
     introspection: bool,
@@ -2827,6 +2830,9 @@ of second argument (`info`) passed to resolvers.
 
 `query_parser`: a [`QueryParser`](types-reference.md#queryparser) to use instead of default one. Is called
 with two arguments: `context_value`, and `data` dict.
+
+`query_validator`: a `QueryValidator` to use instead of default one. Is called
+with five arguments: `schema`, 'document_ast', 'rules', 'max_errors' and 'type_info'.
 
 `query_document`: an already parsed GraphQL query. Setting this option will
 prevent `graphql_sync` from parsing `query` string from `data` second time.
@@ -3314,6 +3320,7 @@ async def subscribe(
     context_value: Optional[Any],
     root_value: Optional[RootValue],
     query_parser: Optional[QueryParser],
+    query_validator: Optional[QueryValidator],
     query_document: Optional[DocumentNode],
     debug: bool,
     introspection: bool,
@@ -3353,6 +3360,9 @@ source functions set on `Subscription` type.
 
 `query_parser`: a [`QueryParser`](types-reference.md#queryparser) to use instead of default one. Is called
 with two arguments: `context_value`, and `data` dict.
+
+`query_validator`: a `QueryValidator` to use instead of default one. Is called
+with five arguments: `schema`, 'document_ast', 'rules', 'max_errors' and 'type_info'.
 
 `query_document`: an already parsed GraphQL query. Setting this option will
 prevent `subscribe` from parsing `query` string from `data` second time.

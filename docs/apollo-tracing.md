@@ -3,7 +3,7 @@ id: apollo-tracing
 title: Apollo Tracing
 ---
 
-> **Note:** Apollo Tracing has been deprecated and will be removed in future version of Ariadne.
+> **Deprecation notice:** Apollo Tracing has been deprecated and will be removed in a future version of Ariadne.
 
 [Apollo Tracing](https://blog.apollographql.com/exposing-trace-data-for-your-graphql-server-with-apollo-tracing-97c5dd391385) exposes basic performance data of GraphQL queries: Query execution time and execution time of individual resolvers. Ariadne has GraphQL extension that includes this data in the JSON returned by the server after completing the query.
 

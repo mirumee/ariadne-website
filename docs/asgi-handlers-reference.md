@@ -404,6 +404,7 @@ def configure(
     context_value: Optional[ContextValue] = None,
     root_value: Optional[RootValue] = None,
     query_parser: Optional[QueryParser] = None,
+    query_validator: Optional[QueryValidator] = None,
     validation_rules: Optional[ValidationRules] = None,
     debug: bool = False,
     introspection: bool = True,

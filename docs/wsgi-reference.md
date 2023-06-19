@@ -28,6 +28,7 @@ def __init__(
     context_value: Optional[ContextValue],
     root_value: Optional[RootValue],
     query_parser: Optional[QueryParser],
+    query_validator: Optional[QueryValidator],
     validation_rules: Optional[ValidationRules],
     debug: bool,
     introspection: bool,
@@ -61,6 +62,9 @@ Defaults to `None`.
 
 `query_parser`: a [`QueryParser`](types-reference.md#queryparser) to use by this server. Defaults to
 `graphql.parse`.
+
+`query_validator`: a `QueryValidator` to use by this server. Defaults to
+`graphql.validate`.
 
 `validation_rules`: a [`ValidationRules`](types-reference.md#validationrules) list or callable returning a
 list of extra validation rules server should use to validate the

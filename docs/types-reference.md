@@ -101,13 +101,13 @@ It receives two arguments:
 ## `Extension`
 
 ```python
-class Extension(Protocol):
+class Extension:
     ...
 ```
 
-Base class for async extensions.
+Base class for extensions.
 
-Subclasses of this this class should override default methods to run
+Subclasses of this class should override default methods to run
 custom logic during Query execution.
 
 
@@ -136,7 +136,7 @@ Extension hook executed at request's end.
 #### `resolve`
 
 ```python
-async def resolve(
+def resolve(
     self,
     next_: Resolver,
     obj: Any,
@@ -146,7 +146,7 @@ async def resolve(
     ...
 ```
 
-Async extension hook wrapping field's value resolution.
+Extension hook wrapping field's value resolution.
 
 
 ##### Arguments
@@ -158,6 +158,49 @@ Async extension hook wrapping field's value resolution.
 `info`: a `GraphQLResolveInfo` instance for executed resolver.
 
 `**kwargs`: extra arguments from GraphQL to pass to resolver.
+
+
+##### Example
+
+`resolve` should handle both sync and async `next_`:
+
+```python
+from inspect import iscoroutinefunction
+from time import time
+
+from ariadne.types import Extension, Resolver
+from graphql import GraphQLResolveInfo
+from graphql.pyutils import is_awaitable
+
+class MyExtension(Extension):
+    def __init__(self):
+        self.paths = []
+
+    def resolve(
+        self, next_: Resolver, obj: Any, info: GraphQLResolveInfo, **kwargs
+    ) -> Any:
+        path = ".".join(map(str, info.path.as_list()))
+
+        # Fast implementation for synchronous resolvers
+        if not iscoroutinefunction(next_):
+            start_time = time()
+            result = next_(obj, info, **kwargs)
+            self.paths.append((path, time() - start_time))
+            return result
+
+        # Create async closure for async `next_` that GraphQL
+        # query executor will handle for us.
+        async def async_my_extension():
+            start_time = time()
+            result = await next_(obj, info, **kwargs)
+            if is_awaitable(result):
+                result = await result
+            self.paths.append((path, time() - start_time))
+            return result
+
+        # GraphQL query executor will execute this closure for us
+        return async_my_extension()
+```
 
 
 #### `has_errors`
@@ -195,51 +238,6 @@ ExtensionList = Optional[List[Union[Type['Extension'], Callable[[], 'Extension']
 ```
 
 List of extensions to use during GraphQL query execution.
-
-
-- - - - -
-
-
-## `ExtensionSync`
-
-```python
-class ExtensionSync(Extension):
-    ...
-```
-
-Base class for sync extensions, extends `Extension`.
-
-Subclasses of this this class should override default methods to run
-custom logic during Query execution.
-
-
-### Methods
-
-#### `resolve`
-
-```python
-def resolve(
-    self,
-    next_: Resolver,
-    obj: Any,
-    info: GraphQLResolveInfo,
-    **kwargs,
-) -> Any:
-    ...
-```
-
-Sync extension hook wrapping field's value resolution.
-
-
-##### Arguments
-
-`next_`: a `resolver` or next extension's `resolve` method.
-
-`obj`: a Python data structure to resolve value from.
-
-`info`: a `GraphQLResolveInfo` instance for executed resolver.
-
-`**kwargs`: extra arguments from GraphQL to pass to resolver.
 
 
 - - - - -
@@ -505,6 +503,81 @@ allowed_queries_parser.add_query(
     }
     """
 )
+```
+
+
+- - - - -
+
+
+## `QueryValidator`
+
+```python
+class QueryValidator(Protocol):
+    ...
+```
+
+Type of `query_validator` option of GraphQL servers.
+
+Enables customization of server's GraphQL query validation logic. If not set or `None`,
+default graphql.validate is used instead.
+
+
+### Custom validator
+
+Custom validator is a function or callable accepting up to 5 arguments:
+
+`schema`: [GraphQLSchema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) for the [graphql schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema)
+`document_ast`: DocumentNode result of query parser
+`rules`: optional list of AST validation rules of type ASTValidationRule
+`max_errors`: optional maximum number of errors to return
+`type_info`: optional type info, pending deprecation in graphql 3.3
+
+Validator is required to return `List[GraphQLError]` which should be empty
+if there were no errors found
+
+
+### Methods
+
+#### `__call__`
+
+```python
+def __call__(
+    self,
+    schema: GraphQLSchema,
+    document_ast: DocumentNode,
+    rules: Optional[Collection[Type[ASTValidationRule]]] = None,
+    max_errors: Optional[int] = None,
+    type_info: Optional[TypeInfo] = None,
+) -> List[GraphQLError]:
+    ...
+```
+
+
+### Example validator
+
+Below code defines custom validator that mutates same Document with to "memoize" validation
+(this works best in a tandem with a memoized parser for end-to-end memoization
+ of parsing and validation):
+
+```python
+from graphql import GraphQLError, validate
+from graphql import GraphQLSchema, DocumentNode, GraphQLError
+from graphql.utilities.type_info import TypeInfo
+from graphql.validation.rules import ASTValidationRule
+
+def memoized_queries_validator(
+    schema: GraphQLSchema,
+    document_ast: DocumentNode,
+    rules: Optional[Collection[Type[ASTValidationRule]]] = None,
+    max_errors: Optional[int] = None,
+    type_info: Optional[TypeInfo] = None,
+) -> List[GraphQLError]:
+    past_validation = getattr(document_ast, "_past_validation", None)
+    if past_validation:
+        return past_validation
+    validation = validate(schema, document_ast, *args, **kwargs)
+    setattr(document_ast, "_past_validation", validation)
+    return validation
 ```
 
 

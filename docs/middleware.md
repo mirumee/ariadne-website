@@ -25,14 +25,44 @@ def lowercase_middleware(resolver, obj, info, **args)
 Code below implements custom middleware that converts any strings returned by resolvers to lower case:
 
 ```python
+from inspect import iscoroutinefunction
+
+from graphql.pyutils import is_awaitable
+
+
 def lowercase_middleware(resolver, obj, info, **args):
+    if iscoroutinefunction(resolver):
+        return lowercase_middleware_async(resolver, obj, info, **args)
+
     value = resolver(obj, info, **args)
+    if is_awaitable(value):
+        return lowercase_awaitable(value)
+
+    return lowercase_value(await value)
+
+
+async def lowercase_middleware_async(resolver, obj, info, **args):
+    value = await resolver(obj, info, **args)
+    if is_awaitable(value):
+        return await lowercase_awaitable(value)
+
+    return lowercase_value(await value)
+
+
+async def lowercase_awaitable(value):
+    return lowercase_value(await value)
+
+
+def lowercase_value(value):
     if isinstance(value, str):
         return value.lower()
+
     return value
 ```
 
-To use this middleware in your queries, pass it to the `middleware` option of the HTTP handler:
+> **Note:** Please see [asynchronous middle](#asynchronous-middleware) for explanation behind this implementation.
+
+To use `lowercase_middleware` middleware in your queries, pass it to the `middleware` option of the HTTP handler:
 
 ```python
 from ariadne.asgi import GraphQL
@@ -132,3 +162,36 @@ If `users` resolver returns 100 users, middleware function will be called 301 ti
 - 100 times for username
 
 Avoid implementing costful or slow logic in middlewares. Use python decorators applied explicitly to resolver functions or ASGI/WSGI middlewares combined with callable `context_value`.
+
+
+### Asynchronous middleware
+
+In the [custom middleware example](#custom-middleware-example) above single synchronous middleware was implemented that supported following cases:
+
+- Asynchronous resolver returning a value.
+- Asynchronous resolver returning awaitable a value.
+- Synchronous resolver returning a value.
+- Synchronous resolver returning awaitable a value.
+
+Converting this middleware to async would greatly simplify the implementation:
+
+```python
+from graphql.pyutils import is_awaitable
+
+
+async def lowercase_middleware(resolver, obj, info, **args):
+    if iscoroutinefunction(resolver):
+        value = await resolver(obj, info, **args)
+    else:
+        value = resolver(obj, info, **args)
+
+    if is_awaitable(value):
+        value = await value
+
+    if isinstance(value, str):
+        return value.lower()
+
+    return value
+```
+
+However, asynchronous middleware require for their result being `awaited` during query execution. Asynchronous functions in Python are considered fast, but the overhead of being sent to the event loop and having their result retrieved makes them **much** slower than plain synchronous function call for scenarios where no IO is involved. Because default implementation of middleware manager calls middlewares for every field in result set, this effectively turns all resolver calls in query executor into asynchronous calls. This makes query execution noticeably slower even for small GraphQL queries, and quick benchmarks have found that it can slow queries by x1.5 to x2.5.

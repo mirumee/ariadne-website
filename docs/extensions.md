@@ -3,7 +3,7 @@ id: extensions
 title: Extension system
 ---
 
-Ariadne implements simple extension system that allows developers to inject custom python logic into the query execution process.
+Ariadne implements simple extension system that allows developers to inject custom python logic into the query execution process. This system was designed with performance measurement extensions in mind but may potentially support other use cases.
 
 > At the moment adding extensions to subscriptions is not supported.
 
@@ -91,16 +91,3 @@ class QueryExecutionTimeExtension(Extension):
 ```
 
 > See [`Extension`](types-reference.md#extension) reference for the list of available events.
-
-
-## WSGI extension implementation
-
-If your GraphQL server is deployed using WSGI, you can't use `Extension` as base class for your extensions. Use `ExtensionSync` which implements a synchronous `resolve` instead:
-
-```python
-from ariadne.types import ExtensionSync as Extension
-
-
-class QueryExecutionTimeExtension(Extension):
-    ...
-```

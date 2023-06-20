@@ -60,7 +60,7 @@ def lowercase_value(value):
     return value
 ```
 
-> **Note:** Please see [asynchronous middle](#asynchronous-middleware) for explanation behind this implementation.
+> **Note:** Please see the [asynchronous middleware](#asynchronous-middleware) section for an explanation behind this implementation.
 
 To use `lowercase_middleware` middleware in your queries, pass it to the `middleware` option of the HTTP handler:
 

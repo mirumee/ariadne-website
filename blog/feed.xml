@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Thu, 15 Jun 2023 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 21 Jun 2023 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,16 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne 0.20]]></title>
+            <link>https://ariadnegraphql.org/blog/2023/06/21/ariadne-0-20-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2023/06/21/ariadne-0-20-0.html</guid>
+            <pubDate>Wed, 21 Jun 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne 0.20 has been released!</p>
+<p>This release removes support for Python 3.7, adds Open Telemetry extension, deprecates Open Tracing and Apollo Tracing extensions.</p>
+<p>It also includes bugfixes, new configuration options and updated GraphQL extensions that should perform better than previous ones in asynchronous servers.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Introducing Ariadne GraphQL Proxy]]></title>
             <link>https://ariadnegraphql.org/blog/2023/06/15/ariadne-graphql-proxy.html</link>

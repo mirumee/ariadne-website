@@ -1,0 +1,67 @@
+{
+  "version-0.20-docs": {
+    "Docs": [
+      "version-0.20-intro",
+      "version-0.20-resolvers",
+      "version-0.20-mutations",
+      "version-0.20-inputs",
+      "version-0.20-error-messaging",
+      "version-0.20-case-conversion",
+      "version-0.20-scalars",
+      "version-0.20-enums",
+      "version-0.20-unions",
+      "version-0.20-interfaces",
+      "version-0.20-subscriptions",
+      "version-0.20-dataloaders",
+      "version-0.20-file-uploads",
+      "version-0.20-documenting-schema",
+      "version-0.20-modularization",
+      "version-0.20-bindables",
+      "version-0.20-schema-directives",
+      "version-0.20-local-development",
+      "version-0.20-logging",
+      "version-0.20-explorers",
+      "version-0.20-apollo-federation"
+    ],
+    "Monitoring": [
+      "version-0.20-open-telemetry",
+      "version-0.20-open-tracing",
+      "version-0.20-apollo-tracing"
+    ],
+    "Security": [
+      "version-0.20-security-overview",
+      "version-0.20-hiding-field-suggestions",
+      "version-0.20-disabling-stack-traces",
+      "version-0.20-continuous-security-testing"
+    ],
+    "Servers": [
+      "version-0.20-asgi",
+      "version-0.20-wsgi",
+      "version-0.20-aws-lambda"
+    ],
+    "Integrations": [
+      "version-0.20-django-integration",
+      "version-0.20-fastapi-integration",
+      "version-0.20-flask-integration",
+      "version-0.20-starlette-integration",
+      "version-0.20-other-integrations"
+    ],
+    "Extensions": [
+      "version-0.20-extensions",
+      "version-0.20-middleware",
+      "version-0.20-query-validators"
+    ],
+    "API reference": [
+      "version-0.20-api-reference",
+      "version-0.20-asgi-reference",
+      "version-0.20-asgi-handlers-reference",
+      "version-0.20-constants-reference",
+      "version-0.20-exceptions-reference",
+      "version-0.20-types-reference",
+      "version-0.20-wsgi-reference"
+    ],
+    "Other": [
+      "version-0.20-logo"
+    ]
+  }
+}

@@ -2,12 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2023-06-21T06:00:00Z</updated>
+    <updated>2023-06-27T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne 0.20.1]]></title>
+        <id>https://ariadnegraphql.org/blog/2023/06/27/ariadne-0-20-1.html</id>
+        <link href="https://ariadnegraphql.org/blog/2023/06/27/ariadne-0-20-1.html">
+        </link>
+        <updated>2023-06-27T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne 0.20.1 has been released.</p> <p>0.20.1 is a bugfix release that updates the GraphiQL template to use new URL for explorer plugin, if its enabled through the <code>explorer_plugin=True</code> option.</p> ]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.20]]></title>
         <id>https://ariadnegraphql.org/blog/2023/06/21/ariadne-0-20-0.html</id>

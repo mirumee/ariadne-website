@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Tue, 27 Jun 2023 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 10 Jul 2023 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,16 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[GraphQL Gathering EU in Berlin]]></title>
+            <link>https://ariadnegraphql.org/blog/2023/07/10/graphql-gathering.html</link>
+            <guid>https://ariadnegraphql.org/blog/2023/07/10/graphql-gathering.html</guid>
+            <pubDate>Mon, 10 Jul 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>On the 4th of July Mirumee organized the GraphQL Gathering EU event together with The Guild, Saleor, Stellate, Escape and Hasura and support from the GraphQL Foundation.</p>
+<p>This event took place in Spielfeld Digital Hub in Berlin. It used the unconference format where instead of a series of talks the attendees first submit the topics for discussion, then those topics are divided between three time slots, and people join the designated tables to discuss those based on their own interests.</p>
+<p>Between those tables and talks in corridors, we've got a few takeaways that we've found relevant to the Ariadne and GraphQL developers using it.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.20.1]]></title>
             <link>https://ariadnegraphql.org/blog/2023/06/27/ariadne-0-20-1.html</link>

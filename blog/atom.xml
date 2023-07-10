@@ -2,12 +2,25 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2023-06-27T06:00:00Z</updated>
+    <updated>2023-07-10T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[GraphQL Gathering EU in Berlin]]></title>
+        <id>https://ariadnegraphql.org/blog/2023/07/10/graphql-gathering.html</id>
+        <link href="https://ariadnegraphql.org/blog/2023/07/10/graphql-gathering.html">
+        </link>
+        <updated>2023-07-10T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>On the 4th of July Mirumee organized the GraphQL Gathering EU event together with The Guild, Saleor, Stellate, Escape and Hasura and support from the GraphQL Foundation.</p>
+<p>This event took place in Spielfeld Digital Hub in Berlin. It used the unconference format where instead of a series of talks the attendees first submit the topics for discussion, then those topics are divided between three time slots, and people join the designated tables to discuss those based on their own interests.</p>
+<p>Between those tables and talks in corridors, we've got a few takeaways that we've found relevant to the Ariadne and GraphQL developers using it.</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.20.1]]></title>
         <id>https://ariadnegraphql.org/blog/2023/06/27/ariadne-0-20-1.html</id>

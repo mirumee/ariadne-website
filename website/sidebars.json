@@ -49,7 +49,8 @@
     "Extensions": [
       "extensions",
       "middleware",
-      "query-validators"
+      "query-validators",
+      "query-validation-caching"
     ],
     "API reference": [
       "api-reference",

@@ -3,12 +3,11 @@ id: query-validation-caching
 title: Query validation caching
 ---
 
-In case you are serving complex queries, or a lot of identical queries, it might make sense for you to cache the
-query parsing and validation.
+In case you are serving complex queries, or a lot of identical queries, it might make sense for you to cache the query parsing and validation.
 
-This can be done by providing a custom `query_parser` and `query_validator` to `GraphQL`.
+This can be done by setting a custom `query_parser` and `query_validator` on your `GraphQL` server instance:
 
-```
+```python
 from collections.abc import Collection
 from functools import lru_cache
 from typing import Any

@@ -4,7 +4,7 @@ title: Ariadne Codegen 0.8
 
 Ariadne Codegen 0.8 has been released!
 
-This release brings support for file uploads, pydantic v2 compliance, improved custom scalars handling, and more features and fixes.
+This release brings support for file uploads, pydantic v2 compliance, improved custom scalars handling, and few other features and fixes.
 
 <!--truncate-->
 
@@ -20,7 +20,7 @@ class Upload:
         self.content_type = content_type
 ```
 
-It's included in the generated client, and can be imported from it:
+It is part of the generated client, and can be imported from it:
 
 ```python
 from {target_package_name} import Upload

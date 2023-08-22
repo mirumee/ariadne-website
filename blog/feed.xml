@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Mon, 10 Jul 2023 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 22 Aug 2023 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne Codegen 0.8]]></title>
+            <link>https://ariadnegraphql.org/blog/2023/08/22/ariadne-codegen-0-8.html</link>
+            <guid>https://ariadnegraphql.org/blog/2023/08/22/ariadne-codegen-0-8.html</guid>
+            <pubDate>Tue, 22 Aug 2023 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne Codegen 0.8 has been released!</p>
+<p>This release brings support for file uploads, pydantic v2 compliance, improved custom scalars handling, and few other features and fixes.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[GraphQL Gathering EU in Berlin]]></title>
             <link>https://ariadnegraphql.org/blog/2023/07/10/graphql-gathering.html</link>

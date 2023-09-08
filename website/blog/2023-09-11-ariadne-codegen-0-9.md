@@ -4,7 +4,7 @@ title: Ariadne Codegen 0.9
 
 Ariadne Codegen 0.9 is now available!
 
-This release includes a number of fixes and improvements related to pydantic v2.
+This release includes a number of fixes and improvements related to Pydantic v2.
 
 <!--truncate-->
 

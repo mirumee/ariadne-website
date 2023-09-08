@@ -3,7 +3,7 @@ id: query-validation-caching
 title: Query validation caching
 ---
 
-In case you are serving complex queries, or a lot of identical queries, it might make sense for you to cache the query parsing and validation.
+Query parsing and validation steps can be extended with custom code adding an extra caching step, which in some situations can greatly improve server's speed at cost of greater memory usage.
 
 This can be done by setting a custom `query_parser` and `query_validator` on your `GraphQL` server instance:
 

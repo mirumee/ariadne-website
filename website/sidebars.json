@@ -50,7 +50,7 @@
       "extensions",
       "middleware",
       "query-validators",
-      "query-validation-caching"
+      "caching-query-parsing-and-validation"
     ],
     "API reference": [
       "api-reference",

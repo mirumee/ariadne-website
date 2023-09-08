@@ -1,6 +1,6 @@
 ---
-id: query-validation-caching
-title: Query validation caching
+id: caching-query-parsing-and-validation
+title: Caching for query parsing and validation
 ---
 
 Query parsing and validation steps can be extended with custom code adding an extra caching step, which in some situations can greatly improve server's speed at cost of greater memory usage.

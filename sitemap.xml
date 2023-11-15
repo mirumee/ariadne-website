@@ -3,6 +3,7 @@
 <url> <loc>https://ariadnegraphql.org/community</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/community" /> </url>
 <url> <loc>https://ariadnegraphql.org/index</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/index" /> </url>
 <url> <loc>https://ariadnegraphql.org/versions</loc> <changefreq>weekly</changefreq> <priority>0.5</priority> <xhtml:link rel="alternate" hreflang="en" href="https://ariadnegraphql.org/en/versions" /> </url>
+<url> <loc>https://ariadnegraphql.org/blog/2023/11/15/ariadne-codegen-0-10</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/blog/2023/11/08/ariadne-0-21-0</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/blog/2023/09/11/ariadne-codegen-0-9</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>
 <url> <loc>https://ariadnegraphql.org/blog/2023/08/22/ariadne-codegen-0-8</loc> <changefreq>weekly</changefreq> <priority>0.3</priority> </url>

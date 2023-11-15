@@ -2,12 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2023-11-08T06:00:00Z</updated>
+    <updated>2023-11-15T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne Codegen 0.10]]></title>
+        <id>https://ariadnegraphql.org/blog/2023/11/15/ariadne-codegen-0-10.html</id>
+        <link href="https://ariadnegraphql.org/blog/2023/11/15/ariadne-codegen-0-10.html">
+        </link>
+        <updated>2023-11-15T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne Codegen 0.10 has been released!</p>
+<p>This release improves the snake case conversion of operation names, adds opt-in support for Open Telemetry tracing, introduces the <code>ExtractOperationsPlugin</code> plugin, adds Python 3.12 to the supported versions, and brings other features and fixes.</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.21]]></title>
         <id>https://ariadnegraphql.org/blog/2023/11/08/ariadne-0-21-0.html</id>

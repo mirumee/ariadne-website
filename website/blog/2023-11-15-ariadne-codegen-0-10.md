@@ -22,26 +22,26 @@ Codegen converts given operation name to snake case. Result will later be used a
 | operationName123  | operation_name123         | operation_name_123    |
 | operationNAME123  | operation_n_a_m_e123      | operation_name_123    |
 
-This change may require changes in code which uses generated client.
+This is potentially a breaking change and may require changes in code using generated client.
 
 
 ## Open Telemetry tracing
 
-`0.10` ships with two additional base clients that support Open Telemetry tracing. When the `opentelemetry_client` configuration option is set to `true`, the default included base client is replaced with one that implements the opt-in Open Telemetry support - `BaseClientOpenTelemetry`/`AsyncBaseClientOpenTelemetry`. By default this support does nothing, but if the `opentelemetry-api` package is installed and the `tracer` argument is provided, then the client will create spans with data about requests made.
+`0.10` ships with two additional base clients that support the Open Telemetry tracing. When the `opentelemetry_client` configuration option is set to `true`, the default included base client is replaced with one that implements the opt-in Open Telemetry support - `BaseClientOpenTelemetry`/`AsyncBaseClientOpenTelemetry`. By default this support does nothing, but if the `opentelemetry-api` package is installed and the `tracer` argument is provided, then the client will create spans with data about requests made.
 
-Tracing arguments handled by `BaseClientOpenTelemetry`:
-- `tracer`: `Optional[Union[str, Tracer]] = None` - tracer object or name which will be passed to the `get_tracer` method
-- `root_context`: `Optional[Context] = None` - optional context added to root span
-- `root_span_name`: `str = "GraphQL Operation"` - name of root span
+Tracing arguments accepted by `BaseClientOpenTelemetry`:
+- `tracer`: `Optional[Union[str, Tracer]] = None` - tracer object or name to pass to the `get_tracer` method
+- `root_context`: `Optional[Context] = None` - optional context added to the root span
+- `root_span_name`: `str = "GraphQL Operation"` - name of the root span
 
-`AsyncBaseClientOpenTelemetry` supports all arguments which `BaseClientOpenTelemetry` does, but also exposes additional arguments regarding websockets:
+`AsyncBaseClientOpenTelemetry` supports the same arguments as `BaseClientOpenTelemetry`, but also accepts additional arguments regarding websockets:
 - `ws_root_context`: `Optional[Context] = None` - optional context added to root span for websocket connection
 - `ws_root_span_name`: `str = "GraphQL Subscription"` - name of root span for websocket connection
 
 
 ## Included comments
 
-In `0.10` we change the `include_comments` option to allow selection of the style of comments to be included at the top of each generated file. Available options:
+In `0.10` we changed the `include_comments` option to allow selection of the style of comments to be included at the top of each generated file. Available options:
 - `"timestamp"` - comment with generation timestamp
 - `"stable"` - comment with message that this is a generated file (new default)
 - `"none"` - no comments
@@ -51,7 +51,7 @@ Previous boolean support is deprecated and will be dropped in future releases, b
 
 ## `ExtractOperationsPlugin`
 
-In version `0.10` we include `ExtractOperationsPlugin`. It extracts query strings from the generated client's methods into a separate `operations.py` module. It also modifies the generated client to import these definitions, the generated module name can be customised by adding `operations_module_name="custom_name"` to the `[tool.ariadne-codegen.operations]` section in config. E.g:
+Version `0.10` adds `ExtractOperationsPlugin` to the `ariadne_codegen.contrib` package. It moves query strings from the generated client's methods into a separate `operations.py` module and changes the generated client to import these definitions instead. The generated module name can be customized by adding `operations_module_name="custom_name"` to the `[tool.ariadne-codegen.operations]` section in config. E.g:
 
 ```gql
 # queries.graphql
@@ -72,7 +72,7 @@ plugins = ["ariadne_codegen.contrib.extract_operations.ExtractOperationsPlugin"]
 operations_module_name = "custom_operations"
 ```
 
-Codegen with the configuration from above will generate `custom_operations.py`:
+Using the above configuration will result in the `custom_operations.py` being generated with following contents:
 
 ```python
 __all__ = ["GET_NAME"]
@@ -111,7 +111,7 @@ Each generated client's method now accepts `**kwargs` and passes them to the `ht
 
 ## Escaping enum values which are Python keywords
 
-Similar to what we already do for generated models fields names, now codegen will add `_` sufix to enum values which are Python keywords, e.g:
+GraphQL enum values that are Python reserved keywords will now be suffixed with `_` in generated code, just like this is the case with generated field names for models, e.g:
 
 ```gql
 enum CustomEnum {
@@ -133,7 +133,7 @@ class CustomEnum(str, Enum):
 
 ## Adding `__typename` to all models generated from unions and interfaces
 
-In previous versions, models created from single-member unions or from interfaces that were queried without inline fragments didn't have an added `__typename` field. Now `0.10` includes this special field in all models generated from abstract types.
+In previous versions, models created from single-member unions or from interfaces that were queried without inline fragments didn't have a `__typename` field added. Now `0.10` includes this special field in all models generated from abstract types.
 
 
 ## Nullable fields with nullable directives

@@ -4,23 +4,23 @@ title: Ariadne Codegen 0.11
 
 Ariadne Codegen 0.11 is now available!
 
-This release brings improvements and new options in the areas of performance and default base clients.
+This release brings performance improvements and new options for default base clients.
 
 
 <!--truncate-->
 
 ## Removed `model_rebuild` calls
 
-Pydantic v2 has changed the way forward refs are handled during model class initialisation. If an annotation couldn't be resolved, an auto-rebuild is performed during the first validation attempt. Based on this, in this release we're removing all `model_rebuild` calls from the generated package.
+Pydantic v2 has changed the way forward refs are handled during model class initialisation. If an annotation couldn't be resolved, an auto-rebuild is performed during the first validation attempt. Because of this, we're removing all `model_rebuild` calls from the generated package.
 
 
 ## Generating only used inputs and enums
 
 Version 0.11 introduces 2 new configuration flags that can be used to reduce the number of unused generated models:
 
-- `include_all_inputs` (defaults to `true`) - when set to `true` the generated package will include a model for every input defined in the schema, otherwise it will only create inputs used as arguments in provided operations.
+- `include_all_inputs` (defaults to `true`) - when set to `true` the generated package will include a model for every input defined in the schema, otherwise it will only generate inputs used by defined operations.
 
-- `include_all_enums` (defaults to `true`) - specifies whether to include all enums defined in the schema, or only those used in supplied operations
+- `include_all_enums` (defaults to `true`) - specifies whether to include all enums defined in the schema, or only those used in operations.
 
 
 ## `NoReimportsPlugin`
@@ -30,7 +30,7 @@ In 0.11, we are adding `NoReimportsPlugin` to the `ariadne_codegen.contrib` pack
 
 ## Including `operationName` in payload
 
-Now the generated client methods will pass the name of the operation as the `operation_name` argument to the `execute` and `execute_ws` methods of the base client. For example:
+The generated client methods will now pass the name of the operation as the `operation_name` argument to the `execute` and `execute_ws` methods of the base client. For example:
 
 ```python
 async def list_all_users(self, **kwargs: Any) -> ListAllUsers:
@@ -51,7 +51,7 @@ async def list_all_users(self, **kwargs: Any) -> ListAllUsers:
     return ListAllUsers.model_validate(data)
 ```
 
-Default base clients include the given `operation_name` as `operationName` in the sent payload.
+Default base clients will also include the given `operation_name` as `operationName` in the sent payload.
 
 
 ## Payload without `data`, but with `errors` key

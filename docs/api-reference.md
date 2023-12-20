@@ -972,7 +972,7 @@ def set_alias(self, name: str, to: str) -> None:
     ...
 ```
 
-Set an alias resolver for the field name to given Python nme.
+Set an alias resolver for the field name to given Python name.
 
 
 ##### Required arguments

@@ -58,7 +58,7 @@ graphql.error.syntax_error.GraphQLSyntaxError: Syntax Error: Expected :, found N
 GraphQL request (3:19)
     type Query {
         hello String!
-                ^
+              ^
     }
 ```
 

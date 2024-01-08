@@ -2,7 +2,7 @@ name: Publish on GitHub Pages
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths: [docs/**, website/**]
 
 jobs:

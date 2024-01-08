@@ -97,7 +97,7 @@ type_defs = gql(<span class="hljs-string">"""
 <span class="routeros">GraphQL request (3:19)
    <span class="hljs-built_in"> type </span>Query {
         hello String!
-                ^
+              ^
     }
 </span></code></pre>
 <p>Using <code>gql</code> is optional; however, without it, the above error would occur during your server's initialization and point to somewhere inside Ariadne's GraphQL initialization logic, making tracking down the error tricky if your API is large and spread across many modules.</p>

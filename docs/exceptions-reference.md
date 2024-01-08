@@ -113,3 +113,24 @@ Initializes the `HttpError` with optional error message.
 
 `message`: a `str` with error message to return in response body or
 `None`.
+
+
+- - - - -
+
+
+## `WebSocketConnectionError`
+
+```python
+class WebSocketConnectionError(Exception):
+    ...
+```
+
+Special error class enabling custom error reporting for on_connect
+
+
+### Constructor
+
+```python
+def __init__(self, payload: Optional[Union[dict, str]] = None):
+    ...
+```

@@ -818,24 +818,3 @@ Callable is evaluated with three arguments:
 `DocumentNode`: a `document` with parsed GraphQL query.
 
 `dict`: a GraphQL request's data.
-
-
-- - - - -
-
-
-## `WebSocketConnectionError`
-
-```python
-class WebSocketConnectionError(Exception):
-    ...
-```
-
-Special error class enabling custom error reporting for on_connect
-
-
-### Constructor
-
-```python
-def __init__(self, payload: Optional[Union[dict, str]] = None):
-    ...
-```

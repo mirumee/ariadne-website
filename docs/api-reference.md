@@ -55,7 +55,7 @@ Binds this `EnumType` instance to the instance of [GraphQL schema](https://graph
 #### `bind_to_default_values`
 
 ```python
-def bind_to_default_values(self, schema: GraphQLSchema) -> None:
+def bind_to_default_values(self, _schema: GraphQLSchema) -> None:
     ...
 ```
 
@@ -65,6 +65,11 @@ This step is required because GraphQL query executor doesn't perform a
 lookup for default values defined in schema. Instead it simply pulls the
 value from fields and arguments `default_value` attribute, which is
 `None` by default.
+
+> **Deprecated:** Ariadne versions before 0.22 used
+`EnumType.bind_to_default_values` method to fix default enum values embedded
+in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema). Ariadne 0.22 release introduces universal
+`repair_schema_default_enum_values` utility in its place.
 
 
 #### `validate_graphql_type`
@@ -185,7 +190,7 @@ Extension hook wrapping field's value resolution.
 `**kwargs`: extra arguments from GraphQL to pass to resolver.
 
 
-# Example
+##### Example
 
 `resolve` should handle both sync and async `next_`:
 
@@ -3249,6 +3254,27 @@ assert result == {
 - - - - -
 
 
+## `repair_schema_default_enum_values`
+
+```python
+def repair_schema_default_enum_values(schema: GraphQLSchema) -> None:
+    ...
+```
+
+Repairs Python values of default enums embedded in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
+
+Default enum values in the [GraphQL schemas](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) are represented as strings with enum
+member names in Python. Assigning custom Python values to members of the
+`GraphQLEnumType` doesn't change those defaults.
+
+This function walks the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema), finds default enum values strings and,
+if this string is a valid GraphQL member name, swaps it out for a valid Python
+value.
+
+
+- - - - -
+
+
 ## `resolve_to`
 
 ```python
@@ -3268,29 +3294,6 @@ or schema names conversion.
 
 `attr_name`: a `str` with name of attribute or `dict` key to return from
 resolved object.
-
-
-- - - - -
-
-
-## `set_default_enum_values_on_schema`
-
-```python
-def set_default_enum_values_on_schema(schema: GraphQLSchema) -> None:
-    ...
-```
-
-Sets missing Python values for GraphQL enums in schema.
-
-Recursively scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) for enums and their values. If `value`
-attribute is empty, its populated with with a string of its GraphQL name.
-
-This string is then used to represent enum's value in Python instead of `None`.
-
-
-### Requires arguments
-
-`schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to set enums default values in.
 
 
 - - - - -
@@ -3513,10 +3516,10 @@ schema = make_executable_schema(
 - - - - -
 
 
-## `validate_schema_enum_values`
+## `validate_schema_default_enum_values`
 
 ```python
-def validate_schema_enum_values(schema: GraphQLSchema) -> None:
+def validate_schema_default_enum_values(schema: GraphQLSchema) -> None:
     ...
 ```
 
@@ -3571,5 +3574,31 @@ enum UserRole {
 
 type User {
     id: ID!
+}
+```
+
+
+### Example schema with invalid default input field argument
+
+This schema fails to validate because field `field` on input `ChildInput`
+specifies `INVALID` as default value and `INVALID` is not a member of
+the `Role` enum:
+
+```graphql
+type Query {
+    field(arg: Input = {field: {field: INVALID}}): String
+}
+
+input Input {
+    field: ChildInput
+}
+
+input ChildInput {
+    field: Role
+}
+
+enum Role {
+    USER
+    ADMIN
 }
 ```

@@ -3,7 +3,7 @@ id: query-stack
 title: Customizing Query Stack
 ---
 
-Both parsing and validating parts of query execution stack can be replaced with custom logic.
+Ariadne lets to developers to replace both parsing and validating steps of the query execution stack with custom logic.
 
 
 ## Query parser
@@ -11,19 +11,21 @@ Both parsing and validating parts of query execution stack can be replaced with 
 Default GraphQL query parser used by Ariadne is the `parse` function from the `graphql-core` package:
 
 ```python
+from graphql import parse
+
 document = parse("{ query string }")
 ```
 
-This function takes the `str` with the GraphQL query, and parsers it into a GraphQL AST representation of the query.
+This function takes the `str` with the GraphQL query, and parsers it into a `DocumentNode` instance containing the GraphQL AST representation of the query.
 
-Ariadne's `GraphQL()` ASGI and WSGI apps and `graphql()`, `graphql_sync()` and `subscribe()` functions accept the `query_parser` named argument that lets server developers to provide a custom function to use for parsing queries in place of default one.
+Ariadne's `GraphQL()` ASGI and WSGI apps together with `graphql()`, `graphql_sync()` and `subscribe()` functions accept the `query_parser` named argument that lets server developers to provide a custom function to use for parsing queries.
 
 If custom parser is set, this parser is called with two arguments:
 
 - `context: ContextValue`
 - `data: dict[str, Any]`: a `dict` with current operation's payload (`query`, `operationName` and `variables`).
 
-Here's an example custom parser function that does nothing but parses the query:
+Here's an example custom parser function that only parses the `query` string from query's payload:
 
 ```python
 from ariadne.types import ContextValue

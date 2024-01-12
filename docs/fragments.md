@@ -14,7 +14,7 @@ fragment fragmentName on TypeName {
 }
 ```
 
-`fragmentName` is fragment's name (any valid GraphQL field name) and `TypeName` is the GraphQL type defined in schema for which this fragment is be used.
+`fragmentName` is fragment's name (any valid GraphQL field name) and `TypeName` is name of the GraphQL type from schema for which this fragment is used.
 
 To use fragment in a query, place three dots followed by its name (`...fragmentName`) in a place where its fields should be included:
 

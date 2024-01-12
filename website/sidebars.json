@@ -7,6 +7,7 @@
       "inputs",
       "error-messaging",
       "case-conversion",
+      "fragments",
       "scalars",
       "enums",
       "unions",

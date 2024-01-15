@@ -14,7 +14,7 @@ fragment fragmentName on TypeName {
 }
 ```
 
-`fragmentName` is fragment's name (any valid GraphQL field name) and `TypeName` is name of the GraphQL type from schema for which this fragment is used.
+`fragmentName` is the fragment's name (any valid GraphQL field name) and `TypeName` is the name of the GraphQL type from the schema for which this fragment is used.
 
 To use fragment in a query, place three dots followed by its name (`...fragmentName`) in a place where its fields should be included:
 
@@ -32,7 +32,7 @@ query GetUserProfile($id: ID!) {
 }
 ```
 
-In the above example fragment `userProfileFields` is used to specify list of fields for `User` type in the `GetUserProfile` query, but outside the `query { ... }` body itself.
+In the above example fragment `userProfileFields` is used to specify a list of fields for the `User` type in the `GetUserProfile` query, but outside the `query { ... }` body itself.
 
 Fragments can also be used in other fragments, and used multiple times within a query:
 
@@ -68,7 +68,7 @@ query GetCategoryThreads($category: ID!) {
 }
 ```
 
-The `threadsListUserFields` fragment is used to specify a fields for `User` type to query in `User` fields of `Thread` type, itself queried for in in the `GetCategoryThreads` operation.
+The `threadsListUserFields` fragment is used to specify fields for `User` type to query in `User` fields of `Thread` type, itself queried for in the `GetCategoryThreads` operation.
 
 Fragments can be used in queries, mutations and subscriptions.
 

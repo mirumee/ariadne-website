@@ -37,6 +37,21 @@ $ uvicorn myasgi:application
 See the [reference](asgi-reference.md#constructor).
 
 
+## The `request` instance
+
+The ASGI application creates its own `request` object, an instance of the `Request` class from the [Starlette](https://github.com/encode/starlette/blob/0.36.1/starlette/requests.py#L199). It's `scope` and `receive` attributes are populated from the received request.
+
+When writing the [ASGI middleware](https://asgi.readthedocs.io/en/latest/specs/main.html#middleware), remember to rely on the `request.scope` dict for storing additional data on the request object, instead of mutating the request object directly (like it's done in Django). For example:
+
+```python
+# This is wrong
+request.app_data
+
+# This is correct
+request.scope["app_data"]
+```
+
+
 ## Customizing JSON responses
 
 Ariadne's ASGI application uses [Starlette's `JSONResponse`](https://github.com/encode/starlette/blob/0.36.1/starlette/responses.py#L169) for its JSON responses.

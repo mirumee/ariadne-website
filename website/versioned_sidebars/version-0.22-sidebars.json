@@ -1,0 +1,69 @@
+{
+  "version-0.22-docs": {
+    "Docs": [
+      "version-0.22-intro",
+      "version-0.22-resolvers",
+      "version-0.22-mutations",
+      "version-0.22-inputs",
+      "version-0.22-error-messaging",
+      "version-0.22-case-conversion",
+      "version-0.22-fragments",
+      "version-0.22-scalars",
+      "version-0.22-enums",
+      "version-0.22-unions",
+      "version-0.22-interfaces",
+      "version-0.22-subscriptions",
+      "version-0.22-dataloaders",
+      "version-0.22-file-uploads",
+      "version-0.22-documenting-schema",
+      "version-0.22-modularization",
+      "version-0.22-bindables",
+      "version-0.22-schema-directives",
+      "version-0.22-local-development",
+      "version-0.22-logging",
+      "version-0.22-explorers",
+      "version-0.22-apollo-federation"
+    ],
+    "Monitoring": [
+      "version-0.22-open-telemetry",
+      "version-0.22-open-tracing",
+      "version-0.22-apollo-tracing"
+    ],
+    "Security": [
+      "version-0.22-security-overview",
+      "version-0.22-hiding-field-suggestions",
+      "version-0.22-disabling-stack-traces",
+      "version-0.22-continuous-security-testing"
+    ],
+    "Servers": [
+      "version-0.22-asgi",
+      "version-0.22-wsgi",
+      "version-0.22-aws-lambda"
+    ],
+    "Integrations": [
+      "version-0.22-django-integration",
+      "version-0.22-fastapi-integration",
+      "version-0.22-flask-integration",
+      "version-0.22-starlette-integration",
+      "version-0.22-other-integrations"
+    ],
+    "Extensions": [
+      "version-0.22-extensions",
+      "version-0.22-middleware",
+      "version-0.22-query-validators",
+      "version-0.22-query-stack"
+    ],
+    "API reference": [
+      "version-0.22-api-reference",
+      "version-0.22-asgi-reference",
+      "version-0.22-asgi-handlers-reference",
+      "version-0.22-constants-reference",
+      "version-0.22-exceptions-reference",
+      "version-0.22-types-reference",
+      "version-0.22-wsgi-reference"
+    ],
+    "Other": [
+      "version-0.22-logo"
+    ]
+  }
+}

@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Tue, 05 Dec 2023 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 31 Jan 2024 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne 0.22]]></title>
+            <link>https://ariadnegraphql.org/blog/2024/01/31/ariadne-0-22-0.html</link>
+            <guid>https://ariadnegraphql.org/blog/2024/01/31/ariadne-0-22-0.html</guid>
+            <pubDate>Wed, 31 Jan 2024 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne 0.22 has been released!</p>
+<p>This release fixes the invalid error message being returned from the <code>GraphQLTransportWSHandler</code> if the GraphQL error occurred for the query or mutation operations. It also improves implementation of enums handling.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne Codegen 0.11]]></title>
             <link>https://ariadnegraphql.org/blog/2023/12/05/ariadne-codegen-0-11.html</link>

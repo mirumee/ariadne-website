@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Wed, 31 Jan 2024 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 05 Feb 2024 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne Codegen 0.12]]></title>
+            <link>https://ariadnegraphql.org/blog/2024/02/05/ariadne-codegen-0-12.html</link>
+            <guid>https://ariadnegraphql.org/blog/2024/02/05/ariadne-codegen-0-12.html</guid>
+            <pubDate>Mon, 05 Feb 2024 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne Codegen 0.12 has been released!</p>
+<p>This is a maintenance release that fixes reported bugs in Pydantic models creation, subscriptions, plugins and adds support for saving schema to <code>graphql</code> file.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.22]]></title>
             <link>https://ariadnegraphql.org/blog/2024/01/31/ariadne-0-22-0.html</link>

@@ -2,12 +2,24 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ariadnegraphql.org/blog</id>
     <title>Ariadne Blog</title>
-    <updated>2024-01-31T06:00:00Z</updated>
+    <updated>2024-02-05T06:00:00Z</updated>
     <generator>Feed for Node.js</generator>
     <link rel="alternate" href="https://ariadnegraphql.org/blog"/>
     <subtitle>The best place to stay up-to-date with the latest Ariadne news and events.</subtitle>
     <logo>https://ariadnegraphql.org/img/logo-horizontal.png</logo>
     <rights>Crafted with ❤️ by Mirumee Software</rights>
+    <entry>
+        <title type="html"><![CDATA[Ariadne Codegen 0.12]]></title>
+        <id>https://ariadnegraphql.org/blog/2024/02/05/ariadne-codegen-0-12.html</id>
+        <link href="https://ariadnegraphql.org/blog/2024/02/05/ariadne-codegen-0-12.html">
+        </link>
+        <updated>2024-02-05T06:00:00Z</updated>
+        <summary type="html"><![CDATA[<p>Ariadne Codegen 0.12 has been released!</p>
+<p>This is a maintenance release that fixes reported bugs in Pydantic models creation, subscriptions, plugins and adds support for saving schema to <code>graphql</code> file.</p>
+]]></summary>
+        <author>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Ariadne 0.22]]></title>
         <id>https://ariadnegraphql.org/blog/2024/01/31/ariadne-0-22-0.html</id>

@@ -11,7 +11,7 @@ This is a maintenance release that fixes reported bugs in Pydantic models creati
 
 ## Fixed `graphql-transport-ws` protocol implementation not waiting for the `connection_ack` message on new connection
 
-Async client for `graphql-transport-ws` protocol didn't await for the `connection_ack` message on new connection to the GraphQL server.
+Async client for `graphql-transport-ws` protocol didn't await for the `connection_ack` message on the new connection to the GraphQL server.
 
 This has been addressed in Ariadne Codegen 0.12.
 
@@ -25,11 +25,11 @@ In 0.12 `config_dict` is first copied before being changed, preserving the origi
 
 ## Restored `model_rebuild` calls for top level fragment models
 
-`model_rebuild` calls were previously removed from Ariadne Codegen to improve generated client's initialization performance.
+`model_rebuild` calls were previously removed from Ariadne Codegen to improve the generated client's initialization performance.
 
-This caused an issue where lazy references were not completed by Pydantic on initialization, breaking those in client.
+This caused an issue where lazy references were not completed by Pydantic on initialization, breaking those in the client.
 
-0.12 attempts to detect scenarios where `model_rebuild` are necessary and includes them in generated client.
+0.12 attempts to detect scenarios where `model_rebuild` are necessary and includes them in the generated client.
 
 
 ## Added support to `graphqlschema` for saving schema as a GraphQL file
@@ -46,7 +46,7 @@ Output format is controlled by the file extension used in the `target_file_path`
 
 ## Changelog
 
-- Fixed `graphql-transport-ws` protocol implementation not waiting for the `connection_ack` message on new connection.
+- Fixed `graphql-transport-ws` protocol implementation not waiting for the `connection_ack` message on a new connection.
 - Fixed `get_client_settings` mutating `config_dict` instance.
 - Added support to `graphqlschema` for saving schema as a GraphQL file.
 - Restored `model_rebuild` calls for top level fragment models.

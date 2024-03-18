@@ -1,7 +1,8 @@
 ---
-id: asgi-handlers-reference
+id: version-0.23-asgi-handlers-reference
 title: ASGI handlers reference
 sidebar_label: ariadne.asgi.handlers
+original_id: asgi-handlers-reference
 ---
 
 The `ariadne.asgi.handlers` package exports following 

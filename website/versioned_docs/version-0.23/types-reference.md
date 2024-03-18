@@ -1,7 +1,8 @@
 ---
-id: types-reference
+id: version-0.23-types-reference
 title: Types reference
 sidebar_label: ariadne.types
+original_id: types-reference
 ---
 
 Ariadne uses [type annotations](https://www.python.org/dev/peps/pep-0484/) in its codebase.

@@ -1,7 +1,8 @@
 ---
-id: asgi-reference
+id: version-0.23-asgi-reference
 title: ASGI reference
 sidebar_label: ariadne.asgi
+original_id: asgi-reference
 ---
 
 The `ariadne.asgi` package exports the `GraphQL` ASGI application:

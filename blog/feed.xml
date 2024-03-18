@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Thu, 01 Jan 1970 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 18 Mar 2024 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -14,10 +14,19 @@
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
         <item>
+            <title><![CDATA[Ariadne 0.23]]></title>
+            <link>https://ariadnegraphql.org/blog/2024/03/18/ariadne-0-23.html</link>
+            <guid>https://ariadnegraphql.org/blog/2024/03/18/ariadne-0-23.html</guid>
+            <pubDate>Mon, 18 Mar 2024 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne 0.23 is now out.</p>
+<p>Ariadne 0.23 is a maintenance release that adds opt-in support for executing <code>query</code> operations over <code>GET</code> requests, bumps Apollo Federation support to 2.6 and addresses two small bugs.</p>
+]]></description>
+        </item>
+        <item>
             <title><![CDATA[Ariadne Codegen 0.13]]></title>
-            <link>https://ariadnegraphql.org/blog/2024/03/4/ariadne-codegen-0-13.html</link>
-            <guid>https://ariadnegraphql.org/blog/2024/03/4/ariadne-codegen-0-13.html</guid>
-            <pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate>
+            <link>https://ariadnegraphql.org/blog/2024/03/04/ariadne-codegen-0-13.html</link>
+            <guid>https://ariadnegraphql.org/blog/2024/03/04/ariadne-codegen-0-13.html</guid>
+            <pubDate>Mon, 04 Mar 2024 06:00:00 GMT</pubDate>
             <description><![CDATA[<p>Ariadne Codegen 0.13 is now available. This is a bugfix release that addresses reported issues.</p>
 ]]></description>
         </item>

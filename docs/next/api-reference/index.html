@@ -1915,6 +1915,7 @@ viewed in VSCode:</p>
     introspection: bool,
     logger: Union[None, str, Logger, LoggerAdapter],
     validation_rules: Optional[ValidationRules],
+    require_query: bool,
     error_formatter: ErrorFormatter,
     middleware: MiddlewareList,
     middleware_manager_class: Optional[Type[MiddlewareManager]],
@@ -1952,6 +1953,8 @@ in errors reported to client.</p>
 errors.</p>
 <p><code>validation_rules</code>: a <code>list</code> of or callable returning list of custom
 validation rules to use to validate query before it's executed.</p>
+<p><code>require_query</code>: a <code>bool</code> controlling if GraphQL operation to execute must be
+a query (vs. mutation or subscription).</p>
 <p><code>error_formatter</code>: an <a href="/docs/next/types-reference#errorformatter"><code>ErrorFormatter</code></a> callable to use to convert GraphQL
 errors encountered during query execution to JSON-serializable format.</p>
 <p><code>middleware</code>: a <code>list</code> of or callable returning list of GraphQL middleware
@@ -1979,6 +1982,7 @@ executor.</p>
     introspection: bool,
     logger: Union[None, str, Logger, LoggerAdapter],
     validation_rules: Optional[ValidationRules],
+    require_query: bool,
     error_formatter: ErrorFormatter,
     middleware: MiddlewareList,
     middleware_manager_class: Optional[Type[MiddlewareManager]],
@@ -2016,6 +2020,8 @@ in errors reported to client.</p>
 errors.</p>
 <p><code>validation_rules</code>: a <code>list</code> of or callable returning list of custom
 validation rules to use to validate query before it's executed.</p>
+<p><code>require_query</code>: a <code>bool</code> controlling if GraphQL operation to execute must be
+a query (vs. mutation or subscription).</p>
 <p><code>error_formatter</code>: an <a href="/docs/next/types-reference#errorformatter"><code>ErrorFormatter</code></a> callable to use to convert GraphQL
 errors encountered during query execution to JSON-serializable format.</p>
 <p><code>middleware</code>: a <code>list</code> of or callable returning list of GraphQL middleware

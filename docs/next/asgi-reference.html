@@ -82,6 +82,7 @@ example in Starlette or FastAPI.</p>
     query_parser: Optional[QueryParser],
     query_validator: Optional[QueryValidator],
     validation_rules: Optional[ValidationRules],
+    execute_get_queries: bool,
     debug: bool,
     introspection: bool,
     explorer: Optional[Explorer],
@@ -109,6 +110,8 @@ Defaults to <code>None</code>.</p>
 <p><code>validation_rules</code>: a <a href="/docs/next/types-reference#validationrules"><code>ValidationRules</code></a> list or callable returning a
 list of extra validation rules server should use to validate the
 GraphQL queries. Defaults to <code>None</code>.</p>
+<p><code>execute_get_queries</code>: a <code>bool</code> that controls if <code>query</code> operations
+sent using the <code>GET</code> method should be executed. Defaults to <code>False</code>.</p>
 <p><code>debug</code>: a <code>bool</code> controlling in server should run in debug mode or
 not. Controls details included in error data returned to clients.
 Defaults to <code>False</code>.</p>

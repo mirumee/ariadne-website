@@ -1,7 +1,8 @@
 ---
-id: wsgi-reference
+id: version-0.23-wsgi-reference
 title: WSGI reference
 sidebar_label: ariadne.wsgi
+original_id: wsgi-reference
 ---
 
 The `ariadne.wsgi` module exports the WSGI application and middleware:

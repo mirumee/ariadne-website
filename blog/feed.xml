@@ -4,7 +4,7 @@
         <title>Ariadne Blog</title>
         <link>https://ariadnegraphql.org/blog</link>
         <description>The best place to stay up-to-date with the latest Ariadne news and events.</description>
-        <lastBuildDate>Mon, 18 Mar 2024 06:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 26 Mar 2024 06:00:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>Feed for Node.js</generator>
         <image>
@@ -13,6 +13,15 @@
             <link>https://ariadnegraphql.org/blog</link>
         </image>
         <copyright>Crafted with ❤️ by Mirumee Software</copyright>
+        <item>
+            <title><![CDATA[Ariadne GraphQL Proxy 0.3]]></title>
+            <link>https://ariadnegraphql.org/blog/2024/03/26/ariadne-graphql-proxy-0-3.html</link>
+            <guid>https://ariadnegraphql.org/blog/2024/03/26/ariadne-graphql-proxy-0-3.html</guid>
+            <pubDate>Tue, 26 Mar 2024 06:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Ariadne GraphQL Proxy 0.3 is now available.</p>
+<p>This release implements new features we found necessary for our use cases and fixes the issues we've found in testing.</p>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[Ariadne 0.23]]></title>
             <link>https://ariadnegraphql.org/blog/2024/03/18/ariadne-0-23.html</link>

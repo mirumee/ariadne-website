@@ -21,8 +21,8 @@ The same way applications are now automatically deployed by CI/CD pipelines, you
 
 Escape is a GraphQL security SaaS platform, running a DAST (dynamic application security testing) tool on your api directly from a CI/CD environment.
 
-This platform can be [easily integrated into your existing CI/CD pipeline](https://escape.tech/docs/ci-cd/) (Github Actions, Gitlab CIs, etc.), enabling you to set it up easily.
+This platform can be [easily integrated into your existing CI/CD pipeline](https://escape.tech/product#ci-cd-integration) (Github Actions, Gitlab CIs, etc.), enabling you to set it up easily.
 
 Security alerts will be directly reported in your CI/CD platform, making it faster than ever to address them.
 
-[See how to setup Escape for your GraphQL application](https://escape.tech/docs/introduction)
+[See how to setup Escape for your GraphQL application](https://docs.escape.tech/

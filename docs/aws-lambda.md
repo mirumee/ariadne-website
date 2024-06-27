@@ -1,4 +1,3 @@
-
 ---
 id: aws-lambda
 title: AWS Lambda
@@ -45,7 +44,7 @@ def graphql_http_handler(event: dict[str, Any], context: LambdaContext):
 
 This approach is recommended because it gives immediate availability of Ariadne's features through the `GraphQL` object's options and doesn't require the implementation of a custom translation layer between the GraphQL engine and AWS Lambda.
 
-> **Note:** If you need your Lambda function to offer other API endpoints in addition to GraphQL, you can combine your Ariadne app with [Starlette](starlette-integration.md) or [FastAPI](fastapi-integration.md) along with [Lynara](https://github.com/mirumee/smyth), which wraps the app to handle HTTP requests from AWS.
+> **Note:** If you need your Lambda function to offer other API endpoints in addition to GraphQL, you can combine your Ariadne app with [Starlette](starlette-integration.md) or [FastAPI](fastapi-integration.md) along with [Lynara](https://github.com/mirumee/lynara), which wraps the app to handle HTTP requests from AWS.
 
 ## Minimal Lambda Handler Example
 
@@ -163,4 +162,4 @@ def response(body: dict, status_code: int = 200):
 
 ## Local Testing
 
-If you want to test your Lambda functions locally, you can use the repository [smyth](https://github.com/mirumee/smyth), which supports local development of Lambdas. This allows you to simulate the AWS Lambda environment on your local machine, making it easier to develop and debug your functions before deploying them to AWS.
+If you want to test your Lambda functions locally, you can use the repository [Smyth](https://github.com/mirumee/smyth), which supports local development of Lambdas. This allows you to simulate the AWS Lambda environment on your local machine, making it easier to develop and debug your functions before deploying them to AWS.

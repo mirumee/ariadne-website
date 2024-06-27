@@ -1,45 +1,55 @@
+
 ---
 id: aws-lambda
-title: AWS lambda
+title: AWS Lambda
 ---
+
+# AWS Lambda
 
 Multiple ways to implement an AWS Lambda function for GraphQL using Ariadne exist.
 
-This document presents selected few of those, but it's aim is not to be an __exhaustive__ list of all approaches to using Ariadne on the AWS Lambda.
+This document presents a selected few of those, but its aim is not to be an __exhaustive__ list of all approaches to using Ariadne on AWS Lambda.
 
+## Deploying ASGI Application with Ariadne Lambda
 
-## Deploying ASGI application with Mangum
-
-Mangum is an adapter that can be used to run Ariadne [ASGI](asgi.md) application on AWS Lambda:
+Ariadne Lambda is an extension to Ariadne itself to enable running [ASGI](asgi.md) applications on AWS Lambda:
 
 ```python
-from ariadne import make_executable_schema, gql
-from ariadne.asgi import GraphQL
-from mangum import Mangum
+from typing import Any
+
+from ariadne import QueryType, gql, make_executable_schema
+from ariadne_lambda.graphql import GraphQLLambda
+from asgiref.sync import async_to_sync
+from aws_lambda_powertools.utilities.typing import LambdaContext
 
 type_defs = gql(
     """
     type Query {
         hello: String!
     }
-    """
-)
+""")
+query = QueryType()
 
-schema = make_executable_schema(type_defs)
+@query.field("hello")
+def resolve_hello(_, info):
+    request = info.context["request"]
+    user_agent = request.headers.get("user-agent", "guest")
+    return "Hello, %s!" % user_agent
 
-app = GraphQL(schema, root_value={"hello": "Hello world!"})
+schema = make_executable_schema(type_defs, query)
+graphql_app = GraphQLLambda(schema=schema)
 
-handler = Mangum(app, lifespan="off")
+def graphql_http_handler(event: dict[str, Any], context: LambdaContext):
+    return async_to_sync(graphql_app)(event, context)
 ```
 
-This approach is recommended because it gives immediate availability of Ariadne's features through the `GraphQL` object's options, and doesn't require implementation of custom translation layer between GraphQL engine and AWS lambda.
+This approach is recommended because it gives immediate availability of Ariadne's features through the `GraphQL` object's options and doesn't require the implementation of a custom translation layer between the GraphQL engine and AWS Lambda.
 
-> **Note:** Mangum doesn't require Ariadne's ASGI application exactly. If you need your lambda function to offer other API endpoints in addition to the GraphQL, you can combine your Ariadne's app with [Starlette](starlette-integration.md) or [FastAPI](fastapi-integration.md).
+> **Note:** If you need your Lambda function to offer other API endpoints in addition to GraphQL, you can combine your Ariadne app with [Starlette](starlette-integration.md) or [FastAPI](fastapi-integration.md) along with [Lynara](https://github.com/mirumee/smyth), which wraps the app to handle HTTP requests from AWS.
 
+## Minimal Lambda Handler Example
 
-## Minimal lambda handler example
-
-If you want to skip the HTTP stack altogether you can execute the queries directly using the [`graphql_sync`](api-reference.md#graphql_sync):
+If you want to skip the HTTP stack altogether, you can execute the queries directly using the [`graphql_sync`](api-reference.md#graphql_sync):
 
 ```python
 import json
@@ -54,8 +64,7 @@ type_defs = gql(
     type Query {
         hello: String!
     }
-    """
-)
+""")
 
 query_type = QueryType()
 
@@ -64,7 +73,6 @@ def resolve_hello(_, info):
     http_context = info.context["requestContext"]["http"]
     user_agent = http_context.get("userAgent") or "Anon"
     return f"Hello {user_agent}!"
-
 
 schema = make_executable_schema(type_defs, query_type)
 
@@ -83,7 +91,6 @@ def handler(event: dict, _):
 
     return response(result, 200 if success else 400)
 
-
 def response(body: dict, status_code: int = 200):
     return {
         "statusCode": status_code,
@@ -94,12 +101,11 @@ def response(body: dict, status_code: int = 200):
     }
 ```
 
-This lambda function will expect a JSON request with at least one key, a `query` with a `str` containing the GraphQL query.
+This Lambda function will expect a JSON request with at least one key, a `query` containing the GraphQL query.
 
+### Asynchronous Example
 
-### Asynchronous example
-
-In case where you want to run your handler asynchronously, you'll need to run it in an event loop.
+In case you want to run your handler asynchronously, you'll need to run it in an event loop.
 
 This can be done manually or by decorating the async handler with the `async_to_sync` decorator from the `asgiref` package:
 
@@ -117,8 +123,7 @@ type_defs = gql(
     type Query {
         hello: String!
     }
-    """
-)
+""")
 
 query_type = QueryType()
 
@@ -127,7 +132,6 @@ def resolve_hello(_, info):
     http_context = info.context["requestContext"]["http"]
     user_agent = http_context.get("userAgent") or "Anon"
     return f"Hello {user_agent}!"
-
 
 schema = make_executable_schema(type_defs, query_type)
 
@@ -147,7 +151,6 @@ async def handler(event: dict, _):
 
     return response(result, 200 if success else 400)
 
-
 def response(body: dict, status_code: int = 200):
     return {
         "statusCode": status_code,
@@ -157,3 +160,7 @@ def response(body: dict, status_code: int = 200):
         "body": json.dumps(body),
     }
 ```
+
+## Local Testing
+
+If you want to test your Lambda functions locally, you can use the repository [smyth](https://github.com/mirumee/smyth), which supports local development of Lambdas. This allows you to simulate the AWS Lambda environment on your local machine, making it easier to develop and debug your functions before deploying them to AWS.

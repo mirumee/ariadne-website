@@ -1,7 +1,8 @@
 ---
-id: constants-reference
+id: version-0.24-constants-reference
 title: Constants reference
 sidebar_label: ariadne.constants
+original_id: constants-reference
 ---
 
 Following constants are importable from `ariadne.constants` module:

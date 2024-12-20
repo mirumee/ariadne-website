@@ -472,3 +472,60 @@ graphql = GraphQL(
     ),
 )
 ```
+
+## Using Server-Sent Events Protocol
+
+In addition to subscriptions over WebSockets, Ariadne also allows an alternative subscriptions approach, `graphql-sse`, 
+over [Server-Sent Events](https://github.com/enisdenjo/graphql-sse/blob/master/PROTOCOL.md).
+Server-Sent Events (SSE) allow servers to push data to web clients over HTTP through a single, long-lived connection.
+
+To enable subscriptions over Server-Sent Events, initialize the `ariadne.asgi.GraphQL` app with
+a `ariadne.contrib.sse.GraphQLHTTPSSEHandler` instance:
+
+```python
+import asyncio
+from typing import Any, AsyncGenerator
+from ariadne import SubscriptionType, make_executable_schema, gql
+from ariadne.asgi import GraphQL
+from ariadne.contrib.sse import GraphQLHTTPSSEHandler
+
+type_defs = gql("""
+
+    type Query {
+        _empty: String
+    }
+
+    type Subscription { 
+        counter: Int!
+    }
+
+""")
+
+subscription = SubscriptionType()
+
+
+@subscription.field("counter")
+async def counter_resolver(count, info: Any) -> AsyncGenerator[int, None]:
+    return count
+
+
+@subscription.source("counter")
+async def counter_generator(obj: Any, info: Any) -> AsyncGenerator[int, None]:
+    for i in range(5):
+        yield i
+        await asyncio.sleep(1)
+
+
+schema = make_executable_schema(type_defs, [subscription])
+app = GraphQL(schema, http_handler=GraphQLHTTPSSEHandler())
+```
+
+Subscriptions can be consumed using the [graphql-sse](https://github.com/enisdenjo/graphql-sse/) JavaScript client
+library or any other compatible implementation.
+
+> The `GraphQLHTTPSSEHandler` only supports asynchronous servers, due to the nature of subscriptions.
+> 
+> This handler only supports the `distinct connections mode` mode of the protocol due to Ariadne's stateless implementation.
+> 
+> If you are using a custom client implementation, make sure to add the `Accept: text/event-stream` header to the
+> request as this is required to establish the Server-Sent Events connection.

@@ -376,7 +376,7 @@ There's important difference between `on_connect` and `context_value`:
 
 `context_value` is called every time new subscription query is made by the client.
 
-If your client has two separate UI components (eg. notification bell on the navbar and list of on-line users), and those components do GraphQL `subscribe` queries, `context_value` will be ran for each of those separately while `on_connect` will only be ran once. 
+If your client has two separate UI components (eg. notification bell on the navbar and list of on-line users), and those components do GraphQL `subscribe` queries, `context_value` will be ran for each of those separately while `on_connect` will only be ran once.
 
 > **Note:** This behavior is true for most popular GraphQL client implementations (`gql` and Apollo-Client) but may not be true for some libraries.
 
@@ -473,14 +473,12 @@ graphql = GraphQL(
 )
 ```
 
+
 ## Using Server-Sent Events Protocol
 
-In addition to subscriptions over WebSockets, Ariadne also allows an alternative subscriptions approach, `graphql-sse`, 
-over [Server-Sent Events](https://github.com/enisdenjo/graphql-sse/blob/master/PROTOCOL.md).
-Server-Sent Events (SSE) allow servers to push data to web clients over HTTP through a single, long-lived connection.
+Instead of WebSockets, [Server-Sent Events (SSE)](https://github.com/enisdenjo/graphql-sse/blob/master/PROTOCOL.md) can be used as a transmission protocol for subscriptions. This approach uses single, long-lived HTTP connection to push data to clients.
 
-To enable subscriptions over Server-Sent Events, initialize the `ariadne.asgi.GraphQL` app with
-a `ariadne.contrib.sse.GraphQLHTTPSSEHandler` instance:
+To enable subscriptions over Server-Sent Events, initialize the `ariadne.asgi.GraphQL` app with an `ariadne.contrib.sse.GraphQLHTTPSSEHandler` instance:
 
 ```python
 import asyncio
@@ -495,7 +493,7 @@ type_defs = gql("""
         _empty: String
     }
 
-    type Subscription { 
+    type Subscription {
         counter: Int!
     }
 
@@ -520,12 +518,10 @@ schema = make_executable_schema(type_defs, [subscription])
 app = GraphQL(schema, http_handler=GraphQLHTTPSSEHandler())
 ```
 
-Subscriptions can be consumed using the [graphql-sse](https://github.com/enisdenjo/graphql-sse/) JavaScript client
-library or any other compatible implementation.
+Subscriptions can be consumed using the [graphql-sse](https://github.com/enisdenjo/graphql-sse/) JavaScript client library or any other compatible implementation.
 
-> The `GraphQLHTTPSSEHandler` only supports asynchronous servers, due to the nature of subscriptions.
-> 
+> The `GraphQLHTTPSSEHandler` requires the ASGI server to work.
+>
 > This handler only supports the `distinct connections mode` mode of the protocol due to Ariadne's stateless implementation.
-> 
-> If you are using a custom client implementation, make sure to add the `Accept: text/event-stream` header to the
-> request as this is required to establish the Server-Sent Events connection.
+>
+> If you are using a custom client implementation, make sure to add the `Accept: text/event-stream` header to the request as this is required to establish the Server-Sent Events connection.

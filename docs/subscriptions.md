@@ -523,6 +523,6 @@ Subscriptions can be consumed using the [graphql-sse](https://github.com/enisden
 
 > The `GraphQLHTTPSSEHandler` requires the ASGI server to work.
 >
-> This handler only supports the `distinct connections mode` mode of the protocol due to Ariadne's stateless implementation.
+> This handler only supports the _distinct connections_ mode of the protocol due to Ariadne's stateless implementation.
 >
 > If you are using a custom client implementation, make sure to add the `Accept: text/event-stream` header to the request as this is required to establish the Server-Sent Events connection.

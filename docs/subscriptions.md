@@ -483,6 +483,7 @@ To enable subscriptions over Server-Sent Events, initialize the `ariadne.asgi.Gr
 ```python
 import asyncio
 from typing import Any, AsyncGenerator
+
 from ariadne import SubscriptionType, make_executable_schema, gql
 from ariadne.asgi import GraphQL
 from ariadne.contrib.sse import GraphQLHTTPSSEHandler

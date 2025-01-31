@@ -53,6 +53,9 @@
       "query-validators",
       "query-stack"
     ],
+    "Contrib": [
+      "graphql-relay"
+    ],
     "API reference": [
       "api-reference",
       "asgi-reference",

@@ -84,12 +84,12 @@
 <p>The <code>errors</code> key is, by design, supposed to relay errors to other developers working with the API. Messages present under this key are technical in nature and shouldn't be displayed to your end users.</p>
 <p>Instead, you should define custom fields that your queries and mutations will include in result sets, to relay eventual errors and problems to clients, like this:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">login</span><span class="token punctuation">(</span><span class="token attr-name">username</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">password</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> LoginResult<span class="token operator">!</span>
+  <span class="token attr-name">login</span><span class="token punctuation">(</span><span class="token attr-name">username</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">password</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">LoginResult</span><span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">LoginResult</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">error</span><span class="token punctuation">:</span> String
-  <span class="token attr-name">user</span><span class="token punctuation">:</span> User
+  <span class="token attr-name">error</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
+  <span class="token attr-name">user</span><span class="token punctuation">:</span> <span class="token class-name">User</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Depending on success or failure, your mutation resolver may return either an <code>error</code> message to be displayed to the user, or <code>user</code> that has been logged in. Your API result-handling logic may then interpret the response based on the content of those two keys, only falling back to the main <code>errors</code> key to make sure there wasn't an error in query syntax, connection or application.</p>

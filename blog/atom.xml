@@ -326,7 +326,7 @@
         <link href="https://ariadnegraphql.org/blog/2022/12/15/chat-example.html">
         </link>
         <updated>2022-12-15T06:00:00Z</updated>
-        <summary type="html"><![CDATA[<p>We have created the <a href="https://github.com/mirumee/ariadne-graphql-chat-example">Ariadne GraphQL Chat Example</a> repository on GitHub that expands the <a href="/docs/subscriptions#simple-chat-example">Chat example from &quot;Subscriptions&quot; documentation</a> with chat history, React.js client (using <a href="https://www.apollographql.com/docs/react/data/subscriptions/">Apollo-Client</a>), Redis for Broadcaster's messaging backend and U...</p>]]></summary>
+        <summary type="html"><![CDATA[<p>We have created the <a href="https://github.com/mirumee/ariadne-graphql-chat-example">Ariadne GraphQL Chat Example</a> repository on GitHub that expands the <a href="/docs/subscriptions#simple-chat-example">Chat example from "Subscriptions" documentation</a> with chat history, React.js client (using <a href="https://www.apollographql.com/docs/react/data/subscriptions/">Apollo-Client</a>), Redis for Broadcaster's messaging backend and Uvicorn HTT...</p>]]></summary>
         <author>
         </author>
     </entry>

@@ -166,13 +166,13 @@ mutation.set_field(<span class="hljs-string">"logout"</span>, auth_mutations.res
 <p><code>user</code> field is especially noteworthy. Modern GraphQL client libraries like <a href="https://www.apollographql.com/docs/react/">Apollo Client</a> implement automatic caching and state management, using GraphQL types to track and automatically update stored object data whenever a new one is returned from the API.</p>
 <p>Consider a mutation that changes a user's username and its payload:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">updateUsername</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">username</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> userMutationPayload
+    <span class="token attr-name">updateUsername</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">username</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token property">userMutationPayload</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">UsernameMutationPayload</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">status</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
-    <span class="token attr-name">error</span><span class="token punctuation">:</span> Error
-    <span class="token attr-name">user</span><span class="token punctuation">:</span> User
+    <span class="token attr-name">status</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
+    <span class="token attr-name">error</span><span class="token punctuation">:</span> <span class="token class-name">Error</span>
+    <span class="token attr-name">user</span><span class="token punctuation">:</span> <span class="token class-name">User</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Our client code may first perform an <em>optimistic update</em> before the API executes a mutation and returns a response to client. This optimistic update will cause an immediate update of the application interface, making it appear fast and responsive to the user. When the mutation eventually completes a moment later and returns an updated <code>user</code> one of two things will happen:</p>
@@ -185,41 +185,41 @@ mutation.set_field(<span class="hljs-string">"logout"</span>, auth_mutations.res
 <h2><a class="anchor" aria-hidden="true" id="inputs"></a><a href="#inputs" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Inputs</h2>
 <p>Let's consider the following type:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Discussion</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">category</span><span class="token punctuation">:</span> Category<span class="token operator">!</span>
-    <span class="token attr-name">poster</span><span class="token punctuation">:</span> User
-    <span class="token attr-name">postedOn</span><span class="token punctuation">:</span> Date<span class="token operator">!</span>
-    <span class="token attr-name">title</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
-    <span class="token attr-name">isAnnouncement</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
-    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
+    <span class="token attr-name">category</span><span class="token punctuation">:</span> <span class="token class-name">Category</span><span class="token operator">!</span>
+    <span class="token attr-name">poster</span><span class="token punctuation">:</span> <span class="token class-name">User</span>
+    <span class="token attr-name">postedOn</span><span class="token punctuation">:</span> <span class="token class-name">Date</span><span class="token operator">!</span>
+    <span class="token attr-name">title</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+    <span class="token attr-name">isAnnouncement</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
+    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Imagine a mutation for creating <code>Discussion</code>s that takes category, poster, title, announcement and closed states as inputs, and creates a new <code>Discussion</code> in the database. Looking at the previous example, we may want to define it like this:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
     <span class="token attr-name">createDiscussion</span><span class="token punctuation">(</span>
-        <span class="token attr-name">category</span><span class="token punctuation">:</span> ID<span class="token operator">!</span><span class="token punctuation">,</span>
-        <span class="token attr-name">title</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">,</span>
-        <span class="token attr-name">isAnnouncement</span><span class="token punctuation">:</span> Boolean<span class="token punctuation">,</span>
-        <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> Boolean
-    <span class="token punctuation">)</span><span class="token punctuation">:</span> DiscussionPayload
+        <span class="token attr-name">category</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><span class="token punctuation">,</span>
+        <span class="token attr-name">title</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">,</span>
+        <span class="token attr-name">isAnnouncement</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token punctuation">,</span>
+        <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span>
+    <span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">DiscussionPayload</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">DiscussionPayload</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">status</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
-    <span class="token attr-name">error</span><span class="token punctuation">:</span> Error
-    <span class="token attr-name">discussion</span><span class="token punctuation">:</span> Discussion
+    <span class="token attr-name">status</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
+    <span class="token attr-name">error</span><span class="token punctuation">:</span> <span class="token class-name">Error</span>
+    <span class="token attr-name">discussion</span><span class="token punctuation">:</span> <span class="token class-name">Discussion</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Our mutation takes only four arguments, but it is already too unwieldy to work with. Imagine adding another one or two arguments to it in future - it's going to explode!</p>
 <p>GraphQL provides a better way for solving this problem: <code>input</code> allows us to move arguments into a dedicated type:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">createDiscussion</span><span class="token punctuation">(</span><span class="token attr-name">input</span><span class="token punctuation">:</span> DiscussionInput<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> DiscussionPayload
+    <span class="token attr-name">createDiscussion</span><span class="token punctuation">(</span><span class="token attr-name">input</span><span class="token punctuation">:</span> <span class="token atom-input class-name">DiscussionInput</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">DiscussionPayload</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">input</span> DiscussionInput <span class="token punctuation">{</span>
-    <span class="token attr-name">category</span><span class="token punctuation">:</span> ID<span class="token operator">!</span>
-    <span class="token attr-name">title</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">,</span>
-    <span class="token attr-name">isAnnouncement</span><span class="token punctuation">:</span> Boolean
-    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> Boolean
+<span class="token keyword">input</span> <span class="token atom-input class-name">DiscussionInput</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">category</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
+    <span class="token attr-name">title</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">,</span>
+    <span class="token attr-name">isAnnouncement</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span>
+    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Now, when a client wants to create a new discussion, it needs to provide an <code>input</code> object that matches the <code>DiscussionInput</code> definition. This input will then be validated and passed to the mutation's resolver as a <code>dict</code> available under the <code>input</code> keyword argument:</p>
@@ -244,15 +244,15 @@ mutation.set_field(<span class="hljs-string">"logout"</span>, auth_mutations.res
 </code></pre>
 <p>Another advantage of <code>input</code> types is that they are reusable. If we later decide to implement another mutation for updating the <code>Discussion</code>, we can do it like this:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">createDiscussion</span><span class="token punctuation">(</span><span class="token attr-name">input</span><span class="token punctuation">:</span> DiscussionInput<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> DiscussionPayload
-    <span class="token attr-name">updateDiscussion</span><span class="token punctuation">(</span><span class="token attr-name">discussion</span><span class="token punctuation">:</span> ID<span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">input</span><span class="token punctuation">:</span> DiscussionInput<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> DiscussionPayload
+    <span class="token attr-name">createDiscussion</span><span class="token punctuation">(</span><span class="token attr-name">input</span><span class="token punctuation">:</span> <span class="token atom-input class-name">DiscussionInput</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">DiscussionPayload</span>
+    <span class="token attr-name">updateDiscussion</span><span class="token punctuation">(</span><span class="token attr-name">discussion</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">input</span><span class="token punctuation">:</span> <span class="token atom-input class-name">DiscussionInput</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">DiscussionPayload</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">input</span> DiscussionInput <span class="token punctuation">{</span>
-    <span class="token attr-name">category</span><span class="token punctuation">:</span> ID<span class="token operator">!</span>
-    <span class="token attr-name">title</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
-    <span class="token attr-name">isAnnouncement</span><span class="token punctuation">:</span> Boolean
-    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> Boolean
+<span class="token keyword">input</span> <span class="token atom-input class-name">DiscussionInput</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">category</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
+    <span class="token attr-name">title</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+    <span class="token attr-name">isAnnouncement</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span>
+    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Our <code>updateDiscussion</code> mutation will now accept two arguments: <code>discussion</code> and <code>input</code>:</p>
@@ -276,14 +276,14 @@ mutation.set_field(<span class="hljs-string">"logout"</span>, auth_mutations.res
         }
 </code></pre>
 <p>You may wonder why you would want to use <code>input</code> instead of reusing an already-defined type. This is because input types provide some guarantees that regular objects don't: they are serializable, and they don't implement interfaces or unions. However, input fields are not limited to scalars. You can create fields that are lists, or even reference other inputs:</p>
-<pre><code class="hljs css language-graphql"><span class="token keyword">input</span> PollInput <span class="token punctuation">{</span>
-    <span class="token attr-name">question</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">,</span>
-    <span class="token attr-name">options</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>PollOptionInput<span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">input</span> <span class="token atom-input class-name">PollInput</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">question</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">,</span>
+    <span class="token attr-name">options</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token atom-input class-name">PollOptionInput</span><span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">input</span> PollOptionInput <span class="token punctuation">{</span>
-    <span class="token attr-name">label</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
-    <span class="token attr-name">color</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+<span class="token keyword">input</span> <span class="token atom-input class-name">PollOptionInput</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">label</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+    <span class="token attr-name">color</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Lastly, take note that inputs are not specific to mutations. You can create inputs to implement complex filtering in your <code>Query</code> fields.</p>

@@ -168,7 +168,7 @@ error_type_enum = EnumType(<span class="hljs-string">"ErrorType"</span>, ErrorTy
 <h3><a class="anchor" aria-hidden="true" id="example-1"></a><a href="#example-1" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
 <p>Interface type for search result that can be <code>User</code> or <code>Thread</code>, that defines the url field and sets default resolver for it:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">interface</span> <span class="token class-name">SearchResult</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">url</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+  <span class="token attr-name">url</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <pre><code class="hljs css language-python">search_result = InterfaceType(<span class="hljs-string">"SearchResult"</span>)
@@ -340,10 +340,10 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_argument_definition(argument, field, object_type)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>ARGUMENT_DEFINITION</code> location set on schema fields arguments:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">ARGUMENT_DEFINITION</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">ARGUMENT_DEFINITION</span>
 
 <span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">rotateToken</span><span class="token punctuation">(</span><span class="token attr-name">token</span><span class="token punctuation">:</span> String <span class="token directive function">@example</span><span class="token punctuation">)</span><span class="token punctuation">:</span> String
+    <span class="token attr-name">rotateToken</span><span class="token punctuation">(</span><span class="token attr-name">token</span><span class="token punctuation">:</span> <span class="token scalar">String</span> <span class="token directive function">@example</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Takes following arguments:</p>
@@ -357,7 +357,7 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_enum(enum)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>ENUM</code> location set on enums:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">ENUM</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">ENUM</span>
 
 <span class="token keyword">enum</span> <span class="token class-name">ErrorType</span> <span class="token directive function">@example</span> <span class="token punctuation">{</span>
     <span class="token constant">NOT_FOUND</span>
@@ -371,7 +371,7 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_enum_value(value, enum_type)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>ENUM_VALUE</code> location set on enum values:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">ENUM</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">ENUM</span>
 
 <span class="token keyword">enum</span> <span class="token class-name">ErrorType</span> <span class="token punctuation">{</span>
     <span class="token constant">NOT_FOUND</span>
@@ -389,15 +389,15 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_field_definition(field, object_type)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>FIELD_DEFINITION</code> location set on objects and interfaces fields:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">FIELD_DEFINITION</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">FIELD_DEFINITION</span>
 
 <span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">id</span><span class="token punctuation">:</span> ID
-    <span class="token attr-name">username</span><span class="token punctuation">:</span> String <span class="token directive function">@example</span>
+    <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span>
+    <span class="token attr-name">username</span><span class="token punctuation">:</span> <span class="token scalar">String</span> <span class="token directive function">@example</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">interface</span> <span class="token class-name">Searchable</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">document</span><span class="token punctuation">:</span> String <span class="token directive function">@example</span>
+    <span class="token attr-name">document</span><span class="token punctuation">:</span> <span class="token scalar">String</span> <span class="token directive function">@example</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Takes two arguments:</p>
@@ -410,11 +410,11 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_input_field_definition(field, object_type)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>INPUT_FIELD_DEFINITION</code> location set on inputs fields:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">INPUT_FIELD_DEFINITION</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">INPUT_FIELD_DEFINITION</span>
 
-<span class="token keyword">input</span> UserInput <span class="token punctuation">{</span>
-    <span class="token attr-name">username</span><span class="token punctuation">:</span> String <span class="token directive function">@example</span>
-    <span class="token attr-name">email</span><span class="token punctuation">:</span> String
+<span class="token keyword">input</span> <span class="token atom-input class-name">UserInput</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">username</span><span class="token punctuation">:</span> <span class="token scalar">String</span> <span class="token directive function">@example</span>
+    <span class="token attr-name">email</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Takes two arguments:</p>
@@ -427,11 +427,11 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_input_object(object_)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>INPUT_OBJECT</code> location set on input types:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">INPUT_OBJECT</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">INPUT_OBJECT</span>
 
-<span class="token keyword">input</span> UserInput <span class="token directive function">@example</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">username</span><span class="token punctuation">:</span> String
-    <span class="token attr-name">email</span><span class="token punctuation">:</span> String
+<span class="token keyword">input</span> <span class="token atom-input class-name">UserInput</span> <span class="token directive function">@example</span> <span class="token punctuation">{</span>
+    <span class="token attr-name">username</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
+    <span class="token attr-name">email</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Takes single argument, an instance <code>GraphQLInputObjectType</code>.</p>
@@ -440,10 +440,10 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_interface(interface)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>INTERFACE</code> location set on interfaces:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">INTERFACE</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">INTERFACE</span>
 
 <span class="token keyword">interface</span> <span class="token class-name">Searchable</span> <span class="token directive function">@example</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">document</span><span class="token punctuation">:</span> String
+    <span class="token attr-name">document</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Takes single argument, an instance <code>GraphQLInterfaceType</code>.</p>
@@ -452,11 +452,11 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_object(object_)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>OBJECT</code> location set on objects:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">OBJECT</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">OBJECT</span>
 
 <span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token directive function">@example</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">id</span><span class="token punctuation">:</span> ID
-    <span class="token attr-name">username</span><span class="token punctuation">:</span> String
+    <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span>
+    <span class="token attr-name">username</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Takes single argument, an instance <code>GraphQLObjectType</code>.</p>
@@ -465,7 +465,7 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_scalar(scalar)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>SCALAR</code> location set on scalars:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">SCALAR</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">SCALAR</span>
 
 <span class="token keyword">scalar</span> <span class="token class-name">Datetime</span> <span class="token directive function">@example</span>
 </code></pre>
@@ -475,10 +475,10 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_schema(schema)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>SCHEMA</code> location set on schema:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">SCHEMA</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">SCHEMA</span>
 
 <span class="token keyword">schema</span> <span class="token directive function">@example</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">query</span><span class="token punctuation">:</span> Query
+    <span class="token attr-name">query</span><span class="token punctuation">:</span> <span class="token class-name">Query</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Takes single argument, an instance of current <code>GraphQLSchema</code>. Should mutate this instance in place - returning anything from this method causes an <code>ValueError</code> to be raised.</p>
@@ -486,9 +486,9 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <pre><code class="hljs css language-python">SchemaDirectiveVisitor.visit_union(union)
 </code></pre>
 <p>Called during the executable schema creation for directives supporting the <code>UNION</code> location set on unions:</p>
-<pre><code class="hljs css language-graphql">directive <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token class-name">UNION</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">directive</span> <span class="token directive function">@example</span> <span class="token keyword">on</span> <span class="token constant">UNION</span>
 
-<span class="token keyword">union</span> <span class="token class-name">SearchResult</span> <span class="token operator">=</span> User <span class="token operator">|</span> Thread <span class="token directive function">@example</span>
+<span class="token keyword">union</span> <span class="token class-name">SearchResult</span> <span class="token operator">=</span> <span class="token property">User</span> <span class="token operator">|</span> <span class="token property">Thread</span> <span class="token directive function">@example</span>
 </code></pre>
 <p>Takes single argument, an instance <code>GraphQLUnionType</code>.</p>
 <p>Must return an instance of the <code>GraphQLUnionType</code>.</p>
@@ -498,8 +498,8 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 </code></pre>
 <p><a href="/docs/0.17/bindables"><em>Bindable</em></a> used for setting default resolvers on schema object types. Subclasses <a href="#fallbackresolverssetter"><code>FallbackResolversSetter</code></a> and sets default resolver that performs case conversion between GraphQL's <code>camelCase</code> and Python's <code>snake_case</code>:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
-  <span class="token string">"Default resolver for this field will read value from contact_address"</span>
-  <span class="token attr-name">contactAddress</span><span class="token punctuation">:</span> String
+  <span class="token description string">"<span class="token language-markdown">Default resolver for this field will read value from contact_address</span>"</span>
+  <span class="token attr-name">contactAddress</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <blockquote>
@@ -553,7 +553,7 @@ date_scalar = ScalarType(<span class="hljs-string">"Date"</span>)
 <h3><a class="anchor" aria-hidden="true" id="example-3"></a><a href="#example-3" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
 <p>Simple counter API that counts to 5 and ends subscription:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Subscription</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">counter</span><span class="token punctuation">:</span> Int
+  <span class="token attr-name">counter</span><span class="token punctuation">:</span> <span class="token scalar">Int</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <pre><code class="hljs css language-python"><span class="hljs-keyword">import</span> asyncio
@@ -602,7 +602,7 @@ subscription = SubscriptionType()
 <p>Decorator doesn't change or wrap the decorated function into any additional logic.</p>
 <h3><a class="anchor" aria-hidden="true" id="example-4"></a><a href="#example-4" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example</h3>
 <p>Union type for search result that can be <code>User</code> or <code>Thread</code>:</p>
-<pre><code class="hljs css language-graphql"><span class="token keyword">union</span> <span class="token class-name">SearchResult</span> <span class="token operator">=</span> User <span class="token operator">|</span> Thread
+<pre><code class="hljs css language-graphql"><span class="token keyword">union</span> <span class="token class-name">SearchResult</span> <span class="token operator">=</span> <span class="token property">User</span> <span class="token operator">|</span> <span class="token property">Thread</span>
 </code></pre>
 <pre><code class="hljs css language-python">search_result = UnionType(<span class="hljs-string">"SearchResult"</span>)
 

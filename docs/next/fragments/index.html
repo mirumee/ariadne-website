@@ -67,20 +67,20 @@
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Fragments</h1></header><article><div><span><p>GraphQL fragments can be used to give GraphQL queries a structure or extract repeating query sections into reusable parts.</p>
 <p>Fragments can be defined <strong>only</strong> in query payload, using the given syntax:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">fragment</span> <span class="token fragment function">fragmentName</span> <span class="token keyword">on</span> <span class="token class-name">TypeName</span> <span class="token punctuation">{</span>
-    field
-    otherField
+    <span class="token property">field</span>
+    <span class="token property">otherField</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p><code>fragmentName</code> is the fragment's name (any valid GraphQL field name) and <code>TypeName</code> is the name of the GraphQL type from the schema for which this fragment is used.</p>
 <p>To use fragment in a query, place three dots followed by its name (<code>...fragmentName</code>) in a place where its fields should be included:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">fragment</span> <span class="token fragment function">userProfileFields</span> <span class="token keyword">on</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
-    id
-    username
-    slug
+    <span class="token property">id</span>
+    <span class="token property">username</span>
+    <span class="token property">slug</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">query</span> GetUserProfile<span class="token punctuation">(</span><span class="token variable">$id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    user<span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token variable">$id</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">query</span> <span class="token definition-query function">GetUserProfile</span><span class="token punctuation">(</span><span class="token variable">$id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token property-query">user</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token variable">$id</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token operator">...</span><span class="token fragment function">userProfileFields</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
@@ -88,32 +88,32 @@
 <p>In the above example fragment <code>userProfileFields</code> is used to specify a list of fields for the <code>User</code> type in the <code>GetUserProfile</code> query, but outside the <code>query { ... }</code> body itself.</p>
 <p>Fragments can also be used in other fragments, and used multiple times within a query:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">fragment</span> <span class="token fragment function">threadsListUserFields</span> <span class="token keyword">on</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
-    id
-    username
-    slug
+    <span class="token property">id</span>
+    <span class="token property">username</span>
+    <span class="token property">slug</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">fragment</span> <span class="token fragment function">threadsListThreadFields</span> <span class="token keyword">on</span> <span class="token class-name">Thread</span> <span class="token punctuation">{</span>
-    id
-    title
-    slug
-    starter <span class="token punctuation">{</span>
+    <span class="token property">id</span>
+    <span class="token property">title</span>
+    <span class="token property">slug</span>
+    <span class="token object">starter</span> <span class="token punctuation">{</span>
         <span class="token operator">...</span><span class="token fragment function">threadsListUserFields</span>
     <span class="token punctuation">}</span>
-    poster <span class="token punctuation">{</span>
+    <span class="token object">poster</span> <span class="token punctuation">{</span>
         <span class="token operator">...</span><span class="token fragment function">threadsListUserFields</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">query</span> GetCategoryThreads<span class="token punctuation">(</span><span class="token variable">$category</span><span class="token punctuation">:</span> ID<span class="token operator">!</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    threads<span class="token punctuation">(</span><span class="token attr-name">category</span><span class="token punctuation">:</span> <span class="token variable">$category</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        edge <span class="token punctuation">{</span>
-            node <span class="token punctuation">{</span>
+<span class="token keyword">query</span> <span class="token definition-query function">GetCategoryThreads</span><span class="token punctuation">(</span><span class="token variable">$category</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token property-query">threads</span><span class="token punctuation">(</span><span class="token attr-name">category</span><span class="token punctuation">:</span> <span class="token variable">$category</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token object">edge</span> <span class="token punctuation">{</span>
+            <span class="token object">node</span> <span class="token punctuation">{</span>
                 <span class="token operator">...</span><span class="token fragment function">threadsListThreadFields</span>
             <span class="token punctuation">}</span>
-            cursor
+            <span class="token property">cursor</span>
         <span class="token punctuation">}</span>
-        hasMore
+        <span class="token property">hasMore</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>

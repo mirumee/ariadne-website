@@ -70,75 +70,75 @@
 <p>Let's say we have three separate GraphQL services that we want to convert into a federated service:</p>
 <p>Users Service:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Query</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">me</span><span class="token punctuation">:</span> User
+  <span class="token attr-name">me</span><span class="token punctuation">:</span> <span class="token class-name">User</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span>
-  <span class="token attr-name">name</span><span class="token punctuation">:</span> String
-  <span class="token attr-name">email</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+  <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
+  <span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
+  <span class="token attr-name">email</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Reviews Service:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Query</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">reviews</span><span class="token punctuation">(</span><span class="token attr-name">first</span><span class="token punctuation">:</span> Int <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Review<span class="token punctuation">]</span>
+  <span class="token attr-name">reviews</span><span class="token punctuation">(</span><span class="token attr-name">first</span><span class="token punctuation">:</span> <span class="token scalar">Int</span> <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">Review</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">Review</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span>
-  <span class="token attr-name">body</span><span class="token punctuation">:</span> String
+  <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
+  <span class="token attr-name">body</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Products Service:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Query</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">topProducts</span><span class="token punctuation">(</span><span class="token attr-name">first</span><span class="token punctuation">:</span> Int <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Product<span class="token punctuation">]</span>
+  <span class="token attr-name">topProducts</span><span class="token punctuation">(</span><span class="token attr-name">first</span><span class="token punctuation">:</span> <span class="token scalar">Int</span> <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">Product</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">Product</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">upc</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
-  <span class="token attr-name">name</span><span class="token punctuation">:</span> String
-  <span class="token attr-name">price</span><span class="token punctuation">:</span> Int
-  <span class="token attr-name">weight</span><span class="token punctuation">:</span> Int
+  <span class="token attr-name">upc</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+  <span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
+  <span class="token attr-name">price</span><span class="token punctuation">:</span> <span class="token scalar">Int</span>
+  <span class="token attr-name">weight</span><span class="token punctuation">:</span> <span class="token scalar">Int</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Our goal is to add a connection between each of them and combine the above services into a single graph.</p>
 <p>First, we need to add the <code>@key</code> directive to a type's definition as to allow other services to refer to it, or extend that type. This directive tells other services which fields to use in order to uniquely identify a particular instance of the type.</p>
 <p>In our case, we should add it to the <code>User</code>, <code>Review</code> and <code>Product</code> types:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token directive function">@key</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"email"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span>
-  <span class="token attr-name">name</span><span class="token punctuation">:</span> String
-  <span class="token attr-name">email</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+  <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
+  <span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
+  <span class="token attr-name">email</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Review</span> <span class="token directive function">@key</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"id"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span>
-  <span class="token attr-name">body</span><span class="token punctuation">:</span> String
+  <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
+  <span class="token attr-name">body</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Product</span> <span class="token directive function">@key</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"upc"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">upc</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
-  <span class="token attr-name">name</span><span class="token punctuation">:</span> String
-  <span class="token attr-name">price</span><span class="token punctuation">:</span> Int
-  <span class="token attr-name">weight</span><span class="token punctuation">:</span> Int
+  <span class="token attr-name">upc</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+  <span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
+  <span class="token attr-name">price</span><span class="token punctuation">:</span> <span class="token scalar">Int</span>
+  <span class="token attr-name">weight</span><span class="token punctuation">:</span> <span class="token scalar">Int</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>The next step is to connect together our types in the distributed architecture.</p>
 <p>Let's extend types that are defined by another implementing service to illustrate the power of the federation. In our case, the reviews service extends the <code>User</code> and <code>Product</code> types by adding a reviews field to them:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Review</span> <span class="token directive function">@key</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"id"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span>
-  <span class="token attr-name">body</span><span class="token punctuation">:</span> String
-  <span class="token attr-name">author</span><span class="token punctuation">:</span> User <span class="token directive function">@provides</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"email"</span><span class="token punctuation">)</span>
-  <span class="token attr-name">product</span><span class="token punctuation">:</span> Product <span class="token directive function">@provides</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"upc"</span><span class="token punctuation">)</span>
+  <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
+  <span class="token attr-name">body</span><span class="token punctuation">:</span> <span class="token scalar">String</span>
+  <span class="token attr-name">author</span><span class="token punctuation">:</span> <span class="token class-name">User</span> <span class="token directive function">@provides</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"email"</span><span class="token punctuation">)</span>
+  <span class="token attr-name">product</span><span class="token punctuation">:</span> <span class="token class-name">Product</span> <span class="token directive function">@provides</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"upc"</span><span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">User</span> <span class="token directive function">@key</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"email"</span><span class="token punctuation">)</span> <span class="token directive function">@extends</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">email</span><span class="token punctuation">:</span> String<span class="token operator">!</span> <span class="token directive function">@external</span>
-  <span class="token attr-name">reviews</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Review<span class="token punctuation">]</span>
+  <span class="token attr-name">email</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span> <span class="token directive function">@external</span>
+  <span class="token attr-name">reviews</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">Review</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">Product</span> <span class="token directive function">@key</span><span class="token punctuation">(</span><span class="token attr-name">fields</span><span class="token punctuation">:</span> <span class="token string">"upc"</span><span class="token punctuation">)</span> <span class="token directive function">@extends</span> <span class="token punctuation">{</span>
-  <span class="token attr-name">upc</span><span class="token punctuation">:</span> String<span class="token operator">!</span> <span class="token directive function">@external</span>
-  <span class="token attr-name">reviews</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Review<span class="token punctuation">]</span>
+  <span class="token attr-name">upc</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span> <span class="token directive function">@external</span>
+  <span class="token attr-name">reviews</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token class-name">Review</span><span class="token punctuation">]</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Now our federated schemas are ready. It's time for resolvers.</p>
@@ -255,25 +255,25 @@ server.listen().then(<span class="hljs-function">(<span class="hljs-params">{ ur
 <h3><a class="anchor" aria-hidden="true" id="example-queries"></a><a href="#example-queries" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Example queries</h3>
 <p>Now it's time to verify our service and reap the benefits of federated architecture by executing GraphQL operations as if it were implemented as a monolithic service:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">query</span> <span class="token punctuation">{</span>
-  me <span class="token punctuation">{</span>
-    name
-    email
-    reviews <span class="token punctuation">{</span>
-      body
-      product <span class="token punctuation">{</span>
-        upc
-        name
+  <span class="token object">me</span> <span class="token punctuation">{</span>
+    <span class="token property">name</span>
+    <span class="token property">email</span>
+    <span class="token object">reviews</span> <span class="token punctuation">{</span>
+      <span class="token property">body</span>
+      <span class="token object">product</span> <span class="token punctuation">{</span>
+        <span class="token property">upc</span>
+        <span class="token property">name</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
-  topProducts<span class="token punctuation">(</span><span class="token attr-name">first</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    upc
-    name
-    reviews <span class="token punctuation">{</span>
-      body
-      author <span class="token punctuation">{</span>
-        name
-        email
+  <span class="token property-query">topProducts</span><span class="token punctuation">(</span><span class="token attr-name">first</span><span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token property">upc</span>
+    <span class="token property">name</span>
+    <span class="token object">reviews</span> <span class="token punctuation">{</span>
+      <span class="token property">body</span>
+      <span class="token object">author</span> <span class="token punctuation">{</span>
+        <span class="token property">name</span>
+        <span class="token property">email</span>
       <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>

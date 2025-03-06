@@ -295,10 +295,6 @@ urlpatterns = [
                   Implement GraphQL schemas of any size using modular approach.
                 </p>
               </a>
-              <a href="https://schemattic.io" target="_blank">
-                <strong>Schemattic</strong>
-                <p>Create, mock and share with others GraphQL APIs.</p>
-              </a>
             </div>
           </div>
         </div>

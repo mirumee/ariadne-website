@@ -68,36 +68,36 @@
 <p>For example, your mutation creating new issue in an issue tracker API could accept multiple arguments:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
     <span class="token attr-name">issueCreate</span><span class="token punctuation">(</span>
-        <span class="token attr-name">title</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-        <span class="token attr-name">description</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-        <span class="token attr-name">labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
-        <span class="token attr-name">priority</span><span class="token punctuation">:</span> <span class="token scalar">Int</span><span class="token operator">!</span>
-        <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
-    <span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">IssueMutationResult</span><span class="token operator">!</span>
+        <span class="token attr-name">title</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+        <span class="token attr-name">description</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+        <span class="token attr-name">labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>String<span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
+        <span class="token attr-name">priority</span><span class="token punctuation">:</span> Int<span class="token operator">!</span>
+        <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
+    <span class="token punctuation">)</span><span class="token punctuation">:</span> IssueMutationResult<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">IssueMutationResult</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">error</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span>
+    <span class="token attr-name">error</span><span class="token punctuation">:</span> Boolean
 <span class="token punctuation">}</span>
 </code></pre>
 <p>But you may also gather all those arguments under a single input type:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
     <span class="token attr-name">issueCreate</span><span class="token punctuation">(</span>
-        <span class="token attr-name">input</span><span class="token punctuation">:</span> <span class="token atom-input class-name">IssueInput</span><span class="token operator">!</span>
-    <span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">IssueMutationResult</span><span class="token operator">!</span>
+        <span class="token attr-name">input</span><span class="token punctuation">:</span> IssueInput<span class="token operator">!</span>
+    <span class="token punctuation">)</span><span class="token punctuation">:</span> IssueMutationResult<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">input</span> <span class="token atom-input class-name">IssueInput</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">title</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">,</span>
-    <span class="token attr-name">description</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
-    <span class="token attr-name">priority</span><span class="token punctuation">:</span> <span class="token scalar">Int</span><span class="token operator">!</span>
-    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
+<span class="token keyword">input</span> IssueInput <span class="token punctuation">{</span>
+    <span class="token attr-name">title</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">,</span>
+    <span class="token attr-name">description</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>String<span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
+    <span class="token attr-name">priority</span><span class="token punctuation">:</span> Int<span class="token operator">!</span>
+    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">IssueMutationResult</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">success</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
-    <span class="token attr-name">error</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+    <span class="token attr-name">success</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
+    <span class="token attr-name">error</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Now, when a client wants to create a new issue, they need to provide an <code>input</code> object that matches the <code>IssueInput</code> definition. This input will then be validated and passed to the mutation's resolver as a <code>dict</code> available under the <code>input</code> keyword argument:</p>
@@ -126,25 +126,25 @@
 <p>Another advantage of <code>input</code> types is that they are reusable. If we later decide to implement another mutation for updating the issue, we can do it like this:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
     <span class="token attr-name">issueCreate</span><span class="token punctuation">(</span>
-        <span class="token attr-name">input</span><span class="token punctuation">:</span> <span class="token atom-input class-name">IssueInput</span><span class="token operator">!</span>
-    <span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">IssueMutationResult</span><span class="token operator">!</span>
+        <span class="token attr-name">input</span><span class="token punctuation">:</span> IssueInput<span class="token operator">!</span>
+    <span class="token punctuation">)</span><span class="token punctuation">:</span> IssueMutationResult<span class="token operator">!</span>
     <span class="token attr-name">issueUpdate</span><span class="token punctuation">(</span>
-        <span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span>
-        <span class="token attr-name">input</span><span class="token punctuation">:</span> <span class="token atom-input class-name">IssueInput</span><span class="token operator">!</span>
-    <span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token class-name">IssueMutationResult</span><span class="token operator">!</span>
+        <span class="token attr-name">id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span>
+        <span class="token attr-name">input</span><span class="token punctuation">:</span> IssueInput<span class="token operator">!</span>
+    <span class="token punctuation">)</span><span class="token punctuation">:</span> IssueMutationResult<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">input</span> <span class="token atom-input class-name">IssueInput</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">title</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">,</span>
-    <span class="token attr-name">description</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
-    <span class="token attr-name">priority</span><span class="token punctuation">:</span> <span class="token scalar">Int</span><span class="token operator">!</span>
-    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
+<span class="token keyword">input</span> IssueInput <span class="token punctuation">{</span>
+    <span class="token attr-name">title</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">,</span>
+    <span class="token attr-name">description</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">labels</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>String<span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
+    <span class="token attr-name">priority</span><span class="token punctuation">:</span> Int<span class="token operator">!</span>
+    <span class="token attr-name">isClosed</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">IssueMutationResult</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">success</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
-    <span class="token attr-name">error</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+    <span class="token attr-name">success</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
+    <span class="token attr-name">error</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Our <code>issueUpdate</code> mutation will now accept two arguments: <code>id</code> and <code>input</code>:</p>
@@ -170,14 +170,14 @@
         }
 </code></pre>
 <p>You may wonder why you would want to use <code>input</code> instead of reusing an already-defined type. This is because input types provide some guarantees that regular objects don't: they are serializable, and they don't implement interfaces or unions. However, input fields are not limited to scalars. You can create fields that are lists, or even reference other inputs:</p>
-<pre><code class="hljs css language-graphql"><span class="token keyword">input</span> <span class="token atom-input class-name">PollInput</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">question</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">,</span>
-    <span class="token attr-name">options</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token atom-input class-name">PollOptionInput</span><span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">input</span> PollInput <span class="token punctuation">{</span>
+    <span class="token attr-name">question</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">,</span>
+    <span class="token attr-name">options</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>PollOptionInput<span class="token operator">!</span><span class="token punctuation">]</span><span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">input</span> <span class="token atom-input class-name">PollOptionInput</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">label</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">color</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+<span class="token keyword">input</span> PollOptionInput <span class="token punctuation">{</span>
+    <span class="token attr-name">label</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">color</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Lastly, take a note that inputs are not specific to mutations. You can use inputs for every argument in schema. For example, you can have an input with filtering options for fields returning lists of items.</p>

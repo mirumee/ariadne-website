@@ -67,28 +67,28 @@
         </script></nav></div><div class="container mainContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 class="postHeaderTitle">Union types</h1></header><article><div><span><p>When designing your API, you may run into a situation where you want your field to resolve to one of a few possible types. It may be an <code>error</code> field that can resolve to one of many error types, or an activity feed made up of different types.</p>
 <p>The most obvious solution may be creating a custom &quot;intermediary&quot; type that would define dedicated fields to different types:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">MutationPayload</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">status</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
-    <span class="token attr-name">validationError</span><span class="token punctuation">:</span> <span class="token class-name">ValidationError</span>
-    <span class="token attr-name">permissionError</span><span class="token punctuation">:</span> <span class="token class-name">AccessError</span>
-    <span class="token attr-name">user</span><span class="token punctuation">:</span> <span class="token class-name">User</span>
+    <span class="token attr-name">status</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
+    <span class="token attr-name">validationError</span><span class="token punctuation">:</span> ValidationError
+    <span class="token attr-name">permissionError</span><span class="token punctuation">:</span> AccessError
+    <span class="token attr-name">user</span><span class="token punctuation">:</span> User
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">FeedItem</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">post</span><span class="token punctuation">:</span> <span class="token class-name">Post</span>
-    <span class="token attr-name">image</span><span class="token punctuation">:</span> <span class="token class-name">Image</span>
-    <span class="token attr-name">user</span><span class="token punctuation">:</span> <span class="token class-name">User</span>
+    <span class="token attr-name">post</span><span class="token punctuation">:</span> Post
+    <span class="token attr-name">image</span><span class="token punctuation">:</span> Image
+    <span class="token attr-name">user</span><span class="token punctuation">:</span> User
 <span class="token punctuation">}</span>
 </code></pre>
 <p>GraphQL provides a dedicated solution to this problem in the form of dedicated <code>Union</code> type.</p>
 <h2><a class="anchor" aria-hidden="true" id="union-example"></a><a href="#union-example" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Union example</h2>
 <p>Consider an earlier error example. The union representing one of a possible three error types can be defined in schema like this:</p>
-<pre><code class="hljs css language-graphql"><span class="token keyword">union</span> <span class="token class-name">Error</span> <span class="token operator">=</span> <span class="token property">NotFoundError</span> <span class="token operator">|</span> <span class="token property">AccessError</span> <span class="token operator">|</span> <span class="token property">ValidationError</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">union</span> <span class="token class-name">Error</span> <span class="token operator">=</span> NotFoundError <span class="token operator">|</span> AccessError <span class="token operator">|</span> ValidationError
 </code></pre>
 <p>This <code>Error</code> type can be used just like any other type:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">MutationPayload</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">status</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
-    <span class="token attr-name">error</span><span class="token punctuation">:</span> <span class="token class-name">Error</span>
-    <span class="token attr-name">user</span><span class="token punctuation">:</span> <span class="token class-name">User</span>
+    <span class="token attr-name">status</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
+    <span class="token attr-name">error</span><span class="token punctuation">:</span> Error
+    <span class="token attr-name">user</span><span class="token punctuation">:</span> User
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Your union will also need a special resolver called a <em>type resolver</em>. This resolver will be called with an object returned from a field resolver and the current context.
@@ -124,17 +124,17 @@ error = UnionType(<span class="hljs-string">"Error"</span>, resolve_error_type)
 <h2><a class="anchor" aria-hidden="true" id="__typename-field"></a><a href="#__typename-field" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a><code>__typename</code> field</h2>
 <p>Every type in GraphQL has a special <code>__typename</code> field that is resolved to a string containing the type's name.</p>
 <p>Including this field in your query may simplify implementation of result-handling logic in your client:</p>
-<pre><code class="hljs css language-graphql"><span class="token keyword">query</span> <span class="token definition-query function">getFeed</span> <span class="token punctuation">{</span>
-    <span class="token object">feed</span> <span class="token punctuation">{</span>
-        <span class="token property">__typename</span>
+<pre><code class="hljs css language-graphql"><span class="token keyword">query</span> getFeed <span class="token punctuation">{</span>
+    feed <span class="token punctuation">{</span>
+        __typename
         <span class="token operator">...</span> <span class="token keyword">on</span> <span class="token class-name">Post</span> <span class="token punctuation">{</span>
-            <span class="token property">text</span>
+            text
         <span class="token punctuation">}</span>
         <span class="token operator">...</span> <span class="token keyword">on</span> <span class="token class-name">Image</span> <span class="token punctuation">{</span>
-            <span class="token property">url</span>
+            url
         <span class="token punctuation">}</span>
         <span class="token operator">...</span> <span class="token keyword">on</span> <span class="token class-name">User</span> <span class="token punctuation">{</span>
-            <span class="token property">username</span>
+            username
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>

@@ -166,13 +166,13 @@ mutation.set_field(<span class="hljs-string">"logout"</span>, auth_mutations.res
 <p><code>user</code> field is especially noteworthy. Modern GraphQL client libraries like <a href="https://www.apollographql.com/docs/react/">Apollo Client</a> implement automatic caching and state management, using GraphQL types to track and automatically update stored object data whenever a new one is returned from the API.</p>
 <p>Consider a mutation that changes a user's username and its result:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Mutation</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">updateUsername</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> <span class="token scalar">ID</span><span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">username</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token property">userMutationResult</span>
+    <span class="token attr-name">updateUsername</span><span class="token punctuation">(</span><span class="token attr-name">id</span><span class="token punctuation">:</span> ID<span class="token operator">!</span><span class="token punctuation">,</span> <span class="token attr-name">username</span><span class="token punctuation">:</span> String<span class="token operator">!</span><span class="token punctuation">)</span><span class="token punctuation">:</span> userMutationResult
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">UsernameMutationResult</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">status</span><span class="token punctuation">:</span> <span class="token scalar">Boolean</span><span class="token operator">!</span>
-    <span class="token attr-name">error</span><span class="token punctuation">:</span> <span class="token class-name">Error</span>
-    <span class="token attr-name">user</span><span class="token punctuation">:</span> <span class="token class-name">User</span>
+    <span class="token attr-name">status</span><span class="token punctuation">:</span> Boolean<span class="token operator">!</span>
+    <span class="token attr-name">error</span><span class="token punctuation">:</span> Error
+    <span class="token attr-name">user</span><span class="token punctuation">:</span> User
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Our client code may first perform an <em>optimistic update</em> before the API executes a mutation and returns a response to client. This optimistic update will cause an immediate update of the application interface, making it appear fast and responsive to the user. When the mutation eventually completes a moment later and returns an updated <code>user</code> one of two things will happen:</p>

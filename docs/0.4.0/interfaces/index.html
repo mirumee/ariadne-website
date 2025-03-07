@@ -69,30 +69,30 @@
 <p>Consider an application implementing a search function. Search can return items of different type, like <code>Client</code>, <code>Order</code> or <code>Product</code>. For each result it displays a short summary text that is a link leading to a page containing the item's details.</p>
 <p>An <code>Interface</code> can be defined in schema that forces those types to define the <code>summary</code> and <code>url</code> fields:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">interface</span> <span class="token class-name">SearchResult</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">summary</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">url</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+    <span class="token attr-name">summary</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">url</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>Type definitions can then be updated to <code>implement</code> this interface:</p>
 <pre><code class="hljs css language-graphql"><span class="token keyword">type</span> <span class="token class-name">Client</span> <span class="token keyword">implements</span> <span class="token class-name">SearchResult</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">first_name</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">last_name</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">summary</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">url</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+    <span class="token attr-name">first_name</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">last_name</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">summary</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">url</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">Order</span> <span class="token keyword">implements</span> <span class="token class-name">SearchResult</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">ref</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">client</span><span class="token punctuation">:</span> <span class="token class-name">Client</span><span class="token operator">!</span>
-    <span class="token attr-name">summary</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">url</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+    <span class="token attr-name">ref</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">client</span><span class="token punctuation">:</span> Client<span class="token operator">!</span>
+    <span class="token attr-name">summary</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">url</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 
 <span class="token keyword">type</span> <span class="token class-name">Product</span> <span class="token keyword">implements</span> <span class="token class-name">SearchResult</span> <span class="token punctuation">{</span>
-    <span class="token attr-name">name</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">sku</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">summary</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
-    <span class="token attr-name">url</span><span class="token punctuation">:</span> <span class="token scalar">String</span><span class="token operator">!</span>
+    <span class="token attr-name">name</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">sku</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">summary</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
+    <span class="token attr-name">url</span><span class="token punctuation">:</span> String<span class="token operator">!</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p>GraphQL standard requires that every type implementing the <code>Interface</code> also explicitly defines fields from the interface. This is why the <code>summary</code> and <code>url</code> fields repeat on all types in the example.</p>

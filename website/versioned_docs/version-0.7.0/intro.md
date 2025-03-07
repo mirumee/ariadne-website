@@ -18,7 +18,7 @@ Make sure that you've installed Ariadne using `pip install ariadne`, and that yo
 
 First, we will describe what data can be obtained from our API.
 
-In Ariadne this is achieved by defining Python strings with content written in [Schema Definition Language](https://graphql.github.io/learn/schema/) (SDL), a special language for declaring GraphQL schemas.
+In Ariadne this is achieved by defining Python strings with content written in [Schema Definition Language](https://graphql.org/learn/schema/) (SDL), a special language for declaring GraphQL schemas.
 
 We will start by defining the special type `Query` that GraphQL services use as an entry point for all reading operations. Next, we will specify a single field, named `hello`, and define that it will return a value of type `String`, and that it will never return `null`.
 

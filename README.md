@@ -29,4 +29,4 @@ Contents of this repository are licensed under the BSD three clause license.
 Corporate logos in `static/brands` directory are property of their respective owners and are used with their permission.
 
 **Crafted with ❤️ by [Mirumee Software](http://mirumee.com)**
-hello@mirumee.com
+ariadne@mirumee.com

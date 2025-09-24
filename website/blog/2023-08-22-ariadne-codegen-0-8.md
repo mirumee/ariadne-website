@@ -33,17 +33,16 @@ By default, this class represents the graphql scalar `Upload`, but using custom 
 type = "Upload"
 ```
 
-
 ## Pydantic v2
 
 Version `0.8` changes the supported version of `pydantic` to `>=2.0.0,<3.0.0`. List of changes in the generated client:
+
 - Renamed `parse_obj` to `model_validate`.
 - Renamed `dict` to `model_dump`.
 - Preconfigured `BaseModel` uses `model_config` attribute instead of `Config` class.
 - Renamed `update_forward_refs` to `model_rebuild`.
 - Changed json encoder used by default base clients from `pydantic.json.pydantic_encoder` to `pydantic_core.to_jsonable_python`.
 - Optional input fields now have an explicit default `None` value (if the schema doesn't specify another value).
-
 
 ## Improved custom scalars
 
@@ -87,7 +86,6 @@ SCALARB = Annotated[TypeB, PlainSerializer(serialize_b), BeforeValidator(parse_b
 
 Scalars file has complellty different structure, so we removed `generate_scalars_parse_dict` and `generate_scalars_serialize_dict` plugin hooks. Instead, we introduced `generate_scalar_annotation` and `generate_scalar_imports` hooks.
 
-
 ## Mixin directive
 
 Ariadne Codegen 0.8 brings support for using the `mixin` directive on fragment definitions.
@@ -115,18 +113,15 @@ class FragmentA(BaseModel, MixinA):
 
 Additionally, from now on, the `mixin` directive will be excluded from the operation string, which is sent to a graphql server.
 
-
 ## Field names
 
 Version `0.8` introduces improvements in generating field names. It will append `_` to generated field name that would be already reserved by pydantic `BaseModel`'s methods and attributes.
 
 We also added handling of field names which consist only of underscores. It will be generated as `underscore_named_field_`. This behavior has the lowest priority in our name processing, so such a field's name can be altered by using an alias or utilizing `process_name` plugin hook.
 
-
 ## Unified annotations
 
 We changed the generated client to use `typing.Dict` and `typing.List` instead of `dict` and `list`. That way, used annotations don't prevent using a generated client with older versions of Python.
-
 
 ## Changelog
 

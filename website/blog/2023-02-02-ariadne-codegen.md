@@ -4,13 +4,11 @@ title: Announcing Ariadne Codegen!
 
 ![Ariadne Codegen!](assets/ariadne-codegen.jpg)
 
-Today we are announcing first release of [Ariadne Codegen](https://github.com/mirumee/ariadne-codegen)! 
+Today we are announcing first release of [Ariadne Codegen](https://github.com/mirumee/ariadne-codegen)!
 
 Ariadne Codegen is our solution for the problem of writing and maintaining a Python boilerplate code for GraphQL clients. It's a code generator that converts GraphQL queries into production ready GraphQL client for Python.
 
-
 <!--truncate-->
-
 
 ## The story
 
@@ -76,12 +74,11 @@ async def create_checkout(client, email: str,  lines: dict, address: Address):
     if data.get("errors"):
         # Repackage GraphQL errors
         raise_graphql_error(data["errors"])
-    
+
     return data["checkoutCreate"]["checkout"]["id"]
 ```
 
 There's actually a very little variety in logic of those functions, and many of them are created by copying an already existing function and changing the variables and query string. For functions that return an objects, we would also maintain Pydantic models so we have result data packaged as types with code suggestions and MyPy checks instead of dicts and lists.
-
 
 ### Automatization
 
@@ -92,12 +89,11 @@ Very quickly we've started to experiment with different approaches to automating
 
 First approach had a downside of requiring package to be regenerated on every new or changed query, but it had three upsides that we liked:
 
-- It didn't have extra logic executed on the runtime, making it __faster__.
-- It's behavior didn't change on the runtime, making it easy to __learn and debug__.
+- It didn't have extra logic executed on the runtime, making it **faster**.
+- It's behavior didn't change on the runtime, making it easy to **learn and debug**.
 - Generated code played nicely with code suggestions in IDEs and Mypy without need for any extra work.
 
 Ariadne Codegen has grown from a complete rewrite of the original code generator that was created and used internally by a member of the Saleor Integrations Team.
-
 
 ## Ariadne Codegen
 
@@ -121,7 +117,7 @@ Create `schema.graphql`:
 
 ```graphql
 type Query {
-    hello: String!
+  hello: String!
 }
 ```
 
@@ -129,7 +125,7 @@ Create `queries.graphql`:
 
 ```graphql
 query GetHello {
-    hello
+  hello
 }
 ```
 
@@ -155,7 +151,6 @@ async def do_smth_with_graphql_api():
         print(result.hello)
 ```
 
-
 ## Available options and features
 
 Ariadne Codegen already provides quite a few configuration and customization options:
@@ -167,11 +162,9 @@ Ariadne Codegen already provides quite a few configuration and customization opt
 
 See the [readme file](https://github.com/mirumee/ariadne-codegen#readme) for all available options.
 
-
 ## Known limitations
 
 File uploads and GraphQL subscriptions are not supported.
-
 
 ## Moving forward
 
@@ -180,4 +173,3 @@ You are welcome to share the love and give feedback for this library on [Ariadne
 If you've found a bug or have a PR, please use [Github issues](https://github.com/mirumee/ariadne-codegen/issues/).
 
 We've already started planning new features and improvements. Those are also public on [project's Github](https://github.com/mirumee/ariadne-codegen/issues/).
-

@@ -1,11 +1,9 @@
 ---
-id: version-0.18-asgi
+id: asgi
 title: ASGI application
-original_id: asgi
 ---
 
 Ariadne provides a `GraphQL` class that implements a production-ready ASGI application.
-
 
 ## Using with an ASGI server
 
@@ -31,11 +29,9 @@ Example using uvicorn:
 $ uvicorn myasgi:application
 ```
 
-
 ## Configuration options
 
 See the [reference](asgi-reference.md#constructor).
-
 
 ## The `request` instance
 
@@ -50,7 +46,6 @@ request.app_data
 # This is correct
 request.scope["app_data"]
 ```
-
 
 ## Customizing JSON responses
 

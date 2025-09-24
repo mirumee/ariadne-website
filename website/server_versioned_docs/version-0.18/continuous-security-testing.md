@@ -1,8 +1,7 @@
 ---
-id: version-0.18-continuous-security-testing
+id: continuous-security-testing
 title: Continuous security testing
 sidebar_label: Continuous security testing
-original_id: continuous-security-testing
 ---
 
 ## Continuous security testing
@@ -15,7 +14,7 @@ The same way applications are now automatically deployed by CI/CD pipelines, you
 
 ### [graphql.security](https://graphql.security/)
 
-`graphql.security` is a *free*, *quick* graphql security testing tool, allowing you to quickly assess the most common vulnerabilities in your application.
+`graphql.security` is a _free_, _quick_ graphql security testing tool, allowing you to quickly assess the most common vulnerabilities in your application.
 
 ### [Escape](https://escape.tech/)
 

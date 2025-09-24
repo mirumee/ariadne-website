@@ -1,15 +1,12 @@
 ---
-id: version-0.20-types-reference
+id: types-reference
 title: Types reference
 sidebar_label: ariadne.types
-original_id: types-reference
 ---
 
 Ariadne uses [type annotations](https://www.python.org/dev/peps/pep-0484/) in its codebase.
 
 Many parts of its API share or rely on common types, importable from `ariadne.types` module:
-
-
 
 ## `ContextValue`
 
@@ -26,7 +23,6 @@ def resolve_example(_, info: GraphQLResolveInfo):
     info.context  # Do something with context
 ```
 
-
 ### Default context
 
 Default context value passed to resolvers by Ariadne is a dictionary with single key, `request`, which contains the HTTP framework specific representation of HTTP request:
@@ -35,7 +31,6 @@ Default context value passed to resolvers by Ariadne is a dictionary with single
 def resolve_example(_, info: GraphQLResolveInfo):
     request = info.context["request"]  # Get request from context
 ```
-
 
 ### Dynamic context value
 
@@ -75,9 +70,7 @@ graphql_app = GraphQL(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `ErrorFormatter`
 
@@ -95,9 +88,7 @@ It receives two arguments:
 
 `bool`: a `debug` flag, which tells the formatter if it should (`True`) or shouldn't (`False`) include debugging information.
 
-
-- - - - -
-
+---
 
 ## `Extension`
 
@@ -111,7 +102,6 @@ Base class for extensions.
 Subclasses of this class should override default methods to run
 custom logic during Query execution.
 
-
 ### Methods
 
 #### `request_started`
@@ -123,7 +113,6 @@ def request_started(self, context: ContextValue) -> None:
 
 Extension hook executed at request's start.
 
-
 #### `request_finished`
 
 ```python
@@ -132,7 +121,6 @@ def request_finished(self, context: ContextValue) -> None:
 ```
 
 Extension hook executed at request's end.
-
 
 #### `resolve`
 
@@ -149,7 +137,6 @@ def resolve(
 
 Extension hook wrapping field's value resolution.
 
-
 ##### Arguments
 
 `next_`: a `resolver` or next extension's `resolve` method.
@@ -159,7 +146,6 @@ Extension hook wrapping field's value resolution.
 `info`: a `GraphQLResolveInfo` instance for executed resolver.
 
 `**kwargs`: extra arguments from GraphQL to pass to resolver.
-
 
 ##### Example
 
@@ -203,7 +189,6 @@ class MyExtension(Extension):
         return async_my_extension()
 ```
 
-
 #### `has_errors`
 
 ```python
@@ -217,7 +202,6 @@ def has_errors(
 
 Extension hook executed when GraphQL encountered errors.
 
-
 #### `format`
 
 ```python
@@ -228,9 +212,7 @@ def format(self, context: ContextValue) -> Optional[dict]:
 Extension hook executed to retrieve extra data to include in result's
 [`extensions`](types-reference.md#extensions) data.
 
-
-- - - - -
-
+---
 
 ## `ExtensionList`
 
@@ -240,9 +222,7 @@ ExtensionList = Optional[List[Union[Type['Extension'], Callable[[], 'Extension']
 
 List of extensions to use during GraphQL query execution.
 
-
-- - - - -
-
+---
 
 ## `Extensions`
 
@@ -260,9 +240,7 @@ Callable is evaluated with two arguments:
 
 `Optional[ContextValue]`: a context value for this request, or `None`.
 
-
-- - - - -
-
+---
 
 ## `GraphQLResult`
 
@@ -278,9 +256,7 @@ It's a tuple of two elements:
 
 `dict`: JSON-serializable query result.
 
-
-- - - - -
-
+---
 
 ## `Middleware`
 
@@ -306,9 +282,7 @@ Each middleware is called with three positional arguments and any number of keyw
 
 `KwArg[Any]`: if currently executed GraphQL field has any arguments, their values will be passed as keyword arguments.
 
-
-- - - - -
-
+---
 
 ## `MiddlewareList`
 
@@ -318,9 +292,7 @@ MiddlewareList = Optional[Sequence[Middleware]]
 
 List of middlewares to use during GraphQL query execution.
 
-
-- - - - -
-
+---
 
 ## `Middlewares`
 
@@ -338,9 +310,7 @@ Callable is evaluated with two arguments:
 
 `Optional[ContextValue]`: a context value for this request, or `None`.
 
-
-- - - - -
-
+---
 
 ## `OnComplete`
 
@@ -358,9 +328,7 @@ Called with two arguments:
 
 [`Operation`](types-reference.md#operation): an object with closed subscription's data.
 
-
-- - - - -
-
+---
 
 ## `OnConnect`
 
@@ -378,9 +346,7 @@ Called with two arguments:
 
 `Any`: a data sent in WebSocket message.
 
-
-- - - - -
-
+---
 
 ## `OnDisconnect`
 
@@ -396,9 +362,7 @@ Called with one arguments:
 
 `WebSocket`: the HTTP framework specific representation of websocket connection.
 
-
-- - - - -
-
+---
 
 ## `OnOperation`
 
@@ -416,9 +380,7 @@ Called with two arguments:
 
 [`Operation`](types-reference.md#operation): an object with initiated subscription's data.
 
-
-- - - - -
-
+---
 
 ## `Operation`
 
@@ -429,9 +391,7 @@ class Operation:
 
 Dataclass representing single active GraphQL operation.
 
-
-- - - - -
-
+---
 
 ## `QueryParser`
 
@@ -443,11 +403,9 @@ Type of `query_parser` option of GraphQL servers.
 
 Enables customization of server's GraphQL parsing logic. If not set or `None`, default parser is used instead.
 
-
 ### Default query parser
 
 Default query parser used by Ariadne is `parse` function from the `graphql` package.
-
 
 ### Custom parser
 
@@ -459,8 +417,7 @@ Custom parser is a function or callable accepting two arguments:
 
 Parser is required to return `DocumentNode` with parsed query or raise `GraphQLError` when query is data invalid .
 
-Asynchronous parsers are __not__ supported.
-
+Asynchronous parsers are **not** supported.
 
 ### Example parser
 
@@ -506,9 +463,7 @@ allowed_queries_parser.add_query(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `QueryValidator`
 
@@ -522,7 +477,6 @@ Type of `query_validator` option of GraphQL servers.
 Enables customization of server's GraphQL query validation logic. If not set or `None`,
 default graphql.validate is used instead.
 
-
 ### Custom validator
 
 Custom validator is a function or callable accepting up to 5 arguments:
@@ -535,7 +489,6 @@ Custom validator is a function or callable accepting up to 5 arguments:
 
 Validator is required to return `List[GraphQLError]` which should be empty
 if there were no errors found
-
 
 ### Methods
 
@@ -553,12 +506,11 @@ def __call__(
     ...
 ```
 
-
 ### Example validator
 
 Below code defines custom validator that mutates same Document with to "memoize" validation
 (this works best in a tandem with a memoized parser for end-to-end memoization
- of parsing and validation):
+of parsing and validation):
 
 ```python
 from graphql import GraphQLError, validate
@@ -581,9 +533,7 @@ def memoized_queries_validator(
     return validation
 ```
 
-
-- - - - -
-
+---
 
 ## `Resolver`
 
@@ -607,9 +557,7 @@ Each resolver is called with two positional arguments and any number of keyword 
 
 `KwArg[Any]`: if currently executed GraphQL field has any arguments, their values will be passed as keyword arguments.
 
-
-- - - - -
-
+---
 
 ## `RootValue`
 
@@ -621,11 +569,9 @@ Type for `root_value` option of GraphQL servers.
 
 "Root value" is a value passed to root resolvers (resolvers set on `Query`, `Mutation` and `Subscription` fields) as first argument.
 
-
 ### Default root value
 
 Ariadne doesn't define root value by default. First argument of root resolvers is `None`.
-
 
 ### Dynamic root value
 
@@ -641,9 +587,7 @@ If root value is a callable, it will be evaluated at the beginning of query hand
 
 Callable can return any value which then will be passed to root resolvers. Some implementations (like `ariadne.asgi.GraphQL`) support this callable being asynchronous.
 
-
-- - - - -
-
+---
 
 ## `SchemaBindable`
 
@@ -657,7 +601,6 @@ Base class for [bindable](bindables.md) types.
 Subclasses should extend the `bind_to_schema` method with custom logic for
 populating an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic and values.
 
-
 ### Methods
 
 #### `bind_to_schema`
@@ -668,7 +611,6 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
 ```
 
 Binds this `Schema[Bindable`](bindables.md) instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
-
 
 ### Example
 
@@ -758,9 +700,7 @@ schema = make_executable_schema(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `Subscriber`
 
@@ -778,9 +718,7 @@ Subscriber = Callable[[Any, GraphQLResolveInfo, KwArg[Any]], AsyncGenerator]
 
 Receives same arguments as `Resolver`.
 
-
-- - - - -
-
+---
 
 ## `SubscriptionResult`
 
@@ -796,9 +734,7 @@ It's a tuple of two elements:
 
 `dict or generator`: JSON-serializable query result or asynchronous generator with subscription's results. Depends if query was success or not.
 
-
-- - - - -
-
+---
 
 ## `ValidationRules`
 
@@ -820,9 +756,7 @@ Callable is evaluated with three arguments:
 
 `dict`: a GraphQL request's data.
 
-
-- - - - -
-
+---
 
 ## `WebSocketConnectionError`
 
@@ -832,7 +766,6 @@ class WebSocketConnectionError(Exception):
 ```
 
 Special error class enabling custom error reporting for on_connect
-
 
 ### Constructor
 

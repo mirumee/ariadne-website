@@ -1,9 +1,7 @@
 ---
-id: version-0.19-unions
+id: unions
 title: Union types
-original_id: unions
 ---
-
 
 When designing your API, you may run into a situation where you want your field to resolve to one of a few possible types. It may be an `error` field that can resolve to one of many error types, or an activity feed made up of different types.
 
@@ -11,21 +9,20 @@ The most obvious solution may be creating a custom "intermediary" type that woul
 
 ```graphql
 type MutationResult {
-    status: Boolean!
-    validationError: ValidationError
-    permissionError: AccessError
-    user: User
+  status: Boolean!
+  validationError: ValidationError
+  permissionError: AccessError
+  user: User
 }
 
 type FeedItem {
-    post: Post
-    image: Image
-    user: User
+  post: Post
+  image: Image
+  user: User
 }
 ```
 
 GraphQL provides a dedicated solution to this problem in the form of dedicated `Union` type.
-
 
 ## Union example
 
@@ -39,13 +36,13 @@ This `Error` type can be used just like any other type:
 
 ```graphql
 type MutationResult {
-    status: Boolean!
-    error: Error
-    user: User
+  status: Boolean!
+  error: Error
+  user: User
 }
 ```
 
-Your union will also need a special resolver called a *type resolver*. This resolver will be called with an object returned from a field resolver and the current context.
+Your union will also need a special resolver called a _type resolver_. This resolver will be called with an object returned from a field resolver and the current context.
 It should return a string containing the name of a GraphQL type, or `None` if the received type is incorrect:
 
 ```python
@@ -86,7 +83,6 @@ Lastly, your `UnionType` instance should be passed to `make_executable_schema` t
 schema = make_executable_schema(type_defs, [query, error])
 ```
 
-
 ## `__typename` field
 
 Every type in GraphQL has a special `__typename` field that is resolved to a string containing the type's name.
@@ -95,18 +91,18 @@ Including this field in your query may simplify implementation of result-handlin
 
 ```graphql
 query getFeed {
-    feed {
-        __typename
-        ... on Post {
-            text
-        }
-        ... on Image {
-            url
-        }
-        ... on User {
-            username
-        }
+  feed {
+    __typename
+    ... on Post {
+      text
     }
+    ... on Image {
+      url
+    }
+    ... on User {
+      username
+    }
+  }
 }
 ```
 
@@ -114,30 +110,30 @@ Assuming that the feed is a list, the query could produce the following response
 
 ```json
 {
-    "data": {
-        "feed": [
-            {
-                "__typename": "User",
-                "username": "Bob"
-            },
-            {
-                "__typename": "User",
-                "username": "Aerith"
-            },
-            {
-                "__typename": "Image",
-                "url": "http://placekitten.com/200/300"
-            },
-            {
-                "__typename": "Post",
-                "text": "Hello world!"
-            },
-            {
-                "__typename": "Image",
-                "url": "http://placekitten.com/200/300"
-            }
-        ]
-    }
+  "data": {
+    "feed": [
+      {
+        "__typename": "User",
+        "username": "Bob"
+      },
+      {
+        "__typename": "User",
+        "username": "Aerith"
+      },
+      {
+        "__typename": "Image",
+        "url": "http://placekitten.com/200/300"
+      },
+      {
+        "__typename": "Post",
+        "text": "Hello world!"
+      },
+      {
+        "__typename": "Image",
+        "url": "http://placekitten.com/200/300"
+      }
+    ]
+  }
 }
 ```
 

@@ -1,12 +1,10 @@
 ---
-id: version-0.23-asgi-reference
+id: asgi-reference
 title: ASGI reference
 sidebar_label: ariadne.asgi
-original_id: asgi-reference
 ---
 
 The `ariadne.asgi` package exports the `GraphQL` ASGI application:
-
 
 ## `GraphQL`
 
@@ -19,7 +17,6 @@ ASGI application implementing the GraphQL server.
 
 Can be used stand-alone or mounted within other ASGI application, for
 example in Starlette or FastAPI.
-
 
 ### Constructor
 
@@ -48,11 +45,9 @@ def __init__(
 
 Initializes the ASGI app and it's http and websocket handlers.
 
-
 #### Required arguments
 
 `schema`: an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to execute queries against.
-
 
 #### Optional arguments
 
@@ -109,7 +104,6 @@ implementing the websocket connections handling logic for this server.
 If not set, [`GraphQLWSHandler`](asgi-handlers-reference.md#graphqlwshandler) will be used, implementing older
 version of GraphQL subscriptions protocol.
 
-
 ### Methods
 
 #### `__call__`
@@ -122,7 +116,6 @@ async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
 An entrypoint to the ASGI application.
 
 Supports both HTTP and WebSocket connections.
-
 
 ##### Required arguments
 
@@ -141,7 +134,6 @@ ASGI specification:
 
 https://asgi.readthedocs.io/en/latest/specs/main.html
 
-
 #### `handle_request`
 
 ```python
@@ -150,7 +142,6 @@ async def handle_request(self, request: Request) -> Response:
 ```
 
 Shortcut for `graphql_app.http_handler.handle_request(...)`.
-
 
 #### `handle_websocket`
 
@@ -161,9 +152,7 @@ async def handle_websocket(self, websocket: Any) -> Awaitable[Any]:
 
 Shortcut for `graphql_app.websocket_handler.handle_websocket(...)`.
 
-
-- - - - -
-
+---
 
 `ariadne.asgi` package also reexports following names:
 

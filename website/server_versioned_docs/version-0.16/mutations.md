@@ -1,9 +1,7 @@
 ---
-id: version-0.16-mutations
+id: mutations
 title: Mutations
-original_id: mutations
 ---
-
 
 All the previous examples in this documentation have dealt with the `Query` root type and reading data. What about creating, updating or deleting data?
 
@@ -12,7 +10,6 @@ Enter the `Mutation` type, `Query`'s sibling that GraphQL servers use to impleme
 > Because there is no restriction on what can be done inside resolvers, technically there's nothing stopping somebody from making `Query` fields act as `Mutation`s, taking inputs and executing state-changing logic.
 >
 > In practice, such queries break the contract with client libraries such as Apollo-Client that do client-side caching and state management, resulting in non-responsive controls or inaccurate information being displayed in the UI as the library displays cached data before redrawing it to display an actual response from the GraphQL.
-
 
 ## Defining mutations
 
@@ -33,11 +30,10 @@ type_def = """
 
 In this example we have the following elements:
 
-- `Query` type with single field: a boolean for checking if we are authenticated or not. It may appear superficial for the sake of this example, *but Ariadne requires* that your GraphQL API always defines a `Query` type.
+- `Query` type with single field: a boolean for checking if we are authenticated or not. It may appear superficial for the sake of this example, _but Ariadne requires_ that your GraphQL API always defines a `Query` type.
 - `Mutation` type with two mutations:
-    - `login` mutation that requires username and password strings and returns a boolean indicating status.
-    - `logout` that takes no arguments and just returns status.
-
+  - `login` mutation that requires username and password strings and returns a boolean indicating status.
+  - `logout` that takes no arguments and just returns status.
 
 ## Writing resolvers
 
@@ -94,9 +90,9 @@ def resolve_logout(_, info):
 
 ## Mutation payloads
 
-The `login` and `logout` mutations introduced earlier in this guide work, but give very limited feedback to the client: they return either `False` or `True`.  The application could use additional information like an error message that could be displayed in the interface if the mutation request fails, or a user state updated after a mutation completed.
+The `login` and `logout` mutations introduced earlier in this guide work, but give very limited feedback to the client: they return either `False` or `True`. The application could use additional information like an error message that could be displayed in the interface if the mutation request fails, or a user state updated after a mutation completed.
 
-In GraphQL this is achieved by making mutations return special *payload* types containing additional information about the result, such as errors or current object state:
+In GraphQL this is achieved by making mutations return special _payload_ types containing additional information about the result, such as errors or current object state:
 
 ```python
 type_def = """
@@ -135,17 +131,17 @@ Consider a mutation that changes a user's username and its payload:
 
 ```graphql
 type Mutation {
-    updateUsername(id: ID!, username: String!): userMutationPayload
+  updateUsername(id: ID!, username: String!): userMutationPayload
 }
 
 type UsernameMutationPayload {
-    status: Boolean!
-    error: Error
-    user: User
+  status: Boolean!
+  error: Error
+  user: User
 }
 ```
 
-Our client code may first perform an *optimistic update* before the API executes a mutation and returns a response to client. This optimistic update will cause an immediate update of the application interface, making it appear fast and responsive to the user. When the mutation eventually completes a moment later and returns an updated `user` one of two things will happen:
+Our client code may first perform an _optimistic update_ before the API executes a mutation and returns a response to client. This optimistic update will cause an immediate update of the application interface, making it appear fast and responsive to the user. When the mutation eventually completes a moment later and returns an updated `user` one of two things will happen:
 
 If the mutation succeeded, the user doesn't see another UI update because the new data returned by the mutation was the same as the one set by the optimistic update. If the mutation asked for additional user fields that are dependant on username but weren't set optimistically (like link or user name changes history), those will be updated too.
 
@@ -155,19 +151,18 @@ For the above reasons it is considered a good design for mutations to return an 
 
 > There is no requirement for every mutation to have its own `Payload` type. `login` and `logout` mutations can both define `LoginPayload` as their return type. It is up to the developer to decide how generic or specific mutation payloads should be.
 
-
 ## Inputs
 
 Let's consider the following type:
 
 ```graphql
 type Discussion {
-    category: Category!
-    poster: User
-    postedOn: Date!
-    title: String!
-    isAnnouncement: Boolean!
-    isClosed: Boolean!
+  category: Category!
+  poster: User
+  postedOn: Date!
+  title: String!
+  isAnnouncement: Boolean!
+  isClosed: Boolean!
 }
 ```
 
@@ -175,18 +170,18 @@ Imagine a mutation for creating `Discussion`s that takes category, poster, title
 
 ```graphql
 type Mutation {
-    createDiscussion(
-        category: ID!,
-        title: String!,
-        isAnnouncement: Boolean,
-        isClosed: Boolean
-    ): DiscussionPayload
+  createDiscussion(
+    category: ID!
+    title: String!
+    isAnnouncement: Boolean
+    isClosed: Boolean
+  ): DiscussionPayload
 }
 
 type DiscussionPayload {
-    status: Boolean!
-    error: Error
-    discussion: Discussion
+  status: Boolean!
+  error: Error
+  discussion: Discussion
 }
 ```
 
@@ -196,14 +191,14 @@ GraphQL provides a better way for solving this problem: `input` allows us to mov
 
 ```graphql
 type Mutation {
-    createDiscussion(input: DiscussionInput!): DiscussionPayload
+  createDiscussion(input: DiscussionInput!): DiscussionPayload
 }
 
 input DiscussionInput {
-    category: ID!
-    title: String!,
-    isAnnouncement: Boolean
-    isClosed: Boolean
+  category: ID!
+  title: String!
+  isAnnouncement: Boolean
+  isClosed: Boolean
 }
 ```
 
@@ -234,15 +229,15 @@ Another advantage of `input` types is that they are reusable. If we later decide
 
 ```graphql
 type Mutation {
-    createDiscussion(input: DiscussionInput!): DiscussionPayload
-    updateDiscussion(discussion: ID!, input: DiscussionInput!): DiscussionPayload
+  createDiscussion(input: DiscussionInput!): DiscussionPayload
+  updateDiscussion(discussion: ID!, input: DiscussionInput!): DiscussionPayload
 }
 
 input DiscussionInput {
-    category: ID!
-    title: String!
-    isAnnouncement: Boolean
-    isClosed: Boolean
+  category: ID!
+  title: String!
+  isAnnouncement: Boolean
+  isClosed: Boolean
 }
 ```
 
@@ -273,13 +268,13 @@ You may wonder why you would want to use `input` instead of reusing an already-d
 
 ```graphql
 input PollInput {
-    question: String!,
-    options: [PollOptionInput!]!
+  question: String!
+  options: [PollOptionInput!]!
 }
 
 input PollOptionInput {
-    label: String!
-    color: String!
+  label: String!
+  color: String!
 }
 ```
 

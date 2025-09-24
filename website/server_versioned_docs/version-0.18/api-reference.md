@@ -1,12 +1,10 @@
 ---
-id: version-0.18-api-reference
+id: api-reference
 title: API reference
 sidebar_label: ariadne
-original_id: api-reference
 ---
 
 Following items are importable directly from `ariadne` package:
-
 
 ## `EnumType`
 
@@ -16,7 +14,6 @@ class EnumType(SchemaBindable):
 ```
 
 [Bindable](bindables.md) mapping Python values to enumeration members in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
-
 
 ### Constructor
 
@@ -31,7 +28,6 @@ def __init__(
 
 Initializes the `EnumType` with `name` and `values` mapping.
 
-
 #### Required arguments
 
 `name`: a `str` with the name of GraphQL enum type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
@@ -39,7 +35,6 @@ bind to.
 
 `values`: a `dict` or `enums.Enum` with values to use to represent GraphQL
 enum's in Python logic.
-
 
 ### Methods
 
@@ -51,7 +46,6 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
 ```
 
 Binds this `EnumType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
-
 
 #### `bind_to_default_values`
 
@@ -67,7 +61,6 @@ lookup for default values defined in schema. Instead it simply pulls the
 value from fields and arguments `default_value` attribute, which is
 `None` by default.
 
-
 #### `validate_graphql_type`
 
 ```python
@@ -81,16 +74,15 @@ def validate_graphql_type(
 Validates that schema's GraphQL type associated with this `EnumType`
 is an `enum`.
 
-
 ### Example
 
 Given following GraphQL enum:
 
 ```graphql
 enum UserRole {
-    MEMBER
-    MODERATOR
-    ADMIN
+  MEMBER
+  MODERATOR
+  ADMIN
 }
 ```
 
@@ -120,9 +112,7 @@ user_role_type = EnumType(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `Extension`
 
@@ -136,7 +126,6 @@ Base class for async extensions.
 Subclasses of this this class should override default methods to run
 custom logic during Query execution.
 
-
 ### Methods
 
 #### `request_started`
@@ -148,7 +137,6 @@ def request_started(self, context: ContextValue) -> None:
 
 Extension hook executed at request's start.
 
-
 #### `request_finished`
 
 ```python
@@ -157,7 +145,6 @@ def request_finished(self, context: ContextValue) -> None:
 ```
 
 Extension hook executed at request's end.
-
 
 #### `resolve`
 
@@ -174,7 +161,6 @@ async def resolve(
 
 Async extension hook wrapping field's value resolution.
 
-
 ##### Arguments
 
 `next_`: a `resolver` or next extension's `resolve` method.
@@ -184,7 +170,6 @@ Async extension hook wrapping field's value resolution.
 `info`: a `GraphQLResolveInfo` instance for executed resolver.
 
 `**kwargs`: extra arguments from GraphQL to pass to resolver.
-
 
 #### `has_errors`
 
@@ -199,7 +184,6 @@ def has_errors(
 
 Extension hook executed when GraphQL encountered errors.
 
-
 #### `format`
 
 ```python
@@ -210,9 +194,7 @@ def format(self, context: ContextValue) -> Optional[dict]:
 Extension hook executed to retrieve extra data to include in result's
 [`extensions`](types-reference.md#extensions) data.
 
-
-- - - - -
-
+---
 
 ## `ExtensionManager`
 
@@ -223,7 +205,6 @@ class ExtensionManager:
 
 Container and runner for extensions and middleware, used by the GraphQL servers.
 
-
 ### Attributes
 
 `context`: the [`ContextValue`](types-reference.md#contextvalue) of type specific to the server.
@@ -231,7 +212,6 @@ Container and runner for extensions and middleware, used by the GraphQL servers.
 [`extensions`](types-reference.md#extensions): a `tuple` with instances of initialized extensions.
 
 `extensions_reversed`: a `tuple` created from reversing [`extensions`](types-reference.md#extensions).
-
 
 ### Constructor
 
@@ -246,13 +226,11 @@ def __init__(
 
 Initializes extensions and stores them with context on instance.
 
-
 #### Optional arguments
 
 [`extensions`](types-reference.md#extensions): a `list` of `Extension` types to initialize.
 
 `context`: the [`ContextValue`](types-reference.md#contextvalue) of type specific to the server.
-
 
 ### Methods
 
@@ -272,14 +250,12 @@ Creates middleware manager instance combining middleware and extensions.
 Returns instance of the type passed in `manager_class` argument
 or `MiddlewareManager` that query executor then uses.
 
-
 ##### Optional arguments
 
 `middleware`: a `list` of `Middleware` instances
 
 `manager_class` a `type` of middleware manager to use. `MiddlewareManager`
 is used if this argument is passed `None` or omitted.
-
 
 #### `request`
 
@@ -293,7 +269,6 @@ A context manager that should wrap request processing.
 Runs `request_started` hook at beginning and `request_finished` at
 the end of request processing, enabling APM extensions like ApolloTracing.
 
-
 #### `has_errors`
 
 ```python
@@ -304,7 +279,6 @@ def has_errors(self, errors: List[GraphQLError]) -> None:
 Propagates GraphQL errors returned by GraphQL server to extensions.
 
 Should be called only when there are errors.
-
 
 #### `format`
 
@@ -319,9 +293,7 @@ This data can be retrieved from the [`extensions`](types-reference.md#extensions
 
 Returns `dict` with JSON-serializable data.
 
-
-- - - - -
-
+---
 
 ## `ExtensionSync`
 
@@ -334,7 +306,6 @@ Base class for sync extensions, extends `Extension`.
 
 Subclasses of this this class should override default methods to run
 custom logic during Query execution.
-
 
 ### Methods
 
@@ -353,7 +324,6 @@ def resolve(
 
 Sync extension hook wrapping field's value resolution.
 
-
 ##### Arguments
 
 `next_`: a `resolver` or next extension's `resolve` method.
@@ -364,9 +334,7 @@ Sync extension hook wrapping field's value resolution.
 
 `**kwargs`: extra arguments from GraphQL to pass to resolver.
 
-
-- - - - -
-
+---
 
 ## `FallbackResolversSetter`
 
@@ -380,12 +348,11 @@ sets their resolver to `graphql.default_field_resolver` package if
 they don't have any resolver set yet.
 
 > **Deprecated:** This class doesn't provide any utility for developers and
-only serves as a base for `SnakeCaseFallbackResolversSetter` which is being
-replaced by what we believe to be a better solution.
+> only serves as a base for `SnakeCaseFallbackResolversSetter` which is being
+> replaced by what we believe to be a better solution.
 >
 > Because of this we are deprecating this utility. It will be removed in future
-Ariadne release.
-
+> Ariadne release.
 
 ### Methods
 
@@ -397,7 +364,6 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
 ```
 
 Scans [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) for types with fields that don't have set resolver.
-
 
 #### `add_resolvers_to_object_fields`
 
@@ -411,7 +377,6 @@ def add_resolvers_to_object_fields(
 
 Sets explicit default resolver on a fields of an object that don't have any.
 
-
 #### `add_resolver_to_field`
 
 ```python
@@ -421,9 +386,7 @@ def add_resolver_to_field(self, _: str, field_object: GraphQLField) -> None:
 
 Sets `default_field_resolver` as a resolver on a field that doesn't have any.
 
-
-- - - - -
-
+---
 
 ## `InterfaceType`
 
@@ -439,7 +402,6 @@ methods. If those are used to set resolvers for interface's fields, those
 resolvers will instead be set on fields of GraphQL types implementing this
 interface, but only if those fields don't already have resolver of their own set
 by the `ObjectType`.
-
 
 ### Type resolver
 
@@ -474,7 +436,6 @@ class UserRepr:
     __typename: str = "User"
 ```
 
-
 ### Constructor
 
 ```python
@@ -492,18 +453,15 @@ Type resolver is required by `InterfaceType` to function properly, but can
 be set later using either `set_type_resolver(type_resolver)`
 setter or `type_resolver` decorator.
 
-
 #### Required arguments
 
 `name`: a `str` with the name of GraphQL interface type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind to.
 
-
 #### Optional arguments
 
 `type_resolver`: a `Resolver` used to resolve a str with name of GraphQL type
 from it's Python representation.
-
 
 ### Methods
 
@@ -526,7 +484,6 @@ def type_resolver(obj: Any, *_) -> str:
     ...
 ```
 
-
 #### `bind_to_schema`
 
 ```python
@@ -543,7 +500,6 @@ If this interface has any resolvers set, it also scans [GraphQL schema](https://
 types implementing this interface and sets those resolvers on those types
 fields, but only if those fields don't already have other resolver set.
 
-
 #### `validate_graphql_type`
 
 ```python
@@ -556,7 +512,6 @@ def validate_graphql_type(
 
 Validates that schema's GraphQL type associated with this `InterfaceType`
 is an `interface`.
-
 
 ### Example
 
@@ -640,9 +595,7 @@ schema = make_executable_schema(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `MutationType`
 
@@ -653,7 +606,6 @@ class MutationType(ObjectType):
 
 An convenience class for defining Mutation type.
 
-
 ### Constructor
 
 ```python
@@ -662,7 +614,6 @@ def __init__(self):
 ```
 
 Initializes the `MutationType` with a GraphQL name set to `Mutation`.
-
 
 ### Example
 
@@ -676,9 +627,7 @@ mutation_type = MutationType()
 mutation_type = ObjectType("Mutation")
 ```
 
-
-- - - - -
-
+---
 
 ## `ObjectType`
 
@@ -689,7 +638,6 @@ class ObjectType(SchemaBindable):
 
 [Bindable](bindables.md) populating object types in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic.
 
-
 ### Constructor
 
 ```python
@@ -699,12 +647,10 @@ def __init__(self, name: str):
 
 Initializes the `ObjectType` with a `name`.
 
-
 #### Required arguments
 
 `name`: a `str` with the name of GraphQL object type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind to.
-
 
 ### Methods
 
@@ -720,12 +666,10 @@ Return a decorator that sets decorated function as a resolver for named field.
 Wrapper for `create_register_resolver` that on runtime validates `name` to be a
 string.
 
-
 ##### Required arguments
 
 `name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind decorated resolver to.
-
 
 #### `create_register_resolver`
 
@@ -739,12 +683,10 @@ def create_register_resolver(
 
 Return a decorator that sets decorated function as a resolver for named field.
 
-
 ##### Required arguments
 
 `name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind decorated resolver to.
-
 
 #### `set_field`
 
@@ -755,14 +697,12 @@ def set_field(self, name, resolver: Resolver) -> Resolver:
 
 Set a resolver for the field name.
 
-
 ##### Required arguments
 
 `name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 set this resolver for.
 
 `resolver`: a `Resolver` function to use.
-
 
 #### `set_alias`
 
@@ -773,14 +713,12 @@ def set_alias(self, name: str, to: str) -> None:
 
 Set an alias resolver for the field name to given Python name.
 
-
 ##### Required arguments
 
 `name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 set this resolver for.
 
 `to`: a `str` of an attribute or dict key to resolve this field to.
-
 
 #### `bind_to_schema`
 
@@ -795,7 +733,6 @@ If it has any resolver functions set, it assigns those to GraphQL type's
 fields `resolve` attributes. If field already has other resolver set on
 its `resolve` attribute, this resolver is replaced with the new one.
 
-
 #### `validate_graphql_type`
 
 ```python
@@ -809,7 +746,6 @@ def validate_graphql_type(
 Validates that schema's GraphQL type associated with this `ObjectType`
 is a `type`.
 
-
 #### `bind_resolvers_to_graphql_type`
 
 ```python
@@ -822,7 +758,6 @@ def bind_resolvers_to_graphql_type(
 ```
 
 Binds this `ObjectType` instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
-
 
 ### Example
 
@@ -857,7 +792,6 @@ schema = make_executable_schema(
     query_type,
 )
 ```
-
 
 ### Example with objects in objects
 
@@ -965,9 +899,7 @@ schema = make_executable_schema(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `QueryType`
 
@@ -978,7 +910,6 @@ class QueryType(ObjectType):
 
 An convenience class for defining Query type.
 
-
 ### Constructor
 
 ```python
@@ -987,7 +918,6 @@ def __init__(self):
 ```
 
 Initializes the `QueryType` with a GraphQL name set to `Query`.
-
 
 ### Example
 
@@ -1001,9 +931,7 @@ query_type = QueryType()
 query_type = ObjectType("Query")
 ```
 
-
-- - - - -
-
+---
 
 ## `ScalarType`
 
@@ -1021,7 +949,6 @@ default.
 
 This logic can be customized for three steps:
 
-
 ### Serialization
 
 Serialization step converts Python representation of scalar's value to a
@@ -1035,7 +962,6 @@ def serialize_date(value: date) -> str:
     # Serialize dates as "YYYY-MM-DD" string
     return date.strftime("%Y-%m-%d")
 ```
-
 
 ### Value parsing
 
@@ -1054,7 +980,6 @@ def parse_date_str(value: str) -> date:
             f'"{value}" is not a date string in YYYY-MM-DD format.'
         )
 ```
-
 
 ### Literal parsing
 
@@ -1088,7 +1013,6 @@ parser unnecessary for majority of scalar implementations.
 Scalar literals are always parsed twice: on query validation and during
 query execution.
 
-
 ### Constructor
 
 ```python
@@ -1105,12 +1029,10 @@ def __init__(
 
 Initializes the `ScalarType` with a `name`.
 
-
 #### Required arguments
 
 `name`: a `str` with the name of GraphQL scalar in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind to.
-
 
 #### Optional arguments
 
@@ -1122,7 +1044,6 @@ from query's "variables" JSON into scalar's Python representation.
 
 `literal_parser`: a function called to convert an AST value
 from parsed query into scalar's Python representation.
-
 
 ### Methods
 
@@ -1148,7 +1069,6 @@ def serialize_date(value: date) -> str:
     # Serialize dates as "YYYY-MM-DD" string
     return date.strftime("%Y-%m-%d")
 ```
-
 
 #### `set_value_parser`
 
@@ -1177,7 +1097,6 @@ def parse_date_str(value: str) -> date:
             f'"{value}" is not a date string in YYYY-MM-DD format.'
         )
 ```
-
 
 #### `set_literal_parser`
 
@@ -1212,7 +1131,6 @@ def parse_date_literal(
         )
 ```
 
-
 #### `bind_to_schema`
 
 ```python
@@ -1226,7 +1144,6 @@ If it has serializer or parser functions set, it assigns those to GraphQL
 scalar's attributes. If scalar's attribute already has other function
 set, this function is replaced with the new one.
 
-
 #### `validate_graphql_type`
 
 ```python
@@ -1239,7 +1156,6 @@ def validate_graphql_type(
 
 Validates that schema's GraphQL type associated with this `ScalarType`
 is a `scalar`.
-
 
 ### Example datetime scalar
 
@@ -1295,13 +1211,12 @@ schema = make_executable_schema(
 )
 ```
 
-
 ### Example generic scalar
 
 Generic scalar is a pass-through scalar that doesn't perform any value
 conversion. Most common use case for those is for GraphQL fields that
 return unstructured JSON to the client. To create a scalar like this,
-you can simply include  `scalar Generic` in your [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema):
+you can simply include `scalar Generic` in your [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema):
 
 ```python
 from ariadne import QueryType, make_executable_schema
@@ -1337,9 +1252,7 @@ schema = make_executable_schema(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `SchemaBindable`
 
@@ -1353,7 +1266,6 @@ Base class for [bindable](bindables.md) types.
 Subclasses should extend the `bind_to_schema` method with custom logic for
 populating an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic and values.
 
-
 ### Methods
 
 #### `bind_to_schema`
@@ -1364,7 +1276,6 @@ def bind_to_schema(self, schema: GraphQLSchema) -> None:
 ```
 
 Binds this `Schema[Bindable`](bindables.md) instance to the instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
-
 
 ### Example
 
@@ -1454,9 +1365,7 @@ schema = make_executable_schema(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `SchemaDirectiveVisitor`
 
@@ -1470,13 +1379,11 @@ Base class for custom GraphQL directives.
 Also implements class methods with container and management logic for
 directives at schema creation time, used by `make_executable_schema`.
 
-
 ### Lifecycle
 
 Separate instances of the GraphQL directive are created for each GraphQL
 schema item with the directive set on it. If directive is set on two
 fields, two separate instances of a directive will be created.
-
 
 ### Constructor
 
@@ -1486,7 +1393,6 @@ def __init__(self, name, args, visited_type, schema, context):
 ```
 
 Instantiates the directive for schema object.
-
 
 #### Required arguments
 
@@ -1499,7 +1405,6 @@ Instantiates the directive for schema object.
 `schema`: the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance.
 
 `context`: `None`, unused but present for historic reasons.
-
 
 ### Methods
 
@@ -1518,14 +1423,12 @@ Get GraphQL directive declaration from [GraphQL schema](https://graphql-core-3.r
 
 Returns `GraphQLDirective` object or `None`.
 
-
 ##### Required arguments
 
 `directive_name`: a `str` with name of directive in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 `schema`: a [`GraphQLSchema`](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance to retrieve the directive
 declaration from.
-
 
 #### `get_declared_directives`
 
@@ -1544,14 +1447,12 @@ Returns a `dict` where keys are strings with directive names in schema
 and values are `GraphQLDirective` objects with their declarations in the
 [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
-
 ##### Required arguments
 
 `directive_name`: a `str` with name of directive in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
 `schema`: a [`GraphQLSchema`](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance to retrieve the directive
 declaration from.
-
 
 #### `visit_schema_directives`
 
@@ -1573,7 +1474,6 @@ Applied directives mutate the [GraphQL schema](https://graphql-core-3.readthedoc
 Returns dict with names of GraphQL directives as keys and list of
 directive instances created for each directive name.
 
-
 ##### Required arguments
 
 `schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to which directives should be applied.
@@ -1582,11 +1482,9 @@ directive instances created for each directive name.
 `Type[SchemaDirectiveVisitor]` pairs defining mapping of
 `SchemaDirectiveVisitor` types to their names in the [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
 
-
 ##### Optional arguments
 
 `context`: `None`, unused but present for historic reasons.
-
 
 ### Example schema visitors
 
@@ -1660,9 +1558,7 @@ class MyDirective(SchemaDirectiveVisitor):
         pass
 ```
 
-
-- - - - -
-
+---
 
 ## `SchemaNameConverter`
 
@@ -1682,9 +1578,7 @@ Takes three arguments:
 
 Returns a string with the Python name to use.
 
-
-- - - - -
-
+---
 
 ## `SnakeCaseFallbackResolversSetter`
 
@@ -1697,8 +1591,7 @@ Subclass of `FallbackResolversSetter` that uses case-converting resolver
 instead of `default_field_resolver`.
 
 > **Deprecated:** Use `convert_names_case` from `make_executable_schema`
-instead.
-
+> instead.
 
 ### Methods
 
@@ -1715,9 +1608,7 @@ def add_resolver_to_field(
 
 Sets case converting resolver on a field that doesn't have any.
 
-
-- - - - -
-
+---
 
 ## `SubscriptionType`
 
@@ -1730,7 +1621,6 @@ class SubscriptionType(ObjectType):
 
 Extends `ObjectType`, providing `source` decorator and `set_source` method, used
 to set subscription sources for it's fields.
-
 
 ### Subscription sources ("subscribers")
 
@@ -1747,7 +1637,6 @@ async def source_fn(
     yield ...
 ```
 
-
 ### Subscription resolvers
 
 Subscription resolvers are called with message returned from the source. Their role
@@ -1763,12 +1652,10 @@ def resolver_fn(
     return ...
 ```
 
-
 ### GraphQL arguments
 
 When subscription field has arguments those arguments values are passed
 to both source and resolver functions.
-
 
 ### Constructor
 
@@ -1778,7 +1665,6 @@ def __init__(self):
 ```
 
 Initializes the `SubscriptionType` with a GraphQL name set to `Subscription`.
-
 
 ### Methods
 
@@ -1794,12 +1680,10 @@ Return a decorator that sets decorated function as a source for named field.
 Wrapper for `create_register_subscriber` that on runtime validates `name` to be a
 string.
 
-
 ##### Required arguments
 
 `name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind decorated source to.
-
 
 #### `create_register_subscriber`
 
@@ -1813,12 +1697,10 @@ def create_register_subscriber(
 
 Return a decorator that sets decorated function as a source for named field.
 
-
 ##### Required arguments
 
 `name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind decorated source to.
-
 
 #### `set_source`
 
@@ -1829,14 +1711,12 @@ def set_source(self, name, generator: Subscriber) -> Subscriber:
 
 Set a source for the field name.
 
-
 ##### Required arguments
 
 `name`: a `str` with a name of the GraphQL object's field in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 set this source for.
 
 `generator`: a `Subscriber` function to use as an source.
-
 
 #### `bind_to_schema`
 
@@ -1850,7 +1730,6 @@ Binds this `SubscriptionType` instance to the instance of [GraphQL schema](https
 If it has any previously set subscription resolvers or source functions,
 those will be replaced with new ones from this instance.
 
-
 #### `bind_subscribers_to_graphql_type`
 
 ```python
@@ -1861,7 +1740,6 @@ def bind_subscribers_to_graphql_type(self, graphql_type) -> None:
 Binds this `SubscriptionType` instance's source functions.
 
 Source functions are set to fields `subscribe` attributes.
-
 
 ### Example source and resolver
 
@@ -1915,7 +1793,6 @@ schema = make_executable_schema(
 )
 ```
 
-
 ### Example chat
 
 [Ariadne GraphQL Chat Example](https://github.com/mirumee/ariadne-graphql-chat-example)
@@ -1923,9 +1800,7 @@ is the Github repository with GraphQL chat application, using Redis message back
 Broadcaster library for publishing and subscribing to messages and React.js client
 using Apollo-Client subscriptions.
 
-
-- - - - -
-
+---
 
 ## `UnionType`
 
@@ -1935,7 +1810,6 @@ class UnionType(SchemaBindable):
 ```
 
 [Bindable](bindables.md) populating interfaces in a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) with Python logic.
-
 
 ### Type resolver
 
@@ -1970,7 +1844,6 @@ class UserRepr:
     __typename: str = "User"
 ```
 
-
 ### Constructor
 
 ```python
@@ -1988,18 +1861,15 @@ Type resolver is required by `UnionType` to function properly, but can
 be set later using either `set_type_resolver(type_resolver)`
 setter or `type_resolver` decorator.
 
-
 #### Required arguments
 
 `name`: a `str` with the name of GraphQL union type in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to
 bind to.
 
-
 #### Optional arguments
 
 `type_resolver`: a `Resolver` used to resolve a str with name of GraphQL type
 from it's Python representation.
-
 
 ### Methods
 
@@ -2022,7 +1892,6 @@ def type_resolver(obj: Any, *_) -> str:
     ...
 ```
 
-
 #### `bind_to_schema`
 
 ```python
@@ -2034,7 +1903,6 @@ Binds this `UnionType` instance to the instance of [GraphQL schema](https://grap
 
 Sets `resolve_type` attribute on GraphQL union. If this attribute was
 previously set, it will be replaced to new value.
-
 
 #### `validate_graphql_type`
 
@@ -2048,7 +1916,6 @@ def validate_graphql_type(
 
 Validates that schema's GraphQL type associated with this `UnionType`
 is an `union`.
-
 
 ### Example
 
@@ -2130,9 +1997,7 @@ schema = make_executable_schema(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `combine_multipart_data`
 
@@ -2151,7 +2016,6 @@ Utility function for integration developers.
 
 Mutates `operations` in place, but also returns it.
 
-
 ### Requires arguments
 
 `operations`: a `list` or `dict` with GraphQL operations to populate the file
@@ -2164,7 +2028,6 @@ to keys in `files dict`, values are lists of strings with paths (eg.:
 
 `files`: a `dict` of files. Keys are strings, values are environment specific
 representations of uploaded files.
-
 
 ### Example
 
@@ -2196,9 +2059,7 @@ assert operations == {
 }
 ```
 
-
-- - - - -
-
+---
 
 ## `convert_camel_case_to_snake`
 
@@ -2214,11 +2075,9 @@ names using the `camelCase` convention to Python counterparts in `snake_case`.
 
 Returns a string with converted name.
 
-
 ### Required arguments
 
 `graphql_name`: a `str` with name to convert.
-
 
 ### Example
 
@@ -2249,9 +2108,7 @@ other digit:
 assert convert_camel_case_to_snake("Rfc123") == "rfc_123"
 ```
 
-
-- - - - -
-
+---
 
 ## `convert_kwargs_to_snake_case`
 
@@ -2269,12 +2126,10 @@ same conversion to keys of nested dicts and dicts in lists of elements.
 Returns decorated resolver function.
 
 > **Deprecated:** This decorator is deprecated and will be deleted in future
-version of Ariadne. Set `out_name`s explicitly in your [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) or use
-the `convert_schema_names` option on `make_executable_schema`.
+> version of Ariadne. Set `out_name`s explicitly in your [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) or use
+> the `convert_schema_names` option on `make_executable_schema`.
 
-
-- - - - -
-
+---
 
 ## `convert_schema_names`
 
@@ -2309,7 +2164,6 @@ Generally you shouldn't call this function yourself, as its part of
 `make_executable_schema` logic, but its part of public API for other
 libraries to use.
 
-
 ### Required arguments
 
 `schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to update.
@@ -2318,9 +2172,7 @@ libraries to use.
 names from `camelCase` to `snake_case`. If not provided, default one
 based on `convert_camel_case_to_snake` is used.
 
-
-- - - - -
-
+---
 
 ## `fallback_resolvers`
 
@@ -2331,12 +2183,10 @@ fallback_resolvers = FallbackResolversSetter()
 [Bindable](bindables.md) instance of `FallbackResolversSetter`.
 
 > **Deprecated:** This utility will be removed in future Ariadne release.
-> 
+>
 > See `FallbackResolversSetter` for details.
 
-
-- - - - -
-
+---
 
 ## `format_error`
 
@@ -2352,20 +2202,16 @@ key with `exception` object containing error's `context` and `stacktrace`.
 
 Returns a JSON-serializable `dict` with error representation.
 
-
 ### Required arguments
 
 `error`: an `GraphQLError` to convert into JSON serializable format.
-
 
 ### Optional arguments
 
 `debug`: a `bool` that controls if debug data should be included in
 result `dict`. Defaults to `False`.
 
-
-- - - - -
-
+---
 
 ## `get_error_extension`
 
@@ -2380,14 +2226,11 @@ Returns a JSON-serializable `dict` with `stacktrace` and `context` to include
 under error's [`extensions`](types-reference.md#extensions) key in JSON response. Returns `None` if `error`
 has no stacktrace or wraps no exception.
 
-
 ### Required arguments
 
 `error`: an `GraphQLError` to return context and stacktrace for.
 
-
-- - - - -
-
+---
 
 ## `get_formatted_error_context`
 
@@ -2402,14 +2245,11 @@ Returns a `dict` of strings, with every key being value name and value
 being `repr()` of it's Python value. Returns `None` if context is not
 available.
 
-
 ### Required arguments
 
 `error`: an `Exception` to return formatted context for.
 
-
-- - - - -
-
+---
 
 ## `get_formatted_error_traceback`
 
@@ -2426,14 +2266,11 @@ This approach produces better results in GraphQL explorers which display every
 line under previous one but not always format linebreak characters for blocks
 of text.
 
-
 ### Required arguments
 
 `error`: an `Exception` to return formatted stacktrace for.
 
-
-- - - - -
-
+---
 
 ## `gql`
 
@@ -2446,7 +2283,6 @@ Verifies that given string is a valid GraphQL.
 
 Provides definition time validation for GraphQL strings. Returns unmodified
 string. Some IDEs provide GraphQL syntax for highlighting those strings.
-
 
 ### Examples
 
@@ -2475,9 +2311,7 @@ type_defs = gql(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `graphql`
 
@@ -2514,14 +2348,12 @@ Returns a tuple with two items:
 (defining either `data`, `error`, or both keys) that should be returned to
 client.
 
-
 ### Required arguments
 
 `schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance that defines `Query` type.
 
 `data`: a `dict` with query data (`query` string, optionally `operationName`
 string and `variables` dictionary).
-
 
 ### Optional arguments
 
@@ -2566,9 +2398,7 @@ executor.
 `**kwargs`: any kwargs not used by `graphql` are passed to
 `graphql.graphql`.
 
-
-- - - - -
-
+---
 
 ## `graphql_sync`
 
@@ -2605,14 +2435,12 @@ Returns a tuple with two items:
 (defining either `data`, `error`, or both keys) that should be returned to
 client.
 
-
 ### Required arguments
 
 `schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance that defines `Query` type.
 
 `data`: a `dict` with query data (`query` string, optionally `operationName`
 string and `variables` dictionary).
-
 
 ### Optional arguments
 
@@ -2657,9 +2485,7 @@ executor.
 `**kwargs`: any kwargs not used by `graphql_sync` are passed to
 `graphql.graphql_sync`.
 
-
-- - - - -
-
+---
 
 ## `is_default_resolver`
 
@@ -2678,14 +2504,11 @@ or was created by Ariadne's `resolve_to` utility. Returns `False` otherwise.
 `graphql.default_field_resolver` is there's no resolver function set on a
 field.
 
-
 ### Required arguments
 
 `resolver`: an function `None` to test or `None`.
 
-
-- - - - -
-
+---
 
 ## `load_schema_from_path`
 
@@ -2705,15 +2528,12 @@ Returns a `str` with schema definition that was already validated to be valid
 GraphQL SDL. Raises `GraphQLFileSyntaxError` is any of loaded files fails to
 parse.
 
-
 ### Required arguments
 
 `path`: a `str` or `PathLike` object pointing to either file or directory
 with files to load.
 
-
-- - - - -
-
+---
 
 ## `make_executable_schema`
 
@@ -2732,12 +2552,10 @@ Create a [`GraphQLSchema`](https://graphql-core-3.readthedocs.io/en/latest/modul
 Returns a [`GraphQLSchema`](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance with attributes populated with Python
 values and functions.
 
-
 ### Required arguments
 
 `type_defs`: a `str` or list of `str` with GraphQL types definitions in
 schema definition language (`SDL`).
-
 
 ### Optional arguments
 
@@ -2755,7 +2573,6 @@ and `snake_case` used by Python. Defaults to `False`, making all conversion
 explicit and up to developer to implement. Set `True` to use
 default strategy using `convert_camel_case_to_snake` for name conversions or
 set to custom function to customize this behavior.
-
 
 ### Example with minimal schema
 
@@ -2786,7 +2603,6 @@ assert result == {
     },
 }
 ```
-
 
 ### Example with bindables
 
@@ -2935,7 +2751,6 @@ assert result == {
 }
 ```
 
-
 ### Example with directive
 
 Below code uses `directives` option to set custom directive on schema:
@@ -2986,7 +2801,6 @@ assert result == {
 }
 ```
 
-
 ### Example with converted names
 
 Below code uses `convert_names_case=True` option to resolve `helloWorld`
@@ -3018,9 +2832,7 @@ assert result == {
 }
 ```
 
-
-- - - - -
-
+---
 
 ## `resolve_to`
 
@@ -3033,18 +2845,15 @@ Create a resolver that resolves to given attribute or dict key.
 
 Returns a resolver function that can be used as resolver.
 
-Usually not used directly  but through higher level features like aliases
+Usually not used directly but through higher level features like aliases
 or schema names conversion.
-
 
 ### Required arguments
 
 `attr_name`: a `str` with name of attribute or `dict` key to return from
 resolved object.
 
-
-- - - - -
-
+---
 
 ## `set_default_enum_values_on_schema`
 
@@ -3060,14 +2869,11 @@ attribute is empty, its populated with with a string of its GraphQL name.
 
 This string is then used to represent enum's value in Python instead of `None`.
 
-
 ### Requires arguments
 
 `schema`: a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to set enums default values in.
 
-
-- - - - -
-
+---
 
 ## `snake_case_fallback_resolvers`
 
@@ -3079,9 +2885,7 @@ snake_case_fallback_resolvers = SnakeCaseFallbackResolversSetter()
 
 > **Deprecated:** Use `convert_names_case` from `make_executable_schema` instead.
 
-
-- - - - -
-
+---
 
 ## `subscribe`
 
@@ -3113,14 +2917,12 @@ Returns a tuple with two items:
 `AsyncGenerator`: an async generator that server implementation should
 consume to retrieve messages to send to client.
 
-
 ### Required arguments
 
 'schema': a [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) instance that defines `Subscription` type.
 
 `data`: a `dict` with query data (`query` string, optionally `operationName`
 string and `variables` dictionary).
-
 
 ### Optional arguments
 
@@ -3153,9 +2955,7 @@ errors encountered during query execution to JSON-serializable format.
 `**kwargs`: any kwargs not used by `subscribe` are passed to
 `graphql.subscribe`.
 
-
-- - - - -
-
+---
 
 ## `type_implements_interface`
 
@@ -3171,7 +2971,6 @@ Test if type definition from [GraphQL schema](https://graphql-core-3.readthedocs
 
 Returns `True` if type implements interface and `False` if it doesn't.
 
-
 ### Required arguments
 
 `interface`: a `str` with name of interface in [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema).
@@ -3179,9 +2978,7 @@ Returns `True` if type implements interface and `False` if it doesn't.
 `graphql_type`: a `GraphQLType` interface to test. It may or may not have
 the `interfaces` attribute.
 
-
-- - - - -
-
+---
 
 ## `unwrap_graphql_error`
 
@@ -3201,7 +2998,6 @@ Original exception is available through `GraphQLError`'s `original_error`
 attribute, but sometimes `GraphQLError` can be wrapped in other `GraphQLError`.
 
 Returns unwrapped exception or `None` if no original exception was found.
-
 
 ### Example
 
@@ -3232,9 +3028,7 @@ error = ValueError("I am a test!")
 assert unwrap_graphql_error(error) == error
 ```
 
-
-- - - - -
-
+---
 
 ## `upload_scalar`
 
@@ -3245,7 +3039,6 @@ upload_scalar = ScalarType('Upload')
 Optional Python logic for `Upload` scalar.
 
 `Upload` scalar doesn't require any custom Python logic to work, but this utility sets `serializer` and `literal_parser` to raise ValueErrors when `Upload` is used either as return type for field or passed as literal value in GraphQL query.
-
 
 ### Example
 
@@ -3278,9 +3071,7 @@ schema = make_executable_schema(
 )
 ```
 
-
-- - - - -
-
+---
 
 ## `validate_schema_enum_values`
 
@@ -3292,7 +3083,6 @@ def validate_schema_enum_values(schema: GraphQLSchema) -> None:
 Raises `ValueError` if [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) has input fields or arguments with
 default values that are undefined enum values.
 
-
 ### Example schema with invalid field argument
 
 This schema fails to validate because argument `role` on field `users`
@@ -3301,20 +3091,19 @@ the `UserRole` enum:
 
 ```graphql
 type Query {
-    users(role: UserRole = REVIEWER): [User!]!
+  users(role: UserRole = REVIEWER): [User!]!
 }
 
 enum UserRole {
-    MEMBER
-    MODERATOR
-    ADMIN
+  MEMBER
+  MODERATOR
+  ADMIN
 }
 
 type User {
-    id: ID!
+  id: ID!
 }
 ```
-
 
 ### Example schema with invalid input field
 
@@ -3324,21 +3113,21 @@ the `UserRole` enum:
 
 ```graphql
 type Query {
-    users(filter: UserFilters): [User!]!
+  users(filter: UserFilters): [User!]!
 }
 
 input UserFilters {
-    name: String
-    role: UserRole = REVIEWER
+  name: String
+  role: UserRole = REVIEWER
 }
 
 enum UserRole {
-    MEMBER
-    MODERATOR
-    ADMIN
+  MEMBER
+  MODERATOR
+  ADMIN
 }
 
 type User {
-    id: ID!
+  id: ID!
 }
 ```

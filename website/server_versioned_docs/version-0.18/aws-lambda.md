@@ -1,13 +1,11 @@
 ---
-id: version-0.18-aws-lambda
+id: aws-lambda
 title: AWS lambda
-original_id: aws-lambda
 ---
 
 Multiple ways to implement an AWS Lambda function for GraphQL using Ariadne exist.
 
-This document presents selected few of those, but it's aim is not to be an __exhaustive__ list of all approaches to using Ariadne on the AWS Lambda.
-
+This document presents selected few of those, but it's aim is not to be an **exhaustive** list of all approaches to using Ariadne on the AWS Lambda.
 
 ## Deploying ASGI application with Mangum
 
@@ -36,7 +34,6 @@ handler = Mangum(app, lifespan="off")
 This approach is recommended because it gives immediate availability of Ariadne's features through the `GraphQL` object's options, and doesn't require implementation of custom translation layer between GraphQL engine and AWS lambda.
 
 > **Note:** Mangum doesn't require Ariadne's ASGI application exactly. If you need your lambda function to offer other API endpoints in addition to the GraphQL, you can combine your Ariadne's app with [Starlette](starlette-integration.md) or [FastAPI](fastapi-integration.md).
-
 
 ## Minimal lambda handler example
 
@@ -96,7 +93,6 @@ def response(body: dict, status_code: int = 200):
 ```
 
 This lambda function will expect a JSON request with at least one key, a `query` with a `str` containing the GraphQL query.
-
 
 ### Asynchronous example
 

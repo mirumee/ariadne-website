@@ -1,13 +1,10 @@
 ---
-id: version-0.23-wsgi-reference
+id: wsgi-reference
 title: WSGI reference
 sidebar_label: ariadne.wsgi
-original_id: wsgi-reference
 ---
 
 The `ariadne.wsgi` module exports the WSGI application and middleware:
-
-
 
 ## `GraphQL`
 
@@ -17,7 +14,6 @@ class GraphQL:
 ```
 
 WSGI application implementing the GraphQL server.
-
 
 ### Constructor
 
@@ -47,11 +43,9 @@ def __init__(
 
 Initializes the WSGI app.
 
-
 #### Required arguments
 
 `schema`: an instance of [GraphQL schema](https://graphql-core-3.readthedocs.io/en/latest/modules/type.html#graphql.type.GraphQLSchema) to execute queries against.
-
 
 #### Optional arguments
 
@@ -112,7 +106,6 @@ if [`extensions`](types-reference.md#extensions) or `middleware` options are set
 this server to execute the GraphQL queries. Defaults to standard
 context type implemented by the `graphql`.
 
-
 ### Methods
 
 #### `__call__`
@@ -126,7 +119,6 @@ An entrypoint to the WSGI application.
 
 Returns list of bytes with response body.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
@@ -136,7 +128,6 @@ Returns list of bytes with response body.
 Details about the arguments and their usage are described in PEP 3333:
 
 https://peps.python.org/pep-3333/
-
 
 #### `handle_graphql_error`
 
@@ -154,13 +145,11 @@ error response to the client.
 
 Returns list of bytes with response body.
 
-
 ##### Required arguments
 
 `error`: a `GraphQLError` instance.
 
 `start_response`: a callable used to begin new HTTP response.
-
 
 #### `handle_http_error`
 
@@ -178,13 +167,11 @@ error response to the client.
 
 Returns list of bytes with response body.
 
-
 ##### Required arguments
 
 `error`: a `HttpError` instance.
 
 `start_response`: a callable used to begin new HTTP response.
-
 
 #### `handle_request`
 
@@ -201,13 +188,11 @@ Handles WSGI HTTP request and returns a a response to the client.
 
 Returns list of bytes with response body.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `start_response`: a callable used to begin new HTTP response.
-
 
 #### `handle_get`
 
@@ -220,13 +205,11 @@ Handles WSGI HTTP GET request and returns a response to the client.
 
 Returns list of bytes with response body.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `start_response`: a callable used to begin new HTTP response.
-
 
 #### `handle_get_query`
 
@@ -240,7 +223,6 @@ def handle_get_query(
     ...
 ```
 
-
 #### `extract_data_from_get`
 
 ```python
@@ -252,11 +234,9 @@ Extracts GraphQL data from GET request's querystring.
 
 Returns a `dict` with GraphQL query data that was not yet validated.
 
-
 ##### Required arguments
 
 `query_params`: a `dict` with parsed query string.
-
 
 #### `handle_get_explorer`
 
@@ -269,13 +249,11 @@ Handles WSGI HTTP GET explorer request and returns a response to the client.
 
 Returns list of bytes with response body.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `start_response`: a callable used to begin new HTTP response.
-
 
 #### `handle_post`
 
@@ -288,13 +266,11 @@ Handles WSGI HTTP POST request and returns a a response to the client.
 
 Returns list of bytes with response body.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `start_response`: a callable used to begin new HTTP response.
-
 
 #### `get_request_data`
 
@@ -307,11 +283,9 @@ Extracts GraphQL request data from request.
 
 Returns a `dict` with GraphQL query data that was not yet validated.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
-
 
 #### `extract_data_from_json_request`
 
@@ -324,11 +298,9 @@ Extracts GraphQL data from JSON request.
 
 Returns a `dict` with GraphQL query data that was not yet validated.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
-
 
 #### `get_request_content_length`
 
@@ -344,11 +316,9 @@ Returns an `int` with content length.
 Raises a `HttpBadRequestError` error if `Content-length` header is
 missing or invalid.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
-
 
 #### `get_request_body`
 
@@ -363,13 +333,11 @@ Returns `bytes` with request body of specified length.
 
 Raises a `HttpBadRequestError` error if request body is empty.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `content_length`: an `int` with content length.
-
 
 #### `extract_data_from_multipart_request`
 
@@ -382,11 +350,9 @@ Extracts GraphQL data from `multipart/form-data` request.
 
 Returns an unvalidated `dict` with GraphQL query data.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
-
 
 #### `execute_query`
 
@@ -400,13 +366,11 @@ Executes GraphQL query and returns its result.
 Returns a [`GraphQLResult`](types-reference.md#graphqlresult), a two items long `tuple` with `bool` for
 success and JSON-serializable `data` to return to client.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `data`: a GraphQL data.
-
 
 #### `get_context_for_request`
 
@@ -424,13 +388,11 @@ Returns GraphQL context value for HTTP request.
 Default [`ContextValue`](types-reference.md#contextvalue) for WSGI application is a `dict` with single
 `request` key that contains WSGI environment dictionary.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `data`: a GraphQL data.
-
 
 #### `get_extensions_for_request`
 
@@ -447,13 +409,11 @@ Returns extensions to use when handling the GraphQL request.
 
 Returns [`ExtensionList`](types-reference.md#extensionlist), a list of extensions to use or `None`.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `context`: a [`ContextValue`](types-reference.md#contextvalue) for this request.
-
 
 #### `get_middleware_for_request`
 
@@ -470,13 +430,11 @@ Returns GraphQL middlewares to use when handling the GraphQL request.
 
 Returns [`MiddlewareList`](types-reference.md#middlewarelist), a list of middlewares to use or `None`.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `context`: a [`ContextValue`](types-reference.md#contextvalue) for this request.
-
 
 #### `return_response_from_result`
 
@@ -493,13 +451,11 @@ Returns WSGI response from GraphQL result.
 
 Returns a list of bytes with response body.
 
-
 ##### Required arguments
 
 `start_response`: a WSGI callable that initiates new response.
 
 `result`: a [`GraphQLResult`](types-reference.md#graphqlresult) for this request.
-
 
 #### `handle_not_allowed_method`
 
@@ -517,16 +473,13 @@ Handles request for unsupported HTTP method.
 Returns 200 response for `OPTIONS` request and 405 response for other
 methods. All responses have empty body.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `start_response`: a WSGI callable that initiates new response.
 
-
-- - - - -
-
+---
 
 ## `GraphQLMiddleware`
 
@@ -536,7 +489,6 @@ class GraphQLMiddleware:
 ```
 
 Simple WSGI middleware routing requests to either app or GraphQL.
-
 
 ### Constructor
 
@@ -554,7 +506,6 @@ Initializes the WSGI middleware.
 
 Returns response from either application or GraphQL application
 
-
 #### Required arguments
 
 `app`: a WSGI application to route the request to if its path doesn't
@@ -563,12 +514,10 @@ match the `path` option.
 `graphql_app`: a WSGI application to route the request to if its path
 matches the `path` option.
 
-
 #### Optional arguments
 
 `path`: a `str` with a path to the GraphQL application. Defaults to
 `/graphql/`.
-
 
 ### Methods
 
@@ -583,16 +532,13 @@ An entrypoint to the WSGI middleware.
 
 Returns list of bytes with response body.
 
-
 ##### Required arguments
 
 `environ`: a WSGI environment dictionary.
 
 `start_response`: a callable used to start new HTTP response.
 
-
-- - - - -
-
+---
 
 ## `FormData`
 
@@ -605,7 +551,6 @@ Feature-limited alternative of deprecated `cgi` standard package.
 
 Holds the data from `multipart/form-data` request.
 
-
 ### Attributes
 
 `charset`: a string with charset extracted from `Content-type` header.
@@ -614,7 +559,6 @@ Defaults to `latin-1`.
 `fields`: an `dict` with form's fields names and values.
 
 `files`: an `dict` with form's files names and values.
-
 
 ### Constructor
 
@@ -625,12 +569,10 @@ def __init__(self, content_type: Optional[str]):
 
 Initializes form data instance.
 
-
 #### Optional arguments
 
 `content_type`: a string with content type header's value. If not
 provided, `latin-1` is used for content encoding.
-
 
 ### Methods
 
@@ -646,11 +588,9 @@ Parses charset from `Content-type` header
 Returns none if `content_type` is not provided, empty or missing the
 `charset=` declaration.
 
-
 ##### Optional arguments
 
 `content_type`: a string with content type header's value.
-
 
 #### `on_field`
 
@@ -664,7 +604,6 @@ Callback for HTTP request parser to provide field data.
 Field name and value is decoded using the encoding stored in `encoding`
 attribute and stored in `fields` attribute.
 
-
 #### `on_file`
 
 ```python
@@ -677,7 +616,6 @@ Callback for HTTP request parser to provide file data.
 File's field name is decoded using the encoding stored in `encoding`
 attribute and stored in `files` attribute.
 
-
 #### `getvalue`
 
 ```python
@@ -688,7 +626,6 @@ def getvalue(self, field_name: str) -> str:
 Get form field's value.
 
 Returns field's value or empty string if field didn't exist.
-
 
 ##### Required arguments
 

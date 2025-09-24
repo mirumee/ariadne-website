@@ -1,14 +1,11 @@
 ---
-id: version-0.15-modularization
+id: modularization
 title: Modularization
-original_id: modularization
 ---
-
 
 Ariadne allows you to spread your GraphQL API implementation over multiple files, with different strategies being available for schema and resolvers.
 
 > We've recently released [Ariadne GraphQL Modules](#using-ariadne-graphql-modules) library that provides new way to modularize large GraphQL schemas.
-
 
 ## Defining schema in `.graphql` files
 
@@ -41,7 +38,6 @@ The above app won't be able to execute any queries but it will allow you to brow
 
 `load_schema_from_path` validates syntax of every loaded file, and will raise an `ariadne.exceptions.GraphQLFileSyntaxError` if file syntax is found to be invalid.
 
-
 ## Defining schema in multiple modules
 
 Because Ariadne expects `type_defs` to be either a string or list of strings, it's easy to split types across many string variables in many modules:
@@ -72,11 +68,9 @@ schema = make_executable_schema([query, user, scalars])
 
 The order in which types are defined or passed to `type_defs` doesn't matter, even if those types depend on each other.
 
-
 ## Defining types in multiple Python modules
 
 GraphQL types definitions can be split across multiple modules or even packages, and combined using the `make_executable_schema`:
-
 
 ```console
 myapp/
@@ -126,7 +120,6 @@ schema = make_executable_schema(type_defs, *types, isbn)
 ```
 
 The order in which objects are passed to the `bindables` argument matters. Most bindables replace previously set resolvers with new ones, when more than one is defined for the same GraphQL type, with `InterfaceType` and fallback resolvers being exceptions to this rule.
-
 
 ## Using Ariadne GraphQL Modules
 

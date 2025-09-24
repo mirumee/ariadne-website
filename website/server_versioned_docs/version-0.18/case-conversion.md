@@ -1,13 +1,11 @@
 ---
-id: version-0.18-case-conversion
+id: case-conversion
 title: Name case conversion
-original_id: case-conversion
 ---
 
 Most common convention for naming fields and arguments in GraphQL is the camel case, where "user birth date" is represented as `userBirthDate`. This is different from Python where object attributes, function names and arguments use the snake case and same "user birth date" becomes `user_birth_date`.
 
 This difference introduces friction to schema-first GraphQL APIs implemented by Python, but there are ways to establish automatic conversion between the two conversions at near-zero performance cost.
-
 
 ## Setting automatic name case conversion for whole schema
 
@@ -28,7 +26,6 @@ Doing so will result in following changes being made to the GraphQL schema:
 - Types fields without resolver already set on them will be assigned a special resolver that seeks Python counterpart of camel case name in object's attributes or dicts keys. Eg. `streetAddress2` field fill be resolved to `street_address_2` attribute for objects and key for dicts.
 - Fields arguments without `out_name` already set will be new names
 - Inputs fields without `out_name` already set will be set new names
-
 
 ### Custom function for names conversion
 
@@ -63,7 +60,7 @@ def custom_convert_schema_name(
             converted_name += "_"
 
         converted_name += c
-    
+
     return converted_name
 
 
@@ -74,13 +71,11 @@ schema = make_executable_schema(
 )
 ```
 
-
 ## Explicit name conversion
 
 If you prefer the _explicit is better than implicit_ approach, here's how to set those names manually:
 
 > **Note:** Mutating `resolve` and `out_name` attributes is considered safe to do if their original value was `None` and the GraphQL server has not started yet. Ariadne limits all mutations of Schema it performs to the `make_executable_schema`, where its not yet available to rest of the application.
-
 
 ### Types fields
 
@@ -122,7 +117,6 @@ schema = make_executable_schema(
 schema.type_map["Query"].fields["lastUpdated"].resolve = resolve_to("last_updated")
 ```
 
-
 ### Fields arguments
 
 Set Python names on arguments by mutating their `out_name` attribute:
@@ -146,7 +140,6 @@ schema = make_executable_schema(
 
 schema.type_map["Query"].fields["users"].args["orderBy"].out_name = "order_by"
 ```
-
 
 ### Inputs fields
 

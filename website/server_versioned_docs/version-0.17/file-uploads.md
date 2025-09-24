@@ -1,12 +1,9 @@
 ---
-id: version-0.17-file-uploads
+id: file-uploads
 title: File uploads
-original_id: file-uploads
 ---
 
-
 Ariadne implements the [GraphQL multipart request specification](https://github.com/jaydenseric/graphql-multipart-request-spec) that describes how file uploads should be implemented by both API clients and servers.
-
 
 > **Note**
 >
@@ -15,7 +12,6 @@ Ariadne implements the [GraphQL multipart request specification](https://github.
 > ```console
 > pip install "ariadne[file-uploads]"
 > ```
-
 
 ## Enabling file uploads
 
@@ -39,10 +35,9 @@ You will now be able to use `Upload` scalar arguments for your operations:
 
 ```graphql
 type Mutation {
-    uploadUserImage(image: Upload!): Boolean!
+  uploadUserImage(image: Upload!): Boolean!
 }
 ```
-
 
 ## Limitations
 
@@ -50,29 +45,26 @@ The default `Upload` scalar is a write-only scalar that supports only accessing 
 
 ```graphql
 type User {
-    "This field will fail with ValueError"
-    image: Upload
+  "This field will fail with ValueError"
+  image: Upload
 }
 ```
 
 ```graphql
 mutation {
-    uploadUserImage(image: "data:text/plain;base64,QXJpYWRuZSByb2NrcyE=")
+  uploadUserImage(image: "data:text/plain;base64,QXJpYWRuZSByb2NrcyE=")
 }
 ```
 
 > You are not required to use the `Upload` scalar implementation provided by Ariadne. You can implement your own if you wish to, so you can (for example) support file literals as base64 data.
 
-
 ## Implementation differences
 
 The Python value returned by the `Upload` scalar is not standardized and depends on your technology stack:
 
-
 ### `ariadne.asgi`
 
 Ariadne's ASGI support is based on [Starlette](https://starlette.io) and hence uploaded files are instances of [`UploadFile`](https://www.starlette.io/requests/#request-files).
-
 
 ### `ariadne.wsgi`
 

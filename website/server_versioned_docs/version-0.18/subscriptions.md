@@ -1,9 +1,7 @@
 ---
-id: version-0.18-subscriptions
+id: subscriptions
 title: Subscriptions
-original_id: subscriptions
 ---
-
 
 Let's introduce a third type of operation. While queries offer a way to query a server once, subscriptions offer a way for the server to notify the client each time new data is available.
 
@@ -12,15 +10,13 @@ This is where the `Subscription` type is useful. It's similar to `Query` but as 
 > Because of their nature, subscriptions are only possible to implement in asynchronous servers that implement the WebSockets protocol.
 > (If you are using `uvicorn` you need to `pip install websockets` otherwise you'll get `Could not connect to websocket endpoint ws://localhost:8000/. Please check if the endpoint url is correct.`)
 >
-> *WSGI*-based servers (including Django) are synchronous in nature and *unable* to handle WebSockets which makes them incapable of implementing subscriptions.
+> _WSGI_-based servers (including Django) are synchronous in nature and _unable_ to handle WebSockets which makes them incapable of implementing subscriptions.
 >
-> If you wish to use subscriptions with Django, consider wrapping your Django application in a Django Channels container and using Ariadne as an *ASGI* server.
-
+> If you wish to use subscriptions with Django, consider wrapping your Django application in a Django Channels container and using Ariadne as an _ASGI_ server.
 
 ## Subscription protocols
 
 In the world of GraphQL clients, there are two subscription protocols that clients can implement for subscribing to GraphQL server.
-
 
 ### `subscriptions-transport-ws`
 
@@ -38,7 +34,6 @@ graphql_app = GraphQL(
     websocket_handler=GraphQLWSHandler(),
 )
 ```
-
 
 ### `graphql-ws`
 
@@ -61,29 +56,27 @@ graphql_app = GraphQL(
 
 > **Note:** Name of class implementing `graphql-ws` is not a mistake. The subprotocol used for subscriptions is indeed named [`graphql-transport-ws`](https://github.com/enisdenjo/graphql-ws/blob/master/PROTOCOL.md).
 
-
 ## Defining subscriptions
 
 In schema definition subscriptions look similar to queries:
 
 ```graphql
 type Query {
-    _unused: Boolean
+  _unused: Boolean
 }
 
 type Subscription {
-    counter: Int!
+  counter: Int!
 }
 ```
 
 This example contains:
 
 - `Query` type with single unused field. GraphQL considers an empty type a syntax error and requires an API to always define a `Query` type.
-    - For this example, we're focusing on `Subscription`s so we define a bare bones `Query` type.
+  - For this example, we're focusing on `Subscription`s so we define a bare bones `Query` type.
 - `Subscription` type with a single field, `counter`, that returns a number.
 
 When defining subscriptions you can use all of the features of the schema such as arguments, input and output types.
-
 
 ## Writing subscriptions
 
@@ -136,7 +129,6 @@ async def counter_generator(
     ...
 ```
 
-
 ## Publisher-consumer
 
 Pubisher-consumer ("pub-sub") is a pattern in which parts of the system listen for ("subscribe to") events ("messages") from other parts of the system, usually reacting to them with very small delay.
@@ -144,7 +136,6 @@ Pubisher-consumer ("pub-sub") is a pattern in which parts of the system listen f
 To implement subscriptions, you will need to introduce a pub-sub solution to your stack. Multiple technologies are available here, starting with dedicated solutions like Apache Kafka, RabbitMQ and ending with data stores supporting subscribing to updates like Redis and PostgreSQL. Each of those solutions offers different features and trade offs, making them useful for different use-cases.
 
 Only requirement by Ariadne is that technology has Python implementation that supports `async` subscriber.
-
 
 ### Simple pub-sub setup with Broadcaster
 
@@ -166,7 +157,6 @@ We also need to run its `connect` and `disconnect` methods when our ASGI app sta
 app = Starlette(on_startup=[broadcast.connect], on_shutdown=[broadcast.disconnect])
 ```
 
-
 ### Publisher
 
 We can publish our messages using the `publish` method:
@@ -182,7 +172,6 @@ Where publishing code should live at? Simplest answer is _at the same place that
 - In GraphQL mutations: `postComment` mutation could publish event to notify other clients on same page that new commend was posted.
 - In task queues: `process_video_file` Celery task could publish event with current progress on processing uploaded video file.
 - In regular views: your JSON API or standard HTTP form view can send an event that contact form was sent to notify customer service members on-line.
-
 
 ### Subscriber
 
@@ -212,7 +201,6 @@ async def chat_generator(
             if not contains_swearwords(message, swearwords):
                 yield message
 ```
-
 
 ### Simple chat example:
 
@@ -290,13 +278,11 @@ app.mount("/", graphql)
 >
 > It can be found on our github: [Ariadne GraphQL Chat Example](https://github.com/mirumee/ariadne-graphql-chat-example)
 
-
 ## Connection params
 
 Because subscriptions in GraphQL are done over the websockets, you can't use custom HTTP headers to pass additional data from client to server. This makes it impossible to use `Authorization` header for authentication within subscriptions.
 
 To work around this limitation, websocket clients include this data in initial message sent to the server as part of connection negotiation.
-
 
 ### Using `on_connect` to access connection's parameters
 
@@ -368,7 +354,6 @@ graphql = GraphQL(
 )
 ```
 
-
 ### `on_connect` vs `context_value`
 
 There's important difference between `on_connect` and `context_value`:
@@ -377,12 +362,11 @@ There's important difference between `on_connect` and `context_value`:
 
 `context_value` is called every time new subscription query is made by the client.
 
-If your client has two separate UI components (eg. notification bell on the navbar and list of on-line users), and those components do GraphQL `subscribe` queries, `context_value` will be ran for each of those separately while `on_connect` will only be ran once. 
+If your client has two separate UI components (eg. notification bell on the navbar and list of on-line users), and those components do GraphQL `subscribe` queries, `context_value` will be ran for each of those separately while `on_connect` will only be ran once.
 
 > **Note:** This behavior is true for most popular GraphQL client implementations (`gql` and Apollo-Client) but may not be true for some libraries.
 
 This can have implications for application performance. It may be preferable to cache data on `websocket.scope` instead of `info.context` to avoid repeated database reads for multiple subscriptions accessing same data. Or pre-load user object in `on_connect`.
-
 
 ## Refusing websocket connection
 
@@ -409,7 +393,6 @@ def on_connect(websocket, params: Any):
     if not token:
         raise WebSocketConnectionError({"message": "Missing auth", "code": "auth"})
 ```
-
 
 ## `on_operation` and `on_complete`
 
@@ -438,7 +421,6 @@ class Operation:
     name: Optional[str]
     generator: AsyncGenerator
 ```
-
 
 ## `on_disconnect`
 

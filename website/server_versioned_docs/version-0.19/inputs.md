@@ -1,7 +1,6 @@
 ---
-id: version-0.19-inputs
+id: inputs
 title: Inputs
-original_id: inputs
 ---
 
 GraphQL Input types are method for collecting logically associated arguments under single GraphQL type.
@@ -10,17 +9,17 @@ For example, your mutation creating new issue in an issue tracker API could acce
 
 ```graphql
 type Mutation {
-    issueCreate(
-        title: String!
-        description: String!
-        labels: [String!]!
-        priority: Int!
-        isClosed: Boolean!
-    ): IssueMutationResult!
+  issueCreate(
+    title: String!
+    description: String!
+    labels: [String!]!
+    priority: Int!
+    isClosed: Boolean!
+  ): IssueMutationResult!
 }
 
 type IssueMutationResult {
-    error: Boolean
+  error: Boolean
 }
 ```
 
@@ -28,22 +27,20 @@ But you may also gather all those arguments under a single input type:
 
 ```graphql
 type Mutation {
-    issueCreate(
-        input: IssueInput!
-    ): IssueMutationResult!
+  issueCreate(input: IssueInput!): IssueMutationResult!
 }
 
 input IssueInput {
-    title: String!,
-    description: String!
-    labels: [String!]!
-    priority: Int!
-    isClosed: Boolean!
+  title: String!
+  description: String!
+  labels: [String!]!
+  priority: Int!
+  isClosed: Boolean!
 }
 
 type IssueMutationResult {
-    success: Boolean!
-    error: String!
+  success: Boolean!
+  error: String!
 }
 ```
 
@@ -76,26 +73,21 @@ Another advantage of `input` types is that they are reusable. If we later decide
 
 ```graphql
 type Mutation {
-    issueCreate(
-        input: IssueInput!
-    ): IssueMutationResult!
-    issueUpdate(
-        id: ID!
-        input: IssueInput!
-    ): IssueMutationResult!
+  issueCreate(input: IssueInput!): IssueMutationResult!
+  issueUpdate(id: ID!, input: IssueInput!): IssueMutationResult!
 }
 
 input IssueInput {
-    title: String!,
-    description: String!
-    labels: [String!]!
-    priority: Int!
-    isClosed: Boolean!
+  title: String!
+  description: String!
+  labels: [String!]!
+  priority: Int!
+  isClosed: Boolean!
 }
 
 type IssueMutationResult {
-    success: Boolean!
-    error: String!
+  success: Boolean!
+  error: String!
 }
 ```
 
@@ -128,13 +120,13 @@ You may wonder why you would want to use `input` instead of reusing an already-d
 
 ```graphql
 input PollInput {
-    question: String!,
-    options: [PollOptionInput!]!
+  question: String!
+  options: [PollOptionInput!]!
 }
 
 input PollOptionInput {
-    label: String!
-    color: String!
+  label: String!
+  color: String!
 }
 ```
 
@@ -144,7 +136,7 @@ Lastly, take a note that inputs are not specific to mutations. You can use input
 
 In above example input value was represented in Python as `dict`, with extra step for converting original dictionary to `clean_dict` that follows Pythonic convention for naming keys, expected by rest of application's business logic.
 
-Those initial keys set on input `dict` by GraphQL are called "out names" and default to names of input's fields in GraphQL schema. Ariadne provides `InputType` utility that enables customization of those names. 
+Those initial keys set on input `dict` by GraphQL are called "out names" and default to names of input's fields in GraphQL schema. Ariadne provides `InputType` utility that enables customization of those names.
 
 We can replace the logic used to create `clean_input` with `InputType`'s `out_names` option:
 
@@ -212,7 +204,6 @@ We are passing this value as named argument because `out_names` is actually a th
 > **Note:** Instead of setting the `out_names` option for each input type, you can enable the `convert_names_case` option on `make_executable_schema` to set those automatically for entire schema.
 >
 > See [this guide](case-conversion.md) for the details.
-
 
 ## Representing GraphQL inputs with custom Python types
 

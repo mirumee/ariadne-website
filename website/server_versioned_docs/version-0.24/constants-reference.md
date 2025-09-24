@@ -1,12 +1,10 @@
 ---
-id: version-0.24-constants-reference
+id: constants-reference
 title: Constants reference
 sidebar_label: ariadne.constants
-original_id: constants-reference
 ---
 
 Following constants are importable from `ariadne.constants` module:
-
 
 ## `CONTENT_TYPE_JSON`
 
@@ -14,9 +12,7 @@ Following constants are importable from `ariadne.constants` module:
 CONTENT_TYPE_JSON = 'application/json; charset=UTF-8'
 ```
 
-
-- - - - -
-
+---
 
 ## `CONTENT_TYPE_TEXT_HTML`
 
@@ -24,9 +20,7 @@ CONTENT_TYPE_JSON = 'application/json; charset=UTF-8'
 CONTENT_TYPE_TEXT_HTML = 'text/html; charset=UTF-8'
 ```
 
-
-- - - - -
-
+---
 
 ## `CONTENT_TYPE_TEXT_PLAIN`
 
@@ -34,9 +28,7 @@ CONTENT_TYPE_TEXT_HTML = 'text/html; charset=UTF-8'
 CONTENT_TYPE_TEXT_PLAIN = 'text/plain; charset=UTF-8'
 ```
 
-
-- - - - -
-
+---
 
 ## `DATA_TYPE_JSON`
 
@@ -44,9 +36,7 @@ CONTENT_TYPE_TEXT_PLAIN = 'text/plain; charset=UTF-8'
 DATA_TYPE_JSON = 'application/json'
 ```
 
-
-- - - - -
-
+---
 
 ## `DATA_TYPE_MULTIPART`
 

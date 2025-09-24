@@ -1,11 +1,9 @@
 ---
-id: version-0.16-schema-directives
+id: schema-directives
 title: Schema directives
-original_id: schema-directives
 ---
 
 Schema directives are special annotations that developers can use to change or extend behaviour for selected elements in the schema. Those annotations are defined using dedicated syntax and then consumed during the executable schema creation.
-
 
 ## Defining schema directives
 
@@ -43,7 +41,6 @@ Location may be any of following:
 - `INPUT_OBJECT`
 - `INPUT_FIELD_DEFINITION`
 
-
 ## Applying directives to schema items
 
 To apply schema directive to the schema item, simply follow its definition with an `@` and directive name:
@@ -52,9 +49,9 @@ To apply schema directive to the schema item, simply follow its definition with 
 directive @adminonly on FIELD_DEFINITION
 
 type User {
-    id: ID
-    username: String
-    ipAddress: String @adminonly
+  id: ID
+  username: String
+  ipAddress: String @adminonly
 }
 ```
 
@@ -64,18 +61,17 @@ If directive accepts any arguments, those can be passed to it like this:
 directive @needsPermission(permission: String) on FIELD_DEFINITION
 
 type User {
-    id: ID
-    username: String
-    ipAddress: String @needsPermission(permission: "ADMIN")
+  id: ID
+  username: String
+  ipAddress: String @needsPermission(permission: "ADMIN")
 }
 ```
 
 Values passed to directive arguments follow same validation logic that values passed to fields in GraphQL queries do, except those errors will be raised at the time of calling the `make_executable_schema`.
 
-
 ## Implementing schema directive behaviour
-In Ariadne, schema directive behaviour is implemented by extending the [`ariadne.SchemaDirectiveVisitor`](api-reference.md#schemadirectivevisitor) base class. 
 
+In Ariadne, schema directive behaviour is implemented by extending the [`ariadne.SchemaDirectiveVisitor`](api-reference.md#schemadirectivevisitor) base class.
 
 ### Example: `datetime` format
 
@@ -123,9 +119,9 @@ You can now update your schema and use your `@date` directive to format dates re
 
 ```graphql
 type Article {
-    id: ID
-    title: String
-    text: String
-    createdAt: String @date(format: "%Y-%m-%d")
+  id: ID
+  title: String
+  text: String
+  createdAt: String @date(format: "%Y-%m-%d")
 }
 ```

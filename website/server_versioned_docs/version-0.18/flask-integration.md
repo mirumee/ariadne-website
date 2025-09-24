@@ -1,10 +1,8 @@
 ---
-id: version-0.18-flask-integration
+id: flask-integration
 title: Flask integration
 sidebar_label: Flask
-original_id: flask-integration
 ---
-
 
 The following example presents a basic GraphQL server built with Flask:
 

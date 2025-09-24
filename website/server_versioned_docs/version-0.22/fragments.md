@@ -1,7 +1,6 @@
 ---
-id: version-0.22-fragments
+id: fragments
 title: Fragments
-original_id: fragments
 ---
 
 GraphQL fragments can be used to give GraphQL queries a structure or extract repeating query sections into reusable parts.
@@ -10,8 +9,8 @@ Fragments can be defined **only** in query payload, using the given syntax:
 
 ```graphql
 fragment fragmentName on TypeName {
-    field
-    otherField
+  field
+  otherField
 }
 ```
 
@@ -21,15 +20,15 @@ To use fragment in a query, place three dots followed by its name (`...fragmentN
 
 ```graphql
 fragment userProfileFields on User {
-    id
-    username
-    slug
+  id
+  username
+  slug
 }
 
 query GetUserProfile($id: ID!) {
-    user(id: $id) {
-        ...userProfileFields
-    }
+  user(id: $id) {
+    ...userProfileFields
+  }
 }
 ```
 
@@ -39,33 +38,33 @@ Fragments can also be used in other fragments, and used multiple times within a 
 
 ```graphql
 fragment threadsListUserFields on User {
-    id
-    username
-    slug
+  id
+  username
+  slug
 }
 
 fragment threadsListThreadFields on Thread {
-    id
-    title
-    slug
-    starter {
-        ...threadsListUserFields
-    }
-    poster {
-        ...threadsListUserFields
-    }
+  id
+  title
+  slug
+  starter {
+    ...threadsListUserFields
+  }
+  poster {
+    ...threadsListUserFields
+  }
 }
 
 query GetCategoryThreads($category: ID!) {
-    threads(category: $category) {
-        edge {
-            node {
-                ...threadsListThreadFields
-            }
-            cursor
-        }
-        hasMore
+  threads(category: $category) {
+    edge {
+      node {
+        ...threadsListThreadFields
+      }
+      cursor
     }
+    hasMore
+  }
 }
 ```
 

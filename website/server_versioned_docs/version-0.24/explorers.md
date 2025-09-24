@@ -1,13 +1,11 @@
 ---
-id: version-0.24-explorers
+id: explorers
 title: GraphQL explorers
-original_id: explorers
 ---
 
 Explorers provide web-based GUI for interacting with your GraphQL API. Ariadne implements support for multiple explorers out of the box. It also supports disabling explorer UI altogether.
 
 Ariadne also makes it possible for developers to [implement custom support for any explorer](#custom-explorer).
-
 
 ## GraphiQL 2
 
@@ -16,7 +14,6 @@ from ariadne.explorer import ExplorerGraphiQL
 ```
 
 Default GraphQL explorer in Ariadne since 0.17 release.
-
 
 ### Supported options
 
@@ -27,7 +24,6 @@ Default GraphQL explorer in Ariadne since 0.17 release.
 - `explorer_plugin: bool = False` - Enables [GraphQL Explorer plugin](https://www.youtube.com/watch?v=8DmtCPX4tdo&nounroll=1).
 - `subscription_url: str = ""` - URL to use by GraphQL subscription connections. Defaults to current URL, but with `http` protocol replaced with `ws`.
 
-
 ## Apollo Sandbox
 
 ```python
@@ -35,7 +31,6 @@ from ariadne.explorer import ExplorerApollo
 ```
 
 Embedded Apollo Sandbox.
-
 
 ### Supported options
 
@@ -45,7 +40,6 @@ Embedded Apollo Sandbox.
 - `default_query: str = "..."` - Default content of editor area.
 - `include_cookies: bool: bool = False` - Controls if Apollo explorer should include cookies in requests.
 
-
 ## GraphQL Playground
 
 ```python
@@ -53,7 +47,6 @@ from ariadne.explorer import ExplorerPlayground
 ```
 
 GraphQL Playground was default explorer in Ariadne until 0.17 release. **It's no longer maintained**. with its features being merged in to GraphiQL 2. It's provided by Ariadne as an alternative for teams and projects that don't want to make a switch yet.
-
 
 ### Supported options
 
@@ -82,7 +75,6 @@ GraphQL Playground was default explorer in Ariadne until 0.17 release. **It's no
 
 See Playground's readme for [complete reference of its settings](https://github.com/graphql/graphql-playground#settings).
 
-
 ## ExplorerHttp405
 
 ```python
@@ -90,7 +82,6 @@ from ariadne.explorer import ExplorerHttp405
 ```
 
 This explorer always triggers HTTP 405 "method not allowed" response from Ariadne, serving as a way to disable GraphQL explorer.
-
 
 ## Custom explorer
 
@@ -139,7 +130,7 @@ from myapp.auth import get_authorized_user
 class MyExplorer(Explorer):
     def html(self, request):
         return self.html_future(request)
-    
+
     async def html_future(self, request)
         auth_token = request.headers.get("authorization")
         if not request.headers.get("authorization"):
@@ -150,7 +141,6 @@ class MyExplorer(Explorer):
 
         return "<div>Hello world</div>"
 ```
-
 
 ### `render_template`
 
@@ -225,3 +215,4 @@ assert result == """
 const value = {"a": "b"};
 </script>
 """
+```

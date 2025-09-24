@@ -1,14 +1,12 @@
 ---
-id: version-0.15-types-reference
+id: types-reference
 title: Types reference
 sidebar_label: ariadne.types
-original_id: types-reference
 ---
 
 Ariadne uses [type annotations](https://www.python.org/dev/peps/pep-0484/) in its codebase.
 
 Many parts of its API share or rely on common types, importable from `ariadne.types` module:
-
 
 ## `ContextValue`
 
@@ -28,9 +26,7 @@ If value is callable, it will be called with single argument:
 
 Return value will then be used as final `context` passed to resolvers.
 
-
-- - - - -
-
+---
 
 ## `ErrorFormatter`
 
@@ -42,21 +38,17 @@ Callabe used to format errors into JSON-serializable form.
 
 Should return a Python `dict`.
 
-
 ### Required arguments
 
 #### `error`
 
 Instance of [`graphql.error.GraphQLError`](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/error/graphql_error.py#L14) to be formatted.
 
-
 #### `debug`
 
 Boolean controlling if debug information should be included in formatted data.
 
-
-- - - - -
-
+---
 
 ## `Extension`
 
@@ -65,7 +57,6 @@ class Extension()
 ```
 
 Base class for [extensions](extensions.md).
-
 
 ### Methods
 
@@ -98,12 +89,12 @@ Result:
 
 ```json
 {
-    "data": {
-        "hello": "world!"
-    },
-    "extensions": {
-        "timestamp": "2019-06-28T18:34:31.171409"
-    }
+  "data": {
+    "hello": "world!"
+  },
+  "extensions": {
+    "timestamp": "2019-06-28T18:34:31.171409"
+  }
 }
 ```
 
@@ -115,7 +106,6 @@ Extension.has_errors(errors, context)
 
 Called with `list` of errors that occurred during query process. Not called if no errors were raised. Errors may come from `validation`, query parsing or query execution.
 
-
 #### `request_finished`
 
 ```python
@@ -124,7 +114,6 @@ Extension.request_finished(context)
 
 Called when query processing finishes.
 
-
 #### `request_started`
 
 ```python
@@ -132,7 +121,6 @@ Extension.request_started(context)
 ```
 
 Called when query processing starts.
-
 
 #### `resolve`
 
@@ -144,17 +132,13 @@ Used as middleware for fields resolver. Takes special `next_` argument that is n
 
 Everything else is same as with regular [resolvers](#resolver).
 
-
-- - - - -
-
+---
 
 ## `ExtensionSync`
 
 Synchronous counterpart of the [`Extension`](#extension). All hooks are the same, but `resolve` hook can't be asynchronous.
 
-
-- - - - -
-
+---
 
 ## `GraphQLResult`
 
@@ -167,9 +151,7 @@ A tuple of two items:
 - `success` - web server should use status code `200` for response if this value is `True` and `400` if it wasn't.
 - `response` - response data that should be JSON-encoded and sent to client.
 
-
-- - - - -
-
+---
 
 ## `Resolver`
 
@@ -190,13 +172,11 @@ A callable that query executor runs to resolve a specific field's value.
 
 > Returning `None` from resolver for field declared as non-nullable (eg.: `field: Int!`) will result in `TypeError` being raised by the query executor.
 
-
 ### Required arguments
 
 #### `obj`
 
 Object from which the value should be resolved. Can be `None` for root resolvers (resolvers for [`Query`](resolvers.md), [`Mutation`](mutations.md) and [`Subscription`](subscriptions.md) fields) in server without set [`RootValue`](#rootvalue).
-
 
 #### `info`
 
@@ -204,14 +184,13 @@ Instance of the [`graphql.type.GraphQLResolveInfo`](https://github.com/graphql-p
 
 Has `context` attribute that contains [`ContextValue`](#contextvalue) specific to the server implementation.
 
-
 #### `**kwargs`
 
 If resolver's GraphQL field accepts any arguments, those arguments values will be passed to the field as kwargs:
 
 ```graphql
 type Query {
-    sum(a: Int, b: Int): Int!
+  sum(a: Int, b: Int): Int!
 }
 ```
 
@@ -227,8 +206,7 @@ def resolve_users(obj, info, *, a, b=0):
     return a + b  # a is guaranteed to have a value
 ```
 
-- - - - -
-
+---
 
 ## `RootValue`
 
@@ -249,9 +227,7 @@ If value is callable, it will be called with two arguments:
 
 Return value will then be used as `obj` passed to root resolvers.
 
-
-- - - - -
-
+---
 
 ## `SchemaBindable`
 
@@ -260,7 +236,6 @@ class SchemaBindable()
 ```
 
 Base class for [_bindables_](bindables.md).
-
 
 ### Methods
 
@@ -272,9 +247,7 @@ SchemaBindable.bind_to_schema(schema)
 
 Method called by `make_executable_schema` with single argument being instance of GraphQL schema. Extending classes should override this method with custom logic that binds business mechanic to schema.
 
-
-- - - - -
-
+---
 
 ## `Subscriber`
 
@@ -284,13 +257,11 @@ async def source(value, info[, **kwargs])
 
 Asynchronous generator that [subscription](subscriptions.md) field uses as data source for its [resolver](#resolver).
 
-
 ### Required arguments
 
 #### `root_value`
 
 [Root value](#rootvalue) set on the server.
-
 
 #### `info`
 
@@ -298,14 +269,13 @@ Instance of the [`graphql.type.GraphQLResolveInfo`](https://github.com/graphql-p
 
 Has `context` attribute that contains [`ContextValue`](#contextvalue) specific to the server implementation.
 
-
 #### `**kwargs`
 
 If subscriptions' GraphQL field accepts any arguments, those arguments values will be passed to the field as kwargs:
 
 ```graphql
 type Subscription {
-    alerts(level: Int, age: Int): Int!
+  alerts(level: Int, age: Int): Int!
 }
 ```
 
@@ -321,10 +291,7 @@ async def alerts_source(obj, info, *, level=0, age):
     yield from alerts.subscribe(level, age)
 ```
 
-
-
-- - - - -
-
+---
 
 ## `SubscriptionResult`
 
@@ -336,5 +303,3 @@ A tuple of two items:
 
 - `success` - web server should use status code `200` for response if this value is `True` and `400` if it wasn't.
 - `response` - asynchronous generator for response data that should be JSON-encoded and sent to client for the duration of the connection.
-
-

@@ -55,6 +55,22 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        // redirect function lets you generate redirects dynamically
+        createRedirects(existingPath) {
+          // Example: /docs/abc -> /server/abc
+          if (existingPath.startsWith("/server/")) {
+            return [existingPath.replace("/server/", "/docs/")];
+          }
+          return undefined;
+        },
+      },
+    ],
+  ],
+
   themeConfig: {
     algolia: {
       appId: "BYJBYPP90Q",

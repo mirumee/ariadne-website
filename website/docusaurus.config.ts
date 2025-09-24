@@ -16,6 +16,7 @@ const config: Config = {
 
   organizationName: "mirumee",
   projectName: "ariadne-website",
+  trailingSlash: false,
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",

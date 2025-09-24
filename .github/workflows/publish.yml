@@ -1,4 +1,4 @@
-name: Publish on GitHub Pages 
+name: Publish on GitHub Pages
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
     - name: Build website
       working-directory: website
       run: |
-        npm install
+        npm ci
         npm run build
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4

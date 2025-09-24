@@ -59,7 +59,7 @@
   padding: 8px 16px;
   padding-left: 0;
 
-  background-image: url(../img/nav-arrow.png);
+  background-image: url("./img/nav-arrow.png");
   background-position: right 2px top 8px;
   background-repeat: no-repeat;
   background-size: 8px 8px;

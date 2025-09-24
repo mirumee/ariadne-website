@@ -1,8 +1,9 @@
 import type { ReactNode } from "react";
 import clsx from "clsx";
-import CodeBlock, { Props as CodeBlockProps } from "@theme/CodeBlock";
+import CodeBlock from "@theme/CodeBlock";
 import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
+import Link from "@docusaurus/Link";
 
 type FeatureItem = {
   title: string;
@@ -27,8 +28,8 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/simple.svg").default,
     description: (
       <>
-        A small and easy-to-learn Pythonic API with simplicity as the guiding
-        force behind its design.
+        Ariadne Codegen is a generator that turns your GraphQL schema and
+        operations into a fully typed Python client, including Pydantic models.
       </>
     ),
   },
@@ -88,7 +89,7 @@ export function FeatureWithCodeBlock({
   children,
 }: FeatureCodeItem): ReactNode {
   return (
-    <div className="row">
+    <div className="row padding-bottom--lg">
       <div className="col col--6">
         <Heading as="h3">{title}</Heading>
         {children}

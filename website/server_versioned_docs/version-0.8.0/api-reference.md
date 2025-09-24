@@ -1,8 +1,7 @@
 ---
-id: version-0.8.0-api-reference
+id: api-reference
 title: API reference
 sidebar_label: ariadne
-original_id: api-reference
 ---
 
 Following items are importable directly from `ariadne` package:

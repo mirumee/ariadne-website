@@ -1,7 +1,6 @@
 ---
-id: version-0.11.0-scalars
+id: scalars
 title: Custom scalars
-original_id: scalars
 ---
 
 

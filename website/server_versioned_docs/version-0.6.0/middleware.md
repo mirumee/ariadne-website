@@ -1,7 +1,6 @@
 ---
-id: version-0.6.0-middleware
+id: middleware
 title: Middleware
-original_id: middleware
 ---
 
 GraphQL middleware are Python functions and callable objects that can be used to inject custom logic into query executor.

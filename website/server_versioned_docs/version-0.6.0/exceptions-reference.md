@@ -1,8 +1,7 @@
 ---
-id: version-0.6.0-exceptions-reference
+id: exceptions-reference
 title: Exceptions reference
 sidebar_label: ariadne.exceptions
-original_id: exceptions-reference
 ---
 
 Ariadne defines some custom exception types that can be imported from `ariadne.exceptions`:

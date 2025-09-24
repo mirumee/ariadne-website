@@ -1,7 +1,6 @@
 ---
-id: version-0.6.0-interfaces
+id: interfaces
 title: Interface types
-original_id: interfaces
 ---
 
 

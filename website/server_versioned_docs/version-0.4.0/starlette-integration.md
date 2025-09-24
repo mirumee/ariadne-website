@@ -1,8 +1,7 @@
 ---
-id: version-0.4.0-starlette-integration
+id: starlette-integration
 title: Starlette integration
 sidebar_label: Starlette
-original_id: starlette-integration
 ---
 
 

@@ -1,7 +1,6 @@
 ---
-id: version-0.8.0-resolvers
+id: resolvers
 title: Resolvers
-original_id: resolvers
 ---
 
 

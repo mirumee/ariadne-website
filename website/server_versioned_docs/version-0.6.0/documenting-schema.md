@@ -1,7 +1,6 @@
 ---
-id: version-0.6.0-documenting-schema
+id: documenting-schema
 title: Documenting schema
-original_id: documenting-schema
 ---
 
 

@@ -1,7 +1,6 @@
 ---
-id: version-0.7.0-asgi
+id: asgi
 title: ASGI application
-original_id: asgi
 ---
 
 Ariadne provides a `GraphQL` class that implements a production-ready ASGI application.

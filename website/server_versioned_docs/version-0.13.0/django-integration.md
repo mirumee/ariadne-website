@@ -1,8 +1,7 @@
 ---
-id: version-0.13.0-django-integration
+id: django-integration
 title: Django integration
 sidebar_label: Django
-original_id: django-integration
 ---
 
 

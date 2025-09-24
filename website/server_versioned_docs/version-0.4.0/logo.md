@@ -1,7 +1,6 @@
 ---
-id: version-0.4.0-logo
+id: logo
 title: Ariadne logo
-original_id: logo
 ---
 
 

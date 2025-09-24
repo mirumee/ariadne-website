@@ -1,7 +1,6 @@
 ---
-id: version-0.10.0-apollo-federation
+id: apollo-federation
 title: Apollo Federation
-original_id: apollo-federation
 ---
 
 [Apollo Federation](https://www.apollographql.com/docs/apollo-server/federation/introduction/) is an approach for composing multiple GraphQL services into one data graph, queryable from a single GraphQL server.

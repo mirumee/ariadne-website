@@ -1,7 +1,6 @@
 ---
-id: version-0.5.0-other-integrations
+id: other-integrations
 title: Other technologies
-original_id: other-integrations
 ---
 
 

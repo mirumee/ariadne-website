@@ -4,6 +4,8 @@ title: Ariadne Codegen 0.4
 
 Ariadne Codegen 0.4 is now available!
 
+<!--truncate-->
+
 This release deprecates `[ariadne-codegen]` as configuration section used by the library. New section used is `[tool.ariadne-codegen]` which follows PEP 518. While old name will still be support for a while, you are recommended to update your `pyproject.toml` to use new section name.
 
 New in this release is also a plugin system, enabling better customization of generated Python AST for developers who need it. See the [plugins guide](https://github.com/mirumee/ariadne-codegen/blob/0.4.0/PLUGINS.md) for examples and reference.

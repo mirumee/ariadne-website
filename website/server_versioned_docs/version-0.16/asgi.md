@@ -49,7 +49,7 @@ Instance of a class extending `ariadne.asgi.handlers.GraphQLWebsocketHandler`. U
 
 If not set, `GraphQLWSHandler` (implementing [`subscriptions-transport-ws`](https://github.com/apollographql/subscriptions-transport-ws) protocol) is used by default.
 
-See [subscriptions](/subscriptions#subscription-protocols) documentation for more details.
+See [subscriptions](/server/subscriptions#subscription-protocols) documentation for more details.
 
 ### `GraphQLHTTPHandler`
 
@@ -63,8 +63,8 @@ Default handler used by Ariadne's ASGI GraphQL app to handle HTTP requests.
 
 #### `extensions`
 
-List of extensions or callable returning those. See [extensions documentation](/extensions#enabling-extensions) for more information and examples.
+List of extensions or callable returning those. See [extensions documentation](/server/extensions#enabling-extensions) for more information and examples.
 
 #### `middleware`
 
-List of middlewares or callable returning those. See [middleware documentation](/middleware#custom-middleware-example) for more information and examples.
+List of middlewares or callable returning those. See [middleware documentation](/server/middleware#custom-middleware-example) for more information and examples.

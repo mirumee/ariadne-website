@@ -3,6 +3,7 @@ id: graphql-relay
 title: GraphQL Relay
 sidebar_label: GraphQL Relay
 ---
+
 Since version **0.25**, Ariadne includes a `contrib` module that simplifies the process of creating a GraphQL server compatible with the [Relay specification](https://relay.dev/docs/guides/graphql-server-specification/).
 
 ## Minimal Example
@@ -75,7 +76,7 @@ def resolve_node_type(obj, *_):
 
 The `RelayObjectType` class includes a `node_resolver` decorator, which defines how instances of this type should be resolved when queried through `query.node`.
 
-Additionally, `RelayQueryType` includes a `RelayNodeInterfaceType`, which functions like a standard Ariadne `InterfaceType` and requires a [`type_resolver`](/interfaces).
+Additionally, `RelayQueryType` includes a `RelayNodeInterfaceType`, which functions like a standard Ariadne `InterfaceType` and requires a [`type_resolver`](/server/interfaces).
 
 ---
 

@@ -9,3 +9,5 @@ If you've recently visited any Spectrum community, you are likely aware that [Gi
 Because of this, we've made decision to move Ariadne's community to [GitHub discussions](https://github.com/mirumee/ariadne/discussions)!
 
 Thanks and see you there! 👋
+
+<!--truncate-->

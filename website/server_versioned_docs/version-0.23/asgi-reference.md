@@ -95,9 +95,9 @@ implemented by Ariadne is used.
 this server to execute the GraphQL queries. Defaults to standard
 context type implemented by the `graphql`.
 
-`http_handler`: an instance of [[`GraphQLHTTPHandler`](asgi-handlers-reference.md#GraphQLHTTPHandler)](asgi-handlers-reference.md#graphqlhttphandler) class implementing
+`http_handler`: an instance of [[`GraphQLHTTPHandler`](asgi-handlers-reference.md#graphqlhttphandler)](asgi-handlers-reference.md#graphqlhttphandler) class implementing
 the HTTP requests handling logic for this server. If not set,
-an instance of [[`GraphQLHTTPHandler`](asgi-handlers-reference.md#GraphQLHTTPHandler)](asgi-handlers-reference.md#graphqlhttphandler) is used.
+an instance of [[`GraphQLHTTPHandler`](asgi-handlers-reference.md#graphqlhttphandler)](asgi-handlers-reference.md#graphqlhttphandler) is used.
 
 `websocket_handler`: an instance of [[`GraphQLWebsocketHandler`](asgi-handlers-reference.md#graphqlwebsockethandler)](asgi-handlers-reference.md#graphqlwebsockethandler) class
 implementing the websocket connections handling logic for this server.

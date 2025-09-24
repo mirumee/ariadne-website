@@ -1,7 +1,6 @@
 ---
-id: version-0.13.0-subscriptions
+id: subscriptions
 title: Subscriptions
-original_id: subscriptions
 ---
 
 

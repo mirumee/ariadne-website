@@ -1,7 +1,6 @@
 ---
-id: version-0.4.0-wsgi
+id: wsgi
 title: WSGI application
-original_id: wsgi
 ---
 
 

@@ -1,7 +1,6 @@
 ---
-id: version-0.4.0-unions
+id: unions
 title: Union types
-original_id: unions
 ---
 
 

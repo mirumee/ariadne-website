@@ -1,7 +1,6 @@
 ---
-id: version-0.6.0-logging
+id: logging
 title: Logging
-original_id: logging
 ---
 
 

@@ -1,7 +1,6 @@
 ---
-id: version-0.4.0-enums
+id: enums
 title: Enumeration types
-original_id: enums
 ---
 
 

@@ -1,7 +1,6 @@
 ---
-id: version-0.12.0-query-validators
+id: query-validators
 title: Query validators
-original_id: query-validators
 ---
 
 GraphQL uses query validators to check if Query AST is valid and can be executed. Every GraphQL server implements standard query validators. For example, there is an validator that tests if queried field exists on queried type, that makes query fail with "Cannot query field on type" error if it doesn't.

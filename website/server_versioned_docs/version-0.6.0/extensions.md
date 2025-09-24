@@ -1,7 +1,6 @@
 ---
-id: version-0.6.0-extensions
+id: extensions
 title: Extension system
-original_id: extensions
 ---
 
 Ariadne implements simple extension system that allows developers to inject custom python logic into the query execution process.

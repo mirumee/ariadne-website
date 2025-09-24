@@ -1,7 +1,6 @@
 ---
-id: version-0.4.0-intro
+id: intro
 title: Introduction
-original_id: intro
 ---
 
 

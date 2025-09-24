@@ -1,8 +1,7 @@
 ---
-id: version-0.4.0-flask-integration
+id: flask-integration
 title: Flask integration
 sidebar_label: Flask
-original_id: flask-integration
 ---
 
 

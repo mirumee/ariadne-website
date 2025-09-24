@@ -1,7 +1,6 @@
 ---
-id: version-0.7.0-open-tracing
+id: open-tracing
 title: OpenTracing
-original_id: open-tracing
 ---
 
 Ariadne provides an extension that implements the [OpenTracing](https://opentracing.io/) specification, making it easy to monitor GraphQL API performance and errors using popular APM tools like [Datadog](https://www.datadoghq.com/) or [Jaeger](https://www.jaegertracing.io/).

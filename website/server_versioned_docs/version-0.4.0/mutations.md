@@ -1,7 +1,6 @@
 ---
-id: version-0.4.0-mutations
+id: mutations
 title: Mutations
-original_id: mutations
 ---
 
 

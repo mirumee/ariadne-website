@@ -1,7 +1,6 @@
 ---
-id: version-0.12.0-scalars
+id: scalars
 title: Custom scalars
-original_id: scalars
 ---
 
 GraphQL standard describes plenty of default GraphQL scalars: `Int`, `String` or `Boolean` to name a few. But what when those types are not enough for our API?

@@ -1,7 +1,6 @@
 ---
-id: version-0.4.0-local-development
+id: local-development
 title: Local development
-original_id: local-development
 ---
 
 

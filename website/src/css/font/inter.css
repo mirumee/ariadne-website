@@ -1,36 +1,3 @@
-
-@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
-}
-
-@media only screen and (min-device-width: 360px) {
-}
-
-@media only screen and (min-width: 1024px) {
-}
-
-@media only screen and (max-width: 1023px) {
-}
-
-@media only screen and (min-width: 1400px) {
-}
-
-@media only screen and (min-width: 1500px) {
-}
-
-:root {
-  --ifm-color-primary: #dd3333;
-
-  --ifm-color-primary-dark: #d22323;
-  --ifm-color-primary-darker: #c62121;
-  --ifm-color-primary-darkest: #a31b1b;
-  --ifm-color-primary-light: #e14a4a;
-  --ifm-color-primary-lighter: #e35656;
-  --ifm-color-primary-lightest: #e97979;
-  --ifm-font-family-base: Inter, -apple-system, BlinkMacSystemFont,  Segoe UI, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-
-// FONTS
 @font-face {
   font-family: 'Inter';
   font-style:  normal;

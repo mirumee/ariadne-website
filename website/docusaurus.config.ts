@@ -2,10 +2,8 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const config: Config = {
-  title: "Ariadnee",
+  title: "Ariadne · Python GraphQL Schema-first",
   tagline: "Python GraphQL",
   favicon: "img/favicon.ico",
 
@@ -13,24 +11,15 @@ const config: Config = {
   future: {
     v4: true, // Improve compatibility with the upcoming Docusaurus v4
   },
-
-  // Set the production url of your site here
   url: "https://ariadnegraphql.org",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "mirumee", // Usually your GitHub org/user name.
-  projectName: "ariadne-website", // Usually your repo name.
+  organizationName: "mirumee",
+  projectName: "ariadne-website",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -45,7 +34,7 @@ const config: Config = {
           path: "docs",
           routeBasePath: "server",
           sidebarPath: "./serverSidebars.ts",
-          lastVersion: "0.25.0",
+          lastVersion: "0.25",
         },
         blog: {
           showReadingTime: true,
@@ -53,44 +42,41 @@ const config: Config = {
             type: ["rss", "atom"],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-          // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
         },
         theme: {
-          customCss: "./src/css/custom.css",
+          customCss: ["./src/css/custom.css"],
         },
       } satisfies Preset.Options,
     ],
   ],
 
-  // plugins: [
-  //   [
-  //     "@docusaurus/plugin-content-docs",
-  //     {
-  //       id: "client",
-  //       path: "client",
-  //       routeBasePath: "client",
-  //       sidebarPath: "./clientSidebars.ts",
-  //     },
-  //   ],
-  // ],
+  plugins: [
+    // [
+    //   "@docusaurus/plugin-content-docs",
+    //   {
+    //     id: "client",
+    //     path: "client",
+    //     routeBasePath: "client",
+    //     sidebarPath: "./clientSidebars.ts",
+    //   },
+    // ],
+  ],
 
   themeConfig: {
-    // Replace with your project's social card
     algolia: {
       appId: "BYJBYPP90Q",
       apiKey: "495d71e85ee391dd7df164ff0ac02a75",
       indexName: "ariadnegraphql",
     },
+    colorMode: {
+      defaultMode: "light",
+      disableSwitch: true,
+    },
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "Ariadne",
       logo: {
         alt: "Ariadne Logo",
         src: "img/logo-horizontal-sm.png",
@@ -117,14 +103,30 @@ const config: Config = {
       ],
     },
     footer: {
-      style: "dark",
+      style: "light",
       links: [
         {
-          title: "Docs",
+          title: "Ariadne ecosystem",
           items: [
             {
-              label: "Tutorial",
-              to: "/docs/intro",
+              label: "Ariadne GraphQL Server",
+              href: "https://github.com/mirumee/ariadne?tab=readme-ov-file",
+            },
+            {
+              label: "Ariadne GraphQL Client",
+              href: "https://github.com/mirumee/ariadne-codegen?tab=readme-ov-file",
+            },
+            {
+              label: "Ariadne GraphQL Modules",
+              href: "https://github.com/mirumee/ariadne-graphql-modules?tab=readme-ov-file",
+            },
+            {
+              label: "Ariadne Auth",
+              href: "https://github.com/mirumee/ariadne-auth?tab=readme-ov-file",
+            },
+            {
+              label: "Ariadne AWS Lambda Extension",
+              href: "https://github.com/mirumee/ariadne-lambda?tab=readme-ov-file",
             },
           ],
         },
@@ -132,16 +134,12 @@ const config: Config = {
           title: "Community",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
+              label: "Email",
+              href: "mailto:ariadne@mirumee.com",
             },
             {
               label: "X",
-              href: "https://x.com/docusaurus",
+              href: "https://x.com/AriadneGraphQL",
             },
           ],
         },
@@ -150,16 +148,16 @@ const config: Config = {
           items: [
             {
               label: "Blog",
-              to: "/blog",
+              href: "https://mirumee.com/blog",
             },
             {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/mirumee/Ariadne?tab=readme-ov-file#ariadne-ecosystem",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()}  Mirumee Software.`,
     },
     prism: {
       theme: prismThemes.github,

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import clsx from "clsx";
+import CodeBlock, { Props as CodeBlockProps } from "@theme/CodeBlock";
 import Heading from "@theme/Heading";
 import styles from "./styles.module.css";
 
@@ -11,32 +12,33 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: "Easy to Use",
+    title: "Schema-first Server",
     Svg: require("@site/static/img/schema-first.svg").default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Ariadne Server gives you ability to describe your GraphQL API using
+        Schema Definition Language and connect your business logic using a
+        minimal amount of Python boilerplate.
       </>
     ),
   },
   {
-    title: "Focus on What Matters",
-    Svg: require("@site/static/img/schema-first.svg").default,
+    title: "Type-safe Client",
+    Svg: require("@site/static/img/simple.svg").default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        A small and easy-to-learn Pythonic API with simplicity as the guiding
+        force behind its design.
       </>
     ),
   },
   {
-    title: "Powered by React",
-    Svg: require("@site/static/img/schema-first.svg").default,
+    title: "Open Design",
+    Svg: require("@site/static/img/open-design.svg").default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Easily add new features to the library, and replace or extend existing
+        ones. Integrate with any web framework you like.
       </>
     ),
   },
@@ -45,10 +47,8 @@ const FeatureList: FeatureItem[] = [
 function Feature({ title, Svg, description }: FeatureItem) {
   return (
     <div className={clsx("col col--4")}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
+      <Svg className={styles.featureSvg} role="img" />
+      <div>
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
       </div>
@@ -56,7 +56,7 @@ function Feature({ title, Svg, description }: FeatureItem) {
   );
 }
 
-export default function HomepageFeatures(): ReactNode {
+export function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
@@ -67,5 +67,39 @@ export default function HomepageFeatures(): ReactNode {
         </div>
       </div>
     </section>
+  );
+}
+
+type CodeItem = {
+  title?: string;
+  code: string;
+  language: string;
+};
+
+type FeatureCodeItem = {
+  title: string;
+  code: CodeItem[];
+  children: ReactNode;
+};
+
+export function FeatureWithCodeBlock({
+  title,
+  code,
+  children,
+}: FeatureCodeItem): ReactNode {
+  return (
+    <div className="row">
+      <div className="col col--6">
+        <Heading as="h3">{title}</Heading>
+        {children}
+      </div>
+      <div className="col col--6">
+        {code.map(({ title, code, language }, idx) => (
+          <CodeBlock key={idx} title={title} language={language}>
+            {code}
+          </CodeBlock>
+        ))}
+      </div>
+    </div>
   );
 }

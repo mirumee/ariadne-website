@@ -1,0 +1,86 @@
+{
+  "tutorialSidebar": [
+    {
+      "type": "category",
+      "label": "Docs",
+      "items": [
+        "intro",
+        "resolvers",
+        "mutations",
+        "inputs",
+        "error-messaging",
+        "case-conversion",
+        "fragments",
+        "scalars",
+        "enums",
+        "unions",
+        "interfaces",
+        "subscriptions",
+        "dataloaders",
+        "file-uploads",
+        "documenting-schema",
+        "modularization",
+        "bindables",
+        "schema-directives",
+        "local-development",
+        "logging",
+        "explorers",
+        "apollo-federation"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Monitoring",
+      "items": ["open-telemetry", "open-tracing", "apollo-tracing"]
+    },
+    {
+      "type": "category",
+      "label": "Security",
+      "items": [
+        "security-overview",
+        "hiding-field-suggestions",
+        "disabling-stack-traces",
+        "continuous-security-testing"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Servers",
+      "items": ["asgi", "wsgi", "aws-lambda"]
+    },
+    {
+      "type": "category",
+      "label": "Integrations",
+      "items": [
+        "django-integration",
+        "fastapi-integration",
+        "flask-integration",
+        "starlette-integration",
+        "other-integrations"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Extensions",
+      "items": ["extensions", "middleware", "query-validators", "query-stack"]
+    },
+    {
+      "type": "category",
+      "label": "API reference",
+      "items": [
+        "api-reference",
+        "asgi-reference",
+        "asgi-handlers-reference",
+        "constants-reference",
+        "exceptions-reference",
+        "types-reference",
+        "wsgi-reference"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Other",
+      "items": ["logo"]
+    }
+  ]
+}

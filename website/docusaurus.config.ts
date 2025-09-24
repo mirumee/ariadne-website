@@ -53,18 +53,6 @@ const config: Config = {
     ],
   ],
 
-  plugins: [
-    // [
-    //   "@docusaurus/plugin-content-docs",
-    //   {
-    //     id: "client",
-    //     path: "client",
-    //     routeBasePath: "client",
-    //     sidebarPath: "./clientSidebars.ts",
-    //   },
-    // ],
-  ],
-
   themeConfig: {
     algolia: {
       appId: "BYJBYPP90Q",
@@ -94,7 +82,8 @@ const config: Config = {
           docsPluginId: "server",
           position: "left",
         },
-        { to: "/blog", label: "Blog", position: "left" },
+        { to: "/blog", label: "Blog", position: "right" },
+        { to: "/community", label: "Community", position: "right" },
         {
           href: "https://github.com/mirumee/Ariadne?tab=readme-ov-file#ariadne-ecosystem",
           label: "GitHub",

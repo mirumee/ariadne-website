@@ -1,0 +1,51 @@
+{
+  "tutorialSidebar": [
+    {
+      "type": "category",
+      "label": "Docs",
+      "items": [
+        "intro",
+        "resolvers",
+        "mutations",
+        "error-messaging",
+        "scalars",
+        "enums",
+        "unions",
+        "interfaces",
+        "subscriptions",
+        "documenting-schema",
+        "modularization",
+        "bindables",
+        "local-development",
+        "logging",
+        "logo"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Servers",
+      "items": [
+        "asgi",
+        "wsgi"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Integrations",
+      "items": [
+        "django-integration",
+        "flask-integration",
+        "starlette-integration",
+        "other-integrations"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API reference",
+      "items": [
+        "api-reference",
+        "constants-reference"
+      ]
+    }
+  ]
+}

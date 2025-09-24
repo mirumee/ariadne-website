@@ -1,0 +1,66 @@
+{
+  "tutorialSidebar": [
+    {
+      "type": "category",
+      "label": "Docs",
+      "items": [
+        "intro",
+        "resolvers",
+        "mutations",
+        "error-messaging",
+        "scalars",
+        "enums",
+        "unions",
+        "interfaces",
+        "subscriptions",
+        "file-uploads",
+        "documenting-schema",
+        "modularization",
+        "bindables",
+        "schema-directives",
+        "local-development",
+        "logging"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Monitoring",
+      "items": ["apollo-tracing", "open-tracing"]
+    },
+    {
+      "type": "category",
+      "label": "Servers",
+      "items": ["asgi", "wsgi"]
+    },
+    {
+      "type": "category",
+      "label": "Integrations",
+      "items": [
+        "django-integration",
+        "flask-integration",
+        "starlette-integration",
+        "other-integrations"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Extensions",
+      "items": ["extensions", "middleware"]
+    },
+    {
+      "type": "category",
+      "label": "API reference",
+      "items": [
+        "api-reference",
+        "constants-reference",
+        "exceptions-reference",
+        "types-reference"
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Other",
+      "items": ["logo"]
+    }
+  ]
+}

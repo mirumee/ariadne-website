@@ -1,9 +1,9 @@
 ---
-id: version-0.25-graphql-relay
+id: graphql-relay
 title: GraphQL Relay
 sidebar_label: GraphQL Relay
-original_id: graphql-relay
 ---
+
 Since version **0.25**, Ariadne includes a `contrib` module that simplifies the process of creating a GraphQL server compatible with the [Relay specification](https://relay.dev/docs/guides/graphql-server-specification/).
 
 ## Minimal Example

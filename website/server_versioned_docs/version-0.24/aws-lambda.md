@@ -1,14 +1,13 @@
 ---
-id: version-0.24-aws-lambda
+id: aws-lambda
 title: AWS Lambda
-original_id: aws-lambda
 ---
 
 # AWS Lambda
 
 Multiple ways to implement an AWS Lambda function for GraphQL using Ariadne exist.
 
-This document presents a selected few of those, but its aim is not to be an __exhaustive__ list of all approaches to using Ariadne on AWS Lambda.
+This document presents a selected few of those, but its aim is not to be an **exhaustive** list of all approaches to using Ariadne on AWS Lambda.
 
 ## Deploying ASGI Application with Ariadne Lambda
 

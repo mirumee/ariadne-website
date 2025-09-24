@@ -1,10 +1,8 @@
 ---
-id: version-0.20-starlette-integration
+id: starlette-integration
 title: Starlette integration
 sidebar_label: Starlette
-original_id: starlette-integration
 ---
-
 
 ## Mounting ASGI application
 
@@ -37,7 +35,6 @@ app = Starlette(debug=True)
 
 app.mount("/graphql/", GraphQL(schema, debug=True))
 ```
-
 
 ## Using routes
 
@@ -82,7 +79,6 @@ app = Starlette(
     ],
 )
 ```
-
 
 ## Using in custom routes
 

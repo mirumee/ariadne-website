@@ -1,14 +1,11 @@
 ---
-id: version-0.18-wsgi
+id: wsgi
 title: WSGI application
-original_id: wsgi
 ---
-
 
 Ariadne provides a `GraphQL` class that implements a production-ready WSGI application.
 
 Ariadne also provides `GraphQLMiddleware` that allows you to route between a `GraphQL` instance and another WSGI app based on the request path.
-
 
 ## Using with a WSGI server
 
@@ -40,11 +37,9 @@ Example using uWSGI:
 $ uwsgi --http :8000 --wsgi-file mywsgi
 ```
 
-
 ### Configuration options
 
 See the [reference](wsgi-reference.md#constructor).
-
 
 ## Using the middleware
 

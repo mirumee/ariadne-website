@@ -1,11 +1,9 @@
 ---
-id: version-0.22-query-stack
+id: query-stack
 title: Customizing Query Stack
-original_id: query-stack
 ---
 
 Ariadne lets to developers to replace both parsing and validating steps of the query execution stack with custom logic.
-
 
 ## Query parser
 
@@ -37,7 +35,6 @@ def caching_query_parser(context: ContextValue, data: dict[str, Any]) -> Documen
     return parse(data["query"])
 ```
 
-
 ## Query validation
 
 Ariadne's GraphQL query validation uses the `validate` function from the `graphql-core` package to validate a query against a schema and a set of rules. This function can be swapped out in GraphQL servers using the `query_validator` option.
@@ -65,9 +62,7 @@ def custom_query_validator(
     return []  # List of `GraphQLError`s with problems with the query
 ```
 
-
 ## Examples
-
 
 ### Caching parsed queries
 
@@ -91,7 +86,6 @@ def caching_query_parser(context: ContextValue, data: dict[str, Any]) -> Documen
 # Pass the 'caching_query_parser' to the 'query_parser' option of the 'GraphQL'
 graphql = GraphQL(schema, query_parser=caching_query_parser)
 ```
-
 
 ### Combined parse and validation cache
 

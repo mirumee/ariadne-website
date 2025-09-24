@@ -1,7 +1,6 @@
 ---
-id: version-0.20-middleware
+id: middleware
 title: Middleware
-original_id: middleware
 ---
 
 GraphQL middleware are Python functions and callable objects that can be used to inject custom logic into query executor.
@@ -19,7 +18,6 @@ def lowercase_middleware(resolver, obj, info, **args)
 > **Note**
 >
 > Middleware is not supported by subscriptions.
-
 
 ## Custom middleware example
 
@@ -87,7 +85,6 @@ app = GrapqhQL(
 
 In case when more than one middleware is enabled on the server, the `resolver` argument will point to the partial function constructed from the next middleware in the execution chain.
 
-
 ## Middleware managers
 
 Middleware are ran through special class implemented by GraphQL named `MiddlewareManager`. If you want to replace this manager with custom one, you provide your own implementation using the `middleware_manager_class` option:
@@ -133,11 +130,9 @@ app = GrapqhQL(
 )
 ```
 
-
 ## Middleware and extensions
 
 Extensions [`resolve`](types-reference.md#resolve) hook is actually a middleware. In case when GraphQL server is configured to use both middleware and extensions, extensions `resolve` hooks will be executed before the `middleware` functions.
-
 
 ## Performance impact
 
@@ -147,11 +142,11 @@ Considering this query:
 
 ```graphql
 {
-    users {
-        id
-        email
-        username
-    }
+  users {
+    id
+    email
+    username
+  }
 }
 ```
 
@@ -163,7 +158,6 @@ If `users` resolver returns 100 users, middleware function will be called 301 ti
 - 100 times for username
 
 Avoid implementing costful or slow logic in middlewares. Use python decorators applied explicitly to resolver functions or ASGI/WSGI middlewares combined with callable `context_value`.
-
 
 ### Asynchronous middleware
 

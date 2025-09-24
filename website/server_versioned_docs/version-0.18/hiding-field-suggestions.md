@@ -1,8 +1,7 @@
 ---
-id: version-0.18-hiding-field-suggestions
+id: hiding-field-suggestions
 title: Hiding field suggestions
 sidebar_label: Hiding field suggestions
-original_id: hiding-field-suggestions
 ---
 
 ## Field suggestion
@@ -13,11 +12,15 @@ The introduction of this feature has enabled the correction of typos in GraphQL 
 
 It is therefore recommended to always disable field suggestion, particularly when introspection has been disabled on the application.
 
-````graphql
-query { me { od } }
-````
+```graphql
+query {
+  me {
+    od
+  }
+}
+```
 
-````json
+```json
 {
   "error": {
     "errors": [
@@ -36,7 +39,7 @@ query { me { od } }
     ]
   }
 }
-````
+```
 
 ### Disabling field suggestions
 

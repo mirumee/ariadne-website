@@ -1,11 +1,9 @@
 ---
-id: version-0.18-dataloaders
+id: dataloaders
 title: Dataloaders
-original_id: dataloaders
 ---
 
 Dataloaders are a GraphQL pattern for solving the N+1 problem, where retrieval of **N number of items** results in **N + 1 number of data retrieval operations**.
-
 
 ## The "N+1" problem
 
@@ -13,18 +11,18 @@ Let's take the GraphQL schema modeling a simple relation where messages have use
 
 ```graphql
 type Query {
-    messages: [Message!]!
+  messages: [Message!]!
 }
 
 type Message {
-    id: ID!
-    message: String!
-    poster: User
+  id: ID!
+  message: String!
+  poster: User
 }
 
 type User {
-    id: ID!
-    name: String!
+  id: ID!
+  name: String!
 }
 ```
 
@@ -53,14 +51,14 @@ Assuming that there are **20 rows** in `messages` table in database, this GraphQ
 
 ```graphql
 query SelectMessages {
-    messages {
-        id
-        message
-        poster {
-            id
-            name
-        }
+  messages {
+    id
+    message
+    poster {
+      id
+      name
     }
+  }
 }
 ```
 
@@ -91,7 +89,6 @@ SELECT id, name FROM users WHERE id = 92;
 ```
 
 20 rows is our `N`, and extra query is `+1`. This is the famous "N+1" problem in action.
-
 
 ## Half-measures
 
@@ -167,7 +164,6 @@ def get_users_from_api(users_ids: list[int]) -> dict[int, dict]:
 
 We are now a **half**-way to implementing a dataloader. 👏
 
-
 ## Dataloader
 
 Dataloader is a proxy to a data source. What this data source is doesn't matter. For performance reasons its important that this source supports bulk retrieval of items, but thats not required.
@@ -192,7 +188,6 @@ def resolve_message_poster(message, *_):
     return load_user(message["poster_id"])
 ```
 
-
 ## Async dataloader
 
 If you are using `async` approach (eg. `ariadne.graphql` or `ariadne.asgi.GraphQL`), use [`aiodataloader`](https://github.com/syrusakbary/aiodataloader):
@@ -201,10 +196,9 @@ If you are using `async` approach (eg. `ariadne.graphql` or `ariadne.asgi.GraphQ
 $ pip install aiodataloader
 ```
 
-
 ### Loader function
 
-After installing `aiodataloader`, we will need to first define function it will use to load data. 
+After installing `aiodataloader`, we will need to first define function it will use to load data.
 
 `aiodataloader` requires those functions to take single argument (list of IDs of objects to retrieve), and return a list with retrieved objects, in the order of ids it was called with, with items that couldn't be found represented as `None`.
 
@@ -226,7 +220,6 @@ async def get_users_from_api(users_ids: list[int]) -> list[dict]:
     # Replace result with none when user with given id was not returned
     return [ids_map.get(uid) for uid in users_ids]
 ```
-
 
 ### Initializing loader in context
 
@@ -266,7 +259,6 @@ def get_context_value(request: Request):
 asgi_app = GraphQL(schema, context_value=get_context_value)
 ```
 
-
 ### Using loader in resolvers
 
 We can now update our `poster` resolver to use the loader:
@@ -304,7 +296,6 @@ async def resolve_message_poster(message, info):
 
     return user
 ```
-
 
 ### Cache
 
@@ -352,7 +343,6 @@ def get_context_value(request: Request):
     }
 ```
 
-
 ## Sync dataloader
 
 If you are using sync approach, use [`graphql-sync-dataloaders`](https://github.com/jkimbo/graphql-sync-dataloaders) (Python 3.8 and later only):
@@ -363,7 +353,7 @@ $ pip install graphql-sync-dataloaders
 
 ### Loader function
 
-After installing `graphql-sync-dataloaders`, we will need to first define function it will use to load data. 
+After installing `graphql-sync-dataloaders`, we will need to first define function it will use to load data.
 
 `graphql-sync-dataloaders` requires those functions to take single argument (list of IDs of objects to retrieve), and return a list with retrieved objects, in the order of ids it was called with, with items that couldn't be found represented as `None`.
 
@@ -384,7 +374,6 @@ def get_users_from_api(users_ids: list[int]) -> list[dict]:
     # Replace result with none when user with given id was not returned
     return [ids_map.get(uid) for uid in users_ids]
 ```
-
 
 ### Initializing loader in context
 
@@ -441,7 +430,6 @@ if __name__ == "__main__":
     app.run(debug=True)
 ```
 
-
 ### Using loader in resolvers
 
 We can now update our `poster` resolver to use the loader:
@@ -475,7 +463,6 @@ def resolve_message_poster(message, info):
         return_user_if_not_banned
     )
 ```
-
 
 ### Cache
 

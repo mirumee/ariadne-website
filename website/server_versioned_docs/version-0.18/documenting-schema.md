@@ -1,21 +1,17 @@
 ---
-id: version-0.18-documenting-schema
+id: documenting-schema
 title: Documenting schema
-original_id: documenting-schema
 ---
 
+The GraphQL specification includes two features that make documentation and schema exploration easy and powerful. Those features are descriptions and introspection queries.
 
-The GraphQL specification includes two features that make documentation and schema exploration easy and powerful.  Those features are descriptions and introspection queries.
-
-There is now a rich ecosystem of tools built on top of those features.  Some of which include IDE plugins, code generators and interactive API explorers.
-
+There is now a rich ecosystem of tools built on top of those features. Some of which include IDE plugins, code generators and interactive API explorers.
 
 ## GraphQL explorers
 
 Popular GraphQL explorers allow developers and clients to explore the contents of your schema:
 
 ![GraphQL Playground example](assets/graphql-playground-example.jpg)
-
 
 ## Descriptions
 
@@ -52,7 +48,6 @@ query = '''
 '''
 ```
 
-
 ## Introspection Queries
 
 The GraphQL specification defines a programmatic way to learn about a server's schema and documentation. This is called [introspection](https://graphql.org/learn/introspection/).
@@ -61,13 +56,13 @@ The `Query` type in a GraphQL schema includes special introspection fields (pref
 
 ```graphql
 query IntrospectionQuery {
-    __schema {
-        types {
-            kind
-            name
-            description
-        }
+  __schema {
+    types {
+      kind
+      name
+      description
     }
+  }
 }
 ```
 
@@ -75,15 +70,15 @@ The result of the above query might look like this:
 
 ```json
 {
-    "__schema": {
-        "types": [
-            {
-                "kind": "OBJECT",
-                "name": "Query",
-                "description": "A simple GraphQL schema which is well described.",
-            }
-        ]
-    }
+  "__schema": {
+    "types": [
+      {
+        "kind": "OBJECT",
+        "name": "Query",
+        "description": "A simple GraphQL schema which is well described."
+      }
+    ]
+  }
 }
 ```
 

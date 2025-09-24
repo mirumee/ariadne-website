@@ -1,9 +1,7 @@
 ---
-id: version-0.22-intro
+id: intro
 title: Introduction
-original_id: intro
 ---
-
 
 Welcome to Ariadne!
 
@@ -12,7 +10,6 @@ This guide will introduce you to the basic concepts behind creating GraphQL APIs
 At the end of this page you will have your own simple GraphQL API accessible through the browser, implementing a single field that returns a "Hello" message along with a client's user agent.
 
 Make sure that you've installed Ariadne using `pip install ariadne`, and that you have your favorite code editor open and ready.
-
 
 ## Defining schema
 
@@ -33,7 +30,6 @@ type_defs = """
 ```
 
 The `type Query { }` block declares the type, `hello` is the field definition, `String` is the return value type, and the exclamation mark following it means that the returned value will never be `null`.
-
 
 ## Validating schema
 
@@ -65,7 +61,6 @@ GraphQL request (3:19)
 
 Using `gql` is optional; however, without it, the above error would occur during your server's initialization and point to somewhere inside Ariadne's GraphQL initialization logic, making tracking down the error tricky if your API is large and spread across many modules.
 
-
 ## First resolver
 
 The resolvers are functions mediating between API consumers and the application's business logic. In Ariadne every GraphQL type has fields, and every field has a resolver function that takes care of returning the value that the client has requested.
@@ -85,7 +80,7 @@ Real-world resolvers are rarely that simple: they usually read data from some so
 
 In Ariadne every field resolver is called with at least two arguments: the query's parent object, and the query's execution `info` that usually contains a `context` attribute. The `context` is GraphQL's way of passing additional information from the application to its query resolvers.
 
-> In the above example, note the `*_` argument in the resolver's method signature. The underscore is a convention used in many languages (including Python) to indicate a variable that will not be used. The asterisk prefix is Python syntax that informs the method it should expect a variable-length argument list. In effect, the above example is throwing away any arguments passed to the resolver.  We've used that here, to simplify the example so that you can focus on its purpose.
+> In the above example, note the `*_` argument in the resolver's method signature. The underscore is a convention used in many languages (including Python) to indicate a variable that will not be used. The asterisk prefix is Python syntax that informs the method it should expect a variable-length argument list. In effect, the above example is throwing away any arguments passed to the resolver. We've used that here, to simplify the example so that you can focus on its purpose.
 
 The default GraphQL server implementation provided by Ariadne defines
 `info.context` as a Python `dict` containing a single key named `request`
@@ -98,7 +93,7 @@ def resolve_hello(_, info):
     return "Hello, %s!" % user_agent
 ```
 
-Notice that we are discarding the first argument in our resolver. This is because `resolve_hello` is a special type of resolver: it belongs to a field defined on a root type (`Query`), and such fields, by default, have no parent that could be passed to their resolvers. This type of resolver is called a *root resolver*.
+Notice that we are discarding the first argument in our resolver. This is because `resolve_hello` is a special type of resolver: it belongs to a field defined on a root type (`Query`), and such fields, by default, have no parent that could be passed to their resolvers. This type of resolver is called a _root resolver_.
 
 Now we need to set our resolver on the `hello` field of type `Query`. To do this, we will use the `QueryType` class that sets resolver functions to the `Query` type in the schema. First, we will update our imports:
 
@@ -135,7 +130,7 @@ You pass it your type definitions and resolvers that you want to use:
 schema = make_executable_schema(type_defs, query)
 ```
 
-In Ariadne the process of adding the Python logic to GraphQL schema is called *binding to schema*, and special types that can be passed to `make_executable_schema`'s second argument are called *bindables*. `QueryType` (introduced earlier) is one of many *bindables* provided by Ariadne that developers will use when creating their GraphQL APIs.
+In Ariadne the process of adding the Python logic to GraphQL schema is called _binding to schema_, and special types that can be passed to `make_executable_schema`'s second argument are called _bindables_. `QueryType` (introduced earlier) is one of many _bindables_ provided by Ariadne that developers will use when creating their GraphQL APIs.
 
 In our first API we passed only a single bindable to the `make_executable_schema`, but most of your future APIs will likely pass a list of bindables instead, for example:
 
@@ -144,7 +139,6 @@ make_executable_schema(type_defs, [query, user, mutations, fallback_resolvers])
 ```
 
 > It's possible to call `make_executable_schema` without bindables, but doing so will result in your API handling very limited number of use cases: browsing schema types and, if you've defined root resolver, accessing root type's fields.
-
 
 ## Testing the API
 
@@ -171,7 +165,6 @@ You will see the GraphiQL, the open source API explorer for GraphQL APIs. You ca
 ![Your first Ariadne GraphQL in action!](assets/hello-world.png)
 
 Your first GraphQL API build with Ariadne is now complete. Congratulations!
-
 
 ## Completed code
 

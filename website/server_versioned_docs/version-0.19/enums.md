@@ -1,9 +1,7 @@
 ---
-id: version-0.19-enums
+id: enums
 title: Enumeration types
-original_id: enums
 ---
-
 
 Ariadne supports GraphQL [enumeration types](https://graphql.org/learn/schema/#enumeration-types) which by default are represented as strings in Python logic:
 
@@ -42,7 +40,7 @@ There is no need for resolver to validate if `status` value belongs to the enum.
 
 ```graphql
 {
-    users(status: TEST)
+  users(status: TEST)
 }
 ```
 
@@ -50,22 +48,21 @@ GraphQL failed to find `TEST` in `UserStatus`, and returned an error without cal
 
 ```json
 {
-    "error": {
-        "errors": [
-            {
-                "message": "Argument \"status\" has invalid value TEST.\nExpected type \"UserStatus\", found TEST.",
-                "locations": [
-                    {
-                        "line": 2,
-                        "column": 14
-                    }
-                ]
-            }
+  "error": {
+    "errors": [
+      {
+        "message": "Argument \"status\" has invalid value TEST.\nExpected type \"UserStatus\", found TEST.",
+        "locations": [
+          {
+            "line": 2,
+            "column": 14
+          }
         ]
-    }
+      }
+    ]
+  }
 }
 ```
-
 
 ## Associating GraphQL and Python enums
 
@@ -75,13 +72,13 @@ Imagine posts on a social site that can have weights like "standard", "pinned" a
 
 ```graphql
 type Post {
-    weight: PostWeight
+  weight: PostWeight
 }
 
 enum PostWeight {
-    STANDARD
-    PINNED
-    PROMOTED
+  STANDARD
+  PINNED
+  PROMOTED
 }
 ```
 
@@ -139,7 +136,6 @@ This will make the GraphQL server automatically translate `PostWeight` between t
 
 In this example we've used `IntEnum`, but custom enum can be any subtype of `Enum` type.
 
-
 ## Mapping Python enums by custom name
 
 In above example we've used Python enum `PostWeight` to set Python values for GraphQL enum named `PostWeight`. This worked because Ariadne tries to associate Python objects with their schema counterparts by their name.
@@ -195,7 +191,6 @@ schema = make_executable_schema(
 
 Ariadne will now know that `PostWeightEnum` in GraphQL schema and `PostWeight` enum in Python are the same type.
 
-
 ## Mapping GraphQL enums to dicts
 
 If `Enum` type is not available for your GraphQL enum, you can pass `dict` to `EnumType`'s second argument:
@@ -212,7 +207,6 @@ post_weight = EnumType(
     },
 )
 ```
-
 
 ```python
 import enum

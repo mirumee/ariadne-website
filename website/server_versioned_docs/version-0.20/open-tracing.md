@@ -1,7 +1,6 @@
 ---
-id: version-0.20-open-tracing
+id: open-tracing
 title: OpenTracing
-original_id: open-tracing
 ---
 
 > **Deprecation notice:** OpenTracing standard was superseded by [OpenTelemetry](./open-telemetry.md) and is considered deprecated. OpenTracing extension will be delete in a future version of Ariadne.
@@ -9,7 +8,6 @@ original_id: open-tracing
 Ariadne provides an extension that implements the [OpenTracing](https://opentracing.io/) specification, making it easy to monitor GraphQL API performance and errors using popular APM tools like [Datadog](https://www.datadoghq.com/) or [Jaeger](https://www.jaegertracing.io/).
 
 > **Note:** for performance reasons OpenTracing extension excludes default resolvers.
-
 
 ## Enabling OpenTracing in the API
 
@@ -31,11 +29,9 @@ app = GraphQL(
 
 > **Note:** If you don't have OpenTracing already configured in your project, you will need to install the [`opentracing-python`](https://github.com/opentracing/opentracing-python) package and [configure tracer](https://opentracing.io/guides/python/tracers/) for your APM solution.
 
-
 ## Configuration options
 
 The `ariadne.contrib.tracing.opentracing` module exports `opentracing_extension` utility function that can be used to setup `OpenTracingExtension` with custom options:
-
 
 ### Filtering sensitive arguments data
 
@@ -77,7 +73,6 @@ app = GraphQL(
     ),
 )
 ```
-
 
 ### Customizing root span name
 

@@ -1,9 +1,7 @@
 ---
-id: version-0.18-resolvers
+id: resolvers
 title: Resolvers
-original_id: resolvers
 ---
-
 
 In Ariadne, a resolver is any Python callable that accepts two positional arguments (`obj` and `info`):
 
@@ -16,12 +14,11 @@ class FormResolver:
         ...
 ```
 
-`obj` is a value returned by a parent resolver. If the resolver is a *root resolver* (it belongs to the field defined on `Query`, `Mutation` or `Subscription`) and the GraphQL server implementation doesn't explicitly define value for this field, the value of this argument will be `None`.
+`obj` is a value returned by a parent resolver. If the resolver is a _root resolver_ (it belongs to the field defined on `Query`, `Mutation` or `Subscription`) and the GraphQL server implementation doesn't explicitly define value for this field, the value of this argument will be `None`.
 
 `info` is the instance of a `GraphQLResolveInfo` object specific for this field and query. It defines a special `context` attribute that contains any value that GraphQL server provided for resolvers on the query execution. Its type and contents are application-specific, but it is generally expected to contain application-specific data such as authentication state of the user or an HTTP request.
 
 > `context` is just one of many attributes that can be found on `GraphQLResolveInfo`, but it is by far the most commonly used one. Other attributes enable developers to introspect the query that is currently executed and implement new utilities and abstractions, but documenting that is out of Ariadne's scope. If you are interested, you can find the list of all attributes [here](https://github.com/graphql-python/graphql-core/blob/v3.0.3/src/graphql/type/definition.py#L533).
-
 
 ## Binding resolvers
 
@@ -104,9 +101,9 @@ In the above example we define resolvers for two GraphQL types: `Query` and `Use
 
 ```graphql
 {
-    user {
-        username
-    }
+  user {
+    username
+  }
 }
 ```
 
@@ -134,7 +131,6 @@ from .resolvers import resolve_email_with_permission_check
 user = ObjectType("User")
 user.set_field("email", resolve_email_with_permission_check)
 ```
-
 
 ## Handling arguments
 
@@ -170,7 +166,6 @@ def resolve_holidays(*_, year):
 >
 > **Deprecated:** `convert_kwargs_to_snake_case` decorator is a legacy feature that will be deprecated in future Ariadne release. See the "[Names case conversion](case-conversion.md)" chapter for new solution.
 
-
 ## Aliases
 
 You can use `ObjectType.set_alias` to quickly make a field an alias for a differently-named attribute on a resolved object:
@@ -180,12 +175,11 @@ type_def = """
     type User {
         fullName: String
     }
-""" 
+"""
 
 user = ObjectType("User")
 user.set_alias("fullName", "username")
 ```
-
 
 ## Fallback resolvers
 
@@ -216,7 +210,6 @@ from .resolvers import resolvers
 
 schema = make_executable_schema(type_defs, resolvers, snake_case_fallback_resolvers)
 ```
-
 
 ## Default resolver
 
@@ -250,7 +243,6 @@ user_dict = {
     "initials": lambda info, *, length: obj.username[:length]
 }
 ```
-
 
 ## Query shortcut
 

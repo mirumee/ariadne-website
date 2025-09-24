@@ -1,13 +1,11 @@
 ---
-id: version-0.20-open-telemetry
+id: open-telemetry
 title: OpenTelemetry
-original_id: open-telemetry
 ---
 
 Ariadne provides an extension that implements the [OpenTelemetry](https://opentelemetry.io/) specification, enabling monitoring of GraphQL API performance and errors using popular APM tools like [Datadog](https://www.datadoghq.com/) or [Jaeger](https://www.jaegertracing.io/).
 
 > **Note:** for performance reasons OpenTelemetry extension excludes default resolvers.
-
 
 ## Enabling OpenTelemetry in the API
 
@@ -29,11 +27,9 @@ app = GraphQL(
 
 > **Note:** If you don't have OpenTelemetry already configured in your project, you will need to install the [`opentelemetry-api`](https://github.com/open-telemetry/opentelemetry-python/tree/main/opentelemetry-api) package and [configure tracer](https://opentelemetry.io/docs/specs/otel/trace/sdk/) for your APM solution.
 
-
 ## Configuration options
 
 The `ariadne.contrib.tracing.opentelemetry` module exports `opentelemetry_extension` utility function that can be used to setup `OpenTelemetryExtension` with custom options:
-
 
 ### Filtering sensitive arguments data
 
@@ -75,7 +71,6 @@ app = GraphQL(
     ),
 )
 ```
-
 
 ### Customizing root span name
 

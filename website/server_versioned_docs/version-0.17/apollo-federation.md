@@ -1,13 +1,11 @@
 ---
-id: version-0.17-apollo-federation
+id: apollo-federation
 title: Apollo Federation
-original_id: apollo-federation
 ---
 
 [Apollo Federation](https://www.apollographql.com/docs/apollo-server/federation/introduction/) is an approach for composing multiple GraphQL services into one data graph, queryable from a single GraphQL server.
 
 Ariadne supports building federated schemas through use of special [types and directives introduced by federation specification](https://www.apollographql.com/docs/apollo-server/federation/federation-spec/) that instruct Ariadne how it's GraphQL schema types and fields combine with types and fields defined in other GraphQL schemas forming the Federation.
-
 
 ## Federated architecture example
 
@@ -136,8 +134,6 @@ def resolve_product_reference(_, _info, representation):
     return get_product_by_upc(representation["upc"])
 ```
 
-
-
 ```python
 # service_reviews.py
 from ariadne.contrib.federation import FederatedObjectType
@@ -218,14 +214,14 @@ We need to set up a federated gateway that fetches the schema from each implemen
 
 ```javascript
 // gateway.js
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer } = require("apollo-server");
 const { ApolloGateway } = require("@apollo/gateway");
 
 const gateway = new ApolloGateway({
   serviceList: [
-    { name: 'users', url: 'http://localhost:5001' },
-    { name: 'reviews', url: 'http://localhost:5002' },
-    { name: 'products', url: 'http://localhost:5003' },
+    { name: "users", url: "http://localhost:5001" },
+    { name: "reviews", url: "http://localhost:5002" },
+    { name: "products", url: "http://localhost:5003" },
   ],
 });
 
@@ -268,7 +264,6 @@ query {
 ```
 
 Fully working demo is available on [GitHub](https://github.com/bogdal/ariadne-federation-demo).
-
 
 ## Creating new project from a template
 

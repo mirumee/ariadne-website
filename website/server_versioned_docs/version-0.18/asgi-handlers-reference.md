@@ -1,14 +1,11 @@
 ---
-id: version-0.18-asgi-handlers-reference
+id: asgi-handlers-reference
 title: ASGI handlers reference
 sidebar_label: ariadne.asgi.handlers
-original_id: asgi-handlers-reference
 ---
 
-The `ariadne.asgi.handlers` package exports following 
+The `ariadne.asgi.handlers` package exports following
 ASGI request handlers:
-
-
 
 ## `GraphQLHTTPHandler`
 
@@ -20,7 +17,6 @@ class GraphQLHTTPHandler(GraphQLHttpHandlerBase):
 Default ASGI handler for HTTP requests.
 
 Supports the `Query` and `Mutation` operations.
-
 
 ### Constructor
 
@@ -36,7 +32,6 @@ def __init__(
 
 Initializes the HTTP handler.
 
-
 #### Optional arguments
 
 [`extensions`](types-reference.md#extensions): an [`Extensions`](types-reference.md#extensions) list or callable returning a
@@ -51,7 +46,6 @@ middlewares.
 use for combining provided middlewares into single wrapper for resolvers
 by the server. Defaults to `graphql.MiddlewareManager`. Is only used
 if [`extensions`](types-reference.md#extensions) or `middleware` options are set.
-
 
 ### Methods
 
@@ -70,7 +64,6 @@ queries done using the HTTP protocol.
 It creates the `starlette.requests.Request` instance, calls
 `handle_request` method with it, then sends response back to the client.
 
-
 ##### Required arguments
 
 `scope`: The [connection scope](https://asgi.readthedocs.io/en/latest/specs/main.html#connection-scope) information, a dictionary that contains
@@ -87,7 +80,6 @@ Details about the arguments and their usage are described in the
 ASGI specification:
 
 https://asgi.readthedocs.io/en/latest/specs/main.html
-
 
 #### `handle_request`
 
@@ -113,11 +105,9 @@ introspection is disabled.
 
 Returns Starlette's `Response` instance, which is also works in FastAPI.
 
-
 ##### Required arguments:
 
 `request`: the `Request` instance from Starlette or FastAPI.
-
 
 #### `render_explorer`
 
@@ -128,7 +118,6 @@ async def render_explorer(self, request: Request, explorer: Explorer) -> Respons
 
 Return a HTML response with GraphQL explorer.
 
-
 ##### Required arguments:
 
 `request`: the `Request` instance from Starlette or FastAPI.
@@ -137,7 +126,6 @@ Return a HTML response with GraphQL explorer.
 `html(request: Request)` method which returns either the `str` with HTML
 or `None`. If explorer returns `None`, `405` method not allowed response
 is returned instead.
-
 
 #### `graphql_http_server`
 
@@ -156,11 +144,9 @@ Returns the JSON response from Sta
 If request's data was invalid or missing, plaintext response with
 error message and 400 status code is returned instead.
 
-
 ##### Required arguments:
 
 `request`: the `Request` instance from Starlette or FastAPI.
-
 
 #### `extract_data_from_request`
 
@@ -173,11 +159,9 @@ Extracts GraphQL request data from request.
 
 Returns a `dict` with GraphQL query data that was not yet validated.
 
-
 ##### Required arguments
 
 `request`: the `Request` instance from Starlette or FastAPI.
-
 
 #### `extract_data_from_json_request`
 
@@ -190,11 +174,9 @@ Extracts GraphQL data from JSON request.
 
 Returns a `dict` with GraphQL query data that was not yet validated.
 
-
 ##### Required arguments
 
 `request`: the `Request` instance from Starlette or FastAPI.
-
 
 #### `extract_data_from_multipart_request`
 
@@ -207,11 +189,9 @@ Extracts GraphQL data from `multipart/form-data` request.
 
 Returns an unvalidated `dict` with GraphQL query data.
 
-
 ##### Required arguments
 
 `request`: the `Request` instance from Starlette or FastAPI.
-
 
 #### `execute_graphql_query`
 
@@ -232,13 +212,11 @@ Executes GraphQL query from `request` and returns [`GraphQLResult`](types-refere
 Creates GraphQL [`ContextValue`](types-reference.md#contextvalue), initializes extensions and middlewares,
 then runs the `graphql` function from Ariadne to execute the query.
 
-
 ##### Requires arguments
 
 `request`: the `Request` instance from Starlette or FastAPI.
 
 `data`: a GraphQL data.
-
 
 ##### Optional arguments
 
@@ -246,7 +224,6 @@ then runs the `graphql` function from Ariadne to execute the query.
 
 `query_document`: an already parsed GraphQL query. Setting this option
 will prevent `graphql` from parsing `query` string from `data` second time.
-
 
 #### `get_extensions_for_request`
 
@@ -263,13 +240,11 @@ Returns extensions to use when handling the GraphQL request.
 
 Returns [`ExtensionList`](types-reference.md#extensionlist), a list of extensions to use or `None`.
 
-
 ##### Required arguments
 
 `request`: the `Request` instance from Starlette or FastAPI.
 
 `context`: a [`ContextValue`](types-reference.md#contextvalue) for this request.
-
 
 #### `get_middleware_for_request`
 
@@ -286,13 +261,11 @@ Returns GraphQL middlewares to use when handling the GraphQL request.
 
 Returns [`MiddlewareList`](types-reference.md#middlewarelist), a list of middlewares to use or `None`.
 
-
 ##### Required arguments
 
 `request`: the `Request` instance from Starlette or FastAPI.
 
 `context`: a [`ContextValue`](types-reference.md#contextvalue) for this request.
-
 
 #### `create_json_response`
 
@@ -312,7 +285,6 @@ Returns Starlette's `JSONResponse` instance that's also compatible
 with FastAPI. If `success` is `True`, response's status code is 200.
 Status code 400 is used otherwise.
 
-
 ##### Required arguments
 
 `request`: the `Request` instance from Starlette or FastAPI.
@@ -320,7 +292,6 @@ Status code 400 is used otherwise.
 `result`: a JSON-serializable `dict` with query result.
 
 `success`: a `bool` specifying if
-
 
 #### `handle_not_allowed_method`
 
@@ -334,14 +305,11 @@ Handles request for unsupported HTTP method.
 Returns 200 response for `OPTIONS` request and 405 response for other
 methods. All responses have empty body.
 
-
 ##### Required arguments
 
 `request`: the `Request` instance from Starlette or FastAPI.
 
-
-- - - - -
-
+---
 
 ## `GraphQLHandler`
 
@@ -352,7 +320,6 @@ class GraphQLHandler(ABC):
 
 Base class for ASGI connection handlers.
 
-
 ### Constructor
 
 ```python
@@ -361,7 +328,6 @@ def __init__(self):
 ```
 
 Initialize the handler instance with empty configuration.
-
 
 ### Methods
 
@@ -376,7 +342,6 @@ An entrypoint for the ASGI connection handler.
 
 This method is called by Ariadne ASGI GraphQL application. Subclasses
 should replace it with custom implementation.
-
 
 ##### Required arguments
 
@@ -394,7 +359,6 @@ Details about the arguments and their usage are described in the
 ASGI specification:
 
 https://asgi.readthedocs.io/en/latest/specs/main.html
-
 
 #### `configure`
 
@@ -421,7 +385,6 @@ Configures the handler with options from the ASGI application.
 Called by Ariadne ASGI GraphQL application as part of its
 initialization, propagating the configuration to it's handlers.
 
-
 #### `get_context_for_request`
 
 ```python
@@ -437,16 +400,13 @@ value instead, which is a `dict` with single `request` key that contains
 either `starlette.requests.Request` instance or
 `starlette.websockets.WebSocket` instance.
 
-
 ##### Required arguments
 
 `request`: an instance of ASGI connection. It's type depends on handler.
 
 `data`: a GraphQL data from connection.
 
-
-- - - - -
-
+---
 
 ## `GraphQLHttpHandlerBase`
 
@@ -456,7 +416,6 @@ class GraphQLHttpHandlerBase(GraphQLHandler):
 ```
 
 Base class for ASGI HTTP connection handlers.
-
 
 ### Methods
 
@@ -470,7 +429,6 @@ async def handle_request(self, request: Any) -> Any:
 Abstract method for handling the request.
 
 Should return valid ASGI response.
-
 
 #### `execute_graphql_query`
 
@@ -488,9 +446,7 @@ async def execute_graphql_query(
 
 Abstract method for GraphQL query execution.
 
-
-- - - - -
-
+---
 
 ## `GraphQLTransportWSHandler`
 
@@ -506,7 +462,6 @@ For more details see it's GH page:
 
 https://github.com/enisdenjo/graphql-ws/blob/master/PROTOCOL.md
 
-
 ### Constructor
 
 ```python
@@ -521,13 +476,11 @@ def __init__(
 
 Initializes the websocket handler.
 
-
 #### Optional arguments
 
 `connection_init_wait_timeout`: a `timedelta` with timeout for new
 websocket connections before first message is received. Defaults to
 60 seconds.
-
 
 ### Methods
 
@@ -546,7 +499,6 @@ the websocket connections.
 It creates the `starlette.websockets.WebSocket` instance and calls
 `handle_websocket` method with it.
 
-
 ##### Required arguments
 
 `scope`: The [connection scope](https://asgi.readthedocs.io/en/latest/specs/main.html#connection-scope) information, a dictionary that contains
@@ -564,7 +516,6 @@ ASGI specification:
 
 https://asgi.readthedocs.io/en/latest/specs/main.html
 
-
 #### `handle_websocket`
 
 ```python
@@ -577,11 +528,9 @@ Handle GraphQL the WebSocket connection.
 Is called by the `handle` method and `handle_websocket` method of the
 ASGI GraphQL application.
 
-
 ##### Required arguments:
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
-
 
 #### `handle_connection_init_timeout`
 
@@ -593,7 +542,6 @@ async def handle_connection_init_timeout(
 ) -> None:
     ...
 ```
-
 
 #### `handle_websocket_message`
 
@@ -609,7 +557,6 @@ async def handle_websocket_message(
 
 Handles new message from websocket connection.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
@@ -618,7 +565,6 @@ Handles new message from websocket connection.
 
 `client_context`: a `ClientContext` object with extra state of current
 websocket connection.
-
 
 #### `handle_websocket_connection_init_message`
 
@@ -634,7 +580,6 @@ async def handle_websocket_connection_init_message(
 
 Handles `connection_init` websocket message.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
@@ -643,7 +588,6 @@ Handles `connection_init` websocket message.
 
 `client_context`: a `ClientContext` object with extra state of current
 websocket connection.
-
 
 #### `handle_websocket_ping_message`
 
@@ -658,14 +602,12 @@ async def handle_websocket_ping_message(
 
 Handles `ping` websocket message, answering with `pong` message.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
 
 `client_context`: a `ClientContext` object with extra state of current
 websocket connection.
-
 
 #### `handle_websocket_pong_message`
 
@@ -683,14 +625,12 @@ Handles `pong` websocket message.
 Unlike `ping` message, `pong` is unidirectional heartbeat sent by the
 client to the server. It doesn't require a result.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
 
 `client_context`: a `ClientContext` object with extra state of current
 websocket connection.
-
 
 #### `handle_websocket_complete_message`
 
@@ -709,7 +649,6 @@ Handles `complete` websocket message.
 `complete` message tells the GraphQL server to stop sending events for
 GraphQL operation specified in the message
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
@@ -718,7 +657,6 @@ GraphQL operation specified in the message
 
 `client_context`: a `ClientContext` object with extra state of current
 websocket connection.
-
 
 #### `handle_websocket_subscribe`
 
@@ -735,7 +673,6 @@ async def handle_websocket_subscribe(
 
 Handles `subscribe` websocket message.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
@@ -746,7 +683,6 @@ Handles `subscribe` websocket message.
 
 `client_context`: a `ClientContext` object with extra state of current
 websocket connection.
-
 
 #### `handle_websocket_invalid_type`
 
@@ -759,11 +695,9 @@ Handles unsupported or invalid websocket message.
 
 Closes open websocket connection with error code `4400`.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
-
 
 #### `handle_on_complete`
 
@@ -778,13 +712,11 @@ async def handle_on_complete(
 
 Handles completed websocket operation.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
 
 [`operation`](types-reference.md#operation): a completed [`Operation`](types-reference.md#operation).
-
 
 #### `stop_websocket_operation`
 
@@ -800,7 +732,6 @@ async def stop_websocket_operation(
 
 Stops specified GraphQL operation for given connection and context.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
@@ -809,7 +740,6 @@ Stops specified GraphQL operation for given connection and context.
 
 `client_context`: a `ClientContext` object with extra state of current
 websocket connection.
-
 
 #### `observe_async_results`
 
@@ -827,7 +757,6 @@ async def observe_async_results(
 Converts results from Ariadne's `subscribe` generator into websocket
 messages it next sends to the client.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
@@ -840,9 +769,7 @@ messages it next sends to the client.
 `client_context`: a `ClientContext` object with extra state of current
 websocket connection.
 
-
-- - - - -
-
+---
 
 ## `GraphQLWSHandler`
 
@@ -858,7 +785,6 @@ For more details see it's GH page:
 
 https://github.com/apollographql/subscriptions-transport-ws/blob/master/PROTOCOL.md
 
-
 ### Constructor
 
 ```python
@@ -868,14 +794,12 @@ def __init__(self, *args, keepalive: Optional[float], **kwargs):
 
 Initializes the websocket handler.
 
-
 #### Optional arguments
 
 `keepalive`: a `float` with time frequency for sending the keep-alive
 messages to clients with open websocket connections. `1.0` is 1 second.
 If set to `None` or `0`, no keep-alive messages are sent.
 Defaults to `None`.
-
 
 ### Methods
 
@@ -894,7 +818,6 @@ the websocket connections.
 It creates the `starlette.websockets.WebSocket` instance and calls
 `handle_websocket` method with it.
 
-
 ##### Required arguments
 
 `scope`: The [connection scope](https://asgi.readthedocs.io/en/latest/specs/main.html#connection-scope) information, a dictionary that contains
@@ -912,7 +835,6 @@ ASGI specification:
 
 https://asgi.readthedocs.io/en/latest/specs/main.html
 
-
 #### `handle_websocket`
 
 ```python
@@ -925,11 +847,9 @@ Handle GraphQL the WebSocket connection.
 Is called by the `handle` method and `handle_websocket` method of the
 ASGI GraphQL application.
 
-
 ##### Required arguments:
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
-
 
 #### `handle_websocket_message`
 
@@ -945,7 +865,6 @@ async def handle_websocket_message(
 
 Handles new message from websocket connection.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
@@ -953,7 +872,6 @@ Handles new message from websocket connection.
 `message`: a `dict` with message payload.
 
 `operations`: a `dict` with currently active GraphQL operations.
-
 
 #### `process_single_message`
 
@@ -970,7 +888,6 @@ async def process_single_message(
 
 Processes websocket message containing new GraphQL operation.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
@@ -980,7 +897,6 @@ Processes websocket message containing new GraphQL operation.
 `operation_id`: a `str` with an ID of new operation.
 
 `operations`: a `dict` with currently active GraphQL operations.
-
 
 #### `handle_websocket_connection_init_message`
 
@@ -997,13 +913,11 @@ Handles `connection_init` websocket message.
 
 Initializes new websocket instance.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
 
 `message`: a `dict` with message's payload.
-
 
 #### `handle_websocket_connection_terminate_message`
 
@@ -1019,11 +933,9 @@ Handles `terminate` websocket message.
 
 Closes open websocket connection.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
-
 
 #### `keep_websocket_alive`
 
@@ -1031,7 +943,6 @@ Closes open websocket connection.
 async def keep_websocket_alive(self, websocket: WebSocket) -> None:
     ...
 ```
-
 
 #### `start_websocket_operation`
 
@@ -1048,7 +959,6 @@ async def start_websocket_operation(
     ...
 ```
 
-
 #### `stop_websocket_operation`
 
 ```python
@@ -1062,13 +972,11 @@ async def stop_websocket_operation(
 
 Stops specified GraphQL operation for given connection.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
 
 [`operation`](types-reference.md#operation): an [`Operation`](types-reference.md#operation) to stop.
-
 
 #### `observe_async_results`
 
@@ -1085,7 +993,6 @@ async def observe_async_results(
 Converts results from Ariadne's `subscribe` generator into websocket
 messages it next sends to the client.
 
-
 ##### Required arguments
 
 `websocket`: the `WebSocket` instance from Starlette or FastAPI.
@@ -1095,9 +1002,7 @@ messages it next sends to the client.
 
 `operation_id`: a `str` with id of operation.
 
-
-- - - - -
-
+---
 
 ## `GraphQLWebsocketHandler`
 
@@ -1107,7 +1012,6 @@ class GraphQLWebsocketHandler(GraphQLHandler):
 ```
 
 Base class for ASGI websocket connection handlers.
-
 
 ### Constructor
 
@@ -1124,7 +1028,6 @@ def __init__(
 
 Initialize websocket handler with optional options specific to it.
 
-
 #### Optional arguments:
 
 `on_connect`: an [`OnConnect`](types-reference.md#onconnect) callback used on new websocket connection.
@@ -1138,7 +1041,6 @@ operation is received from websocket connection.
 `on_complete`: an [`OnComplete`](types-reference.md#oncomplete) callback, used when GraphQL operation
 received over the websocket connection was completed.
 
-
 ### Methods
 
 #### `handle_websocket`
@@ -1149,7 +1051,6 @@ async def handle_websocket(self, websocket: Any) -> None:
 ```
 
 Abstract method for handling the websocket connection.
-
 
 #### `configure`
 
@@ -1167,7 +1068,6 @@ Configures the handler with options from the ASGI application.
 
 Called by Ariadne ASGI GraphQL application as part of its
 initialization, propagating the configuration to it's handlers.
-
 
 ##### Optional arguments
 

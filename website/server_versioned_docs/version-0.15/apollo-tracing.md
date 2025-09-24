@@ -1,13 +1,11 @@
 ---
-id: version-0.15-apollo-tracing
+id: apollo-tracing
 title: Apollo Tracing
-original_id: apollo-tracing
 ---
 
 [Apollo Tracing](https://blog.apollographql.com/exposing-trace-data-for-your-graphql-server-with-apollo-tracing-97c5dd391385) exposes basic performance data of GraphQL queries: Query execution time and execution time of individual resolvers. Ariadne has GraphQL extension that includes this data in the JSON returned by the server after completing the query.
 
 > **Note:** for performance reasons Apollo Tracing extension excludes default resolvers.
-
 
 ## Enabling Apollo Tracing in the API
 
@@ -24,7 +22,6 @@ app = GraphQL(
 ```
 
 > **Note:** If you are using WSGI, use `ApolloTracingExtensionSync` in place of `ApolloTracingExtension`.
-
 
 ## Tracing default resolvers
 

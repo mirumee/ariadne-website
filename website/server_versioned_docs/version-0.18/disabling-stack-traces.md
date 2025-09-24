@@ -1,8 +1,7 @@
 ---
-id: version-0.18-disabling-stack-traces
+id: disabling-stack-traces
 title: Disabling stack traces
 sidebar_label: Disabling stack traces
-original_id: disabling-stack-traces
 ---
 
 ## Stack traces
@@ -29,9 +28,7 @@ The following presents an error occuring when the server tries to fetch data fro
           "column": 16
         }
       ],
-      "path": [
-        "request0"
-      ],
+      "path": ["request0"],
       "extensions": {
         "exception": {
           "stacktrace": [
@@ -55,7 +52,7 @@ The following presents an error occuring when the server tries to fetch data fro
             "user_id": "None",
             "query": "'SELECT * FRO...user_to = 125'",
             "transactions": "[]",
-            "database_url": "postgresql://user:pass@db:5432/db",
+            "database_url": "postgresql://user:pass@db:5432/db"
           }
         }
       }

@@ -1,13 +1,11 @@
 ---
-id: version-0.16-extensions
+id: extensions
 title: Extension system
-original_id: extensions
 ---
 
 Ariadne implements simple extension system that allows developers to inject custom python logic into the query execution process.
 
 > At the moment adding extensions to subscriptions is not supported.
-
 
 ## Enabling extensions
 
@@ -53,7 +51,6 @@ app = GraphQL(
 )
 ```
 
-
 ## Custom extension example
 
 Let's create simple extension that measures query execution time, and appends this time to query's result.
@@ -92,7 +89,6 @@ class QueryExecutionTimeExtension(Extension):
 ```
 
 > See [`Extension`](types-reference.md#extension) reference for the list of available events.
-
 
 ## WSGI extension implementation
 

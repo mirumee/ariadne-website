@@ -14,13 +14,11 @@ New `remote_schema_verify_ssl` option can now be used to control SSL certificate
 
 This option is enabled by default and should only be disabled with good reasons, like when you are running calls over the internal network that uses self-signed certificates.
 
-
 ## Support for custom names of operation types
 
 `ariadne-codegen` previously assumed that root types in GraphQL schema are always named `Query` and `Mutation`, but we were informed that this is not always the case as for example [Hasura](https://hasura.io/) defaults to `query_root` and `mutation_root` instead.
 
 Starting with 0.5 release operation roots are instead resolved from `Schema` types's `query` and `mutation` fields.
-
 
 ## Generating Python declarations for GraphQL schemas
 
@@ -28,13 +26,11 @@ Starting with 0.5 release operation roots are instead resolved from `Schema` typ
 
 This schema can be further converted into a string using the `graphql.print_schema` utility.
 
-
 ## Unlocked dependencies used in development
 
 Versions of `black`, `isort`, `autoflake` and other dependencies used by code generation logic as final processing step were previously pinned, forcing projects that used `ariadne-codegen` as their dependency to pin those themselves.
 
 We've unpinned those packages versions in `ariadne-codegen`, assuming that its better for project owners do use `ariadne-codegen` version used by them compatible with their dev deps than for us to force them into specific versions.
-
 
 ## Changelog
 

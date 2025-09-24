@@ -2,7 +2,7 @@
 title: Introducing Ariadne GraphQL Modules
 ---
 
-[Ariadne GraphQL Modules library is now available](https://github.com/mirumee/ariadne-graphql-modules) 🎉 
+[Ariadne GraphQL Modules library is now available](https://github.com/mirumee/ariadne-graphql-modules) 🎉
 
 This library provides developers with modular way for implementing GraphQL schemas in their projects.
 
@@ -121,13 +121,12 @@ Final schema will contain single `Query` type thats result of merged tupes:
 
 ```graphql
 type Query {
-    message: String!
-    year: Int!
+  message: String!
+  year: Int!
 }
 ```
 
 Fields on final type will be ordered alphabetically.
-
 
 ## Better case mapping between `clientWorld` and `python_world`
 
@@ -208,7 +207,6 @@ class UserRegisterMutation(MutationType):
         return bool(user)
 ```
 
-
 ## Installation
 
 Ariadne GraphQL Modules can be installed with pip:
@@ -219,13 +217,11 @@ pip install ariadne-graphql-modules
 
 > Ariadne 0.15 or later is required.
 
-
 ## Using modules in your project
 
 Because there's no way to mix old and new approach within single GraphQL API we are recommending this library for teams starting new schemas or maintaining smaller existing schemas and are unhappy with "default" approach for schema definition that Ariadne provides. Just remember that we **don't consider current API stable** and we plan to iterate and change things based on our own experience with it and feedback from other users.
 
 We don't know yet if in future we will merge modules code into Ariadne proper. For the time being we want to maintain it as a separate library so we can make frequent releases as bugs are discovered and improvements are found.
-
 
 ## Feedback
 

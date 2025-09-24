@@ -17,7 +17,6 @@ Please note that Ariadne GraphQL Proxy is currently in technology preview stage.
 
 <!--truncate-->
 
-
 ## Getting the code
 
 Ariadne GraphQL Proxy from PyPi:
@@ -27,7 +26,6 @@ pip install ariadne-graphql-proxy
 ```
 
 Source code is hosted on [GitHub](https://github.com/mirumee/ariadne-graphql-proxy/tree/main).
-
 
 ## Minimal proxy example
 
@@ -49,8 +47,7 @@ app = GraphQL(
 )
 ```
 
-
-## Combining schemas 
+## Combining schemas
 
 If multiple schemas are added to `ProxySchema`, those are combined with latter fields replacing former's:
 
@@ -76,7 +73,6 @@ app = GraphQL(
 
 Ariadne GraphQL Proxy will split root GraphQL query received from clients into separate queries it then will route to other services.
 
-
 ## Caching fields
 
 Ariadne GraphQL Proxy implements two caching strategies for GraphQL resolvers:
@@ -90,18 +86,15 @@ Basic caching framework with swap-able cache backends is implemented, with examp
 
 See [cache guide](https://github.com/mirumee/ariadne-graphql-proxy/blob/main/GUIDE.md#cache-framework) for more detailed information.
 
-
 ## Relations
 
 Ariadne GraphQL Proxy supports relations spanning multiple schemas. Those relations enable one schema to define mutation returning a type which's definition lives in other schema.
 
 See the [foreign keys guide](https://github.com/mirumee/ariadne-graphql-proxy/blob/main/GUIDE.md#foreign-keys).
 
-
 ## Further reading
 
 No full documentation for Ariadne GraphQL Proxy currently exists, but for available use cases see the [developer guide document](https://github.com/mirumee/ariadne-graphql-proxy/blob/main/GUIDE.md).
-
 
 ## Future plans
 

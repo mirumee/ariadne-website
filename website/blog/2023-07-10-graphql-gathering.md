@@ -18,7 +18,6 @@ During the Gathering and and even before we've heard an opinion that this approa
 
 We are not planning to drop OpenTelemetry (or OpenTracing) extensions from Ariadne, but we may consider updating the existing documentation with a short note that the out of the box approach may not be what they want. Maybe the solution to the issue of having a lot of noise in metrics would be the `fields` option on extensions, enabling developers to limit them only to selected fields?
 
-
 ## Persisted queries
 
 One of GraphQL's selling points is getting only the data you've queried for. But what about situations when this control should be reversed, and it's the server which should decide on fields to return it? One could go about implementing a separate REST or RPC API on the side, but now they need to maintain two separate APIs which can be considered grossly suboptimal.
@@ -29,7 +28,6 @@ This idea requires further development as there are still questions that need an
 
 Ariadne could provide limited support for persisted queries inside the `ariadne.contrib` package.
 
-
 ## Query complexity and cost checks
 
 One discussion we've had at the Gathering was about the query complexity and validation. Ariadne implements a query cost validator that will calculate query cost and prevent query execution when a predefined limit is exceeded. However this topic is little more, well, complex than setting those costs limits:
@@ -38,7 +36,6 @@ One discussion we've had at the Gathering was about the query complexity and val
 - When in doubt, make fields returning lists paginated.
 - Consider writing a GraphQL validator that limits the number of fields from `Query` or `Mutation` that can be queried in a single operation.
 - Understand your users. Slow queries may not be the end of the world when they happen rarely. Maybe clients are looking for an easy way to pull a bunch of data to avoid waterfalls and you can improve the schema for them? Or maybe those clients are maintained by people sitting in the next room in the office and the issue may be resolved by asking nicely? Not every problem must be an engineering one.
-
 
 ## Combining and composing APIs in single GraphQL schema
 

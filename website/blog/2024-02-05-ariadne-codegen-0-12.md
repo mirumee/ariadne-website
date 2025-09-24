@@ -8,20 +8,17 @@ This is a maintenance release that fixes reported bugs in Pydantic models creati
 
 <!--truncate-->
 
-
 ## Fixed `graphql-transport-ws` protocol implementation not waiting for the `connection_ack` message on new connection
 
 Async client for `graphql-transport-ws` protocol didn't await for the `connection_ack` message on the new connection to the GraphQL server.
 
 This has been addressed in Ariadne Codegen 0.12.
 
-
 ## Fixed `get_client_settings` mutating `config_dict` instance
 
 Ariadne Codegen mutated `config_dict` on initialization, which caused errors when plugins attempted to access changed or removed keys in the configuration dict.
 
 In 0.12 `config_dict` is first copied before being changed, preserving the original dict for plugins.
-
 
 ## Restored `model_rebuild` calls for top level fragment models
 
@@ -30,7 +27,6 @@ In 0.12 `config_dict` is first copied before being changed, preserving the origi
 This caused an issue where lazy references were not completed by Pydantic on initialization, breaking those in the client.
 
 0.12 attempts to detect scenarios where `model_rebuild` are necessary and includes them in the generated client.
-
 
 ## Added support to `graphqlschema` for saving schema as a GraphQL file
 
@@ -42,7 +38,6 @@ Output format is controlled by the file extension used in the `target_file_path`
 
 - `.py` will produce a Python file with `GraphQLSchema` instance.
 - `.graphql` and `.gql` will produce a GraphQL file with SDL schema definition.
-
 
 ## Changelog
 

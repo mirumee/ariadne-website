@@ -14,13 +14,11 @@ Sadly reality verified this feature, making it necessary for us to mostly revert
 
 Ariadne Codegen 0.13 scans generated models for forward references and includes `model_rebuild` calls for models that contain those.
 
-
 ## Fixed potential name conflicts between field args and generated client's method code
 
 Naming a field argument `query`, `variables`, `data` or `result` would prevent the generated method to work or produce type errors for variable redefinition with different type.
 
 Ariadne Codegen 0.13 detects name collisions and then prefixes its own names with `_` in generated client's methods.
-
 
 ## CHANGELOG
 

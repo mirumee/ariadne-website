@@ -6,48 +6,47 @@ Ariadne Codegen 0.10 has been released!
 
 This release improves the snake case conversion of operation names, adds opt-in support for Open Telemetry tracing, introduces the `ExtractOperationsPlugin` plugin, adds Python 3.12 to the supported versions, and brings other features and fixes.
 
-
 <!--truncate-->
 
 ## Converting capitalized names and digits to snake case (breaking change)
 
 Codegen converts given operation name to snake case. Result will later be used as name of a file containing generated models for operation, optionally (if `convert_to_snake_case` is set to `true`) also as client's method name. This release introduces changes to how numbers and capitalised names are handled in the conversion process, e.g:
 
-| operation name    | old snake case            | new snake case        |
-|-------------------|---------------------------|-----------------------|
-| name              | name                      | name                  |
-| operationName     | operation_name            | operation_name        |
-| operationNAME     | operation_n_a_m_e         | operation_name        |
-| OPERATIONName     | o_p_e_r_a_t_i_o_n_name    | operation_name        |
-| operationName123  | operation_name123         | operation_name_123    |
-| operationNAME123  | operation_n_a_m_e123      | operation_name_123    |
+| operation name   | old snake case         | new snake case     |
+| ---------------- | ---------------------- | ------------------ |
+| name             | name                   | name               |
+| operationName    | operation_name         | operation_name     |
+| operationNAME    | operation_n_a_m_e      | operation_name     |
+| OPERATIONName    | o_p_e_r_a_t_i_o_n_name | operation_name     |
+| operationName123 | operation_name123      | operation_name_123 |
+| operationNAME123 | operation_n_a_m_e123   | operation_name_123 |
 
 This is potentially a breaking change and may require changes in code using generated client.
-
 
 ## Open Telemetry tracing
 
 `0.10` ships with two additional base clients that support the Open Telemetry tracing. When the `opentelemetry_client` configuration option is set to `true`, the default included base client is replaced with one that implements the opt-in Open Telemetry support - `BaseClientOpenTelemetry`/`AsyncBaseClientOpenTelemetry`. By default this support does nothing, but if the `opentelemetry-api` package is installed and the `tracer` argument is provided, then the client will create spans with data about requests made.
 
 Tracing arguments accepted by `BaseClientOpenTelemetry`:
+
 - `tracer`: `Optional[Union[str, Tracer]] = None` - tracer object or name to pass to the `get_tracer` method
 - `root_context`: `Optional[Context] = None` - optional context added to the root span
 - `root_span_name`: `str = "GraphQL Operation"` - name of the root span
 
 `AsyncBaseClientOpenTelemetry` supports the same arguments as `BaseClientOpenTelemetry`, but also accepts additional arguments regarding websockets:
+
 - `ws_root_context`: `Optional[Context] = None` - optional context added to root span for websocket connection
 - `ws_root_span_name`: `str = "GraphQL Subscription"` - name of root span for websocket connection
-
 
 ## Included comments
 
 In `0.10` we changed the `include_comments` option to allow selection of the style of comments to be included at the top of each generated file. Available options:
+
 - `"timestamp"` - comment with generation timestamp
 - `"stable"` - comment with message that this is a generated file (new default)
 - `"none"` - no comments
 
 Previous boolean support is deprecated and will be dropped in future releases, but for now `false` is mapped to `"none"` and `true` to `"timestamp"`.
-
 
 ## `ExtractOperationsPlugin`
 
@@ -103,11 +102,9 @@ class Client(AsyncBaseClient):
         return GetName.model_validate(data)
 ```
 
-
 ## Overloading arguments per call
 
 Each generated client's method now accepts `**kwargs` and passes them to the `http_client.post`/`ws_connect` call made in the base client.
-
 
 ## Escaping enum values which are Python keywords
 
@@ -115,8 +112,8 @@ GraphQL enum values that are Python reserved keywords will now be suffixed with 
 
 ```gql
 enum CustomEnum {
-    valid
-    import
+  valid
+  import
 }
 ```
 
@@ -130,21 +127,17 @@ class CustomEnum(str, Enum):
     import_ = "import"
 ```
 
-
 ## Adding `__typename` to all models generated from unions and interfaces
 
 In previous versions, models created from single-member unions or from interfaces that were queried without inline fragments didn't have a `__typename` field added. Now `0.10` includes this special field in all models generated from abstract types.
-
 
 ## Nullable fields with nullable directives
 
 `0.10` fixes behaviour when the default `None` was not added to a nullable field with a `@skip`/`@include` directive.
 
-
 ## Ignored `enums_module_name`
 
 Codegen now correctly reads `enums_module_name` and uses its value instead of always generating `enums.py`.
-
 
 ## Changelog
 

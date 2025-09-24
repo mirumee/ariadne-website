@@ -12,7 +12,6 @@ This release includes a number of fixes and improvements related to Pydantic v2.
 
 In the last refactoring of custom scalars, we introduced a bug that caused custom `parse` to be called on already correct objects within generated input models. To fix this, we are again changing the way custom scalars are represented in the generated package. We are removing `scalars.py`, the related option and plugin hooks. Instead, scalars will be represented directly as provided types.
 
-
 ### Custom scalar without custom parse and serialize
 
 ```toml
@@ -28,7 +27,6 @@ type = "datetime.datetime"
 ```
 
 In this case, `DATETIME` is treated in the same way, but the necessary import is added: `from datetime import datetime`.
-
 
 ### Custom scalar with custom parse and serialize
 
@@ -89,21 +87,17 @@ class Client(AsyncBaseClient):
         ...
 ```
 
-
 ## Pydantic\`s warnings
 
 By default, Pydantic gives a warning if the name of a field starts with `model_`, but throws an error if there is a collision with an existing attribute. In the last release we took care of the collisions and now we are changing the configuration of `BaseModel` to not give these warnings.
-
 
 ## Nullable directives
 
 Codegen detects `@skip' and `@include' directives and marks fields with them as `Optional`, even if the type is not nullable. With pydantic v1 this worked fine, but with v2 there is an error if the response does not include a key for such a field. To maintain previous functionality, we will add an explicit `None` default for fields with one of these directives.
 
-
 ## Operation string with nested inline fragments
 
 Version `0.9` fixes the way we generate the operation string for the case where fragments are only used within an inline fragment. From now on we include these nested fragments.
-
 
 ## Changelog
 

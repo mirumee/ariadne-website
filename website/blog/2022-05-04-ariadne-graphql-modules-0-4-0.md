@@ -2,7 +2,6 @@
 title: Ariadne GraphQL Modules 0.4.0
 ---
 
-
 Ariadne GraphQL Modules 0.4.0 has been released!
 
 This release changes datamodel, simplifying the `BaseType` and moving its logic to new `DefinitionType` and `BindableType` base classes.
@@ -21,7 +20,6 @@ class UserMutations(CollectionType):
 ```
 
 <!--truncate-->
-
 
 ## Changelog
 

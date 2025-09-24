@@ -16,7 +16,7 @@ For example, given the following operation:
 
 ```gql
 subscription GetUsersCounter {
-    usersCounter
+  usersCounter
 }
 ```
 
@@ -44,27 +44,26 @@ Required dependencies can be installed with pip:
 $ pip install ariadne-codegen[subscriptions]
 ```
 
-
 ## Fragments
 
 In previous versions of Codegen fragments were "unpacked" in queries. For example, given the following operations:
 
 ```gql
 query GetA {
-    getTypeA {
-        ...FragmentA
-    }
+  getTypeA {
+    ...FragmentA
+  }
 }
 
 query ListA {
-    listTypeA {
-        ...FragmentA
-    }
+  listTypeA {
+    ...FragmentA
+  }
 }
 
 fragment FragmentA on TypeA {
-    id
-    name
+  id
+  name
 }
 ```
 
@@ -130,26 +129,25 @@ class FragmentA(BaseModel):
 
 With this change you can use fragments as reusable types in your Python logic using the client, eg. `def process_a(a: FragmentA)...`. New `fragments.py` consists of fragments collected from all parsed operations.
 
-
 ### Unions and Interfaces
 
 There is an exception from new fragments behaviour. If a fragment represents `Union` then we unpack it as before:
 
 ```gql
 query getAnimal {
-    animal {
-        ...AnimalData
-    }
+  animal {
+    ...AnimalData
+  }
 }
 
 fragment AnimalData on AnimalInterface {
-    name
-    ... on Dog {
-        dogField
-    }
-    ... on Cat {
-        catField
-    }
+  name
+  ... on Dog {
+    dogField
+  }
+  ... on Cat {
+    catField
+  }
 }
 ```
 
@@ -179,16 +177,15 @@ class GetAnimalAnimalCat(BaseModel):
     cat_field: str = Field(alias="catField")
 ```
 
-
 ## `ShorterResultsPlugin`
 
 In version 0.7 we are including `ShorterResultsPlugin` developed by our community. It can be used when operations have only one top-level field. For example, given the following operation:
 
 ```gql
 query GetUser($userId: ID!) {
-    user(id: $userId) {
-        id
-    }
+  user(id: $userId) {
+    id
+  }
 }
 ```
 
@@ -212,6 +209,7 @@ async def get_user(self, user_id: str) -> GetUser:
 ```
 
 To get the value of `user`, we need to always get it by attribute, eg. `await get_user("1").user`. By using `ShorterResultsPlugin` our `get_user` returns the value of `user` directly.
+
 ```toml
 [tool.ariadne-codegen]
 ...
@@ -225,8 +223,7 @@ async def get_user(self, user_id: str) -> GetUserUser:
 
 ```
 
-
-## Discriminated unions 
+## Discriminated unions
 
 To ensure that data is represented as a correct class we use pydantic's [discriminated unions](https://docs.pydantic.dev/dev-v2/usage/types/unions/#discriminated-unions-aka-tagged-unions). We add `__typename` to queries with unions and then use its value as `discriminator`. Let's take an example schema and query:
 
@@ -256,15 +253,15 @@ type Fish implements Animal {
 
 ```gql
 query GetAnimal {
-    animal {
-        name
-        ... on Dog {
-            dogField
-        }
-        ... on Cat {
-            catField
-        }
+  animal {
+    name
+    ... on Dog {
+      dogField
     }
+    ... on Cat {
+      catField
+    }
+  }
 }
 ```
 
@@ -296,16 +293,13 @@ class GetAnimalAnimalCat(BaseModel):
 
 We added `typename__` to this query, and by its value pydantic determines which model to choose.
 
-
 ## Leading underscores
 
 Ariadne Codegen 0.7 will remove leading `_` from field names. Fields with `_` are ignored by pydantic and it is impossible to save the value of such fields.
 
-
 ## Removal of `mixin` directive from operation sent to a server
 
 We support a custom `mixin` directive, which allows extending of generated types. In 0.7 we are removing it from the operation string included in generated client's methods. This directive is only used in the process of generation and caused servers to return errors because of an unknown directive.
-
 
 ## `process_schema` plugin hook
 
@@ -321,7 +315,6 @@ class MyPlugin:
 
         return schema
 ```
-
 
 ## Changelog
 

@@ -176,7 +176,7 @@ const config: Config = {
           items: [
             {
               label: "Blog",
-              href: "https://mirumee.com/blog",
+              href: "https://mirumee.com/blog?utm_source=ariadne_docs&utm_medium=referral",
             },
             {
               label: "GitHub",

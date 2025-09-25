@@ -2,6 +2,22 @@
 
 The code that powers [Ariadne](https://github.com/mirumee/ariadne) website, made with [🦖 Docusaurus](https://docusaurus.io).
 
+## Generate new version
+
+For server documentation run:
+
+```
+npm run docusaurus docs:version:server x.x.x
+```
+
+For client documentation run:
+
+```
+npm run docusaurus docs:version:client x.x.x
+```
+
+Where x.x.x is your new version number.
+
 ## Publishing docs
 
 Before publishing make sure that `GIT_USER` env variable is set and contains your GitHub username and `USE_SSH` is set to `true`!
@@ -12,7 +28,7 @@ Before publishing make sure that `GIT_USER` env variable is set and contains you
 
 ## Search index
 
-We are using [algolia docsearch](https://docsearch.algolia.com/) for the search. Site is indexed automatically one in three days. To trigger it manually go to the [crawler dashboard](https://crawler.algolia.com/).
+We are using [algolia docsearch](https://docsearch.algolia.com/) for the search. Site is indexed automatically one in three days. To trigger it manually go to the [crawler dashboard](https://crawler.algolia.com/). We are using [default crawler](https://docsearch.algolia.com/docs/templates/#default-template).
 
 ## Contributing
 

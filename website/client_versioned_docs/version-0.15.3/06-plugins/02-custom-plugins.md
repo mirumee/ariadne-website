@@ -240,7 +240,7 @@ Hook executed on generation of result models code for one operation. Result is u
 def copy_code(self, copied_code: str) -> str:
 ```
 
-Hook executed on coping file's content to result package.
+Hook executed on copying file's content to result package.
 Files hook is called for:
 
 - `base_client.py` or `async_base_client.py` or custom base client `base_client_file_path`

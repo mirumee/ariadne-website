@@ -6,4 +6,4 @@ EXPOSE 3000 35729
 COPY ./website /app/website
 RUN yarn install
 
-CMD ["yarn", "start"]
+CMD ["yarn", "start", "--host", "0.0.0.0"]

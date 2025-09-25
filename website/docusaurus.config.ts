@@ -36,7 +36,6 @@ const config: Config = {
           path: "docs/server",
           routeBasePath: "server",
           sidebarPath: "./serverSidebars.ts",
-          lastVersion: "0.25",
         },
         blog: {
           showReadingTime: true,
@@ -69,6 +68,15 @@ const config: Config = {
         },
       },
     ],
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "client",
+        path: "docs/client",
+        routeBasePath: "client",
+        sidebarPath: "./clientSidebars.ts",
+      },
+    ],
   ],
 
   themeConfig: {
@@ -92,12 +100,25 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "Server Docs",
+          label: "Server",
           docsPluginId: "server",
         },
+
         {
           type: "docsVersionDropdown",
           docsPluginId: "server",
+          position: "left",
+        },
+        {
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          position: "left",
+          label: "Client",
+          docsPluginId: "client",
+        },
+        {
+          type: "docsVersionDropdown",
+          docsPluginId: "client",
           position: "left",
         },
         { to: "/blog", label: "Blog", position: "right" },

@@ -33,7 +33,7 @@ const config: Config = {
       {
         docs: {
           id: "server",
-          path: "docs",
+          path: "docs/server",
           routeBasePath: "server",
           sidebarPath: "./serverSidebars.ts",
           lastVersion: "0.25",

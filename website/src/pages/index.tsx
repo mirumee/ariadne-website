@@ -23,11 +23,11 @@ function HomepageHeader() {
           Type-safe Client
         </Heading>
         <p className="hero__subtitle">
-          Check out our&nbsp;
+          ⭐ Star our{" "}
           <Link href="https://github.com/mirumee/Ariadne?tab=readme-ov-file#ariadne-ecosystem">
-            GitHub repo
-          </Link>
-          .
+            GitHub repos
+          </Link>{" "}
+          ⭐
         </p>
       </div>
     </header>
@@ -136,7 +136,8 @@ async def resolve_promotions(*_):
             <p>
               Use asynchronous query execution and ASGI to speed up your API
               with minimal effort.
-              <p> </p>
+            </p>
+            <p>
               If your stack is not yet ready for async, don't worry -
               synchronous query execution is also available.
             </p>
@@ -170,7 +171,8 @@ urlpatterns = [
               Ariadne provides WSGI and ASGI apps enabling easy implementation
               of custom GraphQL services, and full interoperability with popular
               web frameworks.
-              <p></p>
+            </p>{" "}
+            <p>
               Even if your technology has no resources for adding GraphQL to
               your stack, use the simple guide to create new integrations with
               Ariadne.

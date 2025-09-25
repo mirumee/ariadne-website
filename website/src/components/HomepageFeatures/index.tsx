@@ -17,9 +17,9 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/schema-first.svg").default,
     description: (
       <>
-        Ariadne Server gives you ability to describe your GraphQL API using
-        Schema Definition Language and connect your business logic using a
-        minimal amount of Python boilerplate.
+        <Link href="/server/intro">Ariadne Server</Link> gives you ability to
+        describe your GraphQL API using Schema Definition Language and connect
+        your business logic using a minimal amount of Python boilerplate.
       </>
     ),
   },
@@ -28,8 +28,9 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/simple.svg").default,
     description: (
       <>
-        Ariadne Codegen is a generator that turns your GraphQL schema and
-        operations into a fully typed Python client, including Pydantic models.
+        <Link href="/client/intro">Ariadne Codegen</Link> is a generator that
+        turns your GraphQL schema and operations into a fully typed Python
+        client, including Pydantic models.
       </>
     ),
   },

@@ -10,6 +10,10 @@ Before publishing make sure that `GIT_USER` env variable is set and contains you
 2. `cd` to `website` directory
 3. run `npm run deploy`
 
+## Search index
+
+We are using [algolia docsearch](https://docsearch.algolia.com/) for the search. Site is indexed automatically one in three days. To trigger it manually go to the [crawler dashboard](https://crawler.algolia.com/).
+
 ## Contributing
 
 We are welcoming contributions! If you've found an issue or have any ideas or feedback, feel free to use [GitHub issues](https://github.com/mirumee/ariadne-website/issues) to chime in.

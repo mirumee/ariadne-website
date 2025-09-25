@@ -3,10 +3,10 @@ name: Publish on GitHub Pages
 on:
   push:
     branches: [main]
-    paths: [docs/**, website/**]
+    paths: [website/**]
 
 jobs:
-  build-n-publish:
+  publish:
     name: Build and publish on GitHub Pages
     runs-on: ubuntu-latest
     steps:
@@ -24,4 +24,26 @@ jobs:
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./website/build/ariadne-website
+        publish_dir: ./website/build
+
+  algolia-reindex:
+    name: Trigger Algolia DocSearch reindex
+    needs: publish
+    runs-on: ubuntu-latest
+    environment: github-pages
+    steps:
+      - name: Reindex via Algolia Crawler API
+        env:
+          ALGOLIA_CRAWLER_AUTH_TOKEN: ${{ secrets.ALGOLIA_CRAWLER_AUTH_TOKEN }}
+          ALGOLIA_CRAWLER_ID: ${{ secrets.ALGOLIA_CRAWLER_ID }}
+        run: |
+          if [ -z "$ALGOLIA_CRAWLER_AUTH_TOKEN" ] || [ -z "$ALGOLIA_CRAWLER_ID" ]; then
+            echo "Algolia Crawler secrets missing; skipping reindex."
+            exit 1
+          fi
+
+          echo "Triggering reindex for crawler ${ALGOLIA_CRAWLER_ID}…"
+          curl -sS -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Basic ${ALGOLIA_CRAWLER_AUTH_TOKEN}" \
+            "https://crawler.algolia.com/api/1/crawlers/${ALGOLIA_CRAWLER_ID}/reindex"

@@ -4,7 +4,7 @@ title: Resolvers
 ---
 
 
-In Ariadne, a resolver is any Python callable that accepts two positional arguments (`obj` and `info`):
+In Ariadne, a resolver is any Python callable both asynchronous and synchronous that accepts two positional arguments (`obj` and `info`):
 
 ```python
 def example_resolver(obj: Any, info: GraphQLResolveInfo):
@@ -179,7 +179,7 @@ type_def = """
     type User {
         fullName: String
     }
-""" 
+"""
 
 user = ObjectType("User")
 user.set_alias("fullName", "username")

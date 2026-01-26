@@ -1,3 +1,7 @@
 [submodule "ariadne"]
 	path = ariadne
 	url = https://github.com/mirumee/ariadne.git
+
+[submodule "ariadne-codegen"]
+	path = ariadne-codegen
+	url = https://github.com/mirumee/ariadne-codegen.git

@@ -76,7 +76,7 @@ const config: Config = {
       "@docusaurus/plugin-content-docs",
       {
         id: "client",
-        path: "docs/client",
+        path: "../ariadne-codegen/docs",
         routeBasePath: "client",
         sidebarPath: "./clientSidebars.ts",
       },

@@ -1,0 +1,3 @@
+[submodule "ariadne"]
+	path = ariadne
+	url = https://github.com/mirumee/ariadne.git

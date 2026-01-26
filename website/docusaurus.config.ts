@@ -33,7 +33,7 @@ const config: Config = {
       {
         docs: {
           id: "server",
-          path: "docs/server",
+          path: "../ariadne/docs",
           routeBasePath: "server",
           sidebarPath: "./serverSidebars.ts",
         },

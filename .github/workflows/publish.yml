@@ -1,9 +1,7 @@
 name: Publish on GitHub Pages
 
 on:
-  push:
-    branches: [main]
-    paths: [website/**]
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -11,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+      with:
+        submodules: recursive
     - name: Set up Node
       uses: actions/setup-node@v4
       with:

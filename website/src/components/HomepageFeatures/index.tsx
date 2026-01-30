@@ -17,7 +17,7 @@ const FeatureList: FeatureItem[] = [
     Svg: require("@site/static/img/schema-first.svg").default,
     description: (
       <>
-        <Link href="/server/intro">Ariadne Server</Link> gives you ability to
+        <Link to="/server/Docs/intro">Ariadne Server</Link> gives you ability to
         describe your GraphQL API using Schema Definition Language and connect
         your business logic using a minimal amount of Python boilerplate.
       </>

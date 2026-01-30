@@ -45,7 +45,7 @@ $ uwsgi --http :8000 --wsgi-file mywsgi
 
 GraphQL Explorer to use by this server.
 
-See [explorers](/server/explorers) documentation for more details.
+See [explorers](explorers) documentation for more details.
 
 ## Using the middleware
 

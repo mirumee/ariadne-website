@@ -2,7 +2,7 @@
 title: Ariadne GraphQL Chat Example
 ---
 
-We have created the [Ariadne GraphQL Chat Example](https://github.com/mirumee/ariadne-graphql-chat-example) repository on GitHub that expands the [Chat example from "Subscriptions" documentation](/server/subscriptions#simple-chat-example) with chat history, React.js client (using [Apollo-Client](https://www.apollographql.com/docs/react/data/subscriptions/)), Redis for Broadcaster's messaging backend and Uvicorn HTTP/WebSocket server.
+We have created the [Ariadne GraphQL Chat Example](https://github.com/mirumee/ariadne-graphql-chat-example) repository on GitHub that expands the [Chat example from "Subscriptions" documentation](/server/Docs/subscriptions#simple-chat-example) with chat history, React.js client (using [Apollo-Client](https://www.apollographql.com/docs/react/data/subscriptions/)), Redis for Broadcaster's messaging backend and Uvicorn HTTP/WebSocket server.
 
 <!--truncate-->
 

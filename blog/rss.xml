@@ -468,7 +468,7 @@
 <p>Ariadne 0.20 drops support for Python 3.7. It may still work on Python 3.7, we will not test against it anymore and bugs and crashes specific to it will not be addressed.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="new-extensions-implementation">New extensions implementation<a href="https://ariadnegraphql.org/blog/2023/06/21/ariadne-0-20-0#new-extensions-implementation" class="hash-link" aria-label="Direct link to New extensions implementation" title="Direct link to New extensions implementation">​</a></h2>
 <blockquote>
-<p><strong>Note:</strong> This is a breaking change. See the <a href="https://ariadnegraphql.org/server/middleware">middleware</a> document for new guide for developers.</p>
+<p><strong>Note:</strong> This is a breaking change. See the <a href="https://ariadnegraphql.org/server/Extensions/middleware">middleware</a> document for new guide for developers.</p>
 </blockquote>
 <p>In the past Ariadne shipped with both synchronous and asynchronous GraphQL extensions. Our users reported that asynchronous extensions suffered from performance issues, which we've attempted to resolve together with the community through extra configuration options enabling exclusion of specified fields from tracing, but this didn't lead to noticeable improvements.</p>
 <p>We've received an important tip from Christoph Zwerschke, developer of the <code>GraphQL-core 3</code> library which powers Ariadne's GraphQL implementation. In short, using asynchronous middleware resulted in every GraphQL field becoming asynchronous, even those excluded from tracing. Async/await in Python is generally fast enough, but it's overhead is non-negligible, especially for thousands of calls that happen during GraphQL query execution.</p>
@@ -489,7 +489,7 @@
 <li>replace <code>opentracing_extension_sync</code> with <code>opentracing_extension</code>.</li>
 <li>replace <code>ApolloTracingSync</code> with <code>ApolloTracing</code>.</li>
 </ul>
-<p><code>ExtensionSync</code> base class was also removed from Ariadne. Please use <code>Extension</code> as base class for custom extensions. See the <a href="https://ariadnegraphql.org/server/middleware">middleware</a> document for the guide for new middlewares what support both async and sync execution.</p>
+<p><code>ExtensionSync</code> base class was also removed from Ariadne. Please use <code>Extension</code> as base class for custom extensions. See the <a href="https://ariadnegraphql.org/server/Extensions/middleware">middleware</a> document for the guide for new middlewares what support both async and sync execution.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="deprecated-open-tracing-and-apollo-tracing">Deprecated Open Tracing and Apollo Tracing<a href="https://ariadnegraphql.org/blog/2023/06/21/ariadne-0-20-0#deprecated-open-tracing-and-apollo-tracing" class="hash-link" aria-label="Direct link to Deprecated Open Tracing and Apollo Tracing" title="Direct link to Deprecated Open Tracing and Apollo Tracing">​</a></h2>
 <p>The Open Tracing standard has been deprecated and is superseded by the Open Telemetry.</p>
 <p>Apollo Tracing was deprecated by Apollo, with new a APM solution available but not supported by Ariadne.</p>

@@ -18,7 +18,3 @@ get involved.
 
 Share the love, ask questions or simply say hello on our
 [GitHub](https://github.com/mirumee/ariadne/discussions/) community.
-
-## Stay up to date
-
-Check out our [blog](https://mirumee.com/blog/) for the latest Ariadne news, as well as our musings on all that is GraphQL and Python.

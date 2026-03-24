@@ -20,7 +20,12 @@ const config: Config = {
   trailingSlash: false,
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
+  },
 
   i18n: {
     defaultLocale: "en",
@@ -157,20 +162,12 @@ const config: Config = {
             {
               label: "Email",
               href: "mailto:ariadne@mirumee.com",
-            },
-            {
-              label: "X",
-              href: "https://x.com/AriadneGraphQL",
-            },
+            }
           ],
         },
         {
           title: "More",
           items: [
-            {
-              label: "Blog",
-              href: "https://mirumee.com/blog?utm_source=ariadne_docs&utm_medium=referral",
-            },
             {
               label: "GitHub",
               href: "https://github.com/mirumee/Ariadne?tab=readme-ov-file#ariadne-ecosystem",

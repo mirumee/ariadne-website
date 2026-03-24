@@ -37,16 +37,6 @@ const config: Config = {
           routeBasePath: "server",
           sidebarPath: "./serverSidebars.ts",
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ["rss", "atom"],
-            xslt: true,
-          },
-          onInlineTags: "warn",
-          onInlineAuthors: "warn",
-          onUntruncatedBlogPosts: "warn",
-        },
         theme: {
           customCss: ["./src/css/custom.css", "./src/css/font/inter.css"],
         },
@@ -125,7 +115,6 @@ const config: Config = {
           docsPluginId: "client",
           position: "left",
         },
-        { to: "/blog", label: "Blog", position: "right" },
         { to: "/community", label: "Community", position: "right" },
         {
           href: "https://github.com/mirumee/Ariadne?tab=readme-ov-file#ariadne-ecosystem",

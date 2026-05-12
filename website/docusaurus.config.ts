@@ -175,7 +175,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()}  Mirumee Software.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Mirumee Software. Engineered by Mirumee Labs.`,
     },
     prism: {
       theme: prismThemes.github,

@@ -15,6 +15,11 @@ function HomepageHeader() {
   return (
     <header className={clsx("hero", styles.heroBanner)}>
       <div className="container">
+        <div style={{display:"flex",alignItems:"center",gap:"6px",marginBottom:"1rem",fontSize:"0.85rem",color:"#666"}}>
+  <span>Built and maintained by</span>
+  <img src="/img/mirumee_minilogo.svg" alt="Mirumee" style={{height:"12px",verticalAlign:"middle"}} />
+  <span>™</span>
+</div>
         <Heading as="h1" className="hero__title">
           GraphQL in Python
           <br />
@@ -22,13 +27,18 @@ function HomepageHeader() {
           <br />
           Type-safe Client
         </Heading>
-        <p className="hero__subtitle">
-          ⭐ Star our{" "}
-          <Link href="https://github.com/mirumee/Ariadne?tab=readme-ov-file#ariadne-ecosystem">
-            GitHub repos
-          </Link>{" "}
-          ⭐
-        </p>
+        <div style={{display:"flex",alignItems:"center",justifyContent:"ceflex-start",gap:"16px",marginTop:"1rem",flexWrap:"wrap"}}>
+          <p className="hero__subtitle" style={{margin:0}}>
+            ⭐ Star our{" "}
+            <Link href="https://github.com/mirumee/Ariadne?tab=readme-ov-file#ariadne-ecosystem">
+              GitHub repos
+            </Link>{" "}
+            ⭐
+          </p>
+          <Link className="button button--secondary button--outline button--lg" href="https://mirumee.com/contact" style={{borderRadius:"6px",whiteSpace:"nowrap"}}>
+            Talk to the Creators
+          </Link>
+        </div>
       </div>
     </header>
   );

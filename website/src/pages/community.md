@@ -2,10 +2,13 @@
 title: Contribute to Ariadne
 ---
 
-# Community
+<div style={{textAlign: 'left', marginBottom: '1rem'}}>
+  <img src="/img/ariadne_circle.svg" width="48" height="48" alt="Ariadne" />
+</div>
 
-Ariadne is built and maintained by an open community of GraphQL and
-Python enthusiasts.
+# Ariadne Community
+
+Born in the Mirumee Lab. Evolving every day through the collective genius of our core team and a global community of GraphQL and Python contributors.
 
 ## Contribute to Ariadne
 
@@ -18,3 +21,7 @@ get involved.
 
 Share the love, ask questions or simply say hello on our
 [GitHub](https://github.com/mirumee/ariadne/discussions/) community.
+
+<div style={{marginTop: '3rem'}}>
+  <img src="/img/ariadne_mirumee.svg" style={{width: '100%', opacity: 0.25}} alt="Mirumee" />
+</div>

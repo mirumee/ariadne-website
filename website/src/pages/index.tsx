@@ -16,7 +16,7 @@ function HomepageHeader() {
     <header className={clsx("hero", styles.heroBanner)}>
       <div className="container">
         <div style={{display:"flex",alignItems:"center",gap:"6px",marginBottom:"1rem",fontSize:"0.85rem",color:"#666"}}>
-  <span>Built and maintained by</span>
+  <span>Brought to you by</span>
   <img src="/img/mirumee_minilogo.svg" alt="Mirumee" style={{height:"12px",verticalAlign:"middle"}} />
   <span>™</span>
 </div>
@@ -35,7 +35,7 @@ function HomepageHeader() {
             </Link>{" "}
             ⭐
           </p>
-          <Link className="button button--secondary button--outline button--lg" href="https://mirumee.com/contact" style={{borderRadius:"6px",whiteSpace:"nowrap"}}>
+          <Link className="button button--secondary button--outline button--lg" href="https://mirumee.com/contact?utm_campaign=ariadne&utm_medium=ariadne_page&utm_source=CTA" style={{borderRadius:"6px",whiteSpace:"nowrap"}}>
             Talk to the Creators
           </Link>
         </div>

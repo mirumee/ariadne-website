@@ -16,9 +16,10 @@ function HomepageHeader() {
     <header className={clsx("hero", styles.heroBanner)}>
       <div className="container">
         <div style={{display:"flex",alignItems:"center",gap:"6px",marginBottom:"1rem",fontSize:"0.85rem",color:"#666"}}>
-  <span>Brought to you by</span>
-  <img src="/img/mirumee_minilogo.svg" alt="Mirumee" style={{height:"12px",verticalAlign:"middle"}} />
-  <span>™</span>
+  <span>Brought to you by™</span>
+  <Link href="https://mirumee.com/?utm_campaign=ariadne&utm_medium=ariadne_page&utm_source=logo">
+    <img src="/img/mirumee_minilogo.svg" alt="Mirumee" style={{height:"12px",verticalAlign:"middle"}} />
+  </Link>
 </div>
         <Heading as="h1" className="hero__title">
           GraphQL in Python

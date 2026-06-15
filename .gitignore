@@ -15,4 +15,6 @@ website/.docusaurus/
 
 # PyCharm
 .idea
-.claude/
+
+# Claude
+.claude/settings.local.json

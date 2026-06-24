@@ -120,6 +120,7 @@ const config: Config = {
           docsPluginId: "client",
           position: "left",
         },
+        { to: "/enterprise", label: "Enterprise", position: "right" },
         { to: "/community", label: "Community", position: "right" },
         {
           href: "https://github.com/mirumee/Ariadne?tab=readme-ov-file#ariadne-ecosystem",
